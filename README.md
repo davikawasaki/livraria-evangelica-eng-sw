@@ -1,5 +1,5 @@
 # Projeto de Engenharia de Software - Sistema de Livraria Evangélica
-Desenvolvimento de projeto Java Web para matéria de Engenharia de Software - UTFPR-CP.
+Desenvolvimento de projeto Java Web para disciplina de Engenharia de Software - UTFPR-CP.
 # Linguagens Back-end
 Java EE - Servlets, JSP
 # Banco
