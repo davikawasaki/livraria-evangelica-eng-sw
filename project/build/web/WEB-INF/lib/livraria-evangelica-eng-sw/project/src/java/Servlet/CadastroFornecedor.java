@@ -30,27 +30,27 @@ public class CadastroFornecedor extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String fornecedor = request.getParameter("fornecedor");
-            String cnpj = request.getParameter("cnpj");
-            String nomeRepresentante = request.getParameter("nomeRepresentante");
-            String tipoServico = request.getParameter("tipoServico");
-            String tipoFornecimento = request.getParameter("tipoFornecimento");
-            String telefone = request.getParameter("telefone");
-            String email = request.getParameter("email");
-            String numero = request.getParameter("numero");
-            String logradouro = request.getParameter("logradouro");
-            String complemento = request.getParameter("complemento");
-            String bairro = request.getParameter("bairro");
-            String cep = request.getParameter("cep");
-            String cidade = request.getParameter("cidade");
-            String estado = request.getParameter("estado");
-            String pais = request.getParameter("pais");
-            
-            out.print("<div>"+fornecedor+"</div>");
-            
-            
+        PrintWriter out = response.getWriter();
+        /* TODO output your page here. You may use following sample code. */
+        String fornecedor = request.getParameter("fornecedor");
+        String cnpj = request.getParameter("cnpj");
+        String nomeRepresentante = request.getParameter("nomeRepresentante");
+        String tipoServico = request.getParameter("tipoServico");
+        String tipoFornecimento = request.getParameter("tipoFornecimento");
+        String telefone = request.getParameter("telefone");
+        String email = request.getParameter("email");
+        String numero = request.getParameter("numero");
+        String logradouro = request.getParameter("logradouro");
+        String complemento = request.getParameter("complemento");
+        String bairro = request.getParameter("bairro");
+        String cep = request.getParameter("cep");
+        String cidade = request.getParameter("cidade");
+        String estado = request.getParameter("estado");
+        String pais = request.getParameter("pais");
+
+        out.print("<div>"+fornecedor+"</div>");
+
+
 //            Fornecedor fornecedor;
 //            fornecedor = new Fornecedor();
 //            
@@ -69,10 +69,10 @@ public class CadastroFornecedor extends HttpServlet {
 //            fornecedor.setCidade(cidade);
 //            fornecedor.setEstdo(estado);
 //            fornecedor.setPais(pais);
+
             
             
-            
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
