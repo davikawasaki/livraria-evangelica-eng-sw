@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import Classes.Pessoa;
+import DAOclasses.PessoaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,13 +31,29 @@ public class NovoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         PrintWriter out = response.getWriter();
-        String a, b;
         
-        a = request.getParameter("name");
+        Pessoa pessoa = new Pessoa();
+        int id = Integer.parseInt(request.getParameter("id"));
         
-        out.println("Welcome " + a);
+        pessoa.setId(id);
+        pessoa.setTelefone(Integer.parseInt(request.getParameter("telefone")));
+        pessoa.setEmail(request.getParameter("email"));
+        pessoa.setCEP(request.getParameter("cep"));
+        pessoa.setLogradouro(request.getParameter("logradouro"));
+        pessoa.setComplemento(request.getParameter("complemento"));
+        pessoa.setNumero(Integer.parseInt(request.getParameter("numero")));
+        pessoa.setBairro(request.getParameter("bairro"));
+        pessoa.setCidade(request.getParameter("cidade"));
+        pessoa.setEstado(request.getParameter("estado"));
+        pessoa.setPais(request.getParameter("pais"));
+        pessoa.setSenha(request.getParameter("password"));
+          
+        PessoaDAO dao = new PessoaDAO();
+        dao.adiciona(pessoa);
+        
+        out.println("Pessoa com ID:" +id+" cadastrada com sucesso!");
         out.close();
     }
     

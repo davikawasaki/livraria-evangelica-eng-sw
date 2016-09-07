@@ -33,8 +33,8 @@ public class PessoaDAO {
            stmt.setInt(2,pessoa.getTelefone());
            stmt.setString(3, pessoa.getEmail());
            stmt.setString(4, pessoa.getCEP());
-           stmt.setString(5, pessoa.getCEP());
-           stmt.setString(6, pessoa.getLogradouro());
+           stmt.setString(5, pessoa.getLogradouro());
+           stmt.setString(6, pessoa.getComplemento());
            stmt.setInt(7, pessoa.getNumero());
            stmt.setString(8, pessoa.getBairro());
            stmt.setString(9, pessoa.getCidade());
