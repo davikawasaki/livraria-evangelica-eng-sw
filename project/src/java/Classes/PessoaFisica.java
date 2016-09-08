@@ -12,16 +12,16 @@ import java.sql.Date;
  *
  * @author Nicholas
  */
-public class PessoaFisica extends Pessoa{
-    
-    private int CPF;
+public class PessoaFisica{
+    private Pessoa pessoa;    
+    private String CPF;
     private String nome;
     private String sobrenome;
-    private int RG;
+    private String RG;
     private String sexo;
-    private Date dataAniversario;
+    private Date dataNascimento;
 
-    public int getCPF() {
+    public String getCPF() {
         return CPF;
     }
 
@@ -33,7 +33,7 @@ public class PessoaFisica extends Pessoa{
         return sobrenome;
     }
 
-    public int getRG() {
+    public String getRG() {
         return RG;
     }
 
@@ -41,11 +41,11 @@ public class PessoaFisica extends Pessoa{
         return sexo;
     }
 
-    public Date getDataAniversario() {
-        return dataAniversario;
+    public Date getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setCPF(int cpf) {
+    public void setCPF(String cpf) {
         this.CPF = cpf;
     }
 
@@ -57,7 +57,7 @@ public class PessoaFisica extends Pessoa{
         this.sobrenome = sobrenome;
     }
 
-    public void setRG(int rg) {
+    public void setRG(String rg) {
         this.RG = rg;
     }
 
@@ -65,7 +65,16 @@ public class PessoaFisica extends Pessoa{
         this.sexo = sexo;
     }
 
-    public void setDataAniversario(Date dataAniversario) {
-        this.dataAniversario = dataAniversario;
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+    
 }
