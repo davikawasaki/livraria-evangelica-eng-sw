@@ -5,6 +5,8 @@
  */
 
 import Classes.Fornecedor;
+import Classes.Pessoa;
+import Classes.PessoaJuridica;
 import DAOclasses.FornecedorDAO;
 import DAOclasses.PessoaDAO;
 import DAOclasses.PessoaJuridicaDAO;
@@ -38,31 +40,30 @@ public class NovoServlet extends HttpServlet {
        
         Fornecedor fornecedor = new Fornecedor();
         
-        fornecedor.setTelefone(request.getParameter("telefone"));
-        fornecedor.setEmail(request.getParameter("email"));
-        fornecedor.setCEP(request.getParameter("cep"));
-        fornecedor.setLogradouro(request.getParameter("logradouro"));
-        fornecedor.setComplemento(request.getParameter("complemento"));
-        fornecedor.setNumero(Integer.parseInt(request.getParameter("numero")));
-        fornecedor.setBairro(request.getParameter("bairro"));
-        fornecedor.setCidade(request.getParameter("cidade"));
-        fornecedor.setEstado(request.getParameter("estado"));
-        fornecedor.setPais(request.getParameter("pais"));
-        fornecedor.setSenha(request.getParameter("password"));
-        fornecedor.setNomeFantasia(request.getParameter("nomeFantasia"));
+        PessoaJuridica pj = new PessoaJuridica();
+        fornecedor.setPj(pj);
+        
+        Pessoa pessoa = new Pessoa();
+        fornecedor.getPj().setPessoa(pessoa);
+        
+        fornecedor.getPj().getPessoa().setTelefone(request.getParameter("telefone"));
+        fornecedor.getPj().getPessoa().setEmail(request.getParameter("email"));
+        fornecedor.getPj().getPessoa().setCEP(request.getParameter("cep"));
+        fornecedor.getPj().getPessoa().setLogradouro(request.getParameter("logradouro"));
+        fornecedor.getPj().getPessoa().setComplemento(request.getParameter("complemento"));
+        fornecedor.getPj().getPessoa().setNumero(Integer.parseInt(request.getParameter("numero")));
+        fornecedor.getPj().getPessoa().setBairro(request.getParameter("bairro"));
+        fornecedor.getPj().getPessoa().setCidade(request.getParameter("cidade"));
+        fornecedor.getPj().getPessoa().setEstado(request.getParameter("estado"));
+        fornecedor.getPj().getPessoa().setPais(request.getParameter("pais"));
+        fornecedor.getPj().setNomeFantasia(request.getParameter("nomeFantasia"));
+        fornecedor.getPj().setCNPJ(request.getParameter("CNPJ"));
         fornecedor.setTipoServico(request.getParameter("tipoServico"));
-        fornecedor.setCNPJ(request.getParameter("CNPJ"));
         fornecedor.setTipoFornecimento(request.getParameter("tipoFornecimento"));
         fornecedor.setNomeRepresentante(request.getParameter("nomeRepresentante"));
- 
-      //  out.println(fornecedor.getNomeRepresentante());
-        PessoaDAO pdao = new PessoaDAO();
-        pdao.adiciona(fornecedor);
-        PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();
-        pjdao.adiciona(fornecedor);
-//  FornecedorDAO dao = new FornecedorDAO();
-      //  dao.adiciona(fornecedor);
-    
+
+        FornecedorDAO dao = new FornecedorDAO();
+        dao.adiciona(fornecedor);
   
         out.println("Fornecedor cadastrada com sucesso!");
         out.close();

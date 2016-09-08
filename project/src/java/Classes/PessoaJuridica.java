@@ -9,7 +9,8 @@ package Classes;
  *
  * @author lucasfranco
  */
-public class PessoaJuridica extends Pessoa{
+public class PessoaJuridica{
+    private Pessoa pessoa;
     private String CNPJ;
     private String nomeFantasia;
     
@@ -28,4 +29,12 @@ public class PessoaJuridica extends Pessoa{
     public void setNomeFantasia(String nomeFantasia) {
         this.nomeFantasia = nomeFantasia;
     }    
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
 }

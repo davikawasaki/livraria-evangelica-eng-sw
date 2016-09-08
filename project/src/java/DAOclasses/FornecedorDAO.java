@@ -6,8 +6,6 @@
 package DAOclasses;
 
 import Classes.Fornecedor;
-import Classes.Pessoa;
-import Classes.PessoaJuridica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -22,16 +20,16 @@ public class FornecedorDAO {
     public FornecedorDAO() {
         this.connection = new ConnectionFactory().getConnection();
     }
-    
-    //PessoaJuridicaDAO pjdao;
         
     public void adiciona(Fornecedor fornecedor) {  
-             
-        String sql = "insert into Fornecedor" + 
-                "(nomeRepresentante, tipoServico, tipoFornecimento)" + 
-                "values(?,?,?)";
+    
+        PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();
         
-        //pjdao.adiciona(fornecedor);
+        pjdao.adiciona(fornecedor.getPj());
+        
+        String sql = "insert into Fornecedor" + 
+                "(nomeRepresentante, tipoServico, tipoFornecimento, PessoaJuridica_CNPJ)" + 
+                "values(?,?,?,?)";
         
         try{
            PreparedStatement stmt = connection.prepareStatement(sql);
@@ -39,6 +37,7 @@ public class FornecedorDAO {
            stmt.setString(1, fornecedor.getNomeRepresentante());
            stmt.setString(2, fornecedor.getTipoServico());
            stmt.setString(3, fornecedor.getTipoFornecimento());
+           stmt.setString(4, fornecedor.getPj().getCNPJ());
            
            stmt.execute();
            stmt.close();

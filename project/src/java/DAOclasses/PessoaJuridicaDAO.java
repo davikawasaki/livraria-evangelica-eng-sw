@@ -21,20 +21,19 @@ public class PessoaJuridicaDAO {
         this.connection = new ConnectionFactory().getConnection();
     }
     
-    PessoaDAO pdao = new PessoaDAO();
-    
     public void adiciona(PessoaJuridica pj) {
+        PessoaDAO pdao = new PessoaDAO();
+        pdao.adiciona(pj.getPessoa());
+        
         String sql = "insert into PessoaJuridica" + 
                 "(CNPJ, nomeFantasia, Pessoa_idPessoa)" + "values(?,?,?)";
-    
-        pdao.adiciona(pj);
-        
+      
         try{
            PreparedStatement stmt = connection.prepareStatement(sql);
 
            stmt.setString(1, pj.getCNPJ());
            stmt.setString(2, pj.getNomeFantasia());
-           stmt.setInt(3, pj.getId());
+           stmt.setInt(3, pj.getPessoa().getId());
           
            stmt.execute();
            stmt.close();

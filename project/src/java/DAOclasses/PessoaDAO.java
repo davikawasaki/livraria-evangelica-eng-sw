@@ -3,7 +3,9 @@ package DAOclasses;
 import Classes.Pessoa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -17,12 +19,13 @@ public class PessoaDAO {
     }
     
     public void adiciona(Pessoa pessoa) {
+                
         String sql = "insert into Pessoa" + 
                 "(telefone, email, CEP, logradouro, complemento, numero, bairro, cidade, estado, pais)" + 
                 "values(?,?,?,?,?,?,?,?,?,?)";
     
         try{
-           PreparedStatement stmt = connection.prepareStatement(sql);
+           PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
            stmt.setString(1,pessoa.getTelefone());
            stmt.setString(2, pessoa.getEmail());
@@ -33,9 +36,13 @@ public class PessoaDAO {
            stmt.setString(7, pessoa.getBairro());
            stmt.setString(8, pessoa.getCidade());
            stmt.setString(9, pessoa.getEstado());
-           stmt.setString(10, pessoa.getPais());
-        
-           stmt.execute();
+           stmt.setString(10, pessoa.getPais());       
+           stmt.executeUpdate();
+           
+           ResultSet rs = stmt.getGeneratedKeys();
+           rs.next();
+           pessoa.setId(rs.getInt(1));
+           
            stmt.close();
         }
         catch (SQLException e){

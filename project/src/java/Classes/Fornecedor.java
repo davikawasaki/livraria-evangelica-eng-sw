@@ -9,7 +9,8 @@ package Classes;
  *
  * @author lucasfranco
  */
-public class Fornecedor extends PessoaJuridica{
+public class Fornecedor{
+    private PessoaJuridica pj;
     private String nomeRepresentante;
     private String tipoServico;
     private String tipoFornecimento;
@@ -37,4 +38,13 @@ public class Fornecedor extends PessoaJuridica{
     public void setTipoFornecimento(String tipoFornecimento) {
         this.tipoFornecimento = tipoFornecimento;
     }
+
+    public PessoaJuridica getPj() {
+        return pj;
+    }
+
+    public void setPj(PessoaJuridica pj) {
+        this.pj = pj;
+    }
+    
 }

@@ -52,30 +52,34 @@ public class CadastroFornecedor extends HttpServlet {
         String estado = request.getParameter("estado");
         String pais = request.getParameter("pais");
 
-        out.print("<div>"+nomeFantasia+"</div>");
-
         Fornecedor fornecedor = new Fornecedor();
         
-        fornecedor.setNomeFantasia(nomeFantasia);
-        fornecedor.setCNPJ(cnpj);
+        PessoaJuridica pj = new PessoaJuridica();
+        fornecedor.setPj(pj);
+        
+        Pessoa pessoa = new Pessoa();
+        fornecedor.getPj().setPessoa(pessoa);
+
+        fornecedor.getPj().setNomeFantasia(nomeFantasia);
+        fornecedor.getPj().setCNPJ(cnpj);
         fornecedor.setNomeRepresentante(nomeRepresentante);
         fornecedor.setTipoServico(tipoServico);
         fornecedor.setTipoFornecimento(tipoFornecimento);
-        fornecedor.setTelefone(telefone);
-        fornecedor.setEmail(email);
-        fornecedor.setNumero(numero);
-        fornecedor.setLogradouro(logradouro);
-        fornecedor.setComplemento(complemento);
-        fornecedor.setBairro(bairro);
-        fornecedor.setCEP(cep);
-        fornecedor.setCidade(cidade);
-        fornecedor.setEstado(estado);
-        fornecedor.setPais(pais);
+        fornecedor.getPj().getPessoa().setTelefone(telefone);
+        fornecedor.getPj().getPessoa().setEmail(email);
+        fornecedor.getPj().getPessoa().setNumero(numero);
+        fornecedor.getPj().getPessoa().setLogradouro(logradouro);
+        fornecedor.getPj().getPessoa().setComplemento(complemento);
+        fornecedor.getPj().getPessoa().setBairro(bairro);
+        fornecedor.getPj().getPessoa().setCEP(cep);
+        fornecedor.getPj().getPessoa().setCidade(cidade);
+        fornecedor.getPj().getPessoa().setEstado(estado);
+        fornecedor.getPj().getPessoa().setPais(pais);
 
         FornecedorDAO fdao = new FornecedorDAO();
         fdao.adiciona(fornecedor);
+    
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
