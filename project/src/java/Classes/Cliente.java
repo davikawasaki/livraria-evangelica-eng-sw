@@ -9,10 +9,11 @@ package Classes;
  *
  * @author Nicholas
  */
-public class Cliente extends PessoaFisica{
+public class Cliente{
+    private PessoaFisica pf;
     private int idCliente;
     private boolean fidelidade;
-    private int codFidelidade;
+    private String codFidelidade;
 
     public int getIdCliente() {
         return idCliente;
@@ -22,7 +23,7 @@ public class Cliente extends PessoaFisica{
         return fidelidade;
     }
 
-    public int getCodFidelidade() {
+    public String getCodFidelidade() {
         return codFidelidade;
     }
 
@@ -34,7 +35,16 @@ public class Cliente extends PessoaFisica{
         this.fidelidade = fidelidade;
     }
 
-    public void setCodFidelidade(int codFidelidade) {
+    public void setCodFidelidade(String codFidelidade) {
         this.codFidelidade = codFidelidade;
     }
+
+    public PessoaFisica getPf() {
+        return pf;
+    }
+
+    public void setPf(PessoaFisica pf) {
+        this.pf = pf;
+    }
+    
 }

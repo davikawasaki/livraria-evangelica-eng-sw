@@ -8,6 +8,10 @@
         <servlet-name>CadastroFornecedor</servlet-name>
         <servlet-class>Servlet.CadastroFornecedor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NovoServlet2</servlet-name>
+        <servlet-class>NovoServlet2</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NovoServlet</servlet-name>
         <url-pattern>/serv</url-pattern>
@@ -16,15 +20,19 @@
         <servlet-name>CadastroFornecedor</servlet-name>
         <url-pattern>/CadastroFornecedor</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NovoServlet2</servlet-name>
+        <url-pattern>/serv2</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>login.html</welcome-file>
+        <welcome-file>index2.html</welcome-file>
         <welcome-file>cadastro-fornecedor.html</welcome-file>
         <welcome-file>listar-fornecedor.html</welcome-file>
-        <welcome-file>login.html</welcome-file>
     </welcome-file-list>
 </web-app>

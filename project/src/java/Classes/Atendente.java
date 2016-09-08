@@ -11,7 +11,8 @@ import java.sql.Time;
  *
  * @author Nicholas
  */
-public class Atendente extends PessoaFisica{
+public class Atendente{
+    private PessoaFisica pf;
     private Time comecoExpediente;
     private Time fimExpediente;
     private String senha;
@@ -48,6 +49,13 @@ public class Atendente extends PessoaFisica{
     public void setLogin(String login) {
         this.login = login;
     }
- 
+
+    public PessoaFisica getPf() {
+        return pf;
+    }
+
+    public void setPf(PessoaFisica pf) {
+        this.pf = pf;
+    }
     
 }

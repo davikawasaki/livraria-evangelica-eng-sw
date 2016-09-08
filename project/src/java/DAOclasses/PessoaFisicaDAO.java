@@ -5,7 +5,10 @@
  */
 package DAOclasses;
 
+import Classes.PessoaFisica;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * @author lucasfranco
@@ -18,11 +21,31 @@ public class PessoaFisicaDAO {
     public PessoaFisicaDAO() {
         this.connection = new ConnectionFactory().getConnection();
     }
-    
-  /*  public void adiciona(PessoaFisica pessoafisica) {
-        String sql = "insert into pessoafisica " + 
-                "(CPF, nome, sobrenome, RG, sexo, dataNascimento, idPessoa, loginPF)" + 
-                "values(?,?,?,?,?,?,?,?)";
+     
+    public void adiciona(PessoaFisica pf) {
+        PessoaDAO pdao = new PessoaDAO();
+        pdao.adiciona(pf.getPessoa());
+        
+        String sql = "insert into PessoaFisica" + 
+                "(CPF, Pessoa_idPessoa, nome, sobrenome, RG, sexo, dataNascimento)" + 
+                "values(?,?,?,?,?,?,?)";
+      
+        try{
+           PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setString(1, pf.getCPF());
+            stmt.setInt(2, pf.getPessoa().getId());
+            stmt.setString(3, pf.getNome());
+            stmt.setString(4, pf.getSobrenome());
+            stmt.setString(5, pf.getRG());
+            stmt.setString(6, pf.getSexo());
+            stmt.setDate(7, pf.getDataNascimento());
+            
+            stmt.execute();
+            stmt.close();
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
-   */
 }
