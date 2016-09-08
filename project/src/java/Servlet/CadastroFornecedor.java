@@ -79,6 +79,9 @@ public class CadastroFornecedor extends HttpServlet {
         FornecedorDAO fdao = new FornecedorDAO();
         fdao.adiciona(fornecedor);
     
+        String contextPath= "http://localhost:8084/livraria_v1";
+        response.sendRedirect(response.encodeRedirectURL(contextPath + "/bemvindo.jsp"));
+        
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

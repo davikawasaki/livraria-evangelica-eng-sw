@@ -3,13 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Servlet;
 
-import Classes.Fornecedor;
-import Classes.Pessoa;
-import Classes.PessoaJuridica;
-import DAOclasses.FornecedorDAO;
-import DAOclasses.PessoaDAO;
-import DAOclasses.PessoaJuridicaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author lucasfranco
+ * @author eryc
  */
-public class NovoServlet extends HttpServlet {
+public class CadastroCliente extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,40 +30,35 @@ public class NovoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         PrintWriter out = response.getWriter();
-       
-        Fornecedor fornecedor = new Fornecedor();
+        String nome = request.getParameter("nome");
+        String sobrenome = request.getParameter("sobrenome");
+        String cpf = request.getParameter("cpf");
+        String rg = request.getParameter("rg");
+        String datanascimento = request.getParameter("datanascimento");
+        String sexo = request.getParameter("sexo");
+        String codfidelidade = request.getParameter("codefidelidade");
+        String telefone = request.getParameter("telefone");
+        String email = request.getParameter("email");
+        String logradouro = request.getParameter("logradouro");
+        String numero = request.getParameter("numero");
+        String complemento = request.getParameter("complemento");
+        String bairro = request.getParameter("bairro");
+        String cep = request.getParameter("cep");
+        String cidade = request.getParameter("cidade");
+        String estado = request.getParameter("estado");
+        String pais = request.getParameter("pais");
+        out.print("<div>"+nome+"</div>");
+        out.print("<div>"+sexo+"</div>");
         
-        PessoaJuridica pj = new PessoaJuridica();
-        fornecedor.setPj(pj);
         
-        Pessoa pessoa = new Pessoa();
-        fornecedor.getPj().setPessoa(pessoa);
         
-        fornecedor.getPj().getPessoa().setTelefone(request.getParameter("telefone"));
-        fornecedor.getPj().getPessoa().setEmail(request.getParameter("email"));
-        fornecedor.getPj().getPessoa().setCEP(request.getParameter("cep"));
-        fornecedor.getPj().getPessoa().setLogradouro(request.getParameter("logradouro"));
-        fornecedor.getPj().getPessoa().setComplemento(request.getParameter("complemento"));
-        fornecedor.getPj().getPessoa().setNumero(Integer.parseInt(request.getParameter("numero")));
-        fornecedor.getPj().getPessoa().setBairro(request.getParameter("bairro"));
-        fornecedor.getPj().getPessoa().setCidade(request.getParameter("cidade"));
-        fornecedor.getPj().getPessoa().setEstado(request.getParameter("estado"));
-        fornecedor.getPj().getPessoa().setPais(request.getParameter("pais"));
-        fornecedor.getPj().setNomeFantasia(request.getParameter("nomeFantasia"));
-        fornecedor.getPj().setCNPJ(request.getParameter("CNPJ"));
-        fornecedor.setTipoServico(request.getParameter("tipoServico"));
-        fornecedor.setTipoFornecimento(request.getParameter("tipoFornecimento"));
-        fornecedor.setNomeRepresentante(request.getParameter("nomeRepresentante"));
-
-        FornecedorDAO dao = new FornecedorDAO();
-        dao.adiciona(fornecedor);
-  
-        out.println("Fornecedor cadastrada com sucesso!");
-        out.close();
+        
+        
+        
+        
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
