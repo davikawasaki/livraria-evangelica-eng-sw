@@ -5,6 +5,10 @@
  */
 package Servlet;
 
+import Classes.Fornecedor;
+import Classes.Pessoa;
+import Classes.PessoaJuridica;
+import DAOclasses.FornecedorDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -31,15 +35,15 @@ public class CadastroFornecedor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        /* TODO output your page here. You may use following sample code. */
-        String fornecedor = request.getParameter("fornecedor");
+ 
+        String nomeFantasia = request.getParameter("nomeFantasia");
         String cnpj = request.getParameter("cnpj");
         String nomeRepresentante = request.getParameter("nomeRepresentante");
         String tipoServico = request.getParameter("tipoServico");
         String tipoFornecimento = request.getParameter("tipoFornecimento");
         String telefone = request.getParameter("telefone");
         String email = request.getParameter("email");
-        String numero = request.getParameter("numero");
+        int numero = Integer.parseInt(request.getParameter("numero"));
         String logradouro = request.getParameter("logradouro");
         String complemento = request.getParameter("complemento");
         String bairro = request.getParameter("bairro");
@@ -48,31 +52,28 @@ public class CadastroFornecedor extends HttpServlet {
         String estado = request.getParameter("estado");
         String pais = request.getParameter("pais");
 
-        out.print("<div>"+fornecedor+"</div>");
+        out.print("<div>"+nomeFantasia+"</div>");
 
-
-//            Fornecedor fornecedor;
-//            fornecedor = new Fornecedor();
-//            
-//            fornecedor.setFornecedor(fornecedor);
-//            fornecedor.setCnpj(cnpj);
-//            fornecedor.setNomeRepresentante(nomeRepresentante);
-//            fornecedor.setTipoServico(tipoServico);
-//            fornecedor.setTipoFornecimento(tipoFornecimento);
-//            fornecedor.setTelefone(telefone);
-//            fornecedor.setEmail(email);
-//            fornecedor.setNumero(numero);
-//            fornecedor.setLogradouro(logradouro);
-//            fornecedor.setComplemento(complemento);
-//            fornecedor.setBairro(bairro);
-//            fornecedor.setCep(cep);
-//            fornecedor.setCidade(cidade);
-//            fornecedor.setEstdo(estado);
-//            fornecedor.setPais(pais);
-
-            
-            
+        Fornecedor fornecedor = new Fornecedor();
         
+        fornecedor.setNomeFantasia(nomeFantasia);
+        fornecedor.setCNPJ(cnpj);
+        fornecedor.setNomeRepresentante(nomeRepresentante);
+        fornecedor.setTipoServico(tipoServico);
+        fornecedor.setTipoFornecimento(tipoFornecimento);
+        fornecedor.setTelefone(telefone);
+        fornecedor.setEmail(email);
+        fornecedor.setNumero(numero);
+        fornecedor.setLogradouro(logradouro);
+        fornecedor.setComplemento(complemento);
+        fornecedor.setBairro(bairro);
+        fornecedor.setCEP(cep);
+        fornecedor.setCidade(cidade);
+        fornecedor.setEstado(estado);
+        fornecedor.setPais(pais);
+
+        FornecedorDAO fdao = new FornecedorDAO();
+        fdao.adiciona(fornecedor);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -115,4 +116,3 @@ public class CadastroFornecedor extends HttpServlet {
     }// </editor-fold>
 
 }
-

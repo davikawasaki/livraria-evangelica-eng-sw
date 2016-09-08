@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAOclasses;
 
 import Classes.Pessoa;
@@ -23,25 +18,23 @@ public class PessoaDAO {
     
     public void adiciona(Pessoa pessoa) {
         String sql = "insert into Pessoa" + 
-                "(id, telefone, email, CEP, logradouro, complemento, numero, bairro, cidade, estado, pais, senha)" + 
-                "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+                "(telefone, email, CEP, logradouro, complemento, numero, bairro, cidade, estado, pais)" + 
+                "values(?,?,?,?,?,?,?,?,?,?)";
     
         try{
            PreparedStatement stmt = connection.prepareStatement(sql);
 
-           stmt.setInt(1,pessoa.getId());
-           stmt.setInt(2,pessoa.getTelefone());
-           stmt.setString(3, pessoa.getEmail());
-           stmt.setString(4, pessoa.getCEP());
-           stmt.setString(5, pessoa.getLogradouro());
-           stmt.setString(6, pessoa.getComplemento());
-           stmt.setInt(7, pessoa.getNumero());
-           stmt.setString(8, pessoa.getBairro());
-           stmt.setString(9, pessoa.getCidade());
-           stmt.setString(10, pessoa.getEstado());
-           stmt.setString(11, pessoa.getPais());
-           stmt.setString(12, pessoa.getSenha());
-
+           stmt.setString(1,pessoa.getTelefone());
+           stmt.setString(2, pessoa.getEmail());
+           stmt.setString(3, pessoa.getCEP());
+           stmt.setString(4, pessoa.getLogradouro());
+           stmt.setString(5, pessoa.getComplemento());
+           stmt.setInt(6, pessoa.getNumero());
+           stmt.setString(7, pessoa.getBairro());
+           stmt.setString(8, pessoa.getCidade());
+           stmt.setString(9, pessoa.getEstado());
+           stmt.setString(10, pessoa.getPais());
+        
            stmt.execute();
            stmt.close();
         }

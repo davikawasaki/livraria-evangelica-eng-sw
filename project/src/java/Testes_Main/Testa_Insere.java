@@ -7,7 +7,6 @@ package Testes_Main;
 
 import Classes.Pessoa;
 import DAOclasses.PessoaDAO;
-import java.util.Calendar;
 
 /**
  *
@@ -17,7 +16,7 @@ public class Testa_Insere {
     public static void main(String[] args) {
         Pessoa pessoa = new Pessoa();
         pessoa.setId(1);
-        pessoa.setTelefone(123456789);
+        pessoa.setTelefone("123456789");
         pessoa.setEmail("pessoa@caelum.com.br");
         pessoa.setCEP("1190000");
         pessoa.setLogradouro("R. Vergueiro 3185 cj57");

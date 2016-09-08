@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
-import Classes.Pessoa;
+import Classes.Fornecedor;
+import DAOclasses.FornecedorDAO;
 import DAOclasses.PessoaDAO;
+import DAOclasses.PessoaJuridicaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,27 +35,36 @@ public class NovoServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         PrintWriter out = response.getWriter();
+       
+        Fornecedor fornecedor = new Fornecedor();
         
-        Pessoa pessoa = new Pessoa();
-        int id = Integer.parseInt(request.getParameter("id"));
-        
-        pessoa.setId(id);
-        pessoa.setTelefone(Integer.parseInt(request.getParameter("telefone")));
-        pessoa.setEmail(request.getParameter("email"));
-        pessoa.setCEP(request.getParameter("cep"));
-        pessoa.setLogradouro(request.getParameter("logradouro"));
-        pessoa.setComplemento(request.getParameter("complemento"));
-        pessoa.setNumero(Integer.parseInt(request.getParameter("numero")));
-        pessoa.setBairro(request.getParameter("bairro"));
-        pessoa.setCidade(request.getParameter("cidade"));
-        pessoa.setEstado(request.getParameter("estado"));
-        pessoa.setPais(request.getParameter("pais"));
-        pessoa.setSenha(request.getParameter("password"));
-          
-        PessoaDAO dao = new PessoaDAO();
-        dao.adiciona(pessoa);
-        
-        out.println("Pessoa com ID:" +id+" cadastrada com sucesso!");
+        fornecedor.setTelefone(request.getParameter("telefone"));
+        fornecedor.setEmail(request.getParameter("email"));
+        fornecedor.setCEP(request.getParameter("cep"));
+        fornecedor.setLogradouro(request.getParameter("logradouro"));
+        fornecedor.setComplemento(request.getParameter("complemento"));
+        fornecedor.setNumero(Integer.parseInt(request.getParameter("numero")));
+        fornecedor.setBairro(request.getParameter("bairro"));
+        fornecedor.setCidade(request.getParameter("cidade"));
+        fornecedor.setEstado(request.getParameter("estado"));
+        fornecedor.setPais(request.getParameter("pais"));
+        fornecedor.setSenha(request.getParameter("password"));
+        fornecedor.setNomeFantasia(request.getParameter("nomeFantasia"));
+        fornecedor.setTipoServico(request.getParameter("tipoServico"));
+        fornecedor.setCNPJ(request.getParameter("CNPJ"));
+        fornecedor.setTipoFornecimento(request.getParameter("tipoFornecimento"));
+        fornecedor.setNomeRepresentante(request.getParameter("nomeRepresentante"));
+ 
+      //  out.println(fornecedor.getNomeRepresentante());
+        PessoaDAO pdao = new PessoaDAO();
+        pdao.adiciona(fornecedor);
+        PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();
+        pjdao.adiciona(fornecedor);
+//  FornecedorDAO dao = new FornecedorDAO();
+      //  dao.adiciona(fornecedor);
+    
+  
+        out.println("Fornecedor cadastrada com sucesso!");
         out.close();
     }
     

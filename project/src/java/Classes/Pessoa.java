@@ -1,12 +1,17 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Classes;
 
-/*
- * @author lucasfranco
+/**
+ *
+ * @author Nicholas
  */
-
-public class Pessoa {
+public class Pessoa{
     private int id;
-    private int telefone;
+    private String telefone;
     private String email;
     private String CEP;
     private String logradouro;
@@ -26,11 +31,11 @@ public class Pessoa {
         this.id = id;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
