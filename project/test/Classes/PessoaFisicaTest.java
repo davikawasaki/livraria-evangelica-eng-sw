@@ -7,9 +7,9 @@ package Classes;
 
 import java.sql.Date;
 import java.util.Calendar;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -55,10 +55,10 @@ public class PessoaFisicaTest {
     @Test
     public void ContatoInsereDataNascimento() {
         PessoaFisica pf = new PessoaFisica();
-        Date dataNasc = new Date(Calendar.getInstance().getTimeInMillis());
-        pf.setDataNascimento(dataNasc);
-        Date valorRecebido = pf.getDataNascimento();
-        assertEquals(valorRecebido, dataNasc);
+//        Date dataNasc = new Date(Calendar.getInstance().getTimeInMillis());
+        pf.setDataNascimento("12/12/1990");
+        String valorRecebido = pf.getDataNascimento();
+        assertEquals(valorRecebido, "12/12/1990");
     }
     @Test
     public void ContatoInserePessoaFisica() {
