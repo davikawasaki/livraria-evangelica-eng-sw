@@ -4,8 +4,9 @@
     Author     : eryc
 --%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="dao" class="DAOclasses.FornecedorDAO"/>
+<jsp:useBean id="person" scope="page" class="DAOclasses.PessoaDAO"/> 
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -66,7 +67,7 @@
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="index.html" class="navbar-brand">
+					<a href="dashboard.html" class="navbar-brand">
 						<small>
 							<i class="fa fa-book"></i>
 							Livraria
@@ -129,7 +130,7 @@
 				</script>
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="index.html">
+						<a href="dashboard.html">
 							<i class="menu-icon fa fa-desktop"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -172,7 +173,7 @@
 					<li class="active open">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-list-alt"></i>
-							<span class="menu-text"> Editar </span>
+							<span class="menu-text"> Consultar </span>
 							<b class="arrow fa fa-angle-down"></b>
 
 						</a>
@@ -182,7 +183,7 @@
 						<ul class="submenu">
 
 							<li class="active">
-								<a href="listar-fornecedor.html">
+								<a href="listar-fornecedor.jsp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Fornecedor
 								</a>
@@ -191,7 +192,7 @@
 							</li>
 
 							<li class="">
-								<a href="listar-cliente.html">
+								<a href="listar-cliente.jsp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Cliente
 								</a>
@@ -265,7 +266,7 @@
 
 												<tbody>
                                                                                                     <!--INIT THE LIST-->
-                                                                                                    <jsp:useBean id="dao" class="DAOclasses.FornecedorDAO"/>
+                                                                                                    
                                                                                                     <c:forEach var="fornecedor" items="${dao.lista}">
 													<tr>
 														<td class="center">
@@ -276,32 +277,24 @@
 														</td>
 
 														<td>
-                                                                                                                      
-                                                                                                                            
-
-                                                                                                                            <table>
+                                                                                                                    <table>
                                                                                                                                 
-                                                                                                                                    <tr>
-                                                                                                                                        <td>${fornecedor.nomeRepresentante}</td>
-                                                                                                                                        <td>${fornecedor.tipoServico}</td>
-                                                                                                                                        <td>${fornecedor.tipoServico}</td>
+                                                                                                                        <tr>
+                                                                                                                            <td>${fornecedor.getPj().CNPJ}</td>
 
-                                                                                                                                    </tr>
+                                                                                                                        </tr>
                                                                                                                                 
-                                                                                                                            </table>
-    
-    
-															<a href="#">app.com</a>
+                                                                                                                    </table>
 														</td>
 
-														<td>${fornecedor.nomeRepresentante}</td>
+														<td>${fornecedor.getPj().nomeFantasia}</td>
 
-														<td class="hidden-480">3,330</td>
+														<td class="hidden-480">${fornecedor.tipoServico}</td>
 
-														<td>Feb 12</td>
+														<td>${fornecedor.getPj().getPessoa().telefone}</td>
 
 														<td class="hidden-480">
-															<span class="label label-sm label-warning">Expiring</span>
+                                                                                                                    ${fornecedor.getPj().getPessoa().email}
 														</td>
 
 														<td>
@@ -343,8 +336,10 @@
 																		</li>
 
 																		<li>
-																			<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                                                                                                    
+																			<a href="#" id="delete" class="tooltip-error" data-rel="tooltip" title="Delete">
 																				<span class="red">
+                                                                                                                                                                        
 																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																				</span>
 																			</a>
@@ -526,7 +521,15 @@
 					return 'left';
 				}
 				
+                        
+                         
+        
+        
+                                
 			})
+                        
+                        
+                        
 		</script>
 	</body>
 </html>

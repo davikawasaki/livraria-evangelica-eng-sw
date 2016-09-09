@@ -35,5 +35,7 @@
         <welcome-file>cadastro-cliente.html</welcome-file>
         <welcome-file>listar-fornecedor.jsp</welcome-file>
         <welcome-file>listar-cliente.jsp</welcome-file>
+        <welcome-file>dashboard.html</welcome-file>
+        
     </welcome-file-list>
 </web-app>

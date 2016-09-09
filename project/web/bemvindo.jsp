@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:useBean id="dao" class="DAOclasses.ClienteDAO"/>
 <html>
 <head>
     <title>Primeira página em JSP</title>
@@ -27,5 +29,12 @@
     <%
         System.out.println("Tudo foi executado!");
     %>
+    
+    
+    <c:forEach var="cliente" items="${dao.lista}">
+        ${cliente.idCliente}
+    </c:forEach>
+    
+    
 </body>
 </html>

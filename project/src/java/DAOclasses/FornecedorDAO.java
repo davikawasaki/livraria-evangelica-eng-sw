@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -67,7 +66,7 @@ public class FornecedorDAO {
             fornecedor.setPj(pj);
             Pessoa pessoa = new Pessoa();
             fornecedor.getPj().setPessoa(pessoa);
-
+            
             fornecedor.setNomeRepresentante(rs.getString("nomeRepresentante"));
             fornecedor.setTipoServico(rs.getString("tipoServico"));
             fornecedor.setTipoFornecimento(rs.getString("tipoFornecimento"));
