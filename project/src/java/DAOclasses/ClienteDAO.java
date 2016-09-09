@@ -52,14 +52,14 @@ public class ClienteDAO {
         }
     }
     
-    public List<Cliente> getLista(){
+    public List <Cliente> getLista(){
         try {
-            List<Cliente> clientes = new ArrayList<Cliente>();
+            List <Cliente> clientes = new ArrayList<Cliente>();
             PreparedStatement stmt = this.connection.
-            prepareStatement("select * from Pessoa P join PessoaFisica PJ on P.idPessoa = PJ.Pessoa_IdPessoa join Cliente F on PJ.CNPJ = F.PessoaFisica_CNPJ;");
+            prepareStatement("select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF;");
             ResultSet rs = stmt.executeQuery();
  
-        while (rs.next()) {
+        while (rs.next()){
             // criando o objeto Cliente
             Cliente cliente = new Cliente();
             PessoaFisica pj = new PessoaFisica();
@@ -94,7 +94,7 @@ public class ClienteDAO {
         stmt.close();
         return clientes;
         }
-        catch (SQLException e) {
+        catch (SQLException e){
              throw new RuntimeException(e);
         }
     }

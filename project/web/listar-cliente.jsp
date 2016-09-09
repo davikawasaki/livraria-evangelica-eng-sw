@@ -3,8 +3,9 @@
     Created on : 08/09/2016, 14:23:06
     Author     : eryc
 --%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="dao" class="DAOclasses.ClienteDAO"/>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -64,7 +65,7 @@
                 </button>
 
                 <div class="navbar-header pull-left">
-                    <a href="index.html" class="navbar-brand">
+                    <a href="dashboard.html" class="navbar-brand">
                         <small>
                             <i class="fa fa-book"></i>
                             Livraria
@@ -127,7 +128,7 @@
                 </script>
                 <ul class="nav nav-list">
                     <li class="">
-                        <a href="index.html">
+                        <a href="dashboard.html">
                             <i class="menu-icon fa fa-desktop"></i>
                             <span class="menu-text"> Dashboard </span>
                         </a>
@@ -170,7 +171,7 @@
                     <li class="active open">
                         <a href="#" class="dropdown-toggle">
                             <i class="menu-icon fa fa-list-alt"></i>
-                            <span class="menu-text"> Editar </span>
+                            <span class="menu-text"> Consultar </span>
                             <b class="arrow fa fa-angle-down"></b>
 
                         </a>
@@ -180,7 +181,7 @@
                         <ul class="submenu">
 
                             <li class="">
-                                <a href="listar-fornecedor.html">
+                                <a href="listar-fornecedor.jsp">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Fornecedor
                                 </a>
@@ -189,7 +190,7 @@
                             </li>
 
                             <li class="active">
-                                <a href="listar-cliente.html">
+                                <a href="listar-cliente.jsp">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Cliente
                                 </a>
@@ -260,8 +261,13 @@
                                                     </tr>
                                                 </thead>
 
-                                                <tbody>
+                                                
+                                                
+                                            <tbody>
+                                                <c:forEach var="cliente" items="${dao.lista}">
+                                                                           
                                                   <!--init the list-->
+                                                
                                                     <tr>
                                                         <td class="center">
                                                             <label class="pos-rel">
@@ -271,17 +277,17 @@
                                                         </td>
 
                                                         <td>
-                                                            <a href="#">app.com</a>
+                                                            ${cliente.getPf().CPF}                                                                                                                                                                                                                    ${cliente.idCliente}</a>
                                                         </td>
 
-                                                        <td>$45</td>
+                                                        <td>${cliente.getPf().nome}</td>
 
-                                                        <td class="hidden-480">3,330</td>
+                                                        <td class="hidden-480">${cliente.fidelidade}</td>
 
-                                                        <td>Feb 12</td>
+                                                        <td>${cliente.getPf().getPessoa().telefone}</td>
 
                                                         <td class="hidden-480">
-                                                            <span class="label label-sm label-warning">Expiring</span>
+                                                            ${cliente.getPf().getPessoa().email}
                                                         </td>
 
                                                         <td>
@@ -334,7 +340,8 @@
                                                             </div>
                                                         </td>
                                                     </tr>       
-                                                    <!--End the list                                -->
+                                                    <!--End the list-->
+                                                   </c:forEach> 
                                                 </tbody>
                                             </table>
                                         </div>

@@ -6,6 +6,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="dao" class="DAOclasses.FornecedorDAO"/>
+<%@ page import= "DAOclasses.PessoaDAO" %>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -66,7 +69,7 @@
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="index.html" class="navbar-brand">
+					<a href="dashboard.html" class="navbar-brand">
 						<small>
 							<i class="fa fa-book"></i>
 							Livraria
@@ -120,16 +123,16 @@
 
 		<div class="main-container ace-save-state" id="main-container">
 			<script type="text/javascript">
-				try{ace.settings.loadState('main-container');}catch(e){}
+				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
 
 			<div id="sidebar" class="sidebar responsive ace-save-state">
 				<script type="text/javascript">
-					try{ace.settings.loadState('sidebar');}catch(e){}
+					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 				<ul class="nav nav-list">
 					<li class="">
-						<a href="index.html">
+						<a href="dashboard.html">
 							<i class="menu-icon fa fa-desktop"></i>
 							<span class="menu-text"> Dashboard </span>
 						</a>
@@ -172,7 +175,7 @@
 					<li class="active open">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-list-alt"></i>
-							<span class="menu-text"> Editar </span>
+							<span class="menu-text"> Consultar </span>
 							<b class="arrow fa fa-angle-down"></b>
 
 						</a>
@@ -276,29 +279,24 @@
 														</td>
 
 														<td>
-                                                                                                                      
-                                                                                                                            
+                                                                                                                    <table>
+                                                                                                                                
+                                                                                                                        <tr>
+                                                                                                                            <td>${fornecedor.getPj().CNPJ}</td>
 
-                                                                                                                            <table>
+                                                                                                                        </tr>
                                                                                                                                 
-                                                                                                                                    <tr>
-                                                                                                                                        <td>${fornecedor.getPj().CNPJ}</td>
-                                                                                                                                    </tr>
-                                                                                                                                
-                                                                                                                            </table>
-    
-    
-															<a href="#">app.com</a>
+                                                                                                                    </table>
 														</td>
 
-														<td>${fornecedor.getPj().NomeFantasia}</td>
+														<td>${fornecedor.getPj().nomeFantasia}</td>
 
-														<td class="hidden-480">3,330</td>
+														<td class="hidden-480">${fornecedor.tipoServico}</td>
 
-														<td>Feb 12</td>
+														<td>${fornecedor.getPj().getPessoa().telefone}</td>
 
 														<td class="hidden-480">
-															<span class="label label-sm label-warning">Expiring</span>
+                                                                                                                    ${fornecedor.getPj().getPessoa().email}
 														</td>
 
 														<td>
@@ -340,8 +338,9 @@
 																		</li>
 
 																		<li>
-																			<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">
+                                                                                                                                                    
+                                                                                                                                                    <a href="#" id="delete" onclick="deleteFor()" class="tooltip-error" data-rel="tooltip" title="Delete">
+																				<span class="red">                                                                                                                                                              
 																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																				</span>
 																			</a>
@@ -523,7 +522,11 @@
 					return 'left';
 				}
 				
+         
+                                
 			})
+                       
+                        
 		</script>
 	</body>
 </html>

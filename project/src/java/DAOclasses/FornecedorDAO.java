@@ -66,7 +66,7 @@ public class FornecedorDAO {
             fornecedor.setPj(pj);
             Pessoa pessoa = new Pessoa();
             fornecedor.getPj().setPessoa(pessoa);
-
+            
             fornecedor.setNomeRepresentante(rs.getString("nomeRepresentante"));
             fornecedor.setTipoServico(rs.getString("tipoServico"));
             fornecedor.setTipoFornecimento(rs.getString("tipoFornecimento"));
