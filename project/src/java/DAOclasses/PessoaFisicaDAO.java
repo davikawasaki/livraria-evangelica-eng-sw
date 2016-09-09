@@ -48,4 +48,34 @@ public class PessoaFisicaDAO {
             throw new RuntimeException(e);
         }
     }
+    
+    public void altera (PessoaFisica pf){
+        
+        PessoaDAO pdao = new PessoaDAO();
+        pdao.altera(pf.getPessoa());
+                
+        
+        String sql = "update PessoaFisica PF join Pessoa P set CPF=?, nome=?, "
+            + "sobrenome=?, RG=?, sexo=?, dataNascimento=? where P.idpessoa=?";
+       
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setString(1, pf.getCPF());
+            stmt.setString(2, pf.getNome());
+            stmt.setString(3, pf.getSobrenome());
+            stmt.setString(4, pf.getRG());
+            stmt.setString(5, pf.getSexo());
+            stmt.setString(6, pf.getDataNascimento());
+            stmt.setInt(7, pf.getPessoa().getId());
+
+
+            stmt.execute();
+            stmt.close();
+        }   
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }     
+    }
+    
 }

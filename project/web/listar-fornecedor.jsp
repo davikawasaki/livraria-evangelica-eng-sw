@@ -120,12 +120,12 @@
 
 		<div class="main-container ace-save-state" id="main-container">
 			<script type="text/javascript">
-				try{ace.settings.loadState('main-container')}catch(e){}
+				try{ace.settings.loadState('main-container');}catch(e){}
 			</script>
 
 			<div id="sidebar" class="sidebar responsive ace-save-state">
 				<script type="text/javascript">
-					try{ace.settings.loadState('sidebar')}catch(e){}
+					try{ace.settings.loadState('sidebar');}catch(e){}
 				</script>
 				<ul class="nav nav-list">
 					<li class="">
@@ -282,10 +282,7 @@
                                                                                                                             <table>
                                                                                                                                 
                                                                                                                                     <tr>
-                                                                                                                                        <td>${fornecedor.nomeRepresentante}</td>
-                                                                                                                                        <td>${fornecedor.tipoServico}</td>
-                                                                                                                                        <td>${fornecedor.tipoServico}</td>
-
+                                                                                                                                        <td>${fornecedor.getPj().CNPJ}</td>
                                                                                                                                     </tr>
                                                                                                                                 
                                                                                                                             </table>
@@ -294,7 +291,7 @@
 															<a href="#">app.com</a>
 														</td>
 
-														<td>${fornecedor.nomeRepresentante}</td>
+														<td>${fornecedor.getPj().NomeFantasia}</td>
 
 														<td class="hidden-480">3,330</td>
 
