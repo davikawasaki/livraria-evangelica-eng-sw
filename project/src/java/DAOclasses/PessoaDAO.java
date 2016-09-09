@@ -62,4 +62,33 @@ public class PessoaDAO {
             throw new RuntimeException(e);
             }
     }
+    
+      public void altera(Pessoa pessoa) {
+          String sql = "update Pessoa set telefone=?, email=?," +
+            "CEP=?, Logradouro=?, Complemento=?, Numero=?, Bairro=?," +
+            "Cidade=?, Estado=?, Pais=? where idPessoa=?";
+        
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setString(1,pessoa.getTelefone());
+            stmt.setString(2, pessoa.getEmail());
+            stmt.setString(3, pessoa.getCEP());
+            stmt.setString(4, pessoa.getLogradouro());
+            stmt.setString(5, pessoa.getComplemento());
+            stmt.setInt(6, pessoa.getNumero());
+            stmt.setString(7, pessoa.getBairro());
+            stmt.setString(8, pessoa.getCidade());
+            stmt.setString(9, pessoa.getEstado());
+            stmt.setString(10, pessoa.getPais());
+            stmt.setInt(11, pessoa.getId());
+           
+            stmt.execute();
+            stmt.close();
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }        
+    }  
+   
 }

@@ -5,6 +5,7 @@
  */
 package DAOclasses;
 
+import Classes.Pessoa;
 import Classes.PessoaJuridica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,8 +23,14 @@ public class PessoaJuridicaDAO {
     }
     
     public void adiciona(PessoaJuridica pj) {
+        Pessoa pessoa = new Pessoa();
+        
+        pj.setPessoa(pessoa);
+        
         PessoaDAO pdao = new PessoaDAO();
+        
         pdao.adiciona(pj.getPessoa());
+        pdao.adiciona(pessoa);
         
         String sql = "insert into PessoaJuridica" + 
                 "(CNPJ, nomeFantasia, Pessoa_idPessoa)" + "values(?,?,?)";
@@ -42,4 +49,21 @@ public class PessoaJuridicaDAO {
             throw new RuntimeException(e);
         }
     }
+    
+    public void altera(PessoaJuridica pj) {
+        String sql = "update PessoaJuridica PJ inner join Pessoa P on PJ.Pessoa_idPessoa = P.idPessoa set CNPJ=?, NomeFantasia=? where P.idPessoa = ?";
+        
+        try{
+           PreparedStatement stmt = connection.prepareStatement(sql);
+
+           stmt.setString(1, pj.getCNPJ());
+           stmt.setString(2, pj.getNomeFantasia());
+           stmt.setInt(3, pj.getPessoa().getId());
+           stmt.execute();
+           stmt.close();
+        }
+        catch (SQLException e){
+            throw new RuntimeException(e);
+        }        
+    }  
 }

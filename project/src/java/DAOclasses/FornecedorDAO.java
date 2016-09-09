@@ -99,14 +99,13 @@ public class FornecedorDAO {
     public void altera(Fornecedor fornecedor) {
             
         PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();
-        
         PessoaJuridica pj = new PessoaJuridica();
         fornecedor.setPj(pj);
        
         pjdao.altera(fornecedor.getPj());
-        String sql = "update Fornecedor set nome=?, email=?," +
-             "endereco=?, dataNascimento=? where id=?";
         
+        String sql = "update Fornecedor F inner join PessoaJuridica PJ on F.PessoaJuridica_CNPJ = PJ.CNPJ set nomeRepresentante=?, tipoServico=?," +
+             "tipoFornecimento=? where CNPJ=?";
          
         try{
            PreparedStatement stmt = connection.prepareStatement(sql);
@@ -115,7 +114,6 @@ public class FornecedorDAO {
            stmt.setString(2, fornecedor.getTipoServico());
            stmt.setString(3, fornecedor.getTipoFornecimento());
            stmt.setString(4, fornecedor.getPj().getCNPJ());
-           
            stmt.execute();
            stmt.close();
         }
