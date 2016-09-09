@@ -6,7 +6,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="dao" class="DAOclasses.FornecedorDAO"/>
-<jsp:useBean id="person" scope="page" class="DAOclasses.PessoaDAO"/> 
+<%@ page import= "DAOclasses.PessoaDAO" %>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -337,9 +338,8 @@
 
 																		<li>
                                                                                                                                                     
-																			<a href="#" id="delete" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">
-                                                                                                                                                                        
+                                                                                                                                                    <a href="#" id="delete" onclick="deleteFor()" class="tooltip-error" data-rel="tooltip" title="Delete">
+																				<span class="red">                                                                                                                                                              
 																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
 																				</span>
 																			</a>

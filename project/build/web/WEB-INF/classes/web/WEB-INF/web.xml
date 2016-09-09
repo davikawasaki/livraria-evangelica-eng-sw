@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>NovoServlet</servlet-name>
+        <servlet-class>NovoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastroFornecedor</servlet-name>
+        <servlet-class>Servlet.CadastroFornecedor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastroCliente</servlet-name>
+        <servlet-class>Servlet.CadastroCliente</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NovoServlet</servlet-name>
+        <url-pattern>/serv</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroFornecedor</servlet-name>
+        <url-pattern>/CadastroFornecedor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroCliente</servlet-name>
+        <url-pattern>/CadastroCliente</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>cadastro-fornecedor.html</welcome-file>
+        <welcome-file>cadastro-cliente.html</welcome-file>
+        <welcome-file>listar-fornecedor.jsp</welcome-file>
+        <welcome-file>listar-cliente.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
