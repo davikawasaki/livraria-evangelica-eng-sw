@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `livrariaengsw`.`PessoaFisica` (
   `sobrenome` VARCHAR(45) NOT NULL,
   `RG` VARCHAR(45) NOT NULL,
   `sexo` VARCHAR(45) NOT NULL,
-  `dataNascimento` DATE NOT NULL,
+  `dataNascimento` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`CPF`),
   INDEX `fk_PessoaFisica_Pessoa_idx` (`Pessoa_idPessoa` ASC),
   CONSTRAINT `fk_PessoaFisica_Pessoa`
