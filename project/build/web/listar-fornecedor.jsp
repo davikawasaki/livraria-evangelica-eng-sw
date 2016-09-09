@@ -185,7 +185,7 @@
 						<ul class="submenu">
 
 							<li class="active">
-								<a href="listar-fornecedor.html">
+								<a href="listar-fornecedor.jsp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Fornecedor
 								</a>
@@ -194,7 +194,7 @@
 							</li>
 
 							<li class="">
-								<a href="listar-cliente.html">
+								<a href="listar-cliente.jsp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Cliente
 								</a>
@@ -268,7 +268,6 @@
 
 												<tbody>
                                                                                                     <!--INIT THE LIST-->
-                                                                                                    <jsp:useBean id="dao" class="DAOclasses.FornecedorDAO"/>
                                                                                                     <c:forEach var="fornecedor" items="${dao.lista}">
 													<tr>
 														<td class="center">
@@ -279,10 +278,7 @@
 														</td>
 
 														<td>
-                                                                                                                      
-                                                                                                                            
-
-                                                                                                                            <table>
+                                                                                                                    <table>
                                                                                                                                 
                                                                                                                         <tr>
                                                                                                                             <td>${fornecedor.getPj().CNPJ}</td>
@@ -531,14 +527,10 @@
 					return 'left';
 				}
 				
-                        
-                         
-        
-        
+         
                                 
 			})
-                        
-                        
+                       
                         
 		</script>
 	</body>
