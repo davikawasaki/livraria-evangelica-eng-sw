@@ -13,14 +13,14 @@
 <body>
     <%-- comentário em JSP aqui: nossa primeira página JSP --%>
     <%
-        String mensagem = "Bem vindo ao sistema de agenda do FJ-21!";
+        String mensagem = "";
     %>
     <%
         out.println(mensagem);
     %>
     <br/>
     <%
-        String desenvolvido = "Desenvolvido por Davi Kawasaki";
+        String desenvolvido = "Desenvolvido para Livraria - Engenharia de Software!";
     %>
     <%= desenvolvido %>
     <br/>

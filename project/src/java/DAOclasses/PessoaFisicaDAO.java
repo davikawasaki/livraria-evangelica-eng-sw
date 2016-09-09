@@ -39,7 +39,7 @@ public class PessoaFisicaDAO {
             stmt.setString(4, pf.getSobrenome());
             stmt.setString(5, pf.getRG());
             stmt.setString(6, pf.getSexo());
-            stmt.setDate(7, pf.getDataNascimento());
+            stmt.setString(7, pf.getDataNascimento());
             
             stmt.execute();
             stmt.close();

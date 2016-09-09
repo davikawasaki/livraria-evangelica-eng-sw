@@ -57,7 +57,7 @@ public class FornecedorDAO {
         try {
             List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
             PreparedStatement stmt = this.connection.
-            prepareStatement("select * from Pessoa P join PessoaJuridica PJ on P.idPessoa = PJ.Pessoa_IdPessoa join Fornecedor F on PJ.CNPJ = F.PessoaJuridica_CNPJ where idPessoa = 46;");
+            prepareStatement("select * from Pessoa P join PessoaJuridica PJ on P.idPessoa = PJ.Pessoa_IdPessoa join Fornecedor F on PJ.CNPJ = F.PessoaJuridica_CNPJ;");
             ResultSet rs = stmt.executeQuery();
  
         while (rs.next()) {

@@ -11,8 +11,11 @@ import Classes.PessoaFisica;
 import DAOclasses.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -64,20 +67,19 @@ public class CadastroCliente extends HttpServlet {
         cliente.getPf().setNome(request.getParameter("nome"));
         cliente.getPf().setSobrenome(request.getParameter("sobrenome"));
         cliente.getPf().setRG(request.getParameter("RG"));
-        cliente.getPf().setSexo(request.getParameter("sexo"));
-     
-        String dataNasc = request.getParameter("dataNascimento");
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        java.util.Date date = format.parse(dataNasc);
-        java.sql.Date sql = new java.sql.Date(date.getTime());
-        cliente.getPf().setDataNascimento(sql);
-   
-        cliente.setIdCliente(Integer.parseInt(request.getParameter("id")));
+        cliente.getPf().setSexo(request.getParameter("sexo"));     
+        
+        String dataNasc = request.getParameter("dataNascimento");  
+        cliente.getPf().setDataNascimento(dataNasc);
+       
+        //cliente.setIdCliente(Integer.parseInt(request.getParameter("id")));
         cliente.setFidelidade(Boolean.getBoolean(request.getParameter("fidelidade")));
         cliente.setCodFidelidade(request.getParameter("codFidelidade"));
-
+        
         ClienteDAO dao = new ClienteDAO();
         dao.adiciona(cliente);
+
+        out.println("Cadastrado!");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

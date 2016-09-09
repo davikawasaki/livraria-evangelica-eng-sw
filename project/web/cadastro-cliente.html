@@ -264,7 +264,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"> CPF </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="cpf" id="form-field-mask-2" placeholder="Ex: 425.632.845-65" class="col-xs-5 col-sm-3 mask-CPF" />
+											<input type="text" name="CPF" id="form-field-mask-2" placeholder="Ex: 425.632.845-65" class="col-xs-5 col-sm-3 mask-CPF" />
 										</div>
 									</div>
 
@@ -272,15 +272,15 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"> RG </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="rg" id="form-field-mask-2" placeholder="Ex: 25.658.578-3" class="col-xs-5 col-sm-3 mask-RG" />
+											<input type="text" name="RG" id="form-field-mask-2" placeholder="Ex: 25.658.578-3" class="col-xs-5 col-sm-3 mask-RG" />
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div>
-											<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-1">Data de nascimento</label>
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2">Data de nascimento</label>
 											<div class="col-sm-9">
-												<input class="col-xs-5 col-sm-2 mask-DATA" type="text" name="datanascimento" id="form-field-mask-1" placeholder="Ex: 12/02/1975" />
+												<input class="col-xs-5 col-sm-2 mask-DATA" type="text" name="dataNascimento" id="form-field-mask-2" placeholder="10-12-2016"/>
 											</div>
 										</div>
 									</div>
@@ -501,9 +501,9 @@
 			
 				$(".mask-phone").mask("(99) 9999-9999?9");
 				$(".mask-CPF").mask("999.999.999-99");
-				$(".mask-RG").mask("99.999.999-*")
+				$(".mask-RG").mask("99.999.999-*");
 				$(".mask-CEP").mask("99999-999");
-				$(".mask-DATA").mask("99/99/9999")
+				$(".mask-DATA").mask("99/99/9999");
 				
 				$("#fidelidade").click(function () {
 				    $('#codfidelidade').attr("disabled", $(this).is(":checked"));

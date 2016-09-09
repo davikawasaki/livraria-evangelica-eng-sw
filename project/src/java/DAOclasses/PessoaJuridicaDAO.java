@@ -22,16 +22,10 @@ public class PessoaJuridicaDAO {
         this.connection = new ConnectionFactory().getConnection();
     }
     
-    public void adiciona(PessoaJuridica pj) {
-        Pessoa pessoa = new Pessoa();
-        
-        pj.setPessoa(pessoa);
-        
+    public void adiciona(PessoaJuridica pj) {    
         PessoaDAO pdao = new PessoaDAO();
-        
         pdao.adiciona(pj.getPessoa());
-        pdao.adiciona(pessoa);
-        
+
         String sql = "insert into PessoaJuridica" + 
                 "(CNPJ, nomeFantasia, Pessoa_idPessoa)" + "values(?,?,?)";
       

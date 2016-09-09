@@ -19,7 +19,7 @@ public class PessoaFisica{
     private String sobrenome;
     private String RG;
     private String sexo;
-    private Date dataNascimento;
+    private String dataNascimento;
 
     public String getCPF() {
         return CPF;
@@ -41,7 +41,7 @@ public class PessoaFisica{
         return sexo;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
@@ -65,7 +65,7 @@ public class PessoaFisica{
         this.sexo = sexo;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

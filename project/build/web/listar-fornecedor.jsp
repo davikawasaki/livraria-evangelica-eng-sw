@@ -3,8 +3,10 @@
     Created on : 08/09/2016, 14:24:30
     Author     : eryc
 --%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -263,6 +265,8 @@
 
 												<tbody>
                                                                                                     <!--INIT THE LIST-->
+                                                                                                    <jsp:useBean id="dao" class="DAOclasses.FornecedorDAO"/>
+                                                                                                    <c:forEach var="fornecedor" items="${dao.lista}">
 													<tr>
 														<td class="center">
 															<label class="pos-rel">
@@ -272,10 +276,25 @@
 														</td>
 
 														<td>
+                                                                                                                      
+                                                                                                                            
+
+                                                                                                                            <table>
+                                                                                                                                
+                                                                                                                                    <tr>
+                                                                                                                                        <td>${fornecedor.nomeRepresentante}</td>
+                                                                                                                                        <td>${fornecedor.tipoServico}</td>
+                                                                                                                                        <td>${fornecedor.tipoServico}</td>
+
+                                                                                                                                    </tr>
+                                                                                                                                
+                                                                                                                            </table>
+    
+    
 															<a href="#">app.com</a>
 														</td>
 
-														<td>$45</td>
+														<td>${fornecedor.nomeRepresentante}</td>
 
 														<td class="hidden-480">3,330</td>
 
@@ -335,6 +354,7 @@
 															</div>
 														</td>
 													</tr>
+                                                                                                    </c:forEach>
                                                                                                 <!-- END THE LIST-->
 												</tbody>
 											</table>

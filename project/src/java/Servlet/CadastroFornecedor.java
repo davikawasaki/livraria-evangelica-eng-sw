@@ -51,7 +51,7 @@ public class CadastroFornecedor extends HttpServlet {
         String cidade = request.getParameter("cidade");
         String estado = request.getParameter("estado");
         String pais = request.getParameter("pais");
-
+        
         Fornecedor fornecedor = new Fornecedor();
         
         PessoaJuridica pj = new PessoaJuridica();

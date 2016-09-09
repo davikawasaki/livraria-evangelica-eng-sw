@@ -64,13 +64,13 @@ public class NovoServlet2 extends HttpServlet {
         cliente.getPf().setSobrenome(request.getParameter("sobrenome"));
         cliente.getPf().setRG(request.getParameter("RG"));
         cliente.getPf().setSexo(request.getParameter("sexo"));
-     
+    /* 
         String dataNasc = request.getParameter("dataNascimento");
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         java.util.Date date = format.parse(dataNasc);
         java.sql.Date sql = new java.sql.Date(date.getTime());
         cliente.getPf().setDataNascimento(sql);
-   
+    */
         cliente.setIdCliente(Integer.parseInt(request.getParameter("id")));
         cliente.setFidelidade(Boolean.getBoolean(request.getParameter("fidelidade")));
         cliente.setCodFidelidade(request.getParameter("codFidelidade"));
