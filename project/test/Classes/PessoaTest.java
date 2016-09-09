@@ -85,13 +85,6 @@ public class PessoaTest {
         assertEquals(valorRecebido, "Vai Brazilian");
     }
     @Test
-    public void ContatoInsereSenha() {
-        Pessoa pessoa = new Pessoa();
-        pessoa.setSenha("brazilian");
-        String valorRecebido = pessoa.getSenha();
-        assertEquals(valorRecebido, "brazilian");
-    }
-    @Test
     public void ContatoAlteraDadosPessoa() {
         // Testa se os dados foram alterados com sucesso
     }

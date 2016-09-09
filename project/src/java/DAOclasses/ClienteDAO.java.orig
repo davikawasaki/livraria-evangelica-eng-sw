@@ -52,6 +52,16 @@ public class ClienteDAO {
         }
     }
     
+<<<<<<< HEAD
+    public List<Cliente> getLista(){
+        try {
+            List<Cliente> clientes = new ArrayList<Cliente>();
+            PreparedStatement stmt = this.connection.
+            prepareStatement("select * from Pessoa P join PessoaFisica PJ on P.idPessoa = PJ.Pessoa_IdPessoa join Cliente F on PJ.CNPJ = F.PessoaFisica_CNPJ;");
+            ResultSet rs = stmt.executeQuery();
+ 
+        while (rs.next()) {
+=======
     public List <Cliente> getLista(){
         try {
             List <Cliente> clientes = new ArrayList<Cliente>();
@@ -60,6 +70,7 @@ public class ClienteDAO {
             ResultSet rs = stmt.executeQuery();
  
         while (rs.next()){
+>>>>>>> 88e9f970322c800d3f353c1e6ff2dc3a732ec95a
             // criando o objeto Cliente
             Cliente cliente = new Cliente();
             PessoaFisica pj = new PessoaFisica();
@@ -94,11 +105,16 @@ public class ClienteDAO {
         stmt.close();
         return clientes;
         }
+<<<<<<< HEAD
+        catch (SQLException e) {
+=======
         catch (SQLException e){
+>>>>>>> 88e9f970322c800d3f353c1e6ff2dc3a732ec95a
              throw new RuntimeException(e);
         }
     }
     
+<<<<<<< HEAD
     public void altera(Cliente cliente){ 
         
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
@@ -125,4 +141,6 @@ public class ClienteDAO {
             }
     }
     
+=======
+>>>>>>> 88e9f970322c800d3f353c1e6ff2dc3a732ec95a
 }

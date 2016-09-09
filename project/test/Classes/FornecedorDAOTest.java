@@ -8,7 +8,6 @@ package Classes;
 import DAOclasses.FornecedorDAO;
 import DAOclasses.PessoaDAO;
 import DAOclasses.PessoaJuridicaDAO;
-import java.sql.SQLException;
 import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Ignore;

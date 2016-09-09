@@ -4,6 +4,7 @@
     Author     : eryc
 --%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="dao" class="DAOclasses.FornecedorDAO"/>
 <%@ page import= "DAOclasses.PessoaDAO" %>
@@ -184,7 +185,7 @@
 						<ul class="submenu">
 
 							<li class="active">
-								<a href="listar-fornecedor.jsp">
+								<a href="listar-fornecedor.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Fornecedor
 								</a>
@@ -193,7 +194,7 @@
 							</li>
 
 							<li class="">
-								<a href="listar-cliente.jsp">
+								<a href="listar-cliente.html">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Cliente
 								</a>
@@ -267,7 +268,7 @@
 
 												<tbody>
                                                                                                     <!--INIT THE LIST-->
-                                                                                                    
+                                                                                                    <jsp:useBean id="dao" class="DAOclasses.FornecedorDAO"/>
                                                                                                     <c:forEach var="fornecedor" items="${dao.lista}">
 													<tr>
 														<td class="center">
@@ -278,7 +279,10 @@
 														</td>
 
 														<td>
-                                                                                                                    <table>
+                                                                                                                      
+                                                                                                                            
+
+                                                                                                                            <table>
                                                                                                                                 
                                                                                                                         <tr>
                                                                                                                             <td>${fornecedor.getPj().CNPJ}</td>
@@ -337,12 +341,18 @@
 																		</li>
 
 																		<li>
-                                                                                                                                                    
-                                                                                                                                                    <a href="#" id="delete" onclick="deleteFor()" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">                                                                                                                                                              
-																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                                                                                                    <form action="DeletaFornecedor" id="submitDelete" method="POST">
+                                                                                                                                                        <a href="#" id="delete" onclick="document.getElementById('submitDelete').submit();" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                                                                                                            <input name="delete" value="${fornecedor.getPj().getPessoa().id}">
+                                                    
+                                                                                                                                                            <span class="red">                          
+																			               
+                                                                                                                                                                    ${fornecedor.getPj().getPessoa().id}
+                                                                                                                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
 																				</span>
-																			</a>
+                                                                                                                                                        </a>
+                                                                                                                                                    </form>
+                                                                                                                                                    
 																		</li>
 																	</ul>
 																</div>
