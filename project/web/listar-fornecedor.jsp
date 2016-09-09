@@ -337,12 +337,18 @@
 																		</li>
 
 																		<li>
-                                                                                                                                                    
-                                                                                                                                                    <a href="#" id="delete" onclick="deleteFor()" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">                                                                                                                                                              
-																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                                                                                                    <form action="DeletaFornecedor" id="submitDelete" method="POST">
+                                                                                                                                                        <a href="#" id="delete" onclick="document.getElementById('submitDelete').submit();" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                                                                                                            <input name="delete" value="${fornecedor.getPj().getPessoa().id}">
+                                                    
+                                                                                                                                                            <span class="red">                          
+																			               
+                                                                                                                                                                    ${fornecedor.getPj().getPessoa().id}
+                                                                                                                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
 																				</span>
-																			</a>
+                                                                                                                                                        </a>
+                                                                                                                                                    </form>
+                                                                                                                                                    
 																		</li>
 																	</ul>
 																</div>
