@@ -10,7 +10,6 @@ import DAOclasses.PessoaDAO;
 import DAOclasses.PessoaJuridicaDAO;
 import java.sql.SQLException;
 import java.util.List;
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
 import org.junit.Test;
