@@ -28,21 +28,12 @@ public class PessoaJuridicaTest {
         assertEquals(valorRecebido, "Livraria Cultura");
     }  
     @Test
-    public void ContatoInserePessoaJuridica() {
-         // Verificar se classe foi instanciada
-    }  
-    @Test
-    public void ContatoAlteraDadosPessoaJuridica() {
-        // Testa se os dados foram alterados com sucesso
-    }
-    
-    @Test
-    public void ContatoRemoveDadosPessoaJuridica() {
-        // Testa se os dados foram removidos com sucesso
-    }
-    
-    @Test
-    public void ContatoConsultaDadosPessoaJuridica() {
-        // Testa se os dados foram consultados com sucesso
+    public void ContatoInserePessoa(){
+        PessoaJuridica pj = new PessoaJuridica();
+        Pessoa pessoa = new Pessoa();
+        
+        pj.setPessoa(pessoa);
+        Pessoa result = pj.getPessoa();
+        assertEquals(pessoa, result);
     }
 }

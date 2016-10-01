@@ -35,19 +35,13 @@ public class FornecedorTest {
         assertEquals(valorRecebido, "Papelaria");
     }  
     @Test
-    public void ContatoInsereFornecedor() {
-         // Verificar se classe foi instanciada
+    public void ContatoInserePessoaJuridica() {
+        Fornecedor fornecedor = new Fornecedor();
+        PessoaJuridica pj = new PessoaJuridica();
+        
+        fornecedor.setPj(pj);
+        PessoaJuridica result = fornecedor.getPj();
+        assertEquals(pj, result);
     }  
-    @Test
-    public void ContatoAlteraDadosFornecedor() {
-        // Testa se os dados foram alterados com sucesso
-    }
-    @Test
-    public void ContatoRemoveDadosFornecedor() {
-        // Testa se os dados foram removidos com sucesso
-    }
-    @Test
-    public void ContatoConsultaDadosFornecedor() {
-        // Testa se os dados foram consultados com sucesso
-    }
+
 }

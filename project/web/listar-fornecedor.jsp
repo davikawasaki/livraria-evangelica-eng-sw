@@ -317,6 +317,7 @@
 
 														<th>Telefone</th>
 														<th>Email</th>
+														<th>ID</th>
 														<th></th>
 													</tr>
 												</thead>
@@ -352,10 +353,14 @@
 														<td class="hidden-480">
                                                                                                                     ${fornecedor.getPj().getPessoa().email}
 														</td>
+                                                                                                                
+                                                                                                                <td class="hidden-480">
+                                                                                                                    ${fornecedor.pj.pessoa.id}
+                                                                                                                </td>
 
 														<td>
 															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="blue" href="#">
+																<a class="blue" href="#"for>
 																	<i class="ace-icon fa fa-search-plus bigger-130"></i>
 																</a>
 
@@ -394,11 +399,14 @@
 																		<li>
                                                                                                                                                     <form action="DeletaFornecedor" id="submitDelete" method="POST">
                                                                                                                                                         <a href="#" id="delete" onclick="document.getElementById('submitDelete').submit();" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                                                                                            <input name="delete" value="${fornecedor.getPj().getPessoa().id}">
+                                                                                                                                                            <input name="delete" value="${fornecedor.getPj().pessoa}">
                                                     
                                                                                                                                                             <span class="red">                          
 																			               
-                                                                                                                                                                    ${fornecedor.getPj().getPessoa().id}
+                                                                                                                                                                    ${fornecedor.getPj().pessoa}
+                                                                                                                                                                    ${fornecedor.getPj().pessoa.id}
+                                                                                                                                                                   
+                                                                                                                                                                   
                                                                                                                                                                 <i class="ace-icon fa fa-trash-o bigger-120"></i>
 																				</span>
                                                                                                                                                         </a>

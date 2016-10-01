@@ -52,7 +52,7 @@ public class PessoaDAO {
         }
     }
     
-        public List<Pessoa> getLista(){
+    public List<Pessoa> getLista(){
         try {
             List<Pessoa> pessoas = new ArrayList<Pessoa>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from Pessoa;");
@@ -86,18 +86,19 @@ public class PessoaDAO {
         }
     }
     
-    public void remove(String CNPJ){
-        String sql = "delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))";
+    public void remove(int id){    
+        //String sql = "delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))";
+        String sql = "delete from Pessoa where Pessoa.id = ?";
         
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, CNPJ);
+            stmt.setInt(1, id);
             stmt.execute();
             stmt.close();      
         }
         catch (SQLException e){         
             throw new RuntimeException(e);
-            }
+        }
     }
     
       public void altera(Pessoa pessoa) {
@@ -126,6 +127,6 @@ public class PessoaDAO {
         catch (SQLException e){
             throw new RuntimeException(e);
         }        
-    }  
+    }
    
 }

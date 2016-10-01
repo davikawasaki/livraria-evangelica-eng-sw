@@ -294,57 +294,57 @@
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
                                                                 <!--Testar id="validation-form" em forms -->
-								<form class="form-horizontal" role="form" action="CadastroCliente"  method="POST" >
+								<form class="form-horizontal" role="form" action="CadastroCliente"  method="POST">
 
 									<div class="space-4"></div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nome </label>
+                                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Nome </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="nome" id="form-field-1" placeholder="Ex: João Pedro" class="col-xs-10 col-sm-5" />
+											<input required type="text" name="nome" id="form-field-1" placeholder="Ex: João Pedro" class="col-xs-10 col-sm-5" />
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sobrenome </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Sobrenome </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="sobrenome" id="form-field-1" placeholder="Ex: Silva" class="col-xs-10 col-sm-2" />
+											<input required type="text" name="sobrenome" id="form-field-1" placeholder="Ex: Silva" class="col-xs-10 col-sm-2" />
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"> CPF </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"><span style="color:red;">*</span> CPF </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="CPF" id="form-field-mask-2" placeholder="Ex: 425.632.845-65" class="col-xs-5 col-sm-3 mask-CPF" />
+											<input required type="text" name="CPF" id="form-field-mask-2" placeholder="Ex: 425.632.845-65" class="col-xs-5 col-sm-3 mask-CPF" />
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"> RG </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"><span style="color:red;">*</span> RG </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="RG" id="form-field-mask-2" placeholder="Ex: 25.658.578-3" class="col-xs-5 col-sm-3 mask-RG" />
+											<input required type="text" name="RG" id="form-field-mask-2" placeholder="Ex: 25.658.578-3" class="col-xs-5 col-sm-3 mask-RG" />
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div>
-											<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2">Data de nascimento</label>
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"><span style="color:red;">*</span> Data de nascimento</label>
 											<div class="col-sm-9">
-												<input class="col-xs-5 col-sm-2 mask-DATA" type="text" name="dataNascimento" id="form-field-mask-2" placeholder="10-12-2016"/>
+												<input required class="col-xs-5 col-sm-2 mask-DATA" type="text" name="dataNascimento" id="form-field-mask-2" placeholder="10-12-2016"/>
 											</div>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right">Gênero</label>
+										<label class="col-sm-3 control-label no-padding-right"><span style="color:red;">*</span> Gênero</label>
 
 										<div class="col-sm-9">
 											<label class="inline">
-												<input name="sexo" type="radio" value="masculino" class="ace" />
+												<input checked name="sexo" type="radio" value="masculino" class="ace" />
 												<span class="lbl middle"> Masculino</span>
 											</label>
 
@@ -368,7 +368,7 @@
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Telefone </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Telefone </label>
 
 										<div class="col-sm-9">
 											<input type="tel" name="telefone" id="form-field-1" placeholder="Ex: (43) 9632-1236" class="col-xs-10 col-sm-3 mask-phone" />
@@ -377,26 +377,26 @@
 
 
 									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email"> Email </label>
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email"><span style="color:red;">*</span> Email </label>
 
 										<div class="col-sm-9">
 											<div class="clearfix">
-												<input type="email" name="email" id="email" placeholder="Ex: livraria@gmail.com" class="col-xs-12 col-sm-4"/>
+												<input required type="email" name="email" id="email" placeholder="Ex: livraria@gmail.com" class="col-xs-12 col-sm-4"/>
 											</div>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Logradouro </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Logradouro </label>
 
 										<div class="col-sm-4">
-											<input type="text" name="logradouro" id="form-field-1" placeholder="Ex: Rua Coronel Alendor" class="col-xs-10 col-sm-11" />
+											<input required type="text" name="logradouro" id="form-field-1" placeholder="Ex: Rua Coronel Alendor" class="col-xs-10 col-sm-11" />
 										</div>
 
-										<label class="col-sm-1 control-label no-padding-right " for="form-field-1"> N&uacute;mero </label>
+										<label class="col-sm-1 control-label no-padding-right " for="form-field-1"><span style="color:red;">*</span> N&uacute;mero </label>
 
 										<div class="col-sm-2">
-											<input type="tel" name="numero" id="form-field-1" placeholder="Ex: 145" class="col-xs-10 col-sm-8"/>
+											<input required type="tel" name="numero" id="form-field-1" placeholder="Ex: 145" class="col-xs-10 col-sm-8"/>
 										</div>
 									</div>
 
@@ -409,40 +409,40 @@
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Bairro </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Bairro </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="bairro" id="form-field-1" placeholder="Ex: Centro" class="col-xs-10 col-sm-4" />
+											<input required type="text" name="bairro" id="form-field-1" placeholder="Ex: Centro" class="col-xs-10 col-sm-4" />
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"> CEP </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"><span style="color:red;">*</span> CEP </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="cep" id="form-field-mask-2" placeholder="Ex: 86300-000" class="col-xs-10 col-sm-3 mask-CEP" />
+											<input required type="text" name="cep" id="form-field-mask-2" placeholder="Ex: 86300-000" class="col-xs-10 col-sm-3 mask-CEP" />
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Cidade </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Cidade </label>
 
 										<div class="col-sm-3">
-											<input type="text" name="cidade" id="form-field-1" placeholder="Ex: Cornélio Procópio" class="col-xs-10 col-sm-12" />
+											<input required type="text" name="cidade" id="form-field-1" placeholder="Ex: Cornélio Procópio" class="col-xs-10 col-sm-12" />
 										</div>
 
-										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> Estado </label>
+										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Estado </label>
 
 										<div class="col-sm-3">
-											<input type="text" name="estado" id="form-field-1" placeholder="Ex: Paraná" class="col-xs-10 col-sm-8" />
+											<input required type="text" name="estado" id="form-field-1" placeholder="Ex: Paraná" class="col-xs-10 col-sm-8" />
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Pa&iacute;s </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Pa&iacute;s </label>
 
 										<div class="col-sm-4">
-											<input type="text" name="pais" id="form-field-1" placeholder="Ex: Brasil" class="col-xs-10 col-sm-5" />
+											<input required type="text" name="pais" id="form-field-1" placeholder="Ex: Brasil" class="col-xs-10 col-sm-5" />
 										</div>
 									</div>
 
