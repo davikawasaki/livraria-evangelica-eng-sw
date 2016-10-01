@@ -82,7 +82,7 @@
 
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/images/avatars/avatar2.png" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Bem vindo,</small>
 									Nicholas
@@ -126,12 +126,13 @@
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
 
-			<div id="sidebar" class="sidebar responsive ace-save-state">
+			<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
 				<script type="text/javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
+
 				<ul class="nav nav-list">
-					<li class="">
+					<li class="active">
 						<a href="dashboard.html">
 							<i class="menu-icon fa fa-desktop"></i>
 							<span class="menu-text"> Dashboard </span>
@@ -172,7 +173,7 @@
 					</li>
 
 
-					<li class="active open">
+					<li class="">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Consultar </span>
@@ -184,7 +185,7 @@
 
 						<ul class="submenu">
 
-							<li class="active">
+							<li class="">
 								<a href="listar-fornecedor.jsp">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Fornecedor
@@ -204,7 +205,61 @@
 						</ul>
 
 					</li>
-					
+                                        <li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-shopping-basket"></i>
+							<span class="menu-text"> Caixa </span>
+							<b class="arrow fa fa-angle-down"></b>
+
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="caixa-pagamentos.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Pagamento
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="caixa-movimentacoes.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Movimentações
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+
+					</li>
+                                        <li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-pie-chart"></i>
+							<span class="menu-text"> Estoque </span>
+							<b class="arrow fa fa-angle-down"></b>
+
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="estoque-produtos.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Produtos
+								</a>
+
+								<b class="arrow"></b>
+                                                        </li>
+						</ul>
+
+					</li>
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
