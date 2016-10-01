@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="lucasfranco-Inspiron-3442" name="Classes.PessoaTest" skipped="0" tests="13" time="0.104" timestamp="2016-09-27T02:21:24">
+<testsuite errors="0" failures="0" hostname="lucasfranco-Inspiron-3442" name="Classes.ClienteTest" skipped="0" tests="7" time="0.09" timestamp="2016-09-27T02:21:16">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="BR" />
@@ -58,7 +58,7 @@
     <property name="libs.jsf12.javadoc" value="/usr/local/netbeans-8.1/enterprise/docs/javaee-doc-api.jar" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Classes.PessoaTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/lucasfranco/NetBeansProjects/livraria-evangelica-eng-sw/project/build/test/results/TEST-Classes.PessoaTest.xml crashfile=/home/lucasfranco/NetBeansProjects/livraria-evangelica-eng-sw/project/build/junitvmwatcher8599458476806164869.properties propsfile=/home/lucasfranco/NetBeansProjects/livraria-evangelica-eng-sw/project/build/junit2968533531165066482.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Classes.ClienteTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/lucasfranco/NetBeansProjects/livraria-evangelica-eng-sw/project/build/test/results/TEST-Classes.ClienteTest.xml crashfile=/home/lucasfranco/NetBeansProjects/livraria-evangelica-eng-sw/project/build/junitvmwatcher1660572067981669088.properties propsfile=/home/lucasfranco/NetBeansProjects/livraria-evangelica-eng-sw/project/build/junit420265882837416883.properties" />
     <property name="build.classes.dir" value="build/web/WEB-INF/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="ap.supported.internal" value="true" />
@@ -229,7 +229,6 @@
     <property name="org.openide.major.version" value="IDE/1" />
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM" />
     <property name="netbeans.user" value="/home/lucasfranco/.netbeans/8.1" />
-    <property name="tests.failed" value="true" />
     <property name="javadoc.additionalparam" value="" />
     <property name="java.io.tmpdir" value="/tmp" />
     <property name="java.vendor.url" value="http://java.oracle.com/" />
@@ -297,11 +296,11 @@
     <property name="dist.javadoc.dir" value="dist/javadoc" />
     <property name="libs.spring-webmvc3.0.classpath" value="/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-webmvc-3.2.7.RELEASE.jar" />
     <property name="libs.swing-layout.classpath" value="/usr/local/netbeans-8.1/platform/modules/ext/swing-layout-1.0.4.jar" />
-    <property name="libs.javaee-web-api-7.0.maven-pom" value="" />
     <property name="jspc.dtds" value="/resources/dtds/" />
+    <property name="libs.javaee-web-api-7.0.maven-pom" value="" />
     <property name="libs.restlib.src" value="" />
-    <property name="javac.source" value="1.8" />
     <property name="build.generated.dir" value="build/generated" />
+    <property name="javac.source" value="1.8" />
     <property name="line.separator" value="&#xa;" />
     <property name="java.specification.version" value="1.8" />
     <property name="java.vm.info" value="mixed mode" />
@@ -340,8 +339,8 @@
     <property name="nb.junit.single" value="false" />
     <property name="libs.javaee-endorsed-api-6.0.maven-pom" value="" />
     <property name="netbeans.dirs" value="/usr/local/netbeans-8.1/nb:/usr/local/netbeans-8.1/ergonomics:/usr/local/netbeans-8.1/ide:/usr/local/netbeans-8.1/extide:/usr/local/netbeans-8.1/java:/usr/local/netbeans-8.1/apisupport:/usr/local/netbeans-8.1/webcommon:/usr/local/netbeans-8.1/websvccommon:/usr/local/netbeans-8.1/enterprise:/usr/local/netbeans-8.1/mobility:/usr/local/netbeans-8.1/profiler:/usr/local/netbeans-8.1/python:/usr/local/netbeans-8.1/php:/usr/local/netbeans-8.1/identity:/usr/local/netbeans-8.1/harness:/usr/local/netbeans-8.1/cnd:/usr/local/netbeans-8.1/cndext:/usr/local/netbeans-8.1/dlight:/usr/local/netbeans-8.1/groovy:/usr/local/netbeans-8.1/extra:/usr/local/netbeans-8.1/javacard:/usr/local/netbeans-8.1/javafx:" />
-    <property name="libs.jsf20.javadoc" value="/usr/local/netbeans-8.1/enterprise/docs/javaee-doc-api.jar" />
     <property name="libs.jstl.javadoc" value="/usr/local/netbeans-8.1/enterprise/docs/javaee-doc-api.jar" />
+    <property name="libs.jsf20.javadoc" value="/usr/local/netbeans-8.1/enterprise/docs/javaee-doc-api.jar" />
     <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext:/usr/java/packages/lib/ext" />
     <property name="libs.metro.src" value="" />
     <property name="endorsed.classpath" value="/usr/local/netbeans-8.1/enterprise/modules/ext/javaee7-endorsed/javax.annotation-api.jar:/usr/local/netbeans-8.1/enterprise/modules/ext/javaee7-endorsed/javax.xml.soap-api.jar:/usr/local/netbeans-8.1/enterprise/modules/ext/javaee7-endorsed/jaxb-api-osgi.jar:/usr/local/netbeans-8.1/enterprise/modules/ext/javaee7-endorsed/jaxws-api.jar:/usr/local/netbeans-8.1/enterprise/modules/ext/javaee7-endorsed/jsr181-api.jar" />
@@ -361,33 +360,33 @@
     <property name="sun.desktop" value="gnome" />
     <property name="libs.hibernate4-persistence.src" value="" />
     <property name="libs.hibernate4-support.maven-pom" value="" />
-    <property name="war.content.additional" value="" />
     <property name="libs.restlib.javadoc" value="" />
+    <property name="war.content.additional" value="" />
     <property name="libs.JAXB-ENDORSED.classpath" value="/usr/local/netbeans-8.1/ide/modules/ext/jaxb/api/jaxb-api.jar" />
     <property name="j2ee.platform.embeddableejb.classpath" value="" />
-    <property name="libs.eclipselink.classpath" value="/usr/local/netbeans-8.1/java/modules/ext/eclipselink/eclipselink.jar:/usr/local/netbeans-8.1/java/modules/ext/eclipselink/javax.persistence_2.1.0.v201304241213.jar:/usr/local/netbeans-8.1/java/modules/ext/eclipselink/org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
     <property name="libs.javaee-api-7.0.javadoc" value="/usr/local/netbeans-8.1/enterprise/docs/javaee-doc-api.jar" />
-    <property name="libs.beans-binding.javadoc" value="/usr/local/netbeans-8.1/java/docs/beansbinding-1.2.1-doc.zip" />
+    <property name="libs.eclipselink.classpath" value="/usr/local/netbeans-8.1/java/modules/ext/eclipselink/eclipselink.jar:/usr/local/netbeans-8.1/java/modules/ext/eclipselink/javax.persistence_2.1.0.v201304241213.jar:/usr/local/netbeans-8.1/java/modules/ext/eclipselink/org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+    <property name="libs.beans-binding.javadoc" value="/usr/local/netbeans-8.1/java/docs/beansbinding-1.2.1-doc.zip" />
     <property name="java.vm.vendor" value="Oracle Corporation" />
     <property name="libs.CopyLibs.classpath" value="/usr/local/netbeans-8.1/java/ant/extra/org-netbeans-modules-java-j2seproject-copylibstask.jar" />
     <property name="libs.spring-framework300.classpath" value="/usr/local/netbeans-8.1/ide/modules/org-apache-commons-logging.jar:/usr/local/netbeans-8.1/java/modules/ext/cglib-2.2.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-aop-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-aspects-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-beans-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-build-src-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-context-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-context-support-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-core-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-expression-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-framework-bom-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-instrument-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-instrument-tomcat-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-jdbc-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-jms-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-orm-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-oxm-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-struts-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-test-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-tx-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-web-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-webmvc-3.2.7.RELEASE.jar:/usr/local/netbeans-8.1/java/modules/ext/spring-3.0/spring-webmvc-portlet-3.2.7.RELEASE.jar" />
     <property name="libs.jsp-compiler.maven-pom" value="" />
     <property name="libs.hamcrest.src" value="" />
     <property name="libs.hibernate4-persistence.classpath" value="/usr/local/netbeans-8.1/java/modules/ext/hibernate4/antlr-2.7.7.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/c3p0-0.9.2.1.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/hibernate-c3p0-4.3.1.Final.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/mchange-commons-java-0.2.3.4.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/dom4j-1.6.1.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/ehcache-core-2.4.3.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/hibernate-ehcache-4.3.1.Final.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/hibernate-core-4.3.1.Final.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/jboss-logging-3.1.3.GA.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/hibernate-commons-annotations-4.0.4.Final.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/hibernate-entitymanager-4.3.1.Final.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/javassist-3.18.1-GA.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/jboss-transaction-api_1.2_spec-1.0.0.Final.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/slf4j-api-1.6.1.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/slf4j-simple-1.6.1.jar:/usr/local/netbeans-8.1/java/modules/ext/hibernate4/hibernate-jpa-2.1-api-1.0.0.Final.jar" />
-    <property name="dist.archive.excludes" value="" />
     <property name="libs.JAXB-ENDORSED.src" value="" />
+    <property name="dist.archive.excludes" value="" />
     <property name="libs.testng.javadoc" value="/usr/local/netbeans-8.1/platform/docs/testng-6.8.1-javadoc.zip" />
     <property name="libs.PostgreSQLDriver.classpath" value="/usr/local/netbeans-8.1/ide/modules/ext/postgresql-9.2-1002.jdbc4.jar" />
     <property name="libs.jsf12.maven-pom" value="" />
     <property name="libs.hibernate4-persistencemodelgen.classpath" value="/usr/local/netbeans-8.1/java/modules/ext/hibernate4/hibernate-jpamodelgen-4.3.1.Final.jar" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
-    <property name="build.dir" value="build" />
     <property name="libs.CopyLibs.src" value="" />
+    <property name="build.dir" value="build" />
     <property name="libs.jsp-compilation.classpath" value="/usr/local/netbeans-8.1/extide/ant/lib/ant.jar:/usr/local/netbeans-8.1/enterprise/modules/ext/servlet3.1-jsp2.3-api.jar:/usr/local/netbeans-8.1/enterprise/modules/ext/glassfish-jspparser-4.0.jar:/usr/local/netbeans-8.1/enterprise/modules/ext/jsf-2_2/javax.faces.jar:/usr/local/netbeans-8.1/enterprise/modules/ext/jstl-api.jar:/usr/local/netbeans-8.1/extide/ant/lib/ant-launcher.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.4 compiled on April 29 2014" />
-    <property name="file.encoding" value="UTF-8" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
+    <property name="file.encoding" value="UTF-8" />
     <property name="jdkBug6558476" value="false" />
     <property name="javadoc.nonavbar" value="false" />
     <property name="libs.spring-webmvc4.0.classpath" value="/usr/local/netbeans-8.1/java/modules/ext/spring-4/spring-webmvc-4.0.1.RELEASE.jar" />
@@ -397,19 +396,13 @@
     <property name="libs.javaee-web-api-7.0.javadoc" value="/usr/local/netbeans-8.1/enterprise/docs/javaee-doc-api.jar" />
     <property name="" value="======" />
   </properties>
-  <testcase classname="Classes.PessoaTest" name="ContatoInsereLogradouro" time="0.007" />
-  <testcase classname="Classes.PessoaTest" name="ContatoConsultaDadosPessoa" time="0.0" />
-  <testcase classname="Classes.PessoaTest" name="ContatoInsereBairro" time="0.0" />
-  <testcase classname="Classes.PessoaTest" name="ContatoInsereCidade" time="0.0" />
-  <testcase classname="Classes.PessoaTest" name="ContatoInsereEstado" time="0.0" />
-  <testcase classname="Classes.PessoaTest" name="ContatoInsereCEP" time="0.0" />
-  <testcase classname="Classes.PessoaTest" name="ContatoAlteraDadosPessoa" time="0.001" />
-  <testcase classname="Classes.PessoaTest" name="ContatoInsereNumero" time="0.0" />
-  <testcase classname="Classes.PessoaTest" name="ContatoInsereId" time="0.0" />
-  <testcase classname="Classes.PessoaTest" name="ContatoInserePais" time="0.0" />
-  <testcase classname="Classes.PessoaTest" name="ContatoInsereTelefone" time="0.0" />
-  <testcase classname="Classes.PessoaTest" name="ContatoRemoveDadosPessoa" time="0.0" />
-  <testcase classname="Classes.PessoaTest" name="ContatoInsereEmail" time="0.0" />
+  <testcase classname="Classes.ClienteTest" name="ContatoInsereFidelidade" time="0.004" />
+  <testcase classname="Classes.ClienteTest" name="ContatoAlteraDadosCliente" time="0.0" />
+  <testcase classname="Classes.ClienteTest" name="ContatoConsultaDadosCliente" time="0.001" />
+  <testcase classname="Classes.ClienteTest" name="ContatoInsereCodFidelidade" time="0.0" />
+  <testcase classname="Classes.ClienteTest" name="ContatoRemoveDadosCliente" time="0.001" />
+  <testcase classname="Classes.ClienteTest" name="ContatoInsereCliente" time="0.0" />
+  <testcase classname="Classes.ClienteTest" name="ContatoInsereIdCliente" time="0.001" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

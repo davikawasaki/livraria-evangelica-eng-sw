@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Classes.Pessoa;
 import DAOclasses.PessoaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,8 +32,10 @@ public class DeletaFornecedor extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         PrintWriter out = response.getWriter();
-        String delete = request.getParameter("delete");
+        int delete = Integer.parseInt(request.getParameter("delete"));
         PessoaDAO pdao = new PessoaDAO();
         pdao.remove(delete);
         

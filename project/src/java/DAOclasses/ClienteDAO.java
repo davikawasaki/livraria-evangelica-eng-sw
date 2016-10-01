@@ -69,7 +69,7 @@ public class ClienteDAO {
 
             cliente.setIdCliente(rs.getInt("idCliente"));
             cliente.setCodFidelidade(rs.getString("codFidelidade"));
-            cliente.setFidelidade(rs.getBoolean("Fidelidade"));
+            cliente.setFidelidade(rs.getBoolean("fidelidade"));
             cliente.getPf().setCPF(rs.getString("CPF"));
             cliente.getPf().setNome(rs.getString("nome"));
             cliente.getPf().setSobrenome(rs.getString("sobrenome"));
@@ -123,6 +123,49 @@ public class ClienteDAO {
         } catch (SQLException e){
             throw new RuntimeException(e);
             }
+    }
+         
+    public Cliente busca(int id){
+        try {
+            PreparedStatement stmt = this.connection.
+            prepareStatement("select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF where C.idCliente=?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            Cliente cliente = new Cliente();
+            PessoaFisica pf = new PessoaFisica();
+            Pessoa pessoa = new Pessoa();
+            cliente.setPf(pf);
+            cliente.getPf().setPessoa(pessoa);
+            
+            rs.next();
+            cliente.setIdCliente(rs.getInt("idCliente"));
+            cliente.setCodFidelidade(rs.getString("codFidelidade"));
+            cliente.setFidelidade(rs.getBoolean("fidelidade"));
+            cliente.getPf().setCPF(rs.getString("CPF"));
+            cliente.getPf().setNome(rs.getString("nome"));
+            cliente.getPf().setSobrenome(rs.getString("sobrenome"));
+            cliente.getPf().setRG(rs.getString("RG"));
+            cliente.getPf().setSexo(rs.getString("sexo"));
+            cliente.getPf().setDataNascimento(rs.getString("dataNascimento"));
+            cliente.getPf().getPessoa().setTelefone(rs.getString("telefone"));
+            cliente.getPf().getPessoa().setEmail(rs.getString("email"));
+            cliente.getPf().getPessoa().setLogradouro(rs.getString("logradouro"));
+            cliente.getPf().getPessoa().setNumero(rs.getInt("numero"));
+            cliente.getPf().getPessoa().setComplemento(rs.getString("complemento"));
+            cliente.getPf().getPessoa().setBairro(rs.getString("bairro"));
+            cliente.getPf().getPessoa().setCEP(rs.getString("CEP"));
+            cliente.getPf().getPessoa().setCidade(rs.getString("cidade"));
+            cliente.getPf().getPessoa().setEstado(rs.getString("estado"));
+            cliente.getPf().getPessoa().setPais(rs.getString("pais"));
+
+            rs.close();
+            stmt.close();
+            return cliente;
+        }
+        catch (SQLException e) {
+             throw new RuntimeException(e);
+        }
     }
     
 }
