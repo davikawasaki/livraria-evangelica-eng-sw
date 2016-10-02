@@ -290,11 +290,7 @@
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
-
-                                                <h5>
-                                                    Saldo Inicial: R$
-                                                </h5>
-                                                
+                                             
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
@@ -314,6 +310,7 @@
                                                                 <span class="lbl"></span>
                                                             </label>
                                                         </th>
+                                                        <th>Saldo Inicial</th>
                                                         <th>Entrada Bruta</th>
                                                         <th>Saldo Liquido</th>
                                                         <th>Saida Total</th>
@@ -336,7 +333,9 @@
                                                                 <span class="lbl"></span>
                                                             </label>
                                                         </td>
-
+                                                        <td>
+                                                            saldo                                                                                                                                                                                                                    ${cliente.idCliente}</a>
+                                                        </td>
                                                         <td>
                                                             ${cliente.getPf().CPF}                                                                                                                                                                                                                    ${cliente.idCliente}</a>
                                                         </td>
