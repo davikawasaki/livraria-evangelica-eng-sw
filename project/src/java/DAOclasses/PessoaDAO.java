@@ -99,7 +99,7 @@ public class PessoaDAO {
         catch (SQLException e){         
             throw new RuntimeException(e);
         }
-    }
+    } 
     
       public void altera(Pessoa pessoa) {
           String sql = "update Pessoa set telefone=?, email=?," +
