@@ -9,7 +9,7 @@ public class ConnectionFactory {
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             return DriverManager.getConnection(
-                    "jdbc:mysql://localhost/livrariaengsw", "root", "root"
+                    "jdbc:mysql://localhost/livrariaengsw", "root", "123"
             );
         } catch (SQLException e) {
             throw new RuntimeException(e);

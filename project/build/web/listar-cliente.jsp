@@ -52,162 +52,216 @@
     </head>
 
     <body class="no-skin">
-        <div id="navbar" class="navbar navbar-default          ace-save-state">
-            <div class="navbar-container ace-save-state" id="navbar-container">
-                <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
-                    <span class="sr-only">Toggle sidebar</span>
+		<div id="navbar" class="navbar navbar-default          ace-save-state">
+			<div class="navbar-container ace-save-state" id="navbar-container">
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+					<span class="sr-only">Toggle sidebar</span>
 
-                    <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 
-                    <span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 
-                    <span class="icon-bar"></span>
-                </button>
+					<span class="icon-bar"></span>
+				</button>
 
-                <div class="navbar-header pull-left">
-                    <a href="dashboard.html" class="navbar-brand">
-                        <small>
-                            <i class="fa fa-book"></i>
-                            Livraria
-                        </small>
-                    </a>
-                </div>
+				<div class="navbar-header pull-left">
+					<a href="dashboard.html" class="navbar-brand">
+						<small>
+							<i class="fa fa-book"></i>
+							Livraria
+						</small>
+					</a>
+				</div>
 
-                <div class="navbar-buttons navbar-header pull-right" role="navigation">
-                    <ul class="nav ace-nav">
+				<div class="navbar-buttons navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
 
-                        <li class="light-blue dropdown-modal">
-                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <img class="nav-user-photo" src="assets/images/avatars/avatar2.png" alt="Jason's Photo" />
-                                <span class="user-info">
-                                    <small>Bem vindo,</small>
-                                    Nicholas
-                                </span>
+						<li class="light-blue dropdown-modal">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
+								<span class="user-info">
+									<small>Bem vindo,</small>
+									Nicholas
+								</span>
 
-                                <i class="ace-icon fa fa-caret-down"></i>
-                            </a>
+								<i class="ace-icon fa fa-caret-down"></i>
+							</a>
 
-                            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                                <li>
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-cog"></i>
-                                        Configurações
-                                    </a>
-                                </li>
+							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-cog"></i>
+										Configurações
+									</a>
+								</li>
 
-                                <li>
-                                    <a href="profile.html">
-                                        <i class="ace-icon fa fa-user"></i>
-                                        Perfil
-                                    </a>
-                                </li>
+								<li>
+									<a href="profile.html">
+										<i class="ace-icon fa fa-user"></i>
+										Perfil
+									</a>
+								</li>
 
-                                <li class="divider"></li>
+								<li class="divider"></li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-power-off"></i>
-                                        Sair
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div><!-- /.navbar-container -->
-        </div>
+								<li>
+									<a href="#">
+										<i class="ace-icon fa fa-power-off"></i>
+										Sair
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div><!-- /.navbar-container -->
+		</div>
 
-        <div class="main-container ace-save-state" id="main-container">
-            <script type="text/javascript">
-                try{ace.settings.loadState('main-container')}catch(e){}
-            </script>
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
 
-            <div id="sidebar" class="sidebar responsive ace-save-state">
-                <script type="text/javascript">
-                    try{ace.settings.loadState('sidebar')}catch(e){}
-                </script>
-                <ul class="nav nav-list">
-                    <li class="">
-                        <a href="dashboard.html">
-                            <i class="menu-icon fa fa-desktop"></i>
-                            <span class="menu-text"> Dashboard </span>
-                        </a>
+			<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+				<script type="text/javascript">
+					try{ace.settings.loadState('sidebar')}catch(e){}
+				</script>
 
-                        <b class="arrow"></b>
-                    </li>
+				<ul class="nav nav-list">
+					<li class="active">
+						<a href="dashboard.html">
+							<i class="menu-icon fa fa-desktop"></i>
+							<span class="menu-text"> Dashboard </span>
+						</a>
 
-                    <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-user"></i>
-                            <span class="menu-text">Cadastro</span>
-                            <b class="arrow fa fa-angle-down"></b>
-                        </a>
+						<b class="arrow"></b>
+					</li>
 
-                        <b class="arrow"></b>
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-user"></i>
+							<span class="menu-text">Cadastro</span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
 
-                        <ul class="submenu">
+						<b class="arrow"></b>
 
-                            <li class="">
-                                <a href="cadastro-fornecedor.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Fornecedor
-                                </a>
+						<ul class="submenu">
 
-                                <b class="arrow"></b>
-                            </li>
+							<li class="">
+								<a href="cadastro-fornecedor.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Fornecedor
+								</a>
 
-                            <li class="">
-                                <a href="cadastro-cliente.html">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Cliente
-                                </a>
+								<b class="arrow"></b>
+							</li>
 
-                                <b class="arrow"></b>
-                            </li>
-                        </ul>
-                    </li>
+							<li class="">
+								<a href="cadastro-cliente.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Cliente
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
 
 
-                    <li class="active open">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-list-alt"></i>
-                            <span class="menu-text"> Consultar </span>
-                            <b class="arrow fa fa-angle-down"></b>
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-list-alt"></i>
+							<span class="menu-text"> Consultar </span>
+							<b class="arrow fa fa-angle-down"></b>
 
-                        </a>
+						</a>
 
-                        <b class="arrow"></b>
+						<b class="arrow"></b>
 
-                        <ul class="submenu">
+						<ul class="submenu">
 
-                            <li class="">
-                                <a href="listar-fornecedor.jsp">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Fornecedor
-                                </a>
+							<li class="">
+								<a href="listar-fornecedor.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Fornecedor
+								</a>
 
-                                <b class="arrow"></b>
-                            </li>
+								<b class="arrow"></b>
+							</li>
 
-                            <li class="active">
-                                <a href="listar-cliente.jsp">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Cliente
-                                </a>
+							<li class="">
+								<a href="listar-cliente.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Cliente
+								</a>
 
-                                <b class="arrow"></b>
-                            </li>
-                        </ul>
+								<b class="arrow"></b>
+							</li>
+						</ul>
 
-                    </li>
-                    
-                </ul><!-- /.nav-list -->
+					</li>
+                                        <li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-shopping-basket"></i>
+							<span class="menu-text"> Caixa </span>
+							<b class="arrow fa fa-angle-down"></b>
 
-                <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-                    <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-                </div>
-            </div>
+						</a>
 
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="caixa-pagamentos.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Pagamento
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="caixa-movimentacoes.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Movimentações
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+
+					</li>
+                                        <li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-pie-chart"></i>
+							<span class="menu-text"> Estoque </span>
+							<b class="arrow fa fa-angle-down"></b>
+
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="estoque-produtos.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Produtos
+								</a>
+
+								<b class="arrow"></b>
+                                                        </li>
+						</ul>
+
+					</li>
+				</ul><!-- /.nav-list -->
+
+				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+				</div>
+			</div>
             <div class="main-content">
                 <div class="main-content-inner">
                     <div class="breadcrumbs ace-save-state" id="breadcrumbs">
