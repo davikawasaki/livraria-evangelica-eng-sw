@@ -314,10 +314,10 @@
                                                                 <span class="lbl"></span>
                                                             </label>
                                                         </th>
-                                                        <th>Entrada Bruta</th>
-                                                        <th>Saldo Liquido</th>
-                                                        <th>Saida Total</th>
-                                                        <th>Data</th>
+                                                        <th>Título</th>
+                                                        <th>Autor</th>
+                                                        <th>Preço</th>
+                                                        <th>Quantidade</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>

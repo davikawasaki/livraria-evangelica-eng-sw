@@ -247,6 +247,19 @@
                                                         </li>
 						</ul>
 
+                                                <b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="listar-produtos.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Listar estoque
+								</a>
+
+								<b class="arrow"></b>
+                                                        </li>
+						</ul>
 					</li>
 				</ul><!-- /.nav-list -->
 
@@ -278,14 +291,119 @@
 							</h1>
 						</div><!-- /.page-header -->
 
+                                                <h5>
+                                                    Saldo Inicial: R$
+                                                </h5>
+                                                
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<div class="col-sm-6">
-									<h4>Bem vindo a livraria Kawasaki.</h4>
-									<hr />
-								</div>
-								<div class="hr hr32 hr-dotted"></div>
+								<div class="row">
+                                    <div class="col-xs-12">
+
+                                        <!-- div.table-responsive -->
+
+                                        <!-- div.dataTables_borderWrap -->
+                                        <div>
+                                            <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="center">
+                                                            <label class="pos-rel">
+                                                                <input type="checkbox" class="ace" />
+                                                                <span class="lbl"></span>
+                                                            </label>
+                                                        </th>
+                                                        <th>Entrada Bruta</th>
+                                                        <th>Saldo Liquido</th>
+                                                        <th>Saida Total</th>
+                                                        <th>Data</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+
+                                                
+                                                
+                                            <tbody>
+                                                <c:forEach var="cliente" items="${dao.lista}">
+                                                                           
+                                                  <!--init the list-->
+                                                
+                                                    <tr>
+                                                        <td class="center">
+                                                            <label class="pos-rel">
+                                                                <input type="checkbox" class="ace" />
+                                                                <span class="lbl"></span>
+                                                            </label>
+                                                        </td>
+
+                                                        <td>
+                                                            ${cliente.getPf().CPF}                                                                                                                                                                                                                    ${cliente.idCliente}</a>
+                                                        </td>
+
+                                                        <td>${cliente.getPf().nome}</td>
+
+                                                        <td class="hidden-480">${cliente.fidelidade}</td>
+
+                                                        <td>${cliente.getPf().getPessoa().telefone}</td>
+
+                                                        <td>
+                                                            <div class="hidden-sm hidden-xs action-buttons">
+                                                                <a class="blue" href="#">
+                                                                    <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                                </a>
+
+                                                                <a class="green" href="#">
+                                                                    <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                                </a>
+
+                                                                <a class="red" href="#">
+                                                                    <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                                </a>
+                                                            </div>
+
+                                                            <div class="hidden-md hidden-lg">
+                                                                <div class="inline pos-rel">
+                                                                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                                        <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                                    </button>
+
+                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                                        <li>
+                                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                                                <span class="blue">
+                                                                                    <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li>
+                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                                <span class="green">
+                                                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                        <li>
+                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                                <span class="red">
+                                                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>       
+                                                    <!--End the list-->
+                                                   </c:forEach> 
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
 
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
