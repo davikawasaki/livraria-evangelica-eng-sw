@@ -57,22 +57,4 @@ public class PessoaFisicaTest {
         String valorRecebido = pf.getDataNascimento();
         assertEquals(valorRecebido, "09-09-2016");
     }
-    @Test
-    public void ContatoInserePessoaFisica() {
-        // Verificar se classe foi instanciada
-    }
-    @Test
-    public void ContatoAlteraDadosPessoaFisica() {
-        // Testa se os dados foram alterados com sucesso
-    }
-    
-    @Test
-    public void ContatoRemoveDadosPessoaFisica() {
-        // Testa se os dados foram removidos com sucesso
-    }
-    
-    @Test
-    public void ContatoConsultaDadosPessoaFisica() {
-        // Testa se os dados foram consultados com sucesso
-    }
 }

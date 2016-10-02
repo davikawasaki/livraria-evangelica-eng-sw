@@ -8,6 +8,7 @@ package DAOclasses;
 import Classes.Atendente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -40,7 +41,7 @@ public class AtendenteDAO {
            stmt.setString(4, atendente.getSenha());
            stmt.setString(5, atendente.getPf().getCPF());
            
-           stmt.execute();
+           stmt.executeUpdate();
            stmt.close();
         }
         catch (SQLException e){

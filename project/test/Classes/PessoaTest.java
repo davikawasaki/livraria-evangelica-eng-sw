@@ -84,18 +84,4 @@ public class PessoaTest {
         String valorRecebido = pessoa.getPais();
         assertEquals(valorRecebido, "Vai Brazilian");
     }
-    @Test
-    public void ContatoAlteraDadosPessoa() {
-        // Testa se os dados foram alterados com sucesso
-    }
-    
-    @Test
-    public void ContatoRemoveDadosPessoa() {
-        // Testa se os dados foram removidos com sucesso
-    }
-    
-    @Test
-    public void ContatoConsultaDadosPessoa() {
-        // Testa se os dados foram consultados com sucesso
-    }
 }

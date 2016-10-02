@@ -254,6 +254,20 @@
 								<b class="arrow"></b>
                                                         </li>
 						</ul>
+                                                
+                                                <b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="listar-produtos.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Listar estoque
+								</a>
+
+								<b class="arrow"></b>
+                                                        </li>
+						</ul>
 
 					</li>
 				</ul><!-- /.nav-list -->

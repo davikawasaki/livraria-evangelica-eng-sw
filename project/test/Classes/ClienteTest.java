@@ -34,20 +34,5 @@ public class ClienteTest {
         String valorRecebido = cliente.getCodFidelidade();
         assertEquals(valorRecebido, "A123");
     }  
-    @Test
-    public void ContatoInsereCliente() {
-         // Verificar se classe foi instanciada
-    }  
-    @Test
-    public void ContatoAlteraDadosCliente() {
-        // Testa se os dados foram alterados com sucesso
-    }
-    @Test
-    public void ContatoRemoveDadosCliente() {
-        // Testa se os dados foram removidos com sucesso
-    }
-    @Test
-    public void ContatoConsultaDadosCliente() {
-        // Testa se os dados foram consultados com sucesso
-    }
+
 }
