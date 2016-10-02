@@ -246,8 +246,24 @@
 								<b class="arrow"></b>
                                                         </li>
 						</ul>
+                                                
+                                                <b class="arrow"></b>
 
+						<ul class="submenu">
+
+							<li class="">
+								<a href="listar-produtos.jsp">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Listar estoque
+								</a>
+
+								<b class="arrow"></b>
+                                                        </li>
+						</ul>
+                                                
 					</li>
+                                        
+                                        
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -270,10 +286,10 @@
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								Dashboard
+								Estoque
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Bem vindo
+									Listar
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -281,11 +297,112 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<div class="col-sm-6">
-									<h4>Bem vindo a livraria Kawasaki.</h4>
-									<hr />
-								</div>
-								<div class="hr hr32 hr-dotted"></div>
+								<div class="row">
+                            <div class="col-xs-12">
+                                <!-- PAGE CONTENT BEGINS -->
+                                <form class="form-horizontal" role="form" action="NovoProduto" method="POST">
+
+                                    <div class="space-4"></div>
+                                                                        
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Tipo pagamento </label>
+                                        <label class="col-sm-3 control-label no-padding-right">
+                                          <select id="tipoProduto" class="form-control ">
+                                            <option value="1">Livro</option>
+                                            <option value="2">Mídia</option>
+                                          </select>
+                                        </label>
+                                    </div>
+                                    
+                                    <!--aqui-->
+                                    <div id="getBookData">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Editora </label>
+                                            <div class="col-sm-9">
+                                                <input required type="text" name="editora" id="form-field-1" placeholder="Ex: Arqueiro" class="col-xs-10 col-sm-5" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Autor </label>
+                                            <div class="col-sm-9">
+                                                <input required type="text" name="autor" id="form-field-1" placeholder="Ex: Dan Brown" class="col-xs-10 col-sm-5" />
+                                            </div>
+                                        </div>
+                                    </div>    
+                                    
+                                    <div id="getMediaData">
+                                      <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Artista </label>
+                                            <div class="col-sm-9">
+                                                <input required type="text" name="artista" id="form-field-1" placeholder="Ex: Sasha Grey" class="col-xs-10 col-sm-5" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Tipo de mídia </label>
+                                            <div class="col-sm-9">
+                                                <input required type="text" name="tipoMidia" id="form-field-1" placeholder="Ex: Dvd" class="col-xs-10 col-sm-5" />
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-title"><span style="color:red;">*</span> Título </label>
+
+                                        <div class="col-sm-9">
+                                            <input required type="text" name="titulo" id="form-field-title" placeholder="Ex: Filhos do Fogo" class="col-xs-10 col-sm-5" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-price"><span style="color:red;">*</span> Preço </label>
+
+                                        <div class="col-sm-9">
+                                            <input required type="text" name="preco" id="form-field-price" placeholder="Ex: 100.00" class="col-xs-10 col-sm-5" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Idioma </label>
+
+                                        <div class="col-sm-9">
+                                            <input required type="text" name="idioma" id="form-field-1" placeholder="Ex: Russo" class="col-xs-10 col-sm-5" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-date"><span style="color:red;">*</span> Ano de lançamento </label>
+
+                                        <div class="col-sm-9">
+                                           <input required type="date" id="form-field-date" name="lancamento" class="col-xs-10 col-sm-5" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-price"><span style="color:red;">*</span> Quantidade </label>
+
+                                        <div class="col-sm-9">
+                                            <input required type="number" min="1" name="preco" id="form-field-price" placeholder="Ex: 200" class="col-xs-10 col-sm-5" />
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix form-actions">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button class="btn btn-success" type="submit">
+                                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                                Enviar
+                                            </button>
+
+                                            &nbsp; &nbsp; &nbsp;
+                                            <button class="btn" type="reset">
+                                                <i class="ace-icon fa fa-undo bigger-110"></i>
+                                                Limpar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
 
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
@@ -322,6 +439,7 @@
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
+                <script src="estoque-produtos.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>
 
 		<!-- page specific plugin scripts -->
