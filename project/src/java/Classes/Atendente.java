@@ -44,7 +44,8 @@ public class Atendente{
     }
 
     public void setSenha(String senha) throws Exception{
-        if(validaSenha(senha))
+        Validacoes valida = new Validacoes();
+        if(valida.validaSenha(senha))
             this.senha = senha;
         else
             throw new Exception("Senha Invalida");
@@ -60,12 +61,5 @@ public class Atendente{
 
     public void setPf(PessoaFisica pf) {
         this.pf = pf;
-    }
-
-    private boolean validaSenha(String senha) {
-        String password_pattern = ("^(?=.*\\d)(?=.*[a-zA-Z]).{6,15}");
-
-        return Pattern.matches(password_pattern, senha);
-    }
-    
+    }   
 }
