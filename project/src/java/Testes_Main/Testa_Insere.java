@@ -5,8 +5,12 @@
  */
 package Testes_Main;
 
+import Classes.Livro;
 import Classes.Pessoa;
+import Classes.Produto;
+import DAOclasses.LivroDAO;
 import DAOclasses.PessoaDAO;
+import DAOclasses.ProdutoDAO;
 
 /**
  *
@@ -14,24 +18,24 @@ import DAOclasses.PessoaDAO;
  */
 public class Testa_Insere {
     public static void main(String[] args) {
-        Pessoa pessoa = new Pessoa();
-        pessoa.setId(1);
-        pessoa.setTelefone("123456789");
-        pessoa.setEmail("pessoa@caelum.com.br");
-        pessoa.setCEP("1190000");
-        pessoa.setLogradouro("R. Vergueiro 3185 cj57");
-        pessoa.setComplemento("");
-        pessoa.setNumero(75);
-        pessoa.setBairro("Vila Nova");
-        pessoa.setCidade("Registro");
-        pessoa.setEstado("Acre");
-        pessoa.setPais("Brasil");
-        pessoa.setSenha("123");
+        Produto produto = new Produto();
+        Livro livro = new Livro();
         
-        PessoaDAO dao = new PessoaDAO();
+        produto.setTitulo("Porra de Cavalo");
+        produto.setTipo(1);
+        produto.setPreco((float) 24.51);
+        produto.setIdioma("Ingres");
+        produto.setAnoLancamento(2029);
+        produto.setQuantidade(121);
+        livro.setAutor("Danilão");
+        livro.setEditora("Eita carai");
+        livro.setPdt(produto);
         
-        dao.adiciona(pessoa);
-
+        ProdutoDAO pdao = new ProdutoDAO();
+        LivroDAO ldao = new LivroDAO();
+        
+        ldao.adiciona(livro);
+        
         System.out.println("Gravado!");
     }
 }
