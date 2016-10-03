@@ -20,7 +20,7 @@ public class Teste_dates {
     public static void main(String[] args){
     
     //Teste conversão de string para data
-    /*
+    
         DateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         
         String data = "26/09/2016";
@@ -32,7 +32,7 @@ public class Teste_dates {
         catch(ParseException pe){
             System.out.println("ErroData: "+pe);
         }
-    */
+    
     
     //Teste conversão de string para hora
     /*  DateFormat formato = new SimpleDateFormat("hh:mm:ss");

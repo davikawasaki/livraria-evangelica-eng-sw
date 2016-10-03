@@ -25,7 +25,10 @@ public class CaixaDia {
         return saldoInicial;
     }
 
-    public void setSaldoInicial(float saldoInicial) {
+    public void setSaldoInicial(float saldoInicial) throws Exception {
+        if(saldoInicial < 0)
+            throw new Exception("Saldo Inicial invalido");
+
         this.saldoInicial = saldoInicial;
     }
     
@@ -33,7 +36,10 @@ public class CaixaDia {
         return entradaBruto;
     }
 
-    public void setEntradaBruto(float entradaBruto) {
+    public void setEntradaBruto(float entradaBruto) throws Exception {
+        if(entradaBruto < 0)
+            throw new Exception("Entrada invalida");
+        
         this.entradaBruto = entradaBruto;
     }
 
@@ -41,7 +47,10 @@ public class CaixaDia {
         return entradaReal;
     }
 
-    public void setEntradaReal(float entradaReal) {
+    public void setEntradaReal(float entradaReal) throws Exception {
+        if(entradaReal < 0)
+            throw new Exception("Entrada invalido");
+        
         this.entradaReal = entradaReal;
     }
 
@@ -49,7 +58,7 @@ public class CaixaDia {
         return saldoLiquido;
     }
 
-    public void setSaldoLiquido(float saldoLiquido) {
+    public void setSaldoLiquido(float saldoLiquido){
         this.saldoLiquido = saldoLiquido;
     }
 
@@ -57,7 +66,7 @@ public class CaixaDia {
         return saldoReal;
     }
 
-    public void setSaldoReal(float saldoReal) {
+    public void setSaldoReal(float saldoReal) {      
         this.saldoReal = saldoReal;
     }
 
@@ -65,7 +74,10 @@ public class CaixaDia {
         return saidaTotal;
     }
 
-    public void setSaidaTotal(float saidaTotal) {
+    public void setSaidaTotal(float saidaTotal) throws Exception {  
+        if(saidaTotal < 0)
+            throw new Exception("Saida invalida");
+       
         this.saidaTotal = saidaTotal;
     }
 
@@ -73,7 +85,12 @@ public class CaixaDia {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(Date data) throws Exception {
+        Date dt = new Date();
+        
+        if(data.after(dt))
+            throw new Exception("Data invalida");
+          
         this.data = data;
     }
             
@@ -81,7 +98,9 @@ public class CaixaDia {
         return idCaixa;
     }
 
-    public void setIdCaixa(int idCaixa) {
+    public void setIdCaixa(int idCaixa) throws Exception {
+        if(idCaixa < 0)
+           throw new Exception("Id invalido");
         this.idCaixa = idCaixa;
     }
     
