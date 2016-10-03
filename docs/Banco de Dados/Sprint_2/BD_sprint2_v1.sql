@@ -83,7 +83,7 @@ ENGINE = InnoDB;
 -- Table `livrariaengsw`.`Pagamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `livrariaengsw`.`Pagamento` (
-  `idPagamento` INT NOT NULL,
+  `idPagamento` INT NOT NULL AUTO_INCREMENT,
   `tipo` VARCHAR(45) NOT NULL,
   `valorTotal` FLOAT NOT NULL,
   `desconto` FLOAT NOT NULL,
@@ -119,7 +119,7 @@ ENGINE = InnoDB;
 -- Table `livrariaengsw`.`Saida`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `livrariaengsw`.`Saida` (
-  `idSaida` INT NOT NULL,
+  `idSaida` INT NOT NULL AUTO_INCREMENT,
   `tipo` VARCHAR(45) NOT NULL,
   `valor` FLOAT NOT NULL,
   `Caixa_idCaixa` INT NOT NULL,
