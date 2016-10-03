@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Classes.Midia;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

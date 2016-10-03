@@ -286,7 +286,7 @@
 								Dashboard
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Bem vindo
+									Listar estoque
 								</small>
 							</h1>
 						</div><!-- /.page-header -->

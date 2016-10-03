@@ -283,10 +283,10 @@
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								Dashboard
+								Caixa
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Bem vindo
+									Movimentações
 								</small>
 							</h1>
 						</div><!-- /.page-header -->

@@ -289,7 +289,7 @@
 								Estoque
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Listar
+									Produtos
 								</small>
 							</h1>
 						</div><!-- /.page-header -->

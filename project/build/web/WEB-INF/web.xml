@@ -16,6 +16,14 @@
         <servlet-name>DeletaFornecedor</servlet-name>
         <servlet-class>Servlet.DeletaFornecedor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NovoPagamento</servlet-name>
+        <servlet-class>Servlet.NovoPagamento</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NovoProduto</servlet-name>
+        <servlet-class>Servlet.NovoProduto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NovoServlet</servlet-name>
         <url-pattern>/serv</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>DeletaFornecedor</servlet-name>
         <url-pattern>/DeletaFornecedor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NovoPagamento</servlet-name>
+        <url-pattern>/NovoPagamento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NovoProduto</servlet-name>
+        <url-pattern>/NovoProduto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -8,12 +8,15 @@ package DAOclasses;
 import Classes.*;
 import java.sql.Connection;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -51,10 +54,13 @@ public class CaixaDiaDAO {
         }
         catch (SQLException e){
             throw new RuntimeException(e);
+        } 
+        catch (Exception ex) {
+            Logger.getLogger(CaixaDiaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        
-    public List<CaixaDia> getCaixasDiarios(){
+    
+    public List<CaixaDia> getCaixasDiarios() throws Exception{
         try {
             List<CaixaDia> caixas = new ArrayList<>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from Caixa;");
@@ -82,6 +88,36 @@ public class CaixaDiaDAO {
         catch (SQLException e) {
              throw new RuntimeException(e);
         }
+    }
+    
+    public CaixaDia buscaCaixa(Date data) throws Exception{
+            
+        PreparedStatement stmt = this.connection.prepareStatement("select * from Caixa where horario=?;");
+        ResultSet rs = stmt.executeQuery();
+        try{
+            // criando o objeto Caixa
+            CaixaDia caixa = new CaixaDia();
+            
+            stmt.setDate(1, data);
+            stmt.executeUpdate();
+            
+            if(rs.next()){
+                caixa.setIdCaixa(rs.getInt("idCaixa"));
+                caixa.setSaldoInicial(rs.getFloat("saldoInicial"));
+                caixa.setEntradaBruto(rs.getFloat("entradaBruto"));
+                caixa.setEntradaReal(rs.getFloat("entradaReal"));
+                caixa.setSaldoLiquido(rs.getFloat("saldoLiquido"));
+                caixa.setSaldoReal(rs.getFloat("saldoReal"));
+                caixa.setSaidaTotal(rs.getFloat("saidaTotal"));
+            }
+            
+            rs.close();
+            stmt.close();
+            return caixa;
+        }
+        catch (SQLException e) {
+             throw new RuntimeException(e);
+        }    
     }
     
     public void remove(int id){    

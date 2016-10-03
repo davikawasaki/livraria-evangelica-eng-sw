@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Classes.Livro;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,9 +18,9 @@ public class LivroTest {
     @Test
     public void testEditoraInvalida(){
         Livro v = new Livro();
-        v.setEditora(1);
         try{
-            String valorRecebido = v.getArtista();
+            v.setEditora(1);
+            String valorRecebido = v.getAutor();
         }
         catch(Exception ce){
             assertEquals(ce.getMessage(), "Editora invalida");

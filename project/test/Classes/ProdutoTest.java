@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Classes.Produto;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -114,7 +115,7 @@ public class ProdutoTest {
     @Test
     public void testPrecoValido() throws Exception{
         Produto p = new Produto();
-        p.setPreco(1.59);
+        p.setPreco((float) 1.59);
         float valorRecebido = p.getPreco();
         assertEquals(valorRecebido, 1.59, 0);
     }

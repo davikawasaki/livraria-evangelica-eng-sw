@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +30,18 @@ public class PagamentoDAO {
         String sql = "insert into Pagamento (tipo, valorTotal, desconto, horario) values(?,?,?,?)";
         
         try{
-           PreparedStatement stmt = connection.prepareStatement(sql);
+           PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             stmt.setString(1, pagamento.getTipo());
             stmt.setFloat(2, pagamento.getValorTotal());
             stmt.setFloat(3, pagamento.getDesconto());
             stmt.setTimestamp(4, pagamento.getHorario());
             stmt.execute();
+        
+             
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            pagamento.setIdPagamento(rs.getInt(1));
             stmt.close();
         }
         catch (SQLException e){

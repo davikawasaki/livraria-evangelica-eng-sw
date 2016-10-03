@@ -307,14 +307,14 @@
                                                             <div class="row">
                                                                 <div class="col-xs-12">
                                 <!-- PAGE CONTENT BEGINS -->
-                                <form class="form-horizontal" role="form" action="CadastroFornecedor" method="POST">
+                                <form class="form-horizontal" role="form" action="NovoPagamento" method="POST">
 
                                     <div class="space-4"></div>
                                                                         
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Tipo pagamento </label>
                                         <label class="col-sm-3 control-label no-padding-right">
-                                          <select id="tipoPagamento" class="form-control ">
+                                          <select id="tipoPagamento" class="form-control" name="tipoPagamento">
                                             <option value="dinheiro">Dinheiro</option>
                                             <option value="cartao">Cartão</option>
                                             <option value="cheque">Cheque</option>
@@ -335,7 +335,7 @@
                                       <div class="form-group">
                                           <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Pagamento cartão </label>
                                           <label class="col-sm-3 control-label no-padding-right">
-                                            <select class="form-control ">
+                                            <select name="tipoPagCartao" class="form-control ">
                                             <option value="debito">Débito</option>
                                             <option value="credito">Crédito</option>
                                           </select>
@@ -347,6 +347,14 @@
 
                                           <div class="col-sm-9">
                                               <input required type="number" min="1" max="5" id="form-field-1" name="parcelas" placeholder="Ex: 3" class="col-xs-10 col-sm-5" />
+                                          </div>
+                                      </div>
+                                        
+                                      <div class="form-group">
+                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Desconto </label>
+
+                                          <div class="col-sm-9">
+                                              <input required type="text" id="form-field-1" name="desconto" placeholder="Ex: 10 (porcentagem)" class="col-xs-10 col-sm-5" />
                                           </div>
                                       </div>
                                     </div>
