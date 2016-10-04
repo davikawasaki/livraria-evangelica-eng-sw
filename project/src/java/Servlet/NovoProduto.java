@@ -29,20 +29,67 @@ public class NovoProduto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NovoProduto</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NovoProduto at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+  response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
+        PrintWriter out = response.getWriter();
+        
+        Produto produto = new Produto();
+        
+        pag.setValorTotal(Integer.parseInt(request.getParameter("valorTotal")));
+        
+        String tipo = request.getParameter("tipoPagamento");
+        
+        pag.setTipo(tipo);
+        pag.setDesconto(Float.parseFloat(request.getParameter("desconto")));
+
+        //Captura a data atual
+        Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());
+        pag.setHorario(dataDeHoje);
+
+        //Converte para Date para buscar o caixa correspondente no banco de dados
+        try {        
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dataStr = sdf.format(dataDeHoje);
+            Date data = new java.sql.Date(sdf.parse(dataStr).getTime());
+        
+            CaixaDiaDAO caixadao = new CaixaDiaDAO();
+            
+            CaixaDia caixa = caixadao.buscaCaixa(data);
+            if(caixa == null){
+                caixa = new CaixaDia();
+                caixa.setSaldoInicial(50);
+                caixa.setEntradaBruto(100);
+                caixa.setEntradaReal(100);
+                caixa.setSaldoLiquido(100);
+                caixa.setSaldoReal(100);
+                caixa.setSaidaTotal(100);
+                caixa.setData(data);
+                caixadao.adiciona(caixa);
+            }
+            
+            PagamentoDAO pdao = new PagamentoDAO();              
+            pdao.adiciona(pag, caixa.getIdCaixa());
+            
+            if(tipo.equals("cartao")){
+                Cartao card = new Cartao();
+                card.setTipo(request.getParameter("tipoPagCartao"));
+                card.setNumeroParcelas(Integer.parseInt(request.getParameter("parcelas")));
+                card.setIdPagamento(pag.getIdPagamento());
+                
+                CartaoDAO cardDAO = new CartaoDAO();
+                cardDAO.adiciona(card);
+            }            
+            
+            String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
+            response.sendRedirect(response.encodeRedirectURL(contextPath));
+       
+        } 
+        catch (Exception ex) {
+            Logger.getLogger(NovoPagamento.class.getName()).log(Level.SEVERE, null, ex);
+        }    
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -79,5 +79,6 @@ public class Atendente{
 
     public void setPf(PessoaFisica pf) {
         this.pf = pf;
-    }   
+    }
+    
 }

@@ -346,19 +346,17 @@
                                           <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Número de parcelas </label>
 
                                           <div class="col-sm-9">
-                                              <input required type="number" min="1" max="5" id="form-field-1" name="parcelas" placeholder="Ex: 3" class="col-xs-10 col-sm-5" />
-                                          </div>
-                                      </div>
-                                        
-                                      <div class="form-group">
-                                          <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Desconto </label>
-
-                                          <div class="col-sm-9">
-                                              <input required type="text" id="form-field-1" name="desconto" placeholder="Ex: 10 (porcentagem)" class="col-xs-10 col-sm-5" />
+                                              <input type="number" min="1" max="5" id="form-field-1" name="parcelas" placeholder="Ex: 3" class="col-xs-10 col-sm-5" />
                                           </div>
                                       </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-2"><span style="color:red;">*</span> Desconto </label>
 
+                                        <div class="col-sm-9">
+                                            <input required type="text" id="form-field-2" name="desconto" placeholder="Ex: 10 (porcentagem)" class="col-xs-10 col-sm-5" />
+                                        </div>
+                                    </div>
                                     <div class="clearfix form-actions">
                                         <div class="col-md-offset-3 col-md-9">
                                             <button class="btn btn-success" type="submit">

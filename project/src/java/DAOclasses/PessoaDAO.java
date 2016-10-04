@@ -20,7 +20,7 @@ public class PessoaDAO {
         this.connection = new ConnectionFactory().getConnection();
     }
     
-    public void adiciona(Pessoa pessoa) throws Exception {
+    public void adiciona(Pessoa pessoa) {
                 
         String sql = "insert into Pessoa" + 
                 "(telefone, email, CEP, logradouro, complemento, numero, bairro, cidade, estado, pais)" + 
@@ -52,7 +52,7 @@ public class PessoaDAO {
         }
     }
     
-    public List<Pessoa> getLista() throws Exception{
+        public List<Pessoa> getLista(){
         try {
             List<Pessoa> pessoas = new ArrayList<Pessoa>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from Pessoa;");
@@ -86,20 +86,19 @@ public class PessoaDAO {
         }
     }
     
-    public void remove(int id){    
-        //String sql = "delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))";
-        String sql = "delete from Pessoa where Pessoa.id = ?";
+    public void remove(String CNPJ){
+        String sql = "delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))";
         
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setString(1, CNPJ);
             stmt.execute();
             stmt.close();      
         }
         catch (SQLException e){         
             throw new RuntimeException(e);
-        }
-    } 
+            }
+    }
     
       public void altera(Pessoa pessoa) {
           String sql = "update Pessoa set telefone=?, email=?," +
@@ -127,6 +126,6 @@ public class PessoaDAO {
         catch (SQLException e){
             throw new RuntimeException(e);
         }        
-    }
+    }  
    
 }

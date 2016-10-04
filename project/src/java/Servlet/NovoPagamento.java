@@ -9,11 +9,12 @@ import Classes.CaixaDia;
 import Classes.Cartao;
 import Classes.Pagamento;
 import DAOclasses.CaixaDiaDAO;
+import DAOclasses.CartaoDAO;
 import DAOclasses.PagamentoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,50 +50,53 @@ public class NovoPagamento extends HttpServlet {
         pag.setValorTotal(Integer.parseInt(request.getParameter("valorTotal")));
         
         String tipo = request.getParameter("tipoPagamento");
-
-        Cartao card = new Cartao();
-        card.setTipo(request.getParameter("tipoPagCartao"));
-        card.setNumeroParcelas(Integer.parseInt(request.getParameter("parcelas")));
+        
         pag.setTipo(tipo);
         pag.setDesconto(Float.parseFloat(request.getParameter("desconto")));
-        Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        
-        String dataStr = sdf.format(dataDeHoje);
-        //out.println(dataStr);
-        
-        
-        
-        java.sql.Date data;
-        try {
-            data = new java.sql.Date(sdf.parse(dataStr).getTime());
-        //    out.println(data);
-        
-        pag.setHorario(dataDeHoje);
-        
-        CaixaDia caixa = new CaixaDia();
-        caixa.getData();
-        CaixaDiaDAO caixadao = new CaixaDiaDAO();
-        caixadao.adiciona(caixa);
-        try {
-        //    out.println("abaixo");
-            out.println();
-            
-            if(caixadao.buscaCaixa(data)){
-                
 
+        //Captura a data atual
+        Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());
+        pag.setHorario(dataDeHoje);
+
+        //Converte para Date para buscar o caixa correspondente no banco de dados
+        try {        
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dataStr = sdf.format(dataDeHoje);
+            Date data = new java.sql.Date(sdf.parse(dataStr).getTime());
+        
+            CaixaDiaDAO caixadao = new CaixaDiaDAO();
+            
+            CaixaDia caixa = caixadao.buscaCaixa(data);
+            if(caixa == null){
+                caixa = new CaixaDia();
+                caixa.setSaldoInicial(50);
+                caixa.setEntradaBruto(100);
+                caixa.setEntradaReal(100);
+                caixa.setSaldoLiquido(100);
+                caixa.setSaldoReal(100);
+                caixa.setSaidaTotal(100);
+                caixa.setData(data);
+                caixadao.adiciona(caixa);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(NovoPagamento.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        PagamentoDAO dao = new PagamentoDAO();
-        
-        
-        dao.adiciona(pag);
-        out.println("Cadastrado!");
-    
-    } catch (ParseException ex) {
+            
+            PagamentoDAO pdao = new PagamentoDAO();              
+            pdao.adiciona(pag, caixa.getIdCaixa());
+            
+            if(tipo.equals("cartao")){
+                Cartao card = new Cartao();
+                card.setTipo(request.getParameter("tipoPagCartao"));
+                card.setNumeroParcelas(Integer.parseInt(request.getParameter("parcelas")));
+                card.setIdPagamento(pag.getIdPagamento());
+                
+                CartaoDAO cardDAO = new CartaoDAO();
+                cardDAO.adiciona(card);
+            }            
+            
+            String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
+            response.sendRedirect(response.encodeRedirectURL(contextPath));
+       
+        } 
+        catch (Exception ex) {
             Logger.getLogger(NovoPagamento.class.getName()).log(Level.SEVERE, null, ex);
         }    
     }

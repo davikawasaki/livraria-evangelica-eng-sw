@@ -1,3 +1,6 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="dao" class="DAOclasses.CaixaDiaDAO"/>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -83,7 +86,7 @@
 								<li>
 									<a href="#">
 										<i class="ace-icon fa fa-cog"></i>
-										Configurações
+										ConfiguraÃ§Ãµes
 									</a>
 								</li>
 
@@ -217,7 +220,7 @@
 							<li class="">
 								<a href="caixa-movimentacoes.jsp">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Movimentações
+									MovimentaÃ§Ãµes
 								</a>
 
 								<b class="arrow"></b>
@@ -286,7 +289,7 @@
 								Caixa
 								<small>
 									<i class="ace-icon fa fa-angle-double-right"></i>
-									Movimentações
+									MovimentaÃ§Ãµes
 								</small>
 							</h1>
 						</div><!-- /.page-header -->
@@ -322,7 +325,7 @@
                                                 
                                                 
                                             <tbody>
-                                                <c:forEach var="cliente" items="${dao.lista}">
+                                                <c:forEach var="caixa" items="${dao.getCaixasDiarios()}">
                                                                            
                                                   <!--init the list-->
                                                 
@@ -334,17 +337,19 @@
                                                             </label>
                                                         </td>
                                                         <td>
-                                                            saldo                                                                                                                                                                                                                    ${cliente.idCliente}</a>
+                                                            ${caixa.saldoInicial}
                                                         </td>
                                                         <td>
-                                                            ${cliente.getPf().CPF}                                                                                                                                                                                                                    ${cliente.idCliente}</a>
+                                                            ${caixa.entradaBruto}
                                                         </td>
-
-                                                        <td>${cliente.getPf().nome}</td>
-
-                                                        <td class="hidden-480">${cliente.fidelidade}</td>
-
-                                                        <td>${cliente.getPf().getPessoa().telefone}</td>
+                                                        <td>
+                                                            ${caixa.saldoLiquido}
+                                                        </td>
+                                                        <td>
+                                                            ${caixa.saidaTotal}</td>
+                                                        <td>
+                                                            ${caixa.data}
+                                                        </td>
 
                                                         <td>
                                                             <div class="hidden-sm hidden-xs action-buttons">
