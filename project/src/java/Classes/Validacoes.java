@@ -22,4 +22,5 @@ public class Validacoes {
     public boolean validaEmail(String email) {
         return email.matches(EMAIL_PATTERN);
     }
+    
 }
