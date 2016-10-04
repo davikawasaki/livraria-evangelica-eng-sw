@@ -5,9 +5,11 @@
  */
 package Classes;
 
-import java.sql.Time;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -16,160 +18,178 @@ import static org.junit.Assert.*;
  * @author lucasfranco
  */
 public class AtendenteTest {
-    
-    /**
-     * Test of getComecoExpediente method, of class Atendente.
-     */
+    // Testes de caixa preta
     @Test
-    public void testGetComecoExpediente() throws ParseException {
-        System.out.println("getComecoExpediente");
-        Atendente instance = new Atendente();
-        
-    //Conversão string para sql.Time
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        long ms = sdf.parse("12:21:32").getTime();
-        Time t = new Time(ms);
-
-        instance.setComecoExpediente(t);
-        Time result = instance.getComecoExpediente();
-        assertEquals(t, result);
+    public void testeComecoExpedienteAtendenteValido() throws Exception {
+        Atendente atendente = new Atendente();
+        Calendar cal = new GregorianCalendar();
+        // Acrescenta uma hora na data atual instanciada
+        cal.add(Calendar.HOUR_OF_DAY, 1);
+        Date data = cal.getTime();
+        atendente.setComecoExpediente(data);
+        Date results = atendente.getComecoExpediente();
+        assertEquals(data, results);
     }
-
-    /**
-     * Test of getFimExpediente method, of class Atendente.
-     */
+    // Comeco expediente invalido anterior a data atual
     @Test
-    public void testGetFimExpediente() throws ParseException {
-        System.out.println("getFimExpediente");
-        Atendente instance = new Atendente();
-    
-    //Conversão string para sql.Time
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        long ms = sdf.parse("19:20:20").getTime();
-        Time t = new Time(ms);
-
-        instance.setFimExpediente(t);
-        Time result = instance.getFimExpediente();
-        assertEquals(t, result);
+    public void testeComecoExpedienteAtendenteInvalido1() throws Exception {
+        Atendente atendente = new Atendente();
+        Calendar cal = new GregorianCalendar();
+        String expResult = "Horario Invalido";
+        try {
+            // Decrementa uma hora na data atual instanciada
+            cal.add(Calendar.HOUR_OF_DAY, -1);
+            Date data = cal.getTime();
+            atendente.setComecoExpediente(data);
+            Date results = atendente.getComecoExpediente();
+            fail("Deveria ter lançado uma exceção!");
+        } catch(Exception e) {
+            assertEquals(expResult, e.getMessage());
+        }
     }
-
-    /**
-     * Test of getSenha method, of class Atendente.
-     */
-    //Teste com Senha valida
     @Test
-    public void testGetSenhaValida() throws Exception {
-        System.out.println("getSenhaValida");
-        Atendente instance = new Atendente();
-        String expResult = "senha@123";        
-        instance.setSenha(expResult);
-        String result = instance.getSenha();
-        assertEquals(expResult, result);
+    public void testeFimExpedienteAtendenteValido() throws Exception {
+        Atendente atendente = new Atendente();
+        Calendar cal = new GregorianCalendar();
+        // Decrementa uma hora na data atual instanciada
+        cal.add(Calendar.HOUR_OF_DAY, -1);
+        Date data = cal.getTime();
+        atendente.setFimExpediente(data);
+        Date results = atendente.getFimExpediente();
+        assertEquals(data, results);
     }
-    
-    /**
-     * Test of getSenha method, of class Atendente.
-     */
-    //Teste com Senha com numero menor de digitos (5)
+    // Fim expediente invalido anterior a data atual
     @Test
-    public void testGetSenhaInvalida1() {
-        System.out.println("getSenhaInvalida1");
-        Atendente instance = new Atendente();
-        String senha = "senh4";
+    public void testeFimExpedienteAtendenteInvalido1() throws Exception {
+        Atendente atendente = new Atendente();
+        Calendar cal = new GregorianCalendar();
+        String expResult = "Horario Invalido";
+        try {
+            // Incrementa uma hora na data atual instanciada
+            cal.add(Calendar.HOUR_OF_DAY, 1);
+            Date data = cal.getTime();
+            atendente.setFimExpediente(data);
+            Date results = atendente.getFimExpediente();
+            fail("Deveria ter lançado uma exceção!");
+        } catch(Exception e) {
+            assertEquals(expResult, e.getMessage());
+        }
+    }
+    @Test
+    public void testeSenhaAtendenteValido() throws Exception {
+        Atendente atendente = new Atendente();
+        atendente.setSenha("senha@123");
+        String valorRecebido = atendente.getSenha();
+        assertEquals(valorRecebido, "senha@123");
+    }
+    // Senha inválida com menos de 6 dígitos
+    @Test
+    public void testeSenhaAtendenteInvalido1() throws Exception {
+        Atendente atendente = new Atendente();
         String expResult = "Senha Invalida";
         try{
-            instance.setSenha(senha);
-            String result = instance.getSenha();
+            atendente.setSenha("senh4");
+            String valorRecebido = atendente.getSenha();
             fail("Deveria ter lançado uma exceção!");
         }
         catch(Exception e){
             assertEquals(expResult, e.getMessage());
         }
     }
-
-    /**
-     * Test of getSenha method, of class Atendente.
-     */
-    //Teste com Senha com numero maior que de digitos (16)
+    // Senha inválida com mais de 16 dígitos
     @Test
-    public void testGetSenhaInvalida2() {
-        System.out.println("getSenhaInvalida2");
-        Atendente instance = new Atendente();
-        String senha = "senhamuit0grande";
+    public void testeSenhaAtendenteInvalido2() {
+        Atendente atendente = new Atendente();
         String expResult = "Senha Invalida";
         try{
-            instance.setSenha(senha);
-            String result = instance.getSenha();
+            atendente.setSenha("senhamuit0grande");
+            String valorRecebido = atendente.getSenha();
             fail("Deveria ter lançado uma exceção!");
         }
         catch(Exception e){
             assertEquals(expResult, e.getMessage());
         }
     }
-   /**
-     * Test of getSenha method, of class Atendente.
-     */
-    //Teste com Senha com somente letras
+    // Senha inválida com somente letras
     @Test
-    public void testGetSenhaInvalida3() {
-        System.out.println("getSenhaInvalida3");
-        Atendente instance = new Atendente();
-        String senha = "sohletras";
+    public void testeSenhaAtendenteInvalido3() {
+        Atendente atendente = new Atendente();
         String expResult = "Senha Invalida";
         try{
-            instance.setSenha(senha);
-            String result = instance.getSenha();
+            atendente.setSenha("sohletras");
+            String valorRecebido = atendente.getSenha();
             fail("Deveria ter lançado uma exceção!");
         }
         catch(Exception e){
             assertEquals(expResult, e.getMessage());
         }
     }
-    
-    /**
-     * Test of getSenha method, of class Atendente.
-     */
-    //Teste com Senha com somente numeros
+    // Senha inválida com somente numeros
     @Test
-    public void testGetSenhaInvalida4() {
-        System.out.println("getSenhaInvalida4");
-        Atendente instance = new Atendente();
-        String senha = "7654321";
+    public void testeSenhaAtendenteInvalido4() {
+        Atendente atendente = new Atendente();
         String expResult = "Senha Invalida";
         try{
-            instance.setSenha(senha);
-            String result = instance.getSenha();
+            atendente.setSenha("7654321");
+            String valorRecebido = atendente.getSenha();
             fail("Deveria ter lançado uma exceção!");
         }
         catch(Exception e){
             assertEquals(expResult, e.getMessage());
         }
     }
-    
-    /**
-     * Test of getLogin method, of class Atendente.
-     */
     @Test
-    public void testGetLogin() {
-        System.out.println("getLogin");
-        Atendente instance = new Atendente();
-        String expResult = "login123";
-        instance.setLogin(expResult);
-        String result = instance.getLogin();
-        assertEquals(expResult, result);
+    public void testeLoginAtendenteValido() throws Exception {
+        Atendente atendente = new Atendente();
+        atendente.setLogin("senha@123");
+        String valorRecebido = atendente.getLogin();
+        assertEquals(valorRecebido, "senha@123");
     }
-
-    /**
-     * Test of getPf method, of class Atendente.
-     */
+    // Login inválido menor que 5 caracteres
     @Test
-    public void testGetPf() {
-        System.out.println("getPf");
+    public void testeLoginAtendenteInvalido1() throws Exception {
+        Atendente atendente = new Atendente();
+        String expResult = "Login menor que 5 caracteres";
+        try {
+            atendente.setLogin("senh");
+            String valorRecebido = atendente.getLogin();
+            fail("Deveria ter lançado uma exceção!");
+        } catch(Exception e) {
+            assertEquals(expResult, e.getMessage());
+        }
+    }
+    // Login inválido estourando o limite de caracteres
+    @Test
+    public void testeLoginAtendenteInvalido2() throws Exception {
+        Atendente atendente = new Atendente();
+        String expResult = "Login maior que 45 caracteres";
+        try {
+            atendente.setLogin("A1312515131NFJ34JH1IJEI2JO1JDFOIJFO1IJ23O1J2OJ1I231FJ1I");
+            String valorRecebido = atendente.getLogin();
+            fail("Deveria ter lançado uma exceção!");
+        } catch(Exception e) {
+            assertEquals(expResult, e.getMessage());
+        }
+    }
+    // Login inválido vazio
+    @Test
+    public void testeLoginAtendenteInvalido3() throws Exception {
+        Atendente atendente = new Atendente();
+        String expResult = "Login Invalido";
+        try {
+            atendente.setLogin("");
+            String valorRecebido = atendente.getLogin();
+            fail("Deveria ter lançado uma exceção!");
+        } catch(Exception e) {
+            assertEquals(expResult, e.getMessage());
+        }
+    }
+    @Test
+    public void ContatoInserePessoaFisica() {
         Atendente atendente = new Atendente();
         PessoaFisica pf = new PessoaFisica();
         atendente.setPf(pf);
         PessoaFisica result = atendente.getPf();
-        
         assertEquals(pf, result);
     }
 }
