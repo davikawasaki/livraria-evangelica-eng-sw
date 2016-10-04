@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Classes.Produto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,12 +37,11 @@ public class NovoProduto extends HttpServlet {
         
         Produto produto = new Produto();
         
-        pag.setValorTotal(Integer.parseInt(request.getParameter("valorTotal")));
+        produto.setTitulo(request.getParameter("titulo"));
         
-        String tipo = request.getParameter("tipoPagamento");
+        int tipo = Integer.parseInt(request.getParameter("tipo"));
         
-        pag.setTipo(tipo);
-        pag.setDesconto(Float.parseFloat(request.getParameter("desconto")));
+        produto.setPreco(Float.parseFloat(request.getParameter("desconto")));
 
         //Captura a data atual
         Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());
