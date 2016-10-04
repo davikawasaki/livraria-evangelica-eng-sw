@@ -18,9 +18,8 @@ public class PagamentoTest {
     @Test
     public void testIdPagamentoInvalido() {
         Pagamento p = new Pagamento();
-        p.setIdPagamento(-1);
         try{
-            int valorRecebido = p.getIdPagamento();
+            p.setIdPagamento(-1);
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Id invalido");
@@ -96,9 +95,8 @@ public class PagamentoTest {
     @Test
     public void testValorTotalInvalido(){
         Pagamento p = new Pagamento();
-        p.setValorTotal(-1);
         try{
-            float valorRecebido = p.getValorTotal();
+            p.setValorTotal(-1);
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Valor invalido");

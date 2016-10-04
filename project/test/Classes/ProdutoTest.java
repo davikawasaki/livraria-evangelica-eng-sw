@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import Classes.Produto;
+package Classes;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -16,11 +16,10 @@ public class ProdutoTest {
 
     //Testes idProduto
     @Test
-    public void testIdProdutoInvalido() {
+    public void testIdProdutoInvalido() throws Exception {
         Produto p = new Produto();
-        p.setIdProduto(-1);
         try{
-            int valorRecebido = p.getIdProduto();
+            p.setIdProduto(-1);
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Id invalido");
@@ -37,6 +36,7 @@ public class ProdutoTest {
     
     //Teste titulo
     
+    @Test
     public void testTituloValido() throws Exception{
         Produto p = new Produto();
         p.setTitulo("Poesias de João Brasil");
@@ -63,11 +63,10 @@ public class ProdutoTest {
     }
 
     @Test
-    public void testTipoInvalido(){
+    public void testTipoInvalido() throws Exception{
         Produto p = new Produto();
-        p.setTipo(-1);
         try{
-            int valorRecebido = p.getTipo();
+            p.setTipo(-1);
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Tipo invalido");
@@ -75,40 +74,25 @@ public class ProdutoTest {
     }
     
     @Test
-    public void testTipoInvalido1(){
+    public void testTipoInvalido1() throws Exception{
         Produto p = new Produto();
-        p.setTipo(4);
         try{
-            int valorRecebido = p.getTipo();
+            p.setTipo(4);
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Tipo invalido");
         }
-    }
-    
-    @Test
-    public void testTipoInvalido2(){
-        Produto p = new Produto();
-        p.setTipo(1.2);
-        try{
-            int valorRecebido = p.getTipo();
-        }
-        catch(Exception e){
-            assertEquals(e.getMessage(), "Tipo invalido");
-        }
-    }
-    
+    }    
     //Teste Preco
     
     @Test
-    public void testPrecoInvalido(){
+    public void testPrecoInvalido() throws Exception{
         Produto p = new Produto();
-        p.setPreco(-1);
         try{
-            float valorRecebido = p.getPreco();
+            p.setPreco(-1);
         }
         catch(Exception e){
-            assertEquals(e.getMessage(), "Preço invalido");
+            assertEquals(e.getMessage(), "Preco invalido");
         }
     }
     
@@ -117,23 +101,10 @@ public class ProdutoTest {
         Produto p = new Produto();
         p.setPreco((float) 1.59);
         float valorRecebido = p.getPreco();
-        assertEquals(valorRecebido, 1.59, 0);
+        assertEquals(valorRecebido, 1.59, 0.1);
     }
     
     //Teste Idioma
-    
-    @Test
-    public void testIdiomaInvalido(){
-        Produto p = new Produto();
-        p.setIdioma(1);
-        try{
-            String valorRecebido = p.getIdioma();
-        }
-        catch(Exception ce){
-            assertEquals(ce.getMessage(), "Idioma invalido");
-        }
-    }
-    
     @Test
     public void testIdiomaValido(){
         Produto p = new Produto();
@@ -145,11 +116,10 @@ public class ProdutoTest {
     //Teste anoLancamento
     
     @Test
-    public void testAnoLancamentoInvalido(){
+    public void testAnoLancamentoInvalido() throws Exception{
         Produto p = new Produto();
-        p.setAnoLancamento(-1);
         try{
-            int valorRecebido = p.getAnoLancamento();
+            p.setAnoLancamento(-1);
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Ano invalido");
@@ -167,11 +137,10 @@ public class ProdutoTest {
     //Teste quantidade
     
     @Test
-    public void testQuantidadeInvalida(){
+    public void testQuantidadeInvalida() throws Exception{
         Produto p = new Produto();
-        p.setQuantidade(-1);
         try{
-            int valorRecebido = p.getQuantidade();
+            p.setQuantidade(-1);
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Quantidade invalida");

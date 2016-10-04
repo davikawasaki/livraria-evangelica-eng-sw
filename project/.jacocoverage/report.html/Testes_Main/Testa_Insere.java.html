@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Testa_Insere.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;projetoengsw&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Testes_Main</a> &gt; <span class="el_source">Testa_Insere.java</span></div><h1>Testa_Insere.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Testes_Main;
+
+import Classes.Livro;
+import Classes.Pessoa;
+import Classes.Produto;
+import DAOclasses.LivroDAO;
+import DAOclasses.PessoaDAO;
+import DAOclasses.ProdutoDAO;
+
+/**
+ *
+ * @author lucasfranco
+ */
+<span class="nc" id="L19">public class Testa_Insere {</span>
+    public static void main(String[] args) {
+<span class="nc" id="L21">        Produto produto = new Produto();</span>
+<span class="nc" id="L22">        Livro livro = new Livro();</span>
+        
+<span class="nc" id="L24">        produto.setTitulo(&quot;Porra de Cavalo&quot;);</span>
+<span class="nc" id="L25">        produto.setTipo(1);</span>
+<span class="nc" id="L26">        produto.setPreco((float) 24.51);</span>
+<span class="nc" id="L27">        produto.setIdioma(&quot;Ingres&quot;);</span>
+<span class="nc" id="L28">        produto.setAnoLancamento(2029);</span>
+<span class="nc" id="L29">        produto.setQuantidade(121);</span>
+<span class="nc" id="L30">        livro.setAutor(&quot;Danilão&quot;);</span>
+<span class="nc" id="L31">        livro.setEditora(&quot;Eita carai&quot;);</span>
+<span class="nc" id="L32">        livro.setPdt(produto);</span>
+        
+<span class="nc" id="L34">        ProdutoDAO pdao = new ProdutoDAO();</span>
+<span class="nc" id="L35">        LivroDAO ldao = new LivroDAO();</span>
+        
+<span class="nc" id="L37">        ldao.adiciona(livro);</span>
+        
+<span class="nc" id="L39">        System.out.println(&quot;Gravado!&quot;);</span>
+<span class="nc" id="L40">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import Classes.Midia;
+package Classes;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -15,17 +15,6 @@ import static org.junit.Assert.*;
 public class MidiaTest {
 
     //Testes Artista
-    @Test
-    public void testArtistaInvalido() {
-        Midia m = new Midia();
-        m.setArtista(1);
-        try{
-            String valorRecebido = m.getArtista();
-        }
-        catch(Exception ce){
-            assertEquals(ce.getMessage(), "Artista invalido");
-        }
-    }
     
     @Test
     public void testArtistaValido() throws Exception{
@@ -38,22 +27,10 @@ public class MidiaTest {
     //Teste tipoMidia
     
     @Test
-    public void testTipoMidiaInvalida() {
-        Midia m = new Midia();
-        m.setTipoMidia(1);
-        try{
-            String valorRecebido = m.getTipoMidia();
-        }
-        catch(Exception ce){
-            assertEquals(ce.getMessage(), "Midia invalida");
-        }
-    }
-    
-    @Test
     public void testTipoMidiaValida() throws Exception{
         Midia m = new Midia();
         m.setTipoMidia("CD");
-        String valorRecebido = m.getArtista();
+        String valorRecebido = m.getTipoMidia();
         assertEquals(valorRecebido, "CD");
     }
 }

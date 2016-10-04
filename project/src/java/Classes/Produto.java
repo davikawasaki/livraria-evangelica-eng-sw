@@ -22,7 +22,10 @@ public class Produto {
         return idProduto;
     }
 
-    public void setIdProduto(int idProduto) {
+    public void setIdProduto(int idProduto) throws Exception {
+        if(idProduto<0){
+            throw new Exception("Id invalido");
+        }
         this.idProduto = idProduto;
     }
 
@@ -38,7 +41,10 @@ public class Produto {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(int tipo) throws Exception {
+        if(tipo<0 || tipo>3){
+            throw new Exception("Tipo invalido");
+        }  
         this.tipo = tipo;
     }
 
@@ -46,7 +52,10 @@ public class Produto {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(float preco) throws Exception {
+        if(preco < 0){
+            throw new Exception("Preco invalido");
+        }
         this.preco = preco;
     }
 
@@ -62,7 +71,10 @@ public class Produto {
         return anoLancamento;
     }
 
-    public void setAnoLancamento(int anoLancamento) {
+    public void setAnoLancamento(int anoLancamento) throws Exception {
+        if(anoLancamento<0){
+            throw new Exception("Ano invalido");
+        }
         this.anoLancamento = anoLancamento;
     }
 
@@ -70,7 +82,10 @@ public class Produto {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(int quantidade) throws Exception {
+        if(quantidade<0){
+            throw new Exception("Quantidade invalida");
+        }
         this.quantidade = quantidade;
     }  
 }
