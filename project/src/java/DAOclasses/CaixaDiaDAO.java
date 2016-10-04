@@ -25,12 +25,12 @@ import java.util.logging.Logger;
 public class CaixaDiaDAO {
     private final Connection connection;
     
-    public CaixaDiaDAO(){
-            this.connection = new ConnectionFactory().getConnection(); 
+    public CaixaDiaDAO() throws Exception{
+            this.connection = new ConnectionFactory().getConnection("root","root"); 
     }
     
     public void adiciona(CaixaDia caixa) {  
-
+        
         String sql = "insert into CaixaDia(saldoInicial, entradaBruto, entradaReal, saldoLiquido, saldoReal, saidaTotal, data) values(?,?,?,?,?,?,?)";
         
         try{

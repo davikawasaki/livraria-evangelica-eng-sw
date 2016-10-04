@@ -2,17 +2,16 @@ package DAOclasses;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class ConnectionFactory {
-    public Connection getConnection() {
+    public Connection getConnection(String user, String password) throws Exception {
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             return DriverManager.getConnection(
-                    "jdbc:mysql://localhost/livrariaengsw", "root", "root"
+                    "jdbc:mysql://localhost/livrariaengsw", user, password
             );
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new Exception("Erro de conexão com banco");
         }
     }
 }
