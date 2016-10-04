@@ -36,7 +36,7 @@ public class NovoServlet2 extends HttpServlet {
      * @throws java.text.ParseException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException {
+            throws ServletException, IOException, ParseException, Exception {
         response.setContentType("text/html;charset=UTF-8");
 
         PrintWriter out = response.getWriter();
@@ -98,6 +98,8 @@ public class NovoServlet2 extends HttpServlet {
             processRequest(request, response);
         } catch (ParseException ex) {
             Logger.getLogger(NovoServlet2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(NovoServlet2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -115,6 +117,8 @@ public class NovoServlet2 extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
+            Logger.getLogger(NovoServlet2.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(NovoServlet2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -6,7 +6,6 @@
 package Classes;
 
 import java.sql.Time;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -43,12 +42,8 @@ public class Atendente{
         this.fimExpediente = fimExpediente;
     }
 
-    public void setSenha(String senha) throws Exception{
-        Validacoes valida = new Validacoes();
-        if(valida.validaSenha(senha))
-            this.senha = senha;
-        else
-            throw new Exception("Senha Invalida");
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public void setLogin(String login) {
@@ -61,5 +56,6 @@ public class Atendente{
 
     public void setPf(PessoaFisica pf) {
         this.pf = pf;
-    }   
+    }
+    
 }

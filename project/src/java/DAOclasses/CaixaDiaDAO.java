@@ -63,7 +63,7 @@ public class CaixaDiaDAO {
     public List<CaixaDia> getCaixasDiarios() throws Exception{
         try {
             List<CaixaDia> caixas = new ArrayList<>();
-            PreparedStatement stmt = this.connection.prepareStatement("select * from Caixa;");
+            PreparedStatement stmt = this.connection.prepareStatement("select * from CaixaDia;");
             ResultSet rs = stmt.executeQuery();
  
             while (rs.next()) {
@@ -77,6 +77,7 @@ public class CaixaDiaDAO {
                 caixa.setSaldoLiquido(rs.getFloat("saldoLiquido"));
                 caixa.setSaldoReal(rs.getFloat("saldoReal"));
                 caixa.setSaidaTotal(rs.getFloat("saidaTotal"));
+                caixa.setData(rs.getDate("data"));
 
                 // adicionando o objeto à lista
                 caixas.add(caixa);

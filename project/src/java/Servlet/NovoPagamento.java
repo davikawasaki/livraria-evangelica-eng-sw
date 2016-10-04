@@ -91,10 +91,9 @@ public class NovoPagamento extends HttpServlet {
                 CartaoDAO cardDAO = new CartaoDAO();
                 cardDAO.adiciona(card);
             }            
-    
-            out.println("Cadastrado!");
-           // String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
-           // response.sendRedirect(response.encodeRedirectURL(contextPath));
+            
+            String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
+            response.sendRedirect(response.encodeRedirectURL(contextPath));
        
         } 
         catch (Exception ex) {
