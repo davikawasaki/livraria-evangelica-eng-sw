@@ -80,6 +80,7 @@ public class AtendenteTest {
         try{
             instance.setSenha(senha);
             String result = instance.getSenha();
+            fail("Deveria ter lançado uma exceção!");
         }
         catch(Exception e){
             assertEquals(expResult, e.getMessage());
@@ -99,6 +100,7 @@ public class AtendenteTest {
         try{
             instance.setSenha(senha);
             String result = instance.getSenha();
+            fail("Deveria ter lançado uma exceção!");
         }
         catch(Exception e){
             assertEquals(expResult, e.getMessage());
@@ -117,6 +119,7 @@ public class AtendenteTest {
         try{
             instance.setSenha(senha);
             String result = instance.getSenha();
+            fail("Deveria ter lançado uma exceção!");
         }
         catch(Exception e){
             assertEquals(expResult, e.getMessage());
@@ -136,6 +139,7 @@ public class AtendenteTest {
         try{
             instance.setSenha(senha);
             String result = instance.getSenha();
+            fail("Deveria ter lançado uma exceção!");
         }
         catch(Exception e){
             assertEquals(expResult, e.getMessage());
