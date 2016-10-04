@@ -19,11 +19,11 @@ public class PessoaFisicaDAO {
     
     private Connection connection;
     
-    public PessoaFisicaDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+    public PessoaFisicaDAO() throws Exception {
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
      
-    public void adiciona(PessoaFisica pf) {
+    public void adiciona(PessoaFisica pf) throws Exception {
         PessoaDAO pdao = new PessoaDAO();
         pdao.adiciona(pf.getPessoa());
         
@@ -50,7 +50,7 @@ public class PessoaFisicaDAO {
         }
     }
     
-    public void altera (PessoaFisica pf){
+    public void altera (PessoaFisica pf) throws Exception{
         
         PessoaDAO pdao = new PessoaDAO();
         pdao.altera(pf.getPessoa());

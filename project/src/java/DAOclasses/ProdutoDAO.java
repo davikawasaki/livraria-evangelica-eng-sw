@@ -21,8 +21,8 @@ import java.util.List;
 public class ProdutoDAO {
     private Connection connection;
     
-    public ProdutoDAO(){
-        this.connection = new ConnectionFactory().getConnection();
+    public ProdutoDAO() throws Exception{
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
     
     public void adiciona(Produto produto){

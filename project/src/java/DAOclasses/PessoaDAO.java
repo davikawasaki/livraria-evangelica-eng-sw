@@ -16,11 +16,11 @@ import java.util.List;
 public class PessoaDAO {    
     private Connection connection;
     
-    public PessoaDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+    public PessoaDAO() throws Exception {
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
     
-    public void adiciona(Pessoa pessoa) {
+    public boolean adiciona(Pessoa pessoa) {
                 
         String sql = "insert into Pessoa" + 
                 "(telefone, email, CEP, logradouro, complemento, numero, bairro, cidade, estado, pais)" + 
@@ -46,13 +46,14 @@ public class PessoaDAO {
            pessoa.setId(rs.getInt(1));
            
            stmt.close();
+           return true;
         }
         catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
     
-        public List<Pessoa> getLista(){
+    public List<Pessoa> getLista(){
         try {
             List<Pessoa> pessoas = new ArrayList<Pessoa>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from Pessoa;");
@@ -86,21 +87,22 @@ public class PessoaDAO {
         }
     }
     
-    public void remove(String CNPJ){
+    public boolean remove(String CNPJ){
         String sql = "delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))";
         
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, CNPJ);
             stmt.execute();
-            stmt.close();      
+            stmt.close();
+            return true;
         }
         catch (SQLException e){         
             throw new RuntimeException(e);
-            }
+        }
     }
     
-      public void altera(Pessoa pessoa) {
+      public boolean altera(Pessoa pessoa) {
           String sql = "update Pessoa set telefone=?, email=?," +
             "CEP=?, Logradouro=?, Complemento=?, Numero=?, Bairro=?," +
             "Cidade=?, Estado=?, Pais=? where idPessoa=?";
@@ -122,6 +124,7 @@ public class PessoaDAO {
            
             stmt.execute();
             stmt.close();
+            return true;
         }
         catch (SQLException e){
             throw new RuntimeException(e);

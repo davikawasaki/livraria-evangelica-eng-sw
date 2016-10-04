@@ -22,11 +22,11 @@ import java.util.List;
 public class ClienteDAO {
     private Connection connection;
     
-    public ClienteDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+    public ClienteDAO() throws Exception {
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
         
-    public void adiciona(Cliente cliente) {  
+    public void adiciona(Cliente cliente) throws Exception {  
     
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
@@ -99,7 +99,7 @@ public class ClienteDAO {
         }
     }
     
-    public void altera(Cliente cliente){ 
+    public void altera(Cliente cliente) throws Exception{ 
         
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
