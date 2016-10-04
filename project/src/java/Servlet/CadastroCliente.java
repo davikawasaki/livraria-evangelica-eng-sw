@@ -11,7 +11,10 @@ import Classes.PessoaFisica;
 import DAOclasses.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -36,12 +39,10 @@ public class CadastroCliente extends HttpServlet {
      * @throws java.text.ParseException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException {
+            throws ServletException, IOException, ParseException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
 
         PrintWriter out = response.getWriter();
-       
         Cliente cliente = new Cliente();
         
         PessoaFisica pf = new PessoaFisica();
@@ -63,22 +64,26 @@ public class CadastroCliente extends HttpServlet {
         cliente.getPf().setCPF(request.getParameter("CPF"));
         cliente.getPf().setNome(request.getParameter("nome"));
         cliente.getPf().setSobrenome(request.getParameter("sobrenome"));
+
         cliente.getPf().setRG(request.getParameter("RG"));
-        cliente.getPf().setSexo(request.getParameter("sexo"));     
+        cliente.getPf().setSexo(request.getParameter("sexo"));  
         
-        String dataNasc = request.getParameter("dataNascimento");  
-        cliente.getPf().setDataNascimento(dataNasc);
+        String dataNasc = request.getParameter("dataNascimento");
+        DateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date date = new java.sql.Date(formatoData.parse(dataNasc).getTime());
        
-        //cliente.setIdCliente(Integer.parseInt(request.getParameter("id")));
+        cliente.getPf().setDataNascimento(date);
+       
         cliente.setFidelidade(Boolean.getBoolean(request.getParameter("fidelidade")));
         cliente.setCodFidelidade(request.getParameter("codFidelidade"));
         
         ClienteDAO dao = new ClienteDAO();
         dao.adiciona(cliente);
 
-        String contextPath= "http://localhost:8084/livraria_v1";
+        String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
         out.println("Cadastrado!");
-        response.sendRedirect(response.encodeRedirectURL(contextPath + "/dashboard.html"));
+        response.sendRedirect(response.encodeRedirectURL(contextPath));
         
         
     }
@@ -99,6 +104,8 @@ public class CadastroCliente extends HttpServlet {
             processRequest(request, response);
         } catch (ParseException ex) {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -116,6 +123,8 @@ public class CadastroCliente extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParseException ex) {
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

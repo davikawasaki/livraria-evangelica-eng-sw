@@ -24,9 +24,9 @@ public class CartaoDAO {
             this.connection = new ConnectionFactory().getConnection(); 
     }
     
-    public void adiciona(Cartao cartao, int idPagam) {  
+    public void adiciona(Cartao cartao) {  
 
-        String sql = "insert into Cartao (Pagamento_idPagamento, tipo, valor) values(?,?,?)";
+        String sql = "insert into Cartao (Pagamento_idPagamento, tipo, numeroParcelas) values(?,?,?)";
         
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);

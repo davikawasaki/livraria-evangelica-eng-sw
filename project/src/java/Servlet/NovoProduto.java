@@ -5,8 +5,16 @@
  */
 package Servlet;
 
+import Classes.Livro;
+import Classes.Midia;
+import Classes.Produto;
+import DAOclasses.LivroDAO;
+import DAOclasses.MidiaDAO;
+import DAOclasses.ProdutoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,20 +37,54 @@ public class NovoProduto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NovoProduto</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NovoProduto at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        try {        
+            response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("UTF-8");
+
+            PrintWriter out = response.getWriter();
+
+            Produto produto = new Produto();
+            produto.setTitulo(request.getParameter("titulo"));
+            out.println(produto.getTitulo());
+            
+            int tipo = Integer.parseInt(request.getParameter("tipoProduto"));
+            out.println("TIPO: "+tipo);
+
+            produto.setTipo(tipo);
+            produto.setPreco(Float.parseFloat(request.getParameter("desconto")));
+            produto.setIdioma(request.getParameter("idioma"));
+            produto.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
+            produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+            ProdutoDAO pdao = new ProdutoDAO();
+            pdao.adiciona(produto);
+
+            if(tipo == 1){
+                Livro livro = new Livro();
+                livro.setPdt(produto);
+                livro.setEditora(request.getParameter("editora"));
+                livro.setAutor(request.getParameter("autor"));
+
+                LivroDAO ldao = new LivroDAO();
+
+                ldao.adiciona(livro);
+            }
+            else if(tipo == 2){
+                Midia midia = new Midia();
+                midia.setPdt(produto);
+                midia.setArtista(request.getParameter("artista"));
+                midia.setTipoMidia(request.getParameter("tipoMidia"));
+
+                MidiaDAO mdao = new MidiaDAO();
+                mdao.adiciona(midia);
+            }
+                String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
+                response.sendRedirect(response.encodeRedirectURL(contextPath));
+        } 
+        catch (Exception ex) {
+            Logger.getLogger(NovoPagamento.class.getName()).log(Level.SEVERE, null, ex);
+        }    
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -27,16 +27,26 @@ public class Cliente{
         return codFidelidade;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setIdCliente(int idCliente) throws Exception {
+        if(idCliente >= 0)
+            this.idCliente = idCliente;
+        else
+            throw new Exception("ID Invalido");
     }
 
     public void setFidelidade(boolean fidelidade) {
         this.fidelidade = fidelidade;
     }
 
-    public void setCodFidelidade(String codFidelidade) {
-        this.codFidelidade = codFidelidade;
+    public void setCodFidelidade(String codFidelidade) throws Exception {
+        if(codFidelidade.isEmpty())
+            throw new Exception("Codigo de Fidelidade Invalido");
+        else if((codFidelidade.length() >= 3) && (codFidelidade.length() < 45))
+            this.codFidelidade = codFidelidade;
+        else if(codFidelidade.length() < 3)
+            throw new Exception("Codigo de Fidelidade menor que 3 caracteres");
+        else
+            throw new Exception("Codigo de Fidelidade maior que 45 caracteres");
     }
 
     public PessoaFisica getPf() {

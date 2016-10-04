@@ -7,6 +7,7 @@ package DAOclasses;
 
 import Classes.PessoaFisica;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -39,7 +40,7 @@ public class PessoaFisicaDAO {
             stmt.setString(4, pf.getSobrenome());
             stmt.setString(5, pf.getRG());
             stmt.setString(6, pf.getSexo());
-            stmt.setString(7, pf.getDataNascimento());
+            stmt.setDate(7, new java.sql.Date(pf.getDataNascimento().getTime()));
             
             stmt.execute();
             stmt.close();
@@ -66,7 +67,7 @@ public class PessoaFisicaDAO {
             stmt.setString(3, pf.getSobrenome());
             stmt.setString(4, pf.getRG());
             stmt.setString(5, pf.getSexo());
-            stmt.setString(6, pf.getDataNascimento());
+            stmt.setDate(6, new java.sql.Date(pf.getDataNascimento().getTime()));
             stmt.setInt(7, pf.getPessoa().getId());
 
 

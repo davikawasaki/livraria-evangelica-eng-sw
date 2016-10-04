@@ -27,14 +27,14 @@ public class FornecedorDAOTest {
     }
 //    Verifica possível retorno de exceção da inserção vazia do fornecedor
     @Test(expected = NullPointerException.class)
-    public void fornecedorDAOadicionaExcecaoNullPointer() {
+    public void fornecedorDAOadicionaExcecaoNullPointer() throws Exception {
         Fornecedor fornecedor = new Fornecedor();
         FornecedorDAO fdao = new FornecedorDAO();
         fdao.adiciona(fornecedor);
     }
 //    Verificar possível retorno de exceção de inserção totalmente vazia da stack tree da herança de fornecedor
     @Test(expected = RuntimeException.class)
-    public void fornecedorDAOadicionaStackTreeVazia() {
+    public void fornecedorDAOadicionaStackTreeVazia() throws Exception {
         Fornecedor fornecedor = new Fornecedor();
         FornecedorDAO fdao = new FornecedorDAO();
         PessoaJuridica pj = new PessoaJuridica();
@@ -47,7 +47,7 @@ public class FornecedorDAOTest {
     }
 //    Verifica se o fornecedor foi adicionado com sucesso
     @Test
-    public void fornecedorDAOadicionaSucesso() {
+    public void fornecedorDAOadicionaSucesso() throws Exception {
         Fornecedor fornecedor = new Fornecedor();
         PessoaJuridica pj = new PessoaJuridica();
         Pessoa pessoa = new Pessoa();
@@ -83,7 +83,7 @@ public class FornecedorDAOTest {
 //    Teste para tabelas inexistentes (tabelas Pessoa, PessoaJuridica e Fornecedor)
 //    Teste para query SQL erradas
     @Test(expected = RuntimeException.class)
-    public void fornecedorDAOadicionaErros() {
+    public void fornecedorDAOadicionaErros() throws Exception {
         Fornecedor fornecedor = new Fornecedor();
         PessoaJuridica pj = new PessoaJuridica();
         Pessoa pessoa = new Pessoa();
@@ -115,7 +115,7 @@ public class FornecedorDAOTest {
     }
 //    Verifica se o retorno foi realizado com sucesso
     @Test
-    public void fornecedorDAOlista() {
+    public void fornecedorDAOlista() throws Exception {
         FornecedorDAO fdao = new FornecedorDAO();
         List lista = fdao.getLista();
         assertTrue(lista instanceof java.util.List);
@@ -124,7 +124,7 @@ public class FornecedorDAOTest {
 //    Teste para tabelas inexistentes (tabelas Pessoa, PessoaJuridica e Fornecedor)
 //    Teste para query SQL erradas    
     @Test(expected = RuntimeException.class)
-    public void fornecedorDAOlistaErros() {
+    public void fornecedorDAOlistaErros() throws Exception {
         FornecedorDAO fdao = new FornecedorDAO();
         fdao.getLista();
     }
@@ -141,7 +141,7 @@ public class FornecedorDAOTest {
 //    Ignorado, pois necessita implementar método de consulta específica
     @Ignore    
     @Test(expected = RuntimeException.class)
-    public void fornecedorDAOalteraErros() {
+    public void fornecedorDAOalteraErros() throws Exception {
         Fornecedor fornecedor = new Fornecedor();
         PessoaJuridica pj = new PessoaJuridica();
         Pessoa pessoa = new Pessoa();

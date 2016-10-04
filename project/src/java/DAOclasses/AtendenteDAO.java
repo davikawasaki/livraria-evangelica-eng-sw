@@ -8,8 +8,8 @@ package DAOclasses;
 import Classes.Atendente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 
 /**
  *
@@ -36,12 +36,12 @@ public class AtendenteDAO {
            PreparedStatement stmt = connection.prepareStatement(sql);
 
            stmt.setString(1, atendente.getLogin());
-           stmt.setTime(2, atendente.getComecoExpediente());
-           stmt.setTime(3, atendente.getFimExpediente());
+           stmt.setTime(2, (Time) atendente.getComecoExpediente());
+           stmt.setTime(3, (Time) atendente.getFimExpediente());
            stmt.setString(4, atendente.getSenha());
            stmt.setString(5, atendente.getPf().getCPF());
            
-           stmt.executeUpdate();
+           stmt.execute();
            stmt.close();
         }
         catch (SQLException e){
