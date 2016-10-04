@@ -6,7 +6,7 @@ package Classes;
  * and open the template in the editor.
  */
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -19,7 +19,7 @@ public class PessoaFisica{
     private String sobrenome;
     private String RG;
     private String sexo;
-    private String dataNascimento;
+    private Date dataNascimento;
 
     public String getCPF() {
         return CPF;
@@ -41,32 +41,58 @@ public class PessoaFisica{
         return sexo;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setCPF(String cpf) {
-        this.CPF = cpf;
+    public void setCPF(String cpf) throws Exception {
+        cpf = cpf.replaceAll("\\D+","");
+        if(cpf.length() == 11)
+            this.CPF = cpf;
+        else
+            throw new Exception("CPF Invalido");
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String nome) throws Exception {
+        if(nome.isEmpty())
+            throw new Exception("Nome Invalido");
+        else if(nome.length() < 45)
+            this.nome = nome;
+        else
+            throw new Exception("Nome maior que 45 caracteres");          
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setSobrenome(String sobrenome) throws Exception {
+        if(sobrenome.isEmpty())
+            throw new Exception("Sobrenome Invalido");
+        else if(sobrenome.length() < 45)
+            this.sobrenome = sobrenome;
+        else
+            throw new Exception("Sobrenome maior que 45 caracteres");
     }
 
-    public void setRG(String rg) {
-        this.RG = rg;
+    public void setRG(String rg) throws Exception {
+        rg = rg.replaceAll("\\D+","");
+        if((rg.length() > 8) && (rg.length() < 13))
+            this.RG = rg;
+        else
+            throw new Exception("RG Invalido");
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setSexo(String sexo) throws Exception {
+        sexo = sexo.toUpperCase();
+        if((sexo.equals("M")) || (sexo.equals("F")))
+            this.sexo = sexo;
+        else
+            throw new Exception("Sexo Invalido");
     }
 
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setDataNascimento(Date data) throws Exception {
+        Date dt = new Date();
+        if(data.after(dt))
+            throw new Exception("Data Invalida");
+        else
+            this.dataNascimento = data;
     }
 
     public Pessoa getPessoa() {

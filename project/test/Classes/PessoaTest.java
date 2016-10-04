@@ -22,7 +22,7 @@ public class PessoaTest {
         assertEquals(valorRecebido, 0);
     }
     @Test
-    public void testeIdPessoaInvalido() {
+    public void testeIdPessoaInvalido() throws Exception {
         Pessoa pessoa = new Pessoa();
         String expResult = "ID Invalido";
         try {
@@ -400,7 +400,7 @@ public class PessoaTest {
     }
     // Senha inválida com menos de 6 dígitos
     @Test
-    public void testGetSenhaInvalida1() throws Exception {
+    public void testeSenhaPessoaInvalido1() throws Exception {
         Pessoa pessoa = new Pessoa();
         String expResult = "Senha Invalida";
         try{
@@ -414,7 +414,7 @@ public class PessoaTest {
     }
     // Senha inválida com mais de 16 dígitos
     @Test
-    public void testGetSenhaInvalida2() {
+    public void testeSenhaPessoaInvalido2() {
         Pessoa pessoa = new Pessoa();
         String expResult = "Senha Invalida";
         try{
@@ -428,7 +428,7 @@ public class PessoaTest {
     }
     // Senha inválida com somente letras
     @Test
-    public void testGetSenhaInvalida3() {
+    public void testeSenhaPessoaInvalido3() {
         Pessoa pessoa = new Pessoa();
         String expResult = "Senha Invalida";
         try{
@@ -442,7 +442,7 @@ public class PessoaTest {
     }
     // Senha inválida com somente numeros
     @Test
-    public void testGetSenhaInvalida4() {
+    public void testeSenhaPessoaInvalido4() {
         Pessoa pessoa = new Pessoa();
         String expResult = "Senha Invalida";
         try{
