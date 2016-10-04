@@ -14,7 +14,7 @@ import java.util.List;
  * @author lucasfranco
  */
 public class Teste_Lista {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         FornecedorDAO dao = new FornecedorDAO();
         
         List<Fornecedor> fornecedores = dao.getLista();

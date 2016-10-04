@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class AtendenteDAOTest {
 
     @Test
-    public void atendenteDAOadicionaSucesso() {
+    public void atendenteDAOadicionaSucesso() throws Exception {
         System.out.println("adiciona");
         Atendente atendente = new Atendente();
         AtendenteDAO adao = new AtendenteDAO();

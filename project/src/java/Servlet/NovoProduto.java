@@ -8,6 +8,9 @@ package Servlet;
 import Classes.Produto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,20 +39,17 @@ public class NovoProduto extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         Produto produto = new Produto();
-        
         produto.setTitulo(request.getParameter("titulo"));
-        
         int tipo = Integer.parseInt(request.getParameter("tipo"));
         
         produto.setPreco(Float.parseFloat(request.getParameter("desconto")));
-
-        //Captura a data atual
-        Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());
-        pag.setHorario(dataDeHoje);
-
+        produto.setIdioma(request.getParameter("idioma"));
+        produto.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
+        produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+        
         //Converte para Date para buscar o caixa correspondente no banco de dados
         try {        
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+           /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String dataStr = sdf.format(dataDeHoje);
             Date data = new java.sql.Date(sdf.parse(dataStr).getTime());
         
@@ -80,7 +80,7 @@ public class NovoProduto extends HttpServlet {
                 CartaoDAO cardDAO = new CartaoDAO();
                 cardDAO.adiciona(card);
             }            
-            
+            */
             String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
             response.sendRedirect(response.encodeRedirectURL(contextPath));
        

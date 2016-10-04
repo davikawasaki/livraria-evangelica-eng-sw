@@ -52,7 +52,7 @@ public class FornecedorDAO {
         }
     }
     
-    public List<Fornecedor> getLista(){
+    public List<Fornecedor> getLista() throws Exception{
         try {
             List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
             PreparedStatement stmt = this.connection.

@@ -52,7 +52,7 @@ public class ClienteDAO {
         }
     }
     
-    public List <Cliente> getLista(){
+    public List <Cliente> getLista() throws Exception{
         try {
             List <Cliente> clientes = new ArrayList<Cliente>();
             PreparedStatement stmt = this.connection.
@@ -75,7 +75,7 @@ public class ClienteDAO {
             cliente.getPf().setSobrenome(rs.getString("sobrenome"));
             cliente.getPf().setRG(rs.getString("RG"));
             cliente.getPf().setSexo(rs.getString("sexo"));
-            cliente.getPf().setDataNascimento(rs.getString("dataNascimento"));
+            cliente.getPf().setDataNascimento(rs.getDate("dataNascimento"));
             cliente.getPf().getPessoa().setTelefone(rs.getString("telefone"));
             cliente.getPf().getPessoa().setEmail(rs.getString("email"));
             cliente.getPf().getPessoa().setLogradouro(rs.getString("logradouro"));
