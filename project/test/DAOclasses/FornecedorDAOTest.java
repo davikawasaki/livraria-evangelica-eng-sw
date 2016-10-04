@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Classes;
+package DAOclasses;
 
+import Classes.Fornecedor;
+import Classes.Pessoa;
+import Classes.PessoaJuridica;
 import DAOclasses.FornecedorDAO;
 import DAOclasses.PessoaDAO;
 import DAOclasses.PessoaJuridicaDAO;
@@ -124,7 +127,7 @@ public class FornecedorDAOTest {
             pessoa.setEstado("Abc");
             pessoa.setPais("Abc");
 
-            pj.setCNPJ("13.035.541/9142-33");
+            pj.setCNPJ("41.325.541/9142-33");
             pj.setNomeFantasia("Abc");
             pj.setPessoa(pessoa);
 
@@ -238,7 +241,7 @@ public class FornecedorDAOTest {
             pessoa.setEstado("Abc");
             pessoa.setPais("Abc");
 
-            pj.setCNPJ("13.035.611/2194-33");
+            pj.setCNPJ("13.035.412/2122-33");
             pj.setNomeFantasia("Abc");
             pj.setPessoa(pessoa);
 
