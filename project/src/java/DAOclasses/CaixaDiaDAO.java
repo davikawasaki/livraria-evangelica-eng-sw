@@ -92,16 +92,16 @@ public class CaixaDiaDAO {
     
     public CaixaDia buscaCaixa(Date data) throws Exception{
             
-        PreparedStatement stmt = this.connection.prepareStatement("select * from Caixa where horario=?;");
+        PreparedStatement stmt = this.connection.prepareStatement("select * from CaixaDia where data=?;");
+        stmt.setDate(1, data);
+
         ResultSet rs = stmt.executeQuery();
         try{
             // criando o objeto Caixa
-            CaixaDia caixa = new CaixaDia();
-            
-            stmt.setDate(1, data);
-            stmt.executeUpdate();
-            
+            CaixaDia caixa = null;
             if(rs.next()){
+                caixa = new CaixaDia();
+
                 caixa.setIdCaixa(rs.getInt("idCaixa"));
                 caixa.setSaldoInicial(rs.getFloat("saldoInicial"));
                 caixa.setEntradaBruto(rs.getFloat("entradaBruto"));
@@ -109,6 +109,7 @@ public class CaixaDiaDAO {
                 caixa.setSaldoLiquido(rs.getFloat("saldoLiquido"));
                 caixa.setSaldoReal(rs.getFloat("saldoReal"));
                 caixa.setSaidaTotal(rs.getFloat("saidaTotal"));
+                caixa.setData(rs.getDate("data"));
             }
             
             rs.close();

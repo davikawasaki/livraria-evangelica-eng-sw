@@ -7,8 +7,10 @@ $(function() {
         console.log(tipoPagamento);
         if(tipoPagamento == "cartao"){
            $("#getDataCreditcard").show();
+           $("#form-field-1").attr("required", true);
         }else{
             $("#getDataCreditcard").hide();
+            $("#form-field-1").attr("required", false);
         }
   })
 });

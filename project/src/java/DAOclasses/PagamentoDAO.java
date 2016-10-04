@@ -25,9 +25,9 @@ public class PagamentoDAO {
             this.connection = new ConnectionFactory().getConnection(); 
     }
     
-    public void adiciona(Pagamento pagamento) {  
+    public void adiciona(Pagamento pagamento, int idCaixa) {  
 
-        String sql = "insert into Pagamento (tipo, valorTotal, desconto, horario) values(?,?,?,?)";
+        String sql = "insert into Pagamento(tipo, valorTotal, desconto, horario, Caixa_idCaixa) values(?,?,?,?,?)";
         
         try{
            PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -36,6 +36,7 @@ public class PagamentoDAO {
             stmt.setFloat(2, pagamento.getValorTotal());
             stmt.setFloat(3, pagamento.getDesconto());
             stmt.setTimestamp(4, pagamento.getHorario());
+            stmt.setInt(5, idCaixa);
             stmt.execute();
         
              
