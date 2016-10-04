@@ -66,7 +66,8 @@ public class CadastroCliente extends HttpServlet {
         cliente.getPf().setSobrenome(request.getParameter("sobrenome"));
 
         cliente.getPf().setRG(request.getParameter("RG"));
-        cliente.getPf().setSexo(request.getParameter("sexo"));     
+        cliente.getPf().setSexo(request.getParameter("sexo"));  
+        
         String dataNasc = request.getParameter("dataNascimento");
         DateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 

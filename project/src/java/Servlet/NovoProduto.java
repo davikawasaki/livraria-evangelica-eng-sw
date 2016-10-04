@@ -5,10 +5,14 @@
  */
 package Servlet;
 
+import Classes.Livro;
+import Classes.Midia;
 import Classes.Produto;
+import DAOclasses.LivroDAO;
+import DAOclasses.MidiaDAO;
+import DAOclasses.ProdutoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -33,57 +37,48 @@ public class NovoProduto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-  response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        
-        PrintWriter out = response.getWriter();
-        
-        Produto produto = new Produto();
-        produto.setTitulo(request.getParameter("titulo"));
-        int tipo = Integer.parseInt(request.getParameter("tipo"));
-        
-        produto.setPreco(Float.parseFloat(request.getParameter("desconto")));
-        produto.setIdioma(request.getParameter("idioma"));
-        produto.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
-        produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
-        
-        //Converte para Date para buscar o caixa correspondente no banco de dados
         try {        
-           /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String dataStr = sdf.format(dataDeHoje);
-            Date data = new java.sql.Date(sdf.parse(dataStr).getTime());
-        
-            CaixaDiaDAO caixadao = new CaixaDiaDAO();
+            response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("UTF-8");
+
+            PrintWriter out = response.getWriter();
+
+            Produto produto = new Produto();
+            produto.setTitulo(request.getParameter("titulo"));
+            out.println(produto.getTitulo());
             
-            CaixaDia caixa = caixadao.buscaCaixa(data);
-            if(caixa == null){
-                caixa = new CaixaDia();
-                caixa.setSaldoInicial(50);
-                caixa.setEntradaBruto(100);
-                caixa.setEntradaReal(100);
-                caixa.setSaldoLiquido(100);
-                caixa.setSaldoReal(100);
-                caixa.setSaidaTotal(100);
-                caixa.setData(data);
-                caixadao.adiciona(caixa);
+            int tipo = Integer.parseInt(request.getParameter("tipoProduto"));
+            out.println("TIPO: "+tipo);
+
+            produto.setTipo(tipo);
+            produto.setPreco(Float.parseFloat(request.getParameter("desconto")));
+            produto.setIdioma(request.getParameter("idioma"));
+            produto.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
+            produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+            ProdutoDAO pdao = new ProdutoDAO();
+            pdao.adiciona(produto);
+
+            if(tipo == 1){
+                Livro livro = new Livro();
+                livro.setPdt(produto);
+                livro.setEditora(request.getParameter("editora"));
+                livro.setAutor(request.getParameter("autor"));
+
+                LivroDAO ldao = new LivroDAO();
+
+                ldao.adiciona(livro);
             }
-            
-            PagamentoDAO pdao = new PagamentoDAO();              
-            pdao.adiciona(pag, caixa.getIdCaixa());
-            
-            if(tipo.equals("cartao")){
-                Cartao card = new Cartao();
-                card.setTipo(request.getParameter("tipoPagCartao"));
-                card.setNumeroParcelas(Integer.parseInt(request.getParameter("parcelas")));
-                card.setIdPagamento(pag.getIdPagamento());
-                
-                CartaoDAO cardDAO = new CartaoDAO();
-                cardDAO.adiciona(card);
-            }            
-            */
-            String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
-            response.sendRedirect(response.encodeRedirectURL(contextPath));
-       
+            else if(tipo == 2){
+                Midia midia = new Midia();
+                midia.setPdt(produto);
+                midia.setArtista(request.getParameter("artista"));
+                midia.setTipoMidia(request.getParameter("tipoMidia"));
+
+                MidiaDAO mdao = new MidiaDAO();
+                mdao.adiciona(midia);
+            }
+                String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
+                response.sendRedirect(response.encodeRedirectURL(contextPath));
         } 
         catch (Exception ex) {
             Logger.getLogger(NovoPagamento.class.getName()).log(Level.SEVERE, null, ex);

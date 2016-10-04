@@ -82,6 +82,7 @@ public class FornecedorDAO {
             fornecedor.getPj().getPessoa().setCidade(rs.getString("cidade"));
             fornecedor.getPj().getPessoa().setEstado(rs.getString("estado"));
             fornecedor.getPj().getPessoa().setPais(rs.getString("pais"));
+            fornecedor.getPj().getPessoa().setId(rs.getInt("idPessoa"));
 
             // adicionando o objeto à lista
             fornecedores.add(fornecedor);

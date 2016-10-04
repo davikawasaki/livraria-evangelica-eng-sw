@@ -307,8 +307,8 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Tipo pagamento </label>
                                         <label class="col-sm-3 control-label no-padding-right">
-                                          <select id="tipoProduto" class="form-control ">
-                                            <option value="1">Livro</option>
+                                          <select name="tipoProduto" id="tipoProduto" class="form-control ">
+                                            <option selected value="1">Livro</option>
                                             <option value="2">Mídia</option>
                                           </select>
                                         </label>
@@ -334,7 +334,7 @@
                                       <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Artista </label>
                                             <div class="col-sm-9">
-                                                <input required type="text" name="artista" id="form-field-1" placeholder="Ex: Sasha Grey" class="col-xs-10 col-sm-5" />
+                                                <input required type="text" name="artista" id="form-field-1" placeholder="Ex: Cantor" class="col-xs-10 col-sm-5" />
                                             </div>
                                         </div>
                                         <div class="form-group">
