@@ -6,47 +6,50 @@
 package DAOclasses;
 
 import Classes.Pessoa;
+import Classes.PessoaJuridica;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author nicholaspicagrossa
+ * @author davikawasaki
  */
-public class PessoaDAOTest {
+public class PessoaJuridicaDAOTest {
     @Test
-    public void testeConexaoPessoaDAOConnectionFactoryInvalido() throws Exception {
+    public void testeConexaoPessoaJuridicaDAOConnectionFactoryInvalido() throws Exception {
         String expResult = "Erro ao conectar com o banco";
         try {
-            PessoaDAO pdao = new PessoaDAO();
-            pdao.setaConexaoPessoaDAO("root", "root123");
+            PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();
+            pjdao.setaConexaoPessoaJuridicaDAO("root", "root123");
             fail("Deveria ter lançado uma exceção!");
         } catch(Exception e) {
             assertEquals(expResult, e.getMessage());
         }
     }
     
-    //Verifica possível retorno de exceção da inserção vazia do pessoa
+    //Verifica possível retorno de exceção da inserção vazia do pessoa juridica
     @Test
-    public void testeAdicionaPessoaDAOInvalido() throws Exception {
-        String expResult = "Campo nulo, erro ao enviar a pessoa fisica para o banco";
-        Pessoa p = new Pessoa();
-        PessoaDAO pdao = new PessoaDAO();
+    public void testeAdicionaPessoaJuridicaDAOInvalido() throws Exception {
+        String expResult = "Campo nulo, erro ao enviar a pessoa juridica para o banco";
+        PessoaJuridica pj = new PessoaJuridica();
+        PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();
         try {
-            pdao.adiciona(p);
+            pjdao.adiciona(pj);
             fail("Deveria ter lançado uma exceção!");
         } catch(Exception e) {
             assertEquals(expResult, e.getMessage());
         }
     }
     
-//    Verifica se o fornecedor foi adicionado com sucesso
+    //    Verifica se o pessoa juridica foi adicionado com sucesso
     @Test
-    public void testeAdicionaPessoaDAOValido() throws Exception {
+    public void testeAdicionaPessoaJuridicaDAOValido() throws Exception {
         
+        PessoaJuridica pj = new PessoaJuridica();
         Pessoa pessoa = new Pessoa();
-        PessoaDAO pdao = new PessoaDAO();
+        PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();
         
+        pessoa.setId(2);
         pessoa.setEmail("abc@abc.com");
         pessoa.setSenha("123@abc");
         pessoa.setTelefone("(43)99999-9999");
@@ -58,20 +61,23 @@ public class PessoaDAOTest {
         pessoa.setCidade("Abc");
         pessoa.setEstado("Abc");
         pessoa.setPais("Abc");
+        pj.setCNPJ("13.235.412/2122-33");
+        pj.setNomeFantasia("Abc");
+        pj.setPessoa(pessoa);
         
-        boolean resultAdiciona = pdao.adiciona(pessoa);
+        boolean resultAdiciona = pjdao.adiciona(pj);
         
         assertTrue(resultAdiciona);       
     }
 
-    //    Verifica possível retorno de exceção da update vazio do fornecedor
+    //    Verifica possível retorno de exceção da update vazio do pessoa juridica
     @Test
-    public void testeAlteraPessoaFisicaDAOInvalido() throws Exception {
-        String expResult = "Campo nulo, erro ao enviar a pessoa para o banco";
-        Pessoa p = new Pessoa();
-        PessoaDAO pdao = new PessoaDAO();
+    public void testeAlteraPessoaJuridicaDAOInvalido() throws Exception {
+        String expResult = "Campo nulo, erro ao enviar a pessoa juridica para o banco";
+        PessoaJuridica pj = new PessoaJuridica();
+        PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();
         try {
-            pdao.altera(p);
+            pjdao.altera(pj);
             fail("Deveria ter lançado uma exceção!");
         } catch(Exception e) {
             assertEquals(expResult, e.getMessage());
@@ -79,11 +85,12 @@ public class PessoaDAOTest {
     } 
     
     @Test
-    public void testeAlteraPessoaDAOValida() throws Exception{
-        PessoaDAO pdao = new PessoaDAO();
+    public void testeAlteraPessoaFisicaDAOValida() throws Exception{
+        PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();
         
+        PessoaJuridica pj = new PessoaJuridica();
         Pessoa pessoa = new Pessoa();
-        
+        pessoa.setId(2);
         pessoa.setEmail("abc@abc.com");
         pessoa.setSenha("123@abc");
         pessoa.setTelefone("(43)99999-9999");
@@ -95,10 +102,12 @@ public class PessoaDAOTest {
         pessoa.setCidade("Abc");
         pessoa.setEstado("Abc");
         pessoa.setPais("Abc");
+        pj.setCNPJ("13.235.412/2122-33");
+        pj.setNomeFantasia("Abc");
+        pj.setPessoa(pessoa);
         
-        boolean resultAltera = pdao.altera(pessoa);
+        boolean resultAltera = pjdao.altera(pj);
         assertTrue(resultAltera);
         
-    }
-    
+    }    
 }

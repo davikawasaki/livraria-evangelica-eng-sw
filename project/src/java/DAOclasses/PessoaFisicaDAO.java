@@ -7,9 +7,7 @@ package DAOclasses;
 
 import Classes.PessoaFisica;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 /**
  * @author lucasfranco
@@ -60,8 +58,8 @@ public class PessoaFisicaDAO {
             
             return true;
         }
-        catch (SQLException e){
-            throw new RuntimeException(e);
+        catch (Exception e){
+            throw new Exception("Erro ao enviar a pessoa fisica para o banco");
         }
     }
     
@@ -94,9 +92,8 @@ public class PessoaFisicaDAO {
             
             return true;
         }   
-        catch (SQLException e){
-            throw new RuntimeException(e);
+        catch (Exception e){
+            throw new Exception("Erro ao alterar a pessoa fisica");
         }     
-    }
-    
+    }    
 }

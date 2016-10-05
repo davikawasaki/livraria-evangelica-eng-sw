@@ -47,7 +47,7 @@ public class ClienteDAOTest {
         }
     }
     
-    /*//    Verifica se o fornecedor foi adicionado com sucesso
+    //    Verifica se o fornecedor foi adicionado com sucesso
     @Test
     public void testeAdicionaClienteDAOValido() throws Exception {
         Cliente cliente = new Cliente();
@@ -56,7 +56,7 @@ public class ClienteDAOTest {
         ClienteDAO cdao = new ClienteDAO();
         
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123");
+        pessoa.setSenha("123@abc");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -78,14 +78,13 @@ public class ClienteDAOTest {
         pf.setSobrenome("Sobrenome");
         pf.setPessoa(pessoa);
         
-        cliente.setFidelidade(true);
+        cliente.setFidelidade(1);
         cliente.setCodFidelidade("12312");
         cliente.setPf(pf);
         boolean resultAdiciona = cdao.adiciona(cliente);
         
         assertTrue(resultAdiciona);       
     }
-*/
 //    Verifica se o retorno foi realizado com sucesso
     @Test
     public void testeListaClienteDAOValido() throws Exception {
@@ -117,7 +116,7 @@ public class ClienteDAOTest {
         
         pessoa.setId(48);
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123");
+        pessoa.setSenha("123@abc");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");

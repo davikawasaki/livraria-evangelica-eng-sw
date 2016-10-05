@@ -55,7 +55,7 @@ public class PessoaFisicaDAOTest {
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123");
+        pessoa.setSenha("123@abc");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -103,7 +103,7 @@ public class PessoaFisicaDAOTest {
         Pessoa pessoa = new Pessoa();
         
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123");
+        pessoa.setSenha("123@abc");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
