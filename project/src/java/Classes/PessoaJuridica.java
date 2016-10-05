@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import java.util.Objects;
+
 /**
  *
  * @author lucasfranco
@@ -44,6 +46,6 @@ public class PessoaJuridica{
     }
 
     public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+        this.pessoa = Objects.requireNonNull(pessoa);
     }
 }

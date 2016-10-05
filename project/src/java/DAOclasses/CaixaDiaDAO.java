@@ -25,12 +25,12 @@ import java.util.logging.Logger;
 public class CaixaDiaDAO {
     private final Connection connection;
     
-    public CaixaDiaDAO(){
-            this.connection = new ConnectionFactory().getConnection(); 
+    public CaixaDiaDAO() throws Exception{
+            this.connection = new ConnectionFactory().getConnection("root","root"); 
     }
     
     public void adiciona(CaixaDia caixa) {  
-
+        
         String sql = "insert into CaixaDia(saldoInicial, entradaBruto, entradaReal, saldoLiquido, saldoReal, saidaTotal, data) values(?,?,?,?,?,?,?)";
         
         try{
@@ -187,10 +187,8 @@ public class CaixaDiaDAO {
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             java.sql.Date data = (java.sql.Date) caixa.getData();
-            System.out.println("DATA: "+data);
             stmt.setDate(1,data);
             ResultSet rs = stmt.executeQuery();
-            System.out.println("DATA2: ");
 
             if(rs.next())
                 entradaBruto = rs.getFloat("sum(valorTotal)");

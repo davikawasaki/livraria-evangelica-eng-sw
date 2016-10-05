@@ -21,8 +21,8 @@ import java.util.List;
 public class SaidaDAO {
     private final Connection connection;
     
-    public SaidaDAO(){
-            this.connection = new ConnectionFactory().getConnection(); 
+    public SaidaDAO() throws Exception{
+            this.connection = new ConnectionFactory().getConnection("root","root"); 
     }
     
     public void adiciona(Saida saida) {  

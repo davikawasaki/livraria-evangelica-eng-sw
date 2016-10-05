@@ -382,11 +382,9 @@
 																	<i class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
 
-                                                                                                                            <form action="DeletaFornecedor" id="submitDelete" method="POST">
-                                                                                                                                <a href="#" id="delete" onclick="document.getElementById('submitDelete').submit();" class="tooltip-error red ace-icon fa fa-trash-o bigger-130" data-rel="tooltip" title="Delete">
-                                                                                                                                    <input style="display:none;" name="delete" type="submit" value="${fornecedor.getPj().pessoa.id}">
-                                                                                                                                </a>
-                                                                                                                            </form>
+																<a class="red" href="#">
+																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
+																</a>
 															</div>
 
 															<div class="hidden-md hidden-lg">

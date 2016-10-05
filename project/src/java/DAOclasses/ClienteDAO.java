@@ -11,7 +11,6 @@ import Classes.PessoaFisica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,19 +21,31 @@ import java.util.List;
 public class ClienteDAO {
     private Connection connection;
     
-    public ClienteDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+    public ClienteDAO() throws Exception {
+        this.connection = new ConnectionFactory().getConnection("root","root");
+    }
+    
+    // Método do DAO para conexão manual com o banco
+    public void setaConexaoClienteDAO(String user, String password) throws Exception {
+        try {
+            this.connection = new ConnectionFactory().getConnection(user, password);
+        } catch(Exception e) {
+            throw new Exception("Erro ao conectar com o banco");
+        }
     }
         
-    public void adiciona(Cliente cliente) {  
-    
-        PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
+    public boolean adiciona(Cliente cliente) throws Exception {  
         
+        if((cliente.getCodFidelidade() == null)||(cliente.getPf().getCPF() == null))
+            throw new Exception("Campo nulo, erro ao enviar o cliente para o banco");
+       
+        PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         pfdao.adiciona(cliente.getPf());
         
         String sql = "insert into Cliente" + 
                 "(idCliente, fidelidade, codFidelidade, PessoaFisica_CPF)" + 
                 "values(?,?,?,?)";
+        
         
         try{
            PreparedStatement stmt = connection.prepareStatement(sql);
@@ -46,18 +57,20 @@ public class ClienteDAO {
            
            stmt.execute();
            stmt.close();
+           
+           return true;
         }
-        catch (SQLException e){
-            throw new RuntimeException(e);
+        catch (Exception e){
+            throw new Exception("Erro ao enviar o cliente para o banco");
         }
     }
     
     public List <Cliente> getLista() throws Exception{
-        try {
-            List <Cliente> clientes = new ArrayList<Cliente>();
-            PreparedStatement stmt = this.connection.
-            prepareStatement("select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF;");
-            ResultSet rs = stmt.executeQuery();
+
+        List <Cliente> clientes = new ArrayList<Cliente>();
+        PreparedStatement stmt = this.connection.
+        prepareStatement("select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF;");
+        ResultSet rs = stmt.executeQuery();
  
         while (rs.next()){
             // criando o objeto Cliente
@@ -94,21 +107,19 @@ public class ClienteDAO {
         rs.close();
         stmt.close();
         return clientes;
-        }
-        catch (SQLException e){
-             throw new RuntimeException(e);
-        }
     }
     
-    public void altera(Cliente cliente){ 
+    public boolean altera(Cliente cliente) throws Exception{ 
+        if((cliente.getCodFidelidade() == null)||(cliente.getPf().getCPF() == null))
+            throw new Exception("Campo nulo, erro ao enviar o cliente para o banco");
         
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
         pfdao.altera(cliente.getPf());
         
         String sql = "update Cliente C join PessoaFisica P on C.PessoaFisica_CPF = P.CPF"
-                + "set idCliente=?, fidelidade=?" +
-                "codFidelidade=?, PessoaFisica_CPF=?";
+                + "set idCliente=?, fidelidade=?," +
+                "codFidelidade=? where P.CPF=?";
         
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -120,10 +131,11 @@ public class ClienteDAO {
 
             stmt.execute();
             stmt.close();
+            return true;
             
-        } catch (SQLException e){
-            throw new RuntimeException(e);
-            }
+        } catch (Exception e){
+            throw new Exception("Erro ao alterar o cliente");
+        }
     }
     
 }

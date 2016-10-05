@@ -67,7 +67,6 @@ public class NovoPagamento extends HttpServlet {
             CaixaDiaDAO caixadao = new CaixaDiaDAO();
             
             CaixaDia caixa = caixadao.buscaCaixa(data);
-            out.println(caixa.getEntradaBruto());
             if(caixa == null){
                 caixa = new CaixaDia();
                 caixa.setSaldoInicial(0);
@@ -81,7 +80,6 @@ public class NovoPagamento extends HttpServlet {
             }
             PagamentoDAO pdao = new PagamentoDAO();              
             pdao.adiciona(pag, caixa);
-            out.println("AA");
 
             if(tipo.equals("cartao")){
                 Cartao card = new Cartao();

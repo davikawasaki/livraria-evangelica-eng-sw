@@ -16,12 +16,24 @@ import java.util.List;
 public class PessoaDAO {    
     private Connection connection;
     
-    public PessoaDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+    public PessoaDAO() throws Exception {
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
     
-    public void adiciona(Pessoa pessoa) {
+    // Método do DAO para conexão manual com o banco
+    public void setaConexaoPessoaDAO(String user, String password) throws Exception {
+        try {
+            this.connection = new ConnectionFactory().getConnection(user, password);
+        } catch(Exception e) {
+            throw new Exception("Erro ao conectar com o banco");
+        }
+    }
+    
+    public boolean adiciona(Pessoa pessoa) throws Exception {
                 
+        if((pessoa.getBairro()==null) || (pessoa.getCEP()==null) || (pessoa.getCidade()==null) || (pessoa.getEmail()==null) || (pessoa.getEstado()==null) || (pessoa.getLogradouro()==null) || (pessoa.getPais()==null) || (pessoa.getTelefone()==null))
+                throw new Exception("Campo nulo, erro ao enviar a pessoa fisica para o banco");
+        
         String sql = "insert into Pessoa" + 
                 "(telefone, email, CEP, logradouro, complemento, numero, bairro, cidade, estado, pais)" + 
                 "values(?,?,?,?,?,?,?,?,?,?)";
@@ -46,13 +58,14 @@ public class PessoaDAO {
            pessoa.setId(rs.getInt(1));
            
            stmt.close();
+           return true;
         }
         catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
     
-        public List<Pessoa> getLista(){
+    public List<Pessoa> getLista() throws Exception{
         try {
             List<Pessoa> pessoas = new ArrayList<Pessoa>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from Pessoa;");
@@ -86,21 +99,25 @@ public class PessoaDAO {
         }
     }
     
-    public void remove(int idPessoa){
-        String sql = "delete from Pessoa where idPessoa=?";
-        
+    public boolean remove(int idPessoa){
+        //String sql = "delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))";
+        String sql = "delete from Pessoa where id=?";
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, idPessoa);
             stmt.execute();
-            stmt.close();      
+            stmt.close();
+            return true;
         }
         catch (SQLException e){         
             throw new RuntimeException(e);
-            }
+        }
     }
     
-      public void altera(Pessoa pessoa) {
+      public boolean altera(Pessoa pessoa) throws Exception {
+          if((pessoa.getBairro()==null) || (pessoa.getCEP()==null) || (pessoa.getCidade()==null) || (pessoa.getComplemento()==null) || (pessoa.getEmail()==null) || (pessoa.getEstado()==null) || (pessoa.getLogradouro()==null) || (pessoa.getPais()==null) || (pessoa.getSenha()==null) || (pessoa.getTelefone()==null))
+                throw new Exception("Campo nulo, erro ao enviar a pessoa para o banco");
+          
           String sql = "update Pessoa set telefone=?, email=?," +
             "CEP=?, Logradouro=?, Complemento=?, Numero=?, Bairro=?," +
             "Cidade=?, Estado=?, Pais=? where idPessoa=?";
@@ -122,6 +139,7 @@ public class PessoaDAO {
            
             stmt.execute();
             stmt.close();
+            return true;
         }
         catch (SQLException e){
             throw new RuntimeException(e);

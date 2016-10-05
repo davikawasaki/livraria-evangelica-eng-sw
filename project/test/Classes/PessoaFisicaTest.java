@@ -18,13 +18,37 @@ import static org.junit.Assert.*;
  */
 public class PessoaFisicaTest {
     // Testes de caixa preta
+    //Teste Pessoa
     @Test
-    public void testeNomePessoaFisicaValido() throws Exception {
+    public void testPessoaValida() throws Exception{
+        Pessoa p = new Pessoa();
         PessoaFisica pf = new PessoaFisica();
-        pf.setNome("Joao");
-        String valorRecebido = pf.getNome();
-        assertEquals(valorRecebido, "Joao");
+        
+        p.setBairro("Jardim Ipiranga");
+        pf.setPessoa(p);
+        
+        assertEquals(pf.getPessoa().getBairro(), "Jardim Ipiranga");
     }
+    
+    @Test
+    public void testPessoaInvalida() throws Exception{
+        Pessoa p = null;
+        PessoaFisica pf = new PessoaFisica();
+        try{
+            pf.setPessoa(p);
+            fail("Deveria ter lançado uma exceção!");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), null);
+        }
+    }
+    
+     public void testeNomePessoaFisicaValido() throws Exception {
+        PessoaFisica pf = new PessoaFisica();
+        pf.setNome("Danilo");
+        String valorRecebido = pf.getNome();
+        assertEquals(valorRecebido, "Danilo");
+    }
+     
     // Nome inválido estourando o limite de caracteres
     @Test
     public void testeNomePessoaFisicaInvalido1() throws Exception {

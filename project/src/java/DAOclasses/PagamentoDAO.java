@@ -22,8 +22,8 @@ import java.util.List;
 public class PagamentoDAO {
     private final Connection connection;
     
-    public PagamentoDAO(){
-            this.connection = new ConnectionFactory().getConnection(); 
+    public PagamentoDAO() throws Exception{
+            this.connection = new ConnectionFactory().getConnection("root","root"); 
     }
     
     public void adiciona(Pagamento pagamento, CaixaDia caixa) throws Exception {  

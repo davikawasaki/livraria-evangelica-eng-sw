@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import Classes.Fornecedor;
+import Classes.PessoaJuridica;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

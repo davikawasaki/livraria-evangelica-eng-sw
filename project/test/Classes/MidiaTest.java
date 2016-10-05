@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import Classes.Midia;
+package Classes;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,19 +13,32 @@ import static org.junit.Assert.*;
  * @author Nicholas
  */
 public class MidiaTest {
-
-    //Testes Artista
+    
+    //Testes Produto
     @Test
-    public void testArtistaInvalido() {
+    public void testProdutoValido() throws Exception{
+        Produto p = new Produto();
         Midia m = new Midia();
-     //   m.setArtista(1);
+        
+        p.setTitulo("CD ao vivo");
+        m.setPdt(p);
+        
+        assertEquals(m.getPdt().getTitulo(), "CD ao vivo");
+    }
+    
+    @Test
+    public void testProdutoInvalido() throws Exception{
+        Produto p = new Produto();
+        Midia m = null;
         try{
-            String valorRecebido = m.getArtista();
-        }
-        catch(Exception ce){
-            assertEquals(ce.getMessage(), "Artista invalido");
+            m.setPdt(p);
+            fail("Era para ser disparada uma exceção");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), null);
         }
     }
+    
+    //Testes Artista
     
     @Test
     public void testArtistaValido() throws Exception{
@@ -35,25 +48,64 @@ public class MidiaTest {
         assertEquals(valorRecebido, "João Brasil");
     }
     
-    //Teste tipoMidia
-    
     @Test
-    public void testTipoMidiaInvalida() {
+    public void testArtistaInvalido1() throws Exception{
         Midia m = new Midia();
-     //   m.setTipoMidia(1);
+        
         try{
-            String valorRecebido = m.getTipoMidia();
-        }
-        catch(Exception ce){
-            assertEquals(ce.getMessage(), "Midia invalida");
+            m.setArtista("");
+            fail("Deveria ter lançado uma exceção!");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), "Artista invalido");
         }
     }
+    
+    @Test
+     public void testArtistaInvalido2() throws Exception{
+        Midia m = new Midia();
+        
+        try{
+            m.setArtista("Marcos Lopes Joaquim Deodoro da Fonseca Filho Júnior");
+            fail("Deveria ter lançado uma exceção!");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), "Artista invalido");
+        }
+    }
+    
+    //Teste tipoMidia
     
     @Test
     public void testTipoMidiaValida() throws Exception{
         Midia m = new Midia();
         m.setTipoMidia("CD");
-        String valorRecebido = m.getArtista();
+        String valorRecebido = m.getTipoMidia();
         assertEquals(valorRecebido, "CD");
     }
+    
+    @Test
+    public void testMidiaInvalida1() throws Exception{
+        Midia m = new Midia();
+        
+        try{
+            m.setTipoMidia("Marcos Lopes Joaquim Deodoro da Fonseca Filho Júnior");
+            fail("Deveria ter lançado uma exceção!");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), "Midia invalida");
+        }
+    }
+    
+    @Test
+     public void testMidiaInvalida2() throws Exception{
+        Midia m = new Midia();
+        
+        try{
+            m.setTipoMidia("");
+            fail("Deveria ter lançado uma exceção!");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), "Midia invalida");
+        }
+    }
+     
+     
+     
 }
