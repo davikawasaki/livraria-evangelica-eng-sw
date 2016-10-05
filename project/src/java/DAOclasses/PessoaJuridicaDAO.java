@@ -48,7 +48,6 @@ public class PessoaJuridicaDAO {
         
         try{
            PreparedStatement stmt = connection.prepareStatement(sql);
-
            stmt.setString(1, pj.getCNPJ());
            stmt.setString(2, pj.getNomeFantasia());
            stmt.setInt(3, pj.getPessoa().getId());

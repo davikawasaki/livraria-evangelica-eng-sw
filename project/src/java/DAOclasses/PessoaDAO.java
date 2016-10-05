@@ -65,7 +65,7 @@ public class PessoaDAO {
         }
     }
     
-    public List<Pessoa> getLista(){
+    public List<Pessoa> getLista() throws Exception{
         try {
             List<Pessoa> pessoas = new ArrayList<Pessoa>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from Pessoa;");
