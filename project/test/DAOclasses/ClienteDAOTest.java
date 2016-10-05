@@ -78,7 +78,7 @@ public class ClienteDAOTest {
         pf.setSobrenome("Sobrenome");
         pf.setPessoa(pessoa);
         
-        cliente.setFidelidade(1);
+        cliente.setFidelidade(true);
         cliente.setCodFidelidade("12312");
         cliente.setPf(pf);
         boolean resultAdiciona = cdao.adiciona(cliente);

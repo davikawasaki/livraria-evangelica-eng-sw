@@ -36,8 +36,8 @@ public class ClienteTest {
     @Test
     public void testeFidelidadeClienteValido() {
         Cliente cliente = new Cliente();
-        cliente.setFidelidade(1);
-        int valorRecebido = cliente.isFidelidade();
+        cliente.setFidelidade(true);
+        boolean valorRecebido = cliente.isFidelidade();
         assertEquals(valorRecebido, true);
     }  
     @Test

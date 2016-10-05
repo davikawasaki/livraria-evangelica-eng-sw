@@ -75,7 +75,7 @@ public class CadastroCliente extends HttpServlet {
        
         cliente.getPf().setDataNascimento(date);
        
-        cliente.setFidelidade(Integer.getInteger(request.getParameter("fidelidade")));
+        cliente.setFidelidade(Boolean.getBoolean(request.getParameter("fidelidade")));
         cliente.setCodFidelidade(request.getParameter("codFidelidade"));
         
         ClienteDAO dao = new ClienteDAO();
