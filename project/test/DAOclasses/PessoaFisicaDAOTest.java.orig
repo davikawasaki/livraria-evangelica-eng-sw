@@ -5,12 +5,10 @@
  */
 package DAOclasses;
 
-import Classes.Cliente;
-import Classes.Pessoa;
-import Classes.PessoaFisica;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import Classes.Pessoa;
+import Classes.PessoaFisica;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -20,42 +18,47 @@ import org.junit.Test;
  *
  * @author Nicholas
  */
-public class ClienteDAOTest {
+public class PessoaFisicaDAOTest {
    
     @Test
-    public void testeConexaoClienteDAOConnectionFactoryInvalido() throws Exception {
+    public void testeConexaoPessoaFisicaDAOConnectionFactoryInvalido() throws Exception {
         String expResult = "Erro ao conectar com o banco";
         try {
-            ClienteDAO cdao = new ClienteDAO();
-            cdao.setaConexaoClienteDAO("root", "root123");
-            fail("Deveria ter lançado uma exceção!");
-        } catch(Exception e) {
-            assertEquals(expResult, e.getMessage());
-        }
-    }
-//    Verifica possível retorno de exceção da inserção vazia do cliente
-    @Test
-    public void testeAdicionaClienteDAOInvalido() throws Exception {
-        String expResult = "Campo nulo, erro ao enviar o cliente para o banco";
-        Cliente c = new Cliente();
-        ClienteDAO cdao = new ClienteDAO();
-        try {
-            cdao.adiciona(c);
+            PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
+            pfdao.setaConexaoPessoaFisicaDAO("root", "root123");
             fail("Deveria ter lançado uma exceção!");
         } catch(Exception e) {
             assertEquals(expResult, e.getMessage());
         }
     }
     
-    /*//    Verifica se o fornecedor foi adicionado com sucesso
+    //Verifica possível retorno de exceção da inserção vazia do pessoa fisica
     @Test
-    public void testeAdicionaClienteDAOValido() throws Exception {
-        Cliente cliente = new Cliente();
+    public void testeAdicionaPessoaFisicaDAOInvalido() throws Exception {
+        String expResult = "Campo nulo, erro ao enviar a pessoa fisica para o banco";
+        PessoaFisica pf = new PessoaFisica();
+        PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
+        try {
+            pfdao.adiciona(pf);
+            fail("Deveria ter lançado uma exceção!");
+        } catch(Exception e) {
+            assertEquals(expResult, e.getMessage());
+        }
+    }
+    
+    //    Verifica se o pessoa fisica foi adicionado com sucesso
+    @Test
+    public void testeAdicionaPessoaFisicaDAOValido() throws Exception {
+        
         PessoaFisica pf = new PessoaFisica();
         Pessoa pessoa = new Pessoa();
-        ClienteDAO cdao = new ClienteDAO();
+        PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
         pessoa.setEmail("abc@abc.com");
+<<<<<<< HEAD
+=======
+        pessoa.setSenha("123@abc");
+>>>>>>> c1b38535d779949ad838f9bbd14690953b90597f
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -66,7 +69,7 @@ public class ClienteDAOTest {
         pessoa.setEstado("Abc");
         pessoa.setPais("Abc");
 
-        pf.setCPF("45884718823");
+        pf.setCPF("35824711223");
 
         String data = "21/02/2010";
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -77,45 +80,36 @@ public class ClienteDAOTest {
         pf.setSobrenome("Sobrenome");
         pf.setPessoa(pessoa);
         
-        cliente.setFidelidade(true);
-        cliente.setCodFidelidade("12312");
-        cliente.setPf(pf);
-        boolean resultAdiciona = cdao.adiciona(cliente);
+        boolean resultAdiciona = pfdao.adiciona(pf);
         
         assertTrue(resultAdiciona);       
     }
-*/
-//    Verifica se o retorno foi realizado com sucesso
+
+    //    Verifica possível retorno de exceção da update vazio do pessoa fisica
     @Test
-    public void testeListaClienteDAOValido() throws Exception {
-        ClienteDAO cdao = new ClienteDAO();
-        List lista = cdao.getLista();
-        assertTrue(lista instanceof java.util.List);
-    }
-    //    Verifica possível retorno de exceção da update vazio do fornecedor
-    @Test
-    public void testeAlteraClienteDAOInvalido() throws Exception {
-        String expResult = "Campo nulo, erro ao enviar o cliente para o banco";
-        Cliente cliente = new Cliente();
-        ClienteDAO cdao = new ClienteDAO();
+    public void testeAlteraPessoaFisicaDAOInvalido() throws Exception {
+        String expResult = "Campo nulo, erro ao enviar a pessoa fisica para o banco";
+        PessoaFisica pf = new PessoaFisica();
+        PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         try {
-            cdao.altera(cliente);
+            pfdao.altera(pf);
             fail("Deveria ter lançado uma exceção!");
         } catch(Exception e) {
             assertEquals(expResult, e.getMessage());
         }
-    }
- 
-    //    Verifica se o fornecedor foi alterado com sucesso
+    } 
+    
     @Test
-    public void testeAlteraClienteDAOValido() throws Exception {
-        Cliente cliente = new Cliente();
-        PessoaFisica pf = new PessoaFisica();
-        Pessoa pessoa = new Pessoa();
-        ClienteDAO cdao = new ClienteDAO();
+    public void testeAlteraPessoaFisicaDAOValida() throws Exception{
+        PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
-        pessoa.setId(48);
+        Pessoa pessoa = new Pessoa();
+        
         pessoa.setEmail("abc@abc.com");
+<<<<<<< HEAD
+=======
+        pessoa.setSenha("123@abc");
+>>>>>>> c1b38535d779949ad838f9bbd14690953b90597f
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -125,23 +119,20 @@ public class ClienteDAOTest {
         pessoa.setCidade("Abc");
         pessoa.setEstado("Abc");
         pessoa.setPais("Abc");
-
+        
+        PessoaFisica pf = new PessoaFisica();
+        pf.setCPF("45884218823");
         String data = "21/02/2010";
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         pf.setDataNascimento(new Date(format.parse(data).getTime()));
-        pf.setNome("Nomedo jura");
+        pf.setNome("Nome");
         pf.setRG("465765751");
         pf.setSexo("M");
-        pf.setCPF("45884718823");
         pf.setSobrenome("Sobrenome");
         pf.setPessoa(pessoa);
         
-        cliente.setIdCliente(9);
-        cliente.setFidelidade(true);
-        cliente.setCodFidelidade("11252");
-        cliente.setPf(pf);
-
-        boolean resultAltera = cdao.altera(cliente);
-        assertTrue(resultAltera);        
+        boolean resultAltera = pfdao.altera(pf);
+        assertTrue(resultAltera);
+        
     }
 }

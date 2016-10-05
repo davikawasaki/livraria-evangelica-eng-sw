@@ -21,8 +21,17 @@ public class AtendenteDAO {
     public AtendenteDAO() throws Exception {
         this.connection = new ConnectionFactory().getConnection("root","root");
     }
+    
+    // Método do DAO para conexão manual com o banco
+    public void setaConexaoAtendenteDAO(String user, String password) throws Exception {
+        try {
+            this.connection = new ConnectionFactory().getConnection(user, password);
+        } catch(Exception e) {
+            throw new Exception("Erro ao conectar com o banco");
+        }
+    }
         
-    public void adiciona(Atendente atendente) throws Exception {  
+    public boolean adiciona(Atendente atendente) throws Exception {  
     
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
@@ -43,9 +52,10 @@ public class AtendenteDAO {
            
            stmt.execute();
            stmt.close();
+           return true;
         }
-        catch (SQLException e){
-            throw new RuntimeException(e);
+        catch (Exception e){
+            throw new Exception("Erro ao enviar o atendente para o banco");
         }
     }
 }
