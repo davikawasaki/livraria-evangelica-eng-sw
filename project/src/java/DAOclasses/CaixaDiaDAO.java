@@ -63,7 +63,7 @@ public class CaixaDiaDAO {
     public List<CaixaDia> getCaixasDiarios() throws Exception{
         try {
             List<CaixaDia> caixas = new ArrayList<>();
-            PreparedStatement stmt = this.connection.prepareStatement("select * from CaixaDia;");
+            PreparedStatement stmt = this.connection.prepareStatement("select * from CaixaDia order by data;");
             ResultSet rs = stmt.executeQuery();
  
             while (rs.next()) {

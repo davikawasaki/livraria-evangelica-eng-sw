@@ -53,7 +53,6 @@ public class FornecedorDAOTest {
         FornecedorDAO fdao = new FornecedorDAO();
         pessoa.setId(2);
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123@abc");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -63,7 +62,7 @@ public class FornecedorDAOTest {
         pessoa.setCidade("Abc");
         pessoa.setEstado("Abc");
         pessoa.setPais("Abc");
-        pj.setCNPJ("13.235.412/2122-33");
+        pj.setCNPJ("13.295.412/2132-34");
         pj.setNomeFantasia("Abc");
         pj.setPessoa(pessoa);
 
@@ -102,7 +101,6 @@ public class FornecedorDAOTest {
         
         Pessoa pessoa = new Pessoa();
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123@abc");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -114,7 +112,7 @@ public class FornecedorDAOTest {
         pessoa.setPais("Abc");
         
         PessoaJuridica pj = new PessoaJuridica();
-        pj.setCNPJ("11.111.111/1111-11");
+        pj.setCNPJ("11.111.111/1111-12");
         pj.setNomeFantasia("Abc");
         pj.setPessoa(pessoa);
         

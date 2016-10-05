@@ -116,7 +116,6 @@ public class ClienteDAO {
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
         pfdao.altera(cliente.getPf());
-        
         String sql = "update Cliente C join PessoaFisica P on C.PessoaFisica_CPF = P.CPF"
                 + "set idCliente=?, fidelidade=?," +
                 "codFidelidade=? where P.CPF=?";
@@ -128,7 +127,6 @@ public class ClienteDAO {
             stmt.setBoolean(2, cliente.isFidelidade());
             stmt.setString(3, cliente.getCodFidelidade());
             stmt.setString(4, cliente.getPf().getCPF());
-
             stmt.execute();
             stmt.close();
             return true;

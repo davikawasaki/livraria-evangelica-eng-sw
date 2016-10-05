@@ -37,6 +37,8 @@ public class CadastroFornecedor extends HttpServlet {
             throws ServletException, IOException {
         try {
             response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("UTF-8");
+            
             PrintWriter out = response.getWriter();
             
             String nomeFantasia = request.getParameter("nomeFantasia");

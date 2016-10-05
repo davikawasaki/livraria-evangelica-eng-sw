@@ -48,7 +48,6 @@ public class PessoaDAOTest {
         PessoaDAO pdao = new PessoaDAO();
         
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -85,7 +84,6 @@ public class PessoaDAOTest {
         Pessoa pessoa = new Pessoa();
         
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");

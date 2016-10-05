@@ -26,7 +26,6 @@ public class Testa_Insere {
         pessoa.setCidade("Registro");
         pessoa.setEstado("Acre");
         pessoa.setPais("Brasil");
-        pessoa.setSenha("123");
         
         PessoaDAO dao = new PessoaDAO();
         

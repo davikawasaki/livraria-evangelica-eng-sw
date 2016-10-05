@@ -115,7 +115,7 @@ public class PessoaDAO {
     }
     
       public boolean altera(Pessoa pessoa) throws Exception {
-          if((pessoa.getBairro()==null) || (pessoa.getCEP()==null) || (pessoa.getCidade()==null) || (pessoa.getComplemento()==null) || (pessoa.getEmail()==null) || (pessoa.getEstado()==null) || (pessoa.getLogradouro()==null) || (pessoa.getPais()==null) || (pessoa.getSenha()==null) || (pessoa.getTelefone()==null))
+          if((pessoa.getBairro()==null) || (pessoa.getCEP()==null) || (pessoa.getCidade()==null) || (pessoa.getEmail()==null) || (pessoa.getEstado()==null) || (pessoa.getLogradouro()==null) || (pessoa.getPais()==null) || (pessoa.getTelefone()==null))
                 throw new Exception("Campo nulo, erro ao enviar a pessoa para o banco");
           
           String sql = "update Pessoa set telefone=?, email=?," +
