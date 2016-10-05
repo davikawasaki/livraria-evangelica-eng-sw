@@ -103,8 +103,6 @@ public class FornecedorDAO {
         if((fornecedor.getNomeRepresentante() == null)||(fornecedor.getTipoServico() == null)||(fornecedor.getTipoFornecimento() == null)||(fornecedor.getPj().getCNPJ() == null))
             throw new Exception("Campo nulo, erro ao enviar o fornecedor para o banco");
         PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();
-        PessoaJuridica pj = new PessoaJuridica();
-        fornecedor.setPj(pj);
         pjdao.altera(fornecedor.getPj());
         String sql = "update Fornecedor F inner join PessoaJuridica PJ on F.PessoaJuridica_CNPJ = PJ.CNPJ set nomeRepresentante=?, tipoServico=?," +
              "tipoFornecimento=? where CNPJ=?";

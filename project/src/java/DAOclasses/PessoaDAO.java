@@ -20,7 +20,7 @@ public class PessoaDAO {
         this.connection = new ConnectionFactory().getConnection("root","root");
     }
     
-    public boolean adiciona(Pessoa pessoa) {
+    public boolean adiciona(Pessoa pessoa) throws Exception {
                 
         String sql = "insert into Pessoa" + 
                 "(telefone, email, CEP, logradouro, complemento, numero, bairro, cidade, estado, pais)" + 
@@ -53,7 +53,7 @@ public class PessoaDAO {
         }
     }
     
-    public List<Pessoa> getLista(){
+    public List<Pessoa> getLista() throws Exception{
         try {
             List<Pessoa> pessoas = new ArrayList<Pessoa>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from Pessoa;");
