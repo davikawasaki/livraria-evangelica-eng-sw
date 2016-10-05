@@ -24,9 +24,9 @@ public class CartaoDAO {
 <span class="nc" id="L24">            this.connection = new ConnectionFactory().getConnection(); </span>
 <span class="nc" id="L25">    }</span>
     
-    public void adiciona(Cartao cartao, int idPagam) {  
+    public void adiciona(Cartao cartao) {  
 
-<span class="nc" id="L29">        String sql = &quot;insert into Cartao (Pagamento_idPagamento, tipo, valor) values(?,?,?)&quot;;</span>
+<span class="nc" id="L29">        String sql = &quot;insert into Cartao (Pagamento_idPagamento, tipo, numeroParcelas) values(?,?,?)&quot;;</span>
         
         try{
 <span class="nc" id="L32">            PreparedStatement stmt = connection.prepareStatement(sql);</span>

@@ -33,8 +33,14 @@ public class Produto {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitulo(String titulo) throws Exception {
+        if(titulo.isEmpty()){
+            throw new Exception("Titulo invalido");
+        }else if(titulo.length() < 45){
+            this.titulo = titulo;
+        }else{
+            throw new Exception("Titulo invalido");
+        }
     }
 
     public int getTipo() {
@@ -63,8 +69,14 @@ public class Produto {
         return idioma;
     }
 
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
+    public void setIdioma(String idioma) throws Exception {
+        if(idioma.isEmpty()){
+            throw new Exception("Idioma invalido");
+        }else if(idioma.length() < 45){
+            this.idioma = idioma;
+        }else{
+            throw new Exception("Idioma invalido");
+        }
     }
 
     public int getAnoLancamento() {

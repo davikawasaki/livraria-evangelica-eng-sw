@@ -7,6 +7,7 @@ package DAOclasses;
 
 import Classes.PessoaFisica;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -18,65 +19,65 @@ public class PessoaFisicaDAO {
     
     private Connection connection;
     
-<span class="nc" id="L21">    public PessoaFisicaDAO() {</span>
-<span class="nc" id="L22">        this.connection = new ConnectionFactory().getConnection();</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L22">    public PessoaFisicaDAO() {</span>
+<span class="nc" id="L23">        this.connection = new ConnectionFactory().getConnection();</span>
+<span class="nc" id="L24">    }</span>
      
     public void adiciona(PessoaFisica pf) {
-<span class="nc" id="L26">        PessoaDAO pdao = new PessoaDAO();</span>
-<span class="nc" id="L27">        pdao.adiciona(pf.getPessoa());</span>
+<span class="nc" id="L27">        PessoaDAO pdao = new PessoaDAO();</span>
+<span class="nc" id="L28">        pdao.adiciona(pf.getPessoa());</span>
         
-<span class="nc" id="L29">        String sql = &quot;insert into PessoaFisica&quot; + </span>
+<span class="nc" id="L30">        String sql = &quot;insert into PessoaFisica&quot; + </span>
                 &quot;(CPF, Pessoa_idPessoa, nome, sobrenome, RG, sexo, dataNascimento)&quot; + 
                 &quot;values(?,?,?,?,?,?,?)&quot;;
       
         try{
-<span class="nc" id="L34">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L35">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L36">            stmt.setString(1, pf.getCPF());</span>
-<span class="nc" id="L37">            stmt.setInt(2, pf.getPessoa().getId());</span>
-<span class="nc" id="L38">            stmt.setString(3, pf.getNome());</span>
-<span class="nc" id="L39">            stmt.setString(4, pf.getSobrenome());</span>
-<span class="nc" id="L40">            stmt.setString(5, pf.getRG());</span>
-<span class="nc" id="L41">            stmt.setString(6, pf.getSexo());</span>
-<span class="nc" id="L42">            stmt.setString(7, pf.getDataNascimento());</span>
+<span class="nc" id="L37">            stmt.setString(1, pf.getCPF());</span>
+<span class="nc" id="L38">            stmt.setInt(2, pf.getPessoa().getId());</span>
+<span class="nc" id="L39">            stmt.setString(3, pf.getNome());</span>
+<span class="nc" id="L40">            stmt.setString(4, pf.getSobrenome());</span>
+<span class="nc" id="L41">            stmt.setString(5, pf.getRG());</span>
+<span class="nc" id="L42">            stmt.setString(6, pf.getSexo());</span>
+<span class="nc" id="L43">            stmt.setDate(7, new java.sql.Date(pf.getDataNascimento().getTime()));</span>
             
-<span class="nc" id="L44">            stmt.execute();</span>
-<span class="nc" id="L45">            stmt.close();</span>
+<span class="nc" id="L45">            stmt.execute();</span>
+<span class="nc" id="L46">            stmt.close();</span>
         }
-<span class="nc" id="L47">        catch (SQLException e){</span>
-<span class="nc" id="L48">            throw new RuntimeException(e);</span>
-<span class="nc" id="L49">        }</span>
-<span class="nc" id="L50">    }</span>
+<span class="nc" id="L48">        catch (SQLException e){</span>
+<span class="nc" id="L49">            throw new RuntimeException(e);</span>
+<span class="nc" id="L50">        }</span>
+<span class="nc" id="L51">    }</span>
     
     public void altera (PessoaFisica pf){
         
-<span class="nc" id="L54">        PessoaDAO pdao = new PessoaDAO();</span>
-<span class="nc" id="L55">        pdao.altera(pf.getPessoa());</span>
+<span class="nc" id="L55">        PessoaDAO pdao = new PessoaDAO();</span>
+<span class="nc" id="L56">        pdao.altera(pf.getPessoa());</span>
                 
         
-<span class="nc" id="L58">        String sql = &quot;update PessoaFisica PF join Pessoa P set CPF=?, nome=?, &quot;</span>
+<span class="nc" id="L59">        String sql = &quot;update PessoaFisica PF join Pessoa P set CPF=?, nome=?, &quot;</span>
             + &quot;sobrenome=?, RG=?, sexo=?, dataNascimento=? where P.idpessoa=?&quot;;
        
         try{
-<span class="nc" id="L62">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L63">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L64">            stmt.setString(1, pf.getCPF());</span>
-<span class="nc" id="L65">            stmt.setString(2, pf.getNome());</span>
-<span class="nc" id="L66">            stmt.setString(3, pf.getSobrenome());</span>
-<span class="nc" id="L67">            stmt.setString(4, pf.getRG());</span>
-<span class="nc" id="L68">            stmt.setString(5, pf.getSexo());</span>
-<span class="nc" id="L69">            stmt.setString(6, pf.getDataNascimento());</span>
-<span class="nc" id="L70">            stmt.setInt(7, pf.getPessoa().getId());</span>
+<span class="nc" id="L65">            stmt.setString(1, pf.getCPF());</span>
+<span class="nc" id="L66">            stmt.setString(2, pf.getNome());</span>
+<span class="nc" id="L67">            stmt.setString(3, pf.getSobrenome());</span>
+<span class="nc" id="L68">            stmt.setString(4, pf.getRG());</span>
+<span class="nc" id="L69">            stmt.setString(5, pf.getSexo());</span>
+<span class="nc" id="L70">            stmt.setDate(6, new java.sql.Date(pf.getDataNascimento().getTime()));</span>
+<span class="nc" id="L71">            stmt.setInt(7, pf.getPessoa().getId());</span>
 
 
-<span class="nc" id="L73">            stmt.execute();</span>
-<span class="nc" id="L74">            stmt.close();</span>
+<span class="nc" id="L74">            stmt.execute();</span>
+<span class="nc" id="L75">            stmt.close();</span>
         }   
-<span class="nc" id="L76">        catch (SQLException e){</span>
-<span class="nc" id="L77">            throw new RuntimeException(e);</span>
-<span class="nc" id="L78">        }     </span>
-<span class="nc" id="L79">    }</span>
+<span class="nc" id="L77">        catch (SQLException e){</span>
+<span class="nc" id="L78">            throw new RuntimeException(e);</span>
+<span class="nc" id="L79">        }     </span>
+<span class="nc" id="L80">    }</span>
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

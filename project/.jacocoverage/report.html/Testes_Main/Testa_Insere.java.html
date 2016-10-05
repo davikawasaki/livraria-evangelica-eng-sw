@@ -5,38 +5,34 @@
  */
 package Testes_Main;
 
-import Classes.Livro;
 import Classes.Pessoa;
-import Classes.Produto;
-import DAOclasses.LivroDAO;
 import DAOclasses.PessoaDAO;
-import DAOclasses.ProdutoDAO;
 
 /**
  *
  * @author lucasfranco
  */
-<span class="nc" id="L19">public class Testa_Insere {</span>
+<span class="nc" id="L15">public class Testa_Insere {</span>
     public static void main(String[] args) {
-<span class="nc" id="L21">        Produto produto = new Produto();</span>
-<span class="nc" id="L22">        Livro livro = new Livro();</span>
+<span class="nc" id="L17">        Pessoa pessoa = new Pessoa();</span>
+<span class="nc" id="L18">        pessoa.setId(1);</span>
+<span class="nc" id="L19">        pessoa.setTelefone(&quot;123456789&quot;);</span>
+<span class="nc" id="L20">        pessoa.setEmail(&quot;pessoa@caelum.com.br&quot;);</span>
+<span class="nc" id="L21">        pessoa.setCEP(&quot;1190000&quot;);</span>
+<span class="nc" id="L22">        pessoa.setLogradouro(&quot;R. Vergueiro 3185 cj57&quot;);</span>
+<span class="nc" id="L23">        pessoa.setComplemento(&quot;&quot;);</span>
+<span class="nc" id="L24">        pessoa.setNumero(75);</span>
+<span class="nc" id="L25">        pessoa.setBairro(&quot;Vila Nova&quot;);</span>
+<span class="nc" id="L26">        pessoa.setCidade(&quot;Registro&quot;);</span>
+<span class="nc" id="L27">        pessoa.setEstado(&quot;Acre&quot;);</span>
+<span class="nc" id="L28">        pessoa.setPais(&quot;Brasil&quot;);</span>
+<span class="nc" id="L29">        pessoa.setSenha(&quot;123&quot;);</span>
         
-<span class="nc" id="L24">        produto.setTitulo(&quot;Porra de Cavalo&quot;);</span>
-<span class="nc" id="L25">        produto.setTipo(1);</span>
-<span class="nc" id="L26">        produto.setPreco((float) 24.51);</span>
-<span class="nc" id="L27">        produto.setIdioma(&quot;Ingres&quot;);</span>
-<span class="nc" id="L28">        produto.setAnoLancamento(2029);</span>
-<span class="nc" id="L29">        produto.setQuantidade(121);</span>
-<span class="nc" id="L30">        livro.setAutor(&quot;Danilão&quot;);</span>
-<span class="nc" id="L31">        livro.setEditora(&quot;Eita carai&quot;);</span>
-<span class="nc" id="L32">        livro.setPdt(produto);</span>
+<span class="nc" id="L31">        PessoaDAO dao = new PessoaDAO();</span>
         
-<span class="nc" id="L34">        ProdutoDAO pdao = new ProdutoDAO();</span>
-<span class="nc" id="L35">        LivroDAO ldao = new LivroDAO();</span>
-        
-<span class="nc" id="L37">        ldao.adiciona(livro);</span>
-        
-<span class="nc" id="L39">        System.out.println(&quot;Gravado!&quot;);</span>
-<span class="nc" id="L40">    }</span>
+<span class="nc" id="L33">        dao.adiciona(pessoa);</span>
+
+<span class="nc" id="L35">        System.out.println(&quot;Gravado!&quot;);</span>
+<span class="nc" id="L36">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

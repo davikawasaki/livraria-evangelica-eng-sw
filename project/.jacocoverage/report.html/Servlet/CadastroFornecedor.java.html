@@ -11,6 +11,8 @@ import Classes.PessoaJuridica;
 import DAOclasses.FornecedorDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author eryc
  */
-<span class="nc" id="L23">public class CadastroFornecedor extends HttpServlet {</span>
+<span class="nc" id="L25">public class CadastroFornecedor extends HttpServlet {</span>
 
     /**
      * Processes requests for both HTTP &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;POST&lt;/code&gt;
@@ -33,58 +35,60 @@ import javax.servlet.http.HttpServletResponse;
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<span class="nc" id="L36">        response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span>
-<span class="nc" id="L37">        request.setCharacterEncoding(&quot;UTF-8&quot;);</span>
+        try {
+<span class="nc" id="L39">            response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span>
+<span class="nc" id="L40">            PrintWriter out = response.getWriter();</span>
+            
+<span class="nc" id="L42">            String nomeFantasia = request.getParameter(&quot;nomeFantasia&quot;);</span>
+<span class="nc" id="L43">            String cnpj = request.getParameter(&quot;cnpj&quot;);</span>
+<span class="nc" id="L44">            String nomeRepresentante = request.getParameter(&quot;nomeRepresentante&quot;);</span>
+<span class="nc" id="L45">            String tipoServico = request.getParameter(&quot;tipoServico&quot;);</span>
+<span class="nc" id="L46">            String tipoFornecimento = request.getParameter(&quot;tipoFornecimento&quot;);</span>
+<span class="nc" id="L47">            String telefone = request.getParameter(&quot;telefone&quot;);</span>
+<span class="nc" id="L48">            String email = request.getParameter(&quot;email&quot;);</span>
+<span class="nc" id="L49">            int numero = Integer.parseInt(request.getParameter(&quot;numero&quot;));</span>
+<span class="nc" id="L50">            String logradouro = request.getParameter(&quot;logradouro&quot;);</span>
+<span class="nc" id="L51">            String complemento = request.getParameter(&quot;complemento&quot;);</span>
+<span class="nc" id="L52">            String bairro = request.getParameter(&quot;bairro&quot;);</span>
+<span class="nc" id="L53">            String cep = request.getParameter(&quot;cep&quot;);</span>
+<span class="nc" id="L54">            String cidade = request.getParameter(&quot;cidade&quot;);</span>
+<span class="nc" id="L55">            String estado = request.getParameter(&quot;estado&quot;);</span>
+<span class="nc" id="L56">            String pais = request.getParameter(&quot;pais&quot;);</span>
+            
+<span class="nc" id="L58">            Fornecedor fornecedor = new Fornecedor();</span>
+            
+<span class="nc" id="L60">            PessoaJuridica pj = new PessoaJuridica();</span>
+<span class="nc" id="L61">            fornecedor.setPj(pj);</span>
+            
+<span class="nc" id="L63">            Pessoa pessoa = new Pessoa();</span>
+<span class="nc" id="L64">            fornecedor.getPj().setPessoa(pessoa);</span>
+            
+<span class="nc" id="L66">            fornecedor.getPj().setNomeFantasia(nomeFantasia);</span>
+<span class="nc" id="L67">            fornecedor.getPj().setCNPJ(cnpj);</span>
+<span class="nc" id="L68">            fornecedor.setNomeRepresentante(nomeRepresentante);</span>
+<span class="nc" id="L69">            fornecedor.setTipoServico(tipoServico);</span>
+<span class="nc" id="L70">            fornecedor.setTipoFornecimento(tipoFornecimento);</span>
+<span class="nc" id="L71">            fornecedor.getPj().getPessoa().setTelefone(telefone);</span>
+<span class="nc" id="L72">            fornecedor.getPj().getPessoa().setEmail(email);</span>
+<span class="nc" id="L73">            fornecedor.getPj().getPessoa().setNumero(numero);</span>
+<span class="nc" id="L74">            fornecedor.getPj().getPessoa().setLogradouro(logradouro);</span>
+<span class="nc" id="L75">            fornecedor.getPj().getPessoa().setComplemento(complemento);</span>
+<span class="nc" id="L76">            fornecedor.getPj().getPessoa().setBairro(bairro);</span>
+<span class="nc" id="L77">            fornecedor.getPj().getPessoa().setCEP(cep);</span>
+<span class="nc" id="L78">            fornecedor.getPj().getPessoa().setCidade(cidade);</span>
+<span class="nc" id="L79">            fornecedor.getPj().getPessoa().setEstado(estado);</span>
+<span class="nc" id="L80">            fornecedor.getPj().getPessoa().setPais(pais);</span>
+            
+<span class="nc" id="L82">            FornecedorDAO fdao = new FornecedorDAO();</span>
+<span class="nc" id="L83">            fdao.adiciona(fornecedor);</span>
+            
+<span class="nc" id="L85">            String contextPath= &quot;http://localhost:8084/livraria_v1&quot;;</span>
+<span class="nc" id="L86">            response.sendRedirect(response.encodeRedirectURL(contextPath + &quot;/dashboard.html&quot;));</span>
+<span class="nc" id="L87">        } catch (Exception ex) {</span>
+<span class="nc" id="L88">            Logger.getLogger(CadastroFornecedor.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L89">        }</span>
         
-<span class="nc" id="L39">        PrintWriter out = response.getWriter();</span>
- 
-<span class="nc" id="L41">        String nomeFantasia = request.getParameter(&quot;nomeFantasia&quot;);</span>
-<span class="nc" id="L42">        String cnpj = request.getParameter(&quot;cnpj&quot;);</span>
-<span class="nc" id="L43">        String nomeRepresentante = request.getParameter(&quot;nomeRepresentante&quot;);</span>
-<span class="nc" id="L44">        String tipoServico = request.getParameter(&quot;tipoServico&quot;);</span>
-<span class="nc" id="L45">        String tipoFornecimento = request.getParameter(&quot;tipoFornecimento&quot;);</span>
-<span class="nc" id="L46">        String telefone = request.getParameter(&quot;telefone&quot;);</span>
-<span class="nc" id="L47">        String email = request.getParameter(&quot;email&quot;);</span>
-<span class="nc" id="L48">        int numero = Integer.parseInt(request.getParameter(&quot;numero&quot;));</span>
-<span class="nc" id="L49">        String logradouro = request.getParameter(&quot;logradouro&quot;);</span>
-<span class="nc" id="L50">        String complemento = request.getParameter(&quot;complemento&quot;);</span>
-<span class="nc" id="L51">        String bairro = request.getParameter(&quot;bairro&quot;);</span>
-<span class="nc" id="L52">        String cep = request.getParameter(&quot;cep&quot;);</span>
-<span class="nc" id="L53">        String cidade = request.getParameter(&quot;cidade&quot;);</span>
-<span class="nc" id="L54">        String estado = request.getParameter(&quot;estado&quot;);</span>
-<span class="nc" id="L55">        String pais = request.getParameter(&quot;pais&quot;);</span>
-        
-<span class="nc" id="L57">        Fornecedor fornecedor = new Fornecedor();</span>
-        
-<span class="nc" id="L59">        PessoaJuridica pj = new PessoaJuridica();</span>
-<span class="nc" id="L60">        fornecedor.setPj(pj);</span>
-        
-<span class="nc" id="L62">        Pessoa pessoa = new Pessoa();</span>
-<span class="nc" id="L63">        fornecedor.getPj().setPessoa(pessoa);</span>
-
-<span class="nc" id="L65">        fornecedor.getPj().setNomeFantasia(nomeFantasia);</span>
-<span class="nc" id="L66">        fornecedor.getPj().setCNPJ(cnpj);</span>
-<span class="nc" id="L67">        fornecedor.setNomeRepresentante(nomeRepresentante);</span>
-<span class="nc" id="L68">        fornecedor.setTipoServico(tipoServico);</span>
-<span class="nc" id="L69">        fornecedor.setTipoFornecimento(tipoFornecimento);</span>
-<span class="nc" id="L70">        fornecedor.getPj().getPessoa().setTelefone(telefone);</span>
-<span class="nc" id="L71">        fornecedor.getPj().getPessoa().setEmail(email);</span>
-<span class="nc" id="L72">        fornecedor.getPj().getPessoa().setNumero(numero);</span>
-<span class="nc" id="L73">        fornecedor.getPj().getPessoa().setLogradouro(logradouro);</span>
-<span class="nc" id="L74">        fornecedor.getPj().getPessoa().setComplemento(complemento);</span>
-<span class="nc" id="L75">        fornecedor.getPj().getPessoa().setBairro(bairro);</span>
-<span class="nc" id="L76">        fornecedor.getPj().getPessoa().setCEP(cep);</span>
-<span class="nc" id="L77">        fornecedor.getPj().getPessoa().setCidade(cidade);</span>
-<span class="nc" id="L78">        fornecedor.getPj().getPessoa().setEstado(estado);</span>
-<span class="nc" id="L79">        fornecedor.getPj().getPessoa().setPais(pais);</span>
-
-<span class="nc" id="L81">        FornecedorDAO fdao = new FornecedorDAO();</span>
-<span class="nc" id="L82">        fdao.adiciona(fornecedor);</span>
-    
-<span class="nc" id="L84">        String contextPath= &quot;http://localhost:8084/livraria_v1&quot;;</span>
-<span class="nc" id="L85">        response.sendRedirect(response.encodeRedirectURL(contextPath + &quot;/dashboard.html&quot;));</span>
-        
-<span class="nc" id="L87">    }</span>
+<span class="nc" id="L91">    }</span>
     // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;HttpServlet methods. Click on the + sign on the left to edit the code.&quot;&gt;
     /**
      * Handles the HTTP &lt;code&gt;GET&lt;/code&gt; method.
@@ -97,8 +101,8 @@ import javax.servlet.http.HttpServletResponse;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<span class="nc" id="L100">        processRequest(request, response);</span>
-<span class="nc" id="L101">    }</span>
+<span class="nc" id="L104">        processRequest(request, response);</span>
+<span class="nc" id="L105">    }</span>
 
     /**
      * Handles the HTTP &lt;code&gt;POST&lt;/code&gt; method.
@@ -111,8 +115,8 @@ import javax.servlet.http.HttpServletResponse;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<span class="nc" id="L114">        processRequest(request, response);</span>
-<span class="nc" id="L115">    }</span>
+<span class="nc" id="L118">        processRequest(request, response);</span>
+<span class="nc" id="L119">    }</span>
 
     /**
      * Returns a short description of the servlet.
@@ -121,7 +125,7 @@ import javax.servlet.http.HttpServletResponse;
      */
     @Override
     public String getServletInfo() {
-<span class="nc" id="L124">        return &quot;Short description&quot;;</span>
+<span class="nc" id="L128">        return &quot;Short description&quot;;</span>
     }// &lt;/editor-fold&gt;
 
 }

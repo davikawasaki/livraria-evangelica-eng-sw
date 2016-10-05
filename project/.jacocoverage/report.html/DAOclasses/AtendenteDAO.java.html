@@ -8,8 +8,8 @@ package DAOclasses;
 import Classes.Atendente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 
 /**
  *
@@ -36,12 +36,12 @@ public class AtendenteDAO {
 <span class="nc" id="L36">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
 <span class="nc" id="L38">           stmt.setString(1, atendente.getLogin());</span>
-<span class="nc" id="L39">           stmt.setTime(2, atendente.getComecoExpediente());</span>
-<span class="nc" id="L40">           stmt.setTime(3, atendente.getFimExpediente());</span>
+<span class="nc" id="L39">           stmt.setTime(2, (Time) atendente.getComecoExpediente());</span>
+<span class="nc" id="L40">           stmt.setTime(3, (Time) atendente.getFimExpediente());</span>
 <span class="nc" id="L41">           stmt.setString(4, atendente.getSenha());</span>
 <span class="nc" id="L42">           stmt.setString(5, atendente.getPf().getCPF());</span>
            
-<span class="nc" id="L44">           stmt.executeUpdate();</span>
+<span class="nc" id="L44">           stmt.execute();</span>
 <span class="nc" id="L45">           stmt.close();</span>
         }
 <span class="nc" id="L47">        catch (SQLException e){</span>

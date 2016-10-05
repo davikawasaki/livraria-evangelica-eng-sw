@@ -44,6 +44,28 @@ public class ProdutoTest {
         assertEquals(valorRecebido, "Poesias de João Brasil");
     }
     
+    @Test
+    public void testTituloInvalido1() throws Exception{
+        Produto p = new Produto();
+        
+        try{
+            p.setTitulo("Marcos Lopes Joaquim Deodoro da Fonseca Filho Júnior");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), "Titulo invalido");
+        }
+    }
+    
+    @Test
+    public void testTituloInvalido2() throws Exception{
+        Produto p = new Produto();
+        
+        try{
+            p.setTitulo("");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), "Titulo invalido");
+        }
+    }
+    
     //Teste Tipo
     
     @Test
@@ -106,11 +128,32 @@ public class ProdutoTest {
     
     //Teste Idioma
     @Test
-    public void testIdiomaValido(){
+    public void testIdiomaValido() throws Exception{
         Produto p = new Produto();
         p.setIdioma("Português");
         String valorRecebido = p.getIdioma();
         assertEquals(valorRecebido, "Português");
+    }
+    
+    @Test
+    public void testIdiomaInvalido1() throws Exception{
+        Produto p = new Produto();
+        
+        try{
+            p.setIdioma("");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), "Idioma invalido");
+        }
+    }
+    
+    @Test
+    public void testIdiomaInvalido2() throws Exception{
+        Produto p = new Produto();
+        try{
+            p.setIdioma("Marcos Lopes Joaquim Deodoro da Fonseca Filho Júnior");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), "Idioma invalido");
+        }
     }
     
     //Teste anoLancamento

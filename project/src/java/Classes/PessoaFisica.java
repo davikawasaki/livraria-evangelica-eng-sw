@@ -7,6 +7,7 @@ package Classes;
  */
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -100,7 +101,7 @@ public class PessoaFisica{
     }
 
     public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+        this.pessoa = Objects.requireNonNull(pessoa);
     }
     
 }

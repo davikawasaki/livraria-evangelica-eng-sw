@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="3" failures="0" hostname="Craudio" name="Classes.FornecedorDAOTest" skipped="2" tests="9" time="0.398" timestamp="2016-10-04T02:08:55">
+<testsuite errors="3" failures="0" hostname="Craudio" name="Classes.FornecedorDAOTest" skipped="2" tests="9" time="0.405" timestamp="2016-10-05T01:10:19">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="BR" />
@@ -52,7 +52,7 @@
     <property name="libs.testng.src" value="" />
     <property name="libs.spring-webmvc3.0.src" value="" />
     <property name="libs.restapi.classpath" value="/home/danilo/Programas/netbeans-8.1/enterprise/modules/ext/jaxrs-2.0/javax.ws.rs-api-2.0.jar" />
-    <property name="runmain.jvmargs" value=" -javaagent:&quot;/home/danilo/.netbeans/8.1/modules/ext/jacocoagent.jar&quot;=includes=Testes_Main.*:Servlet.*:Classes.*:DAOclasses.*,destfile=&quot;/home/danilo/MEGA/Engenharia de Software/Projeto - Livraria/livraria-evangelica-eng-sw/project/jacoco.exec-14118092252359&quot;,excludes=DAOclasses.*:Servlet.*:Testes_Main.*:br.com.engsw.servlet.jdbc.*" />
+    <property name="runmain.jvmargs" value=" -javaagent:&quot;/home/danilo/.netbeans/8.1/modules/ext/jacocoagent.jar&quot;=includes=Testes_Main.*:Servlet.*:Classes.*:DAOclasses.*,destfile=&quot;/home/danilo/MEGA/Engenharia de Software/Projeto - Livraria/livraria-evangelica-eng-sw/project/jacoco.exec-10407843588365&quot;,excludes=DAOclasses.*:Servlet.*:Testes_Main.*:br.com.engsw.servlet.jdbc.*" />
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
     <property name="libs.jaxb.maven-pom" value="" />
     <property name="os.arch" value="amd64" />
@@ -63,7 +63,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Classes.FornecedorDAOTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/danilo/MEGA/Engenharia de Software/Projeto - Livraria/livraria-evangelica-eng-sw/project/build/test/results/TEST-Classes.FornecedorDAOTest.xml crashfile=/home/danilo/MEGA/Engenharia de Software/Projeto - Livraria/livraria-evangelica-eng-sw/project/build/junitvmwatcher1524540679747715259.properties propsfile=/home/danilo/MEGA/Engenharia de Software/Projeto - Livraria/livraria-evangelica-eng-sw/project/build/junit7036296752393331398.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Classes.FornecedorDAOTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/danilo/MEGA/Engenharia de Software/Projeto - Livraria/livraria-evangelica-eng-sw/project/build/test/results/TEST-Classes.FornecedorDAOTest.xml crashfile=/home/danilo/MEGA/Engenharia de Software/Projeto - Livraria/livraria-evangelica-eng-sw/project/build/junitvmwatcher5650597622137301911.properties propsfile=/home/danilo/MEGA/Engenharia de Software/Projeto - Livraria/livraria-evangelica-eng-sw/project/build/junit5919128732865887151.properties" />
     <property name="build.classes.dir" value="build/web/WEB-INF/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="ap.supported.internal" value="true" />
@@ -414,8 +414,8 @@
     <property name="libs.javaee-web-api-7.0.javadoc" value="/home/danilo/Programas/netbeans-8.1/enterprise/docs/javaee-doc-api.jar" />
     <property name="" value="======" />
   </properties>
-  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOadicionaErros" time="0.214" />
-  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOadicionaExcecaoNullPointer" time="0.014">
+  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOadicionaErros" time="0.234" />
+  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOadicionaExcecaoNullPointer" time="0.013">
     <error message="Unexpected exception, expected&lt;java.lang.NullPointerException&gt; but was&lt;java.lang.RuntimeException&gt;" type="java.lang.Exception">java.lang.Exception: Unexpected exception, expected&lt;java.lang.NullPointerException&gt; but was&lt;java.lang.RuntimeException&gt;
 Caused by: java.lang.RuntimeException: java.sql.SQLException: Access denied for user &apos;root&apos;@&apos;localhost&apos; (using password: YES)
 	at DAOclasses.ConnectionFactory.getConnection(ConnectionFactory.java:15)
@@ -442,7 +442,7 @@ Caused by: java.sql.SQLException: Access denied for user &apos;root&apos;@&apos;
 	at DAOclasses.ConnectionFactory.getConnection(ConnectionFactory.java:11)
 </error>
   </testcase>
-  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOadicionaSucesso" time="0.009">
+  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOadicionaSucesso" time="0.013">
     <error message="java.sql.SQLException: Access denied for user &apos;root&apos;@&apos;localhost&apos; (using password: YES)" type="java.lang.RuntimeException">java.lang.RuntimeException: java.sql.SQLException: Access denied for user &apos;root&apos;@&apos;localhost&apos; (using password: YES)
 	at DAOclasses.ConnectionFactory.getConnection(ConnectionFactory.java:15)
 	at DAOclasses.FornecedorDAO.&lt;init&gt;(FornecedorDAO.java:26)
@@ -468,13 +468,13 @@ Caused by: java.sql.SQLException: Access denied for user &apos;root&apos;@&apos;
 	at DAOclasses.ConnectionFactory.getConnection(ConnectionFactory.java:11)
 </error>
   </testcase>
-  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOadicionaStackTreeVazia" time="0.026" />
-  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOlistaErros" time="0.012" />
+  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOadicionaStackTreeVazia" time="0.013" />
+  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOlistaErros" time="0.016" />
   <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOalteraSucesso" time="0.0">
     <skipped />
   </testcase>
-  <testcase classname="Classes.FornecedorDAOTest" name="verificarExcecaoConexaoFornecedorDAOConnectionFactory" time="0.017" />
-  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOlista" time="0.036">
+  <testcase classname="Classes.FornecedorDAOTest" name="verificarExcecaoConexaoFornecedorDAOConnectionFactory" time="0.019" />
+  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOlista" time="0.024">
     <error message="java.sql.SQLException: Access denied for user &apos;root&apos;@&apos;localhost&apos; (using password: YES)" type="java.lang.RuntimeException">java.lang.RuntimeException: java.sql.SQLException: Access denied for user &apos;root&apos;@&apos;localhost&apos; (using password: YES)
 	at DAOclasses.ConnectionFactory.getConnection(ConnectionFactory.java:15)
 	at DAOclasses.FornecedorDAO.&lt;init&gt;(FornecedorDAO.java:26)
@@ -500,7 +500,7 @@ Caused by: java.sql.SQLException: Access denied for user &apos;root&apos;@&apos;
 	at DAOclasses.ConnectionFactory.getConnection(ConnectionFactory.java:11)
 </error>
   </testcase>
-  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOalteraErros" time="0.0">
+  <testcase classname="Classes.FornecedorDAOTest" name="fornecedorDAOalteraErros" time="0.001">
     <skipped />
   </testcase>
   <system-out><![CDATA[]]></system-out>

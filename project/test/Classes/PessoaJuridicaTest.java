@@ -13,6 +13,31 @@ import static org.junit.Assert.*;
  * @author lucasfranco
  */
 public class PessoaJuridicaTest {
+    
+    //Teste Pessoa
+    @Test
+    public void testPessoaValida() throws Exception{
+        Pessoa p = new Pessoa();
+        PessoaJuridica pj = new PessoaJuridica();
+        
+        p.setBairro("Jardim Ipiranga");
+        pj.setPessoa(p);
+        
+        assertEquals(pj.getPessoa().getBairro(), "Jardim Ipiranga");
+    }
+    
+    @Test
+    public void testPessoaInvalida() throws Exception{
+        Pessoa p = null;
+        PessoaJuridica pj = new PessoaJuridica();
+        try{
+            pj.setPessoa(p);
+            fail("Deveria ter lançado uma exceção!");
+        }catch(Exception e){
+            assertEquals(e.getMessage(), null);
+        }
+    }
+    
     @Test
     public void testeCNPJPessoaJuridicaValido() throws Exception {
         PessoaJuridica pf = new PessoaJuridica();
@@ -91,14 +116,5 @@ public class PessoaJuridicaTest {
         } catch(Exception e) {
             assertEquals(expResult, e.getMessage());
         }
-    }
-    @Test
-    public void testePessoaPessoaJuridicaValido(){
-        PessoaJuridica pj = new PessoaJuridica();
-        Pessoa pessoa = new Pessoa();
-        
-        pj.setPessoa(pessoa);
-        Pessoa result = pj.getPessoa();
-        assertEquals(pessoa, result);
     }
 }

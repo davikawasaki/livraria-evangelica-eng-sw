@@ -52,7 +52,7 @@ public class PessoaDAO {
 <span class="nc" id="L52">        }</span>
 <span class="nc" id="L53">    }</span>
     
-    public List&lt;Pessoa&gt; getLista(){
+        public List&lt;Pessoa&gt; getLista(){
         try {
 <span class="nc" id="L57">            List&lt;Pessoa&gt; pessoas = new ArrayList&lt;Pessoa&gt;();</span>
 <span class="nc" id="L58">            PreparedStatement stmt = this.connection.prepareStatement(&quot;select * from Pessoa;&quot;);</span>
@@ -86,48 +86,47 @@ public class PessoaDAO {
         }
     }
     
-    public void remove(int id){    
-        //String sql = &quot;delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))&quot;;
-<span class="nc" id="L91">        String sql = &quot;delete from Pessoa where Pessoa.id = ?&quot;;</span>
+    public void remove(String CNPJ){
+<span class="nc" id="L90">        String sql = &quot;delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))&quot;;</span>
         
         try{
-<span class="nc" id="L94">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
-<span class="nc" id="L95">            stmt.setInt(1, id);</span>
-<span class="nc" id="L96">            stmt.execute();</span>
-<span class="nc" id="L97">            stmt.close();      </span>
+<span class="nc" id="L93">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L94">            stmt.setString(1, CNPJ);</span>
+<span class="nc" id="L95">            stmt.execute();</span>
+<span class="nc" id="L96">            stmt.close();      </span>
         }
-<span class="nc" id="L99">        catch (SQLException e){         </span>
-<span class="nc" id="L100">            throw new RuntimeException(e);</span>
-<span class="nc" id="L101">        }</span>
-<span class="nc" id="L102">    } </span>
+<span class="nc" id="L98">        catch (SQLException e){         </span>
+<span class="nc" id="L99">            throw new RuntimeException(e);</span>
+<span class="nc" id="L100">            }</span>
+<span class="nc" id="L101">    }</span>
     
       public void altera(Pessoa pessoa) {
-<span class="nc" id="L105">          String sql = &quot;update Pessoa set telefone=?, email=?,&quot; +</span>
+<span class="nc" id="L104">          String sql = &quot;update Pessoa set telefone=?, email=?,&quot; +</span>
             &quot;CEP=?, Logradouro=?, Complemento=?, Numero=?, Bairro=?,&quot; +
             &quot;Cidade=?, Estado=?, Pais=? where idPessoa=?&quot;;
         
         try{
-<span class="nc" id="L110">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L109">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L112">            stmt.setString(1,pessoa.getTelefone());</span>
-<span class="nc" id="L113">            stmt.setString(2, pessoa.getEmail());</span>
-<span class="nc" id="L114">            stmt.setString(3, pessoa.getCEP());</span>
-<span class="nc" id="L115">            stmt.setString(4, pessoa.getLogradouro());</span>
-<span class="nc" id="L116">            stmt.setString(5, pessoa.getComplemento());</span>
-<span class="nc" id="L117">            stmt.setInt(6, pessoa.getNumero());</span>
-<span class="nc" id="L118">            stmt.setString(7, pessoa.getBairro());</span>
-<span class="nc" id="L119">            stmt.setString(8, pessoa.getCidade());</span>
-<span class="nc" id="L120">            stmt.setString(9, pessoa.getEstado());</span>
-<span class="nc" id="L121">            stmt.setString(10, pessoa.getPais());</span>
-<span class="nc" id="L122">            stmt.setInt(11, pessoa.getId());</span>
+<span class="nc" id="L111">            stmt.setString(1,pessoa.getTelefone());</span>
+<span class="nc" id="L112">            stmt.setString(2, pessoa.getEmail());</span>
+<span class="nc" id="L113">            stmt.setString(3, pessoa.getCEP());</span>
+<span class="nc" id="L114">            stmt.setString(4, pessoa.getLogradouro());</span>
+<span class="nc" id="L115">            stmt.setString(5, pessoa.getComplemento());</span>
+<span class="nc" id="L116">            stmt.setInt(6, pessoa.getNumero());</span>
+<span class="nc" id="L117">            stmt.setString(7, pessoa.getBairro());</span>
+<span class="nc" id="L118">            stmt.setString(8, pessoa.getCidade());</span>
+<span class="nc" id="L119">            stmt.setString(9, pessoa.getEstado());</span>
+<span class="nc" id="L120">            stmt.setString(10, pessoa.getPais());</span>
+<span class="nc" id="L121">            stmt.setInt(11, pessoa.getId());</span>
            
-<span class="nc" id="L124">            stmt.execute();</span>
-<span class="nc" id="L125">            stmt.close();</span>
+<span class="nc" id="L123">            stmt.execute();</span>
+<span class="nc" id="L124">            stmt.close();</span>
         }
-<span class="nc" id="L127">        catch (SQLException e){</span>
-<span class="nc" id="L128">            throw new RuntimeException(e);</span>
-<span class="nc" id="L129">        }        </span>
-<span class="nc" id="L130">    }</span>
+<span class="nc" id="L126">        catch (SQLException e){</span>
+<span class="nc" id="L127">            throw new RuntimeException(e);</span>
+<span class="nc" id="L128">        }        </span>
+<span class="nc" id="L129">    }  </span>
    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

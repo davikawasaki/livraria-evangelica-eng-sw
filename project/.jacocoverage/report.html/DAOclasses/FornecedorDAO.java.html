@@ -52,7 +52,7 @@ public class FornecedorDAO {
 <span class="nc" id="L52">        }</span>
 <span class="nc" id="L53">    }</span>
     
-    public List&lt;Fornecedor&gt; getLista(){
+    public List&lt;Fornecedor&gt; getLista() throws Exception{
         try {
 <span class="nc" id="L57">            List&lt;Fornecedor&gt; fornecedores = new ArrayList&lt;Fornecedor&gt;();</span>
 <span class="nc" id="L58">            PreparedStatement stmt = this.connection.</span>
@@ -82,43 +82,44 @@ public class FornecedorDAO {
 <span class="nc" id="L82">            fornecedor.getPj().getPessoa().setCidade(rs.getString(&quot;cidade&quot;));</span>
 <span class="nc" id="L83">            fornecedor.getPj().getPessoa().setEstado(rs.getString(&quot;estado&quot;));</span>
 <span class="nc" id="L84">            fornecedor.getPj().getPessoa().setPais(rs.getString(&quot;pais&quot;));</span>
+<span class="nc" id="L85">            fornecedor.getPj().getPessoa().setId(rs.getInt(&quot;idPessoa&quot;));</span>
 
             // adicionando o objeto à lista
-<span class="nc" id="L87">            fornecedores.add(fornecedor);</span>
-<span class="nc" id="L88">        }</span>
-<span class="nc" id="L89">        rs.close();</span>
-<span class="nc" id="L90">        stmt.close();</span>
-<span class="nc" id="L91">        return fornecedores;</span>
+<span class="nc" id="L88">            fornecedores.add(fornecedor);</span>
+<span class="nc" id="L89">        }</span>
+<span class="nc" id="L90">        rs.close();</span>
+<span class="nc" id="L91">        stmt.close();</span>
+<span class="nc" id="L92">        return fornecedores;</span>
         }
-<span class="nc" id="L93">        catch (SQLException e) {</span>
-<span class="nc" id="L94">             throw new RuntimeException(e);</span>
+<span class="nc" id="L94">        catch (SQLException e) {</span>
+<span class="nc" id="L95">             throw new RuntimeException(e);</span>
         }
     }
     
     public void altera(Fornecedor fornecedor) {
             
-<span class="nc" id="L100">        PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();</span>
-<span class="nc" id="L101">        PessoaJuridica pj = new PessoaJuridica();</span>
-<span class="nc" id="L102">        fornecedor.setPj(pj);</span>
+<span class="nc" id="L101">        PessoaJuridicaDAO pjdao = new PessoaJuridicaDAO();</span>
+<span class="nc" id="L102">        PessoaJuridica pj = new PessoaJuridica();</span>
+<span class="nc" id="L103">        fornecedor.setPj(pj);</span>
        
-<span class="nc" id="L104">        pjdao.altera(fornecedor.getPj());</span>
+<span class="nc" id="L105">        pjdao.altera(fornecedor.getPj());</span>
         
-<span class="nc" id="L106">        String sql = &quot;update Fornecedor F inner join PessoaJuridica PJ on F.PessoaJuridica_CNPJ = PJ.CNPJ set nomeRepresentante=?, tipoServico=?,&quot; +</span>
+<span class="nc" id="L107">        String sql = &quot;update Fornecedor F inner join PessoaJuridica PJ on F.PessoaJuridica_CNPJ = PJ.CNPJ set nomeRepresentante=?, tipoServico=?,&quot; +</span>
              &quot;tipoFornecimento=? where CNPJ=?&quot;;
          
         try{
-<span class="nc" id="L110">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L111">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L112">           stmt.setString(1, fornecedor.getNomeRepresentante());</span>
-<span class="nc" id="L113">           stmt.setString(2, fornecedor.getTipoServico());</span>
-<span class="nc" id="L114">           stmt.setString(3, fornecedor.getTipoFornecimento());</span>
-<span class="nc" id="L115">           stmt.setString(4, fornecedor.getPj().getCNPJ());</span>
-<span class="nc" id="L116">           stmt.execute();</span>
-<span class="nc" id="L117">           stmt.close();</span>
+<span class="nc" id="L113">           stmt.setString(1, fornecedor.getNomeRepresentante());</span>
+<span class="nc" id="L114">           stmt.setString(2, fornecedor.getTipoServico());</span>
+<span class="nc" id="L115">           stmt.setString(3, fornecedor.getTipoFornecimento());</span>
+<span class="nc" id="L116">           stmt.setString(4, fornecedor.getPj().getCNPJ());</span>
+<span class="nc" id="L117">           stmt.execute();</span>
+<span class="nc" id="L118">           stmt.close();</span>
         }
-<span class="nc" id="L119">        catch (SQLException e){</span>
-<span class="nc" id="L120">            throw new RuntimeException(e);</span>
-<span class="nc" id="L121">        }        </span>
-<span class="nc" id="L122">    }    </span>
+<span class="nc" id="L120">        catch (SQLException e){</span>
+<span class="nc" id="L121">            throw new RuntimeException(e);</span>
+<span class="nc" id="L122">        }        </span>
+<span class="nc" id="L123">    }    </span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

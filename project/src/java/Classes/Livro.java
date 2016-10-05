@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import java.util.Objects;
+
 /**
  *
  * @author danilo
@@ -18,23 +20,35 @@ public class Livro {
         return pdt;
     }
 
-    public void setPdt(Produto pdt) {
-        this.pdt = pdt;
+    public void setPdt(Produto pdt) throws Exception {
+        this.pdt = Objects.requireNonNull(pdt);
     }
 
     public String getEditora() {
         return editora;
     }
 
-    public void setEditora(String editora) {
-        this.editora = editora;
+    public void setEditora(String editora) throws Exception {
+        if(editora.isEmpty()){
+            throw new Exception("Editora invalida");
+        }else if(editora.length()<45){
+            this.editora = editora;
+        }else{
+            throw new Exception("Editora invalida");
+        }
     }
 
     public String getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setAutor(String autor) throws Exception {
+        if(autor.isEmpty()){
+            throw new Exception("Autor invalido");
+        }else if(autor.length()<45){
+            this.autor = autor;
+        }else{
+            throw new Exception("Autor invalido");
+        }
     }
 }

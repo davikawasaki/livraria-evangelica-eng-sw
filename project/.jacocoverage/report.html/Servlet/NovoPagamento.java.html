@@ -9,11 +9,12 @@ import Classes.CaixaDia;
 import Classes.Cartao;
 import Classes.Pagamento;
 import DAOclasses.CaixaDiaDAO;
+import DAOclasses.CartaoDAO;
 import DAOclasses.PagamentoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author eryc
  */
-<span class="nc" id="L29">public class NovoPagamento extends HttpServlet {</span>
+<span class="nc" id="L30">public class NovoPagamento extends HttpServlet {</span>
 
     /**
      * Processes requests for both HTTP &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;POST&lt;/code&gt;
@@ -39,63 +40,66 @@ import javax.servlet.http.HttpServletResponse;
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
-<span class="nc" id="L42">        response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span>
-<span class="nc" id="L43">        request.setCharacterEncoding(&quot;UTF-8&quot;);</span>
+<span class="nc" id="L43">        response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span>
+<span class="nc" id="L44">        request.setCharacterEncoding(&quot;UTF-8&quot;);</span>
         
-<span class="nc" id="L45">        PrintWriter out = response.getWriter();</span>
+<span class="nc" id="L46">        PrintWriter out = response.getWriter();</span>
         
-<span class="nc" id="L47">        Pagamento pag = new Pagamento();</span>
+<span class="nc" id="L48">        Pagamento pag = new Pagamento();</span>
         
-<span class="nc" id="L49">        pag.setValorTotal(Integer.parseInt(request.getParameter(&quot;valorTotal&quot;)));</span>
+<span class="nc" id="L50">        pag.setValorTotal(Integer.parseInt(request.getParameter(&quot;valorTotal&quot;)));</span>
         
-<span class="nc" id="L51">        String tipo = request.getParameter(&quot;tipoPagamento&quot;);</span>
+<span class="nc" id="L52">        String tipo = request.getParameter(&quot;tipoPagamento&quot;);</span>
+        
+<span class="nc" id="L54">        pag.setTipo(tipo);</span>
+<span class="nc" id="L55">        pag.setDesconto(Float.parseFloat(request.getParameter(&quot;desconto&quot;)));</span>
 
-<span class="nc" id="L53">        Cartao card = new Cartao();</span>
-<span class="nc" id="L54">        card.setTipo(request.getParameter(&quot;tipoPagCartao&quot;));</span>
-<span class="nc" id="L55">        card.setNumeroParcelas(Integer.parseInt(request.getParameter(&quot;parcelas&quot;)));</span>
-<span class="nc" id="L56">        pag.setTipo(tipo);</span>
-<span class="nc" id="L57">        pag.setDesconto(Float.parseFloat(request.getParameter(&quot;desconto&quot;)));</span>
+        //Captura a data atual
 <span class="nc" id="L58">        Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());</span>
-<span class="nc" id="L59">        SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
-        
-<span class="nc" id="L61">        String dataStr = sdf.format(dataDeHoje);</span>
-        //out.println(dataStr);
-        
-        
-        
-        java.sql.Date data;
-        try {
-<span class="nc" id="L68">            data = new java.sql.Date(sdf.parse(dataStr).getTime());</span>
-        //    out.println(data);
-        
-<span class="nc" id="L71">        pag.setHorario(dataDeHoje);</span>
-        
-<span class="nc" id="L73">        CaixaDia caixa = new CaixaDia();</span>
-<span class="nc" id="L74">        caixa.getData();</span>
-<span class="nc" id="L75">        CaixaDiaDAO caixadao = new CaixaDiaDAO();</span>
-<span class="nc" id="L76">        caixadao.adiciona(caixa);</span>
-        try {
-        //    out.println(&quot;abaixo&quot;);
-<span class="nc" id="L79">            out.println();</span>
-            
-<span class="nc" id="L81">            if(caixadao.buscaCaixa(data)){</span>
-                
+<span class="nc" id="L59">        pag.setHorario(dataDeHoje);</span>
 
+        //Converte para Date para buscar o caixa correspondente no banco de dados
+        try {        
+<span class="nc" id="L63">            SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L64">            String dataStr = sdf.format(dataDeHoje);</span>
+<span class="nc" id="L65">            Date data = new java.sql.Date(sdf.parse(dataStr).getTime());</span>
+        
+<span class="nc" id="L67">            CaixaDiaDAO caixadao = new CaixaDiaDAO();</span>
+            
+<span class="nc" id="L69">            CaixaDia caixa = caixadao.buscaCaixa(data);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if(caixa == null){</span>
+<span class="nc" id="L71">                caixa = new CaixaDia();</span>
+<span class="nc" id="L72">                caixa.setSaldoInicial(50);</span>
+<span class="nc" id="L73">                caixa.setEntradaBruto(100);</span>
+<span class="nc" id="L74">                caixa.setEntradaReal(100);</span>
+<span class="nc" id="L75">                caixa.setSaldoLiquido(100);</span>
+<span class="nc" id="L76">                caixa.setSaldoReal(100);</span>
+<span class="nc" id="L77">                caixa.setSaidaTotal(100);</span>
+<span class="nc" id="L78">                caixa.setData(data);</span>
+<span class="nc" id="L79">                caixadao.adiciona(caixa);</span>
             }
-<span class="nc" id="L85">        } catch (Exception ex) {</span>
-<span class="nc" id="L86">            Logger.getLogger(NovoPagamento.class.getName()).log(Level.SEVERE, null, ex);</span>
-        }
-        
-<span class="nc" id="L89">        PagamentoDAO dao = new PagamentoDAO();</span>
-        
-        
-<span class="nc" id="L92">        dao.adiciona(pag);</span>
-<span class="nc" id="L93">        out.println(&quot;Cadastrado!&quot;);</span>
-    
-<span class="nc" id="L95">    } catch (ParseException ex) {</span>
-<span class="nc" id="L96">            Logger.getLogger(NovoPagamento.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L97">        }    </span>
-<span class="nc" id="L98">    }</span>
+            
+<span class="nc" id="L82">            PagamentoDAO pdao = new PagamentoDAO();              </span>
+<span class="nc" id="L83">            pdao.adiciona(pag, caixa.getIdCaixa());</span>
+            
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if(tipo.equals(&quot;cartao&quot;)){</span>
+<span class="nc" id="L86">                Cartao card = new Cartao();</span>
+<span class="nc" id="L87">                card.setTipo(request.getParameter(&quot;tipoPagCartao&quot;));</span>
+<span class="nc" id="L88">                card.setNumeroParcelas(Integer.parseInt(request.getParameter(&quot;parcelas&quot;)));</span>
+<span class="nc" id="L89">                card.setIdPagamento(pag.getIdPagamento());</span>
+                
+<span class="nc" id="L91">                CartaoDAO cardDAO = new CartaoDAO();</span>
+<span class="nc" id="L92">                cardDAO.adiciona(card);</span>
+            }            
+            
+<span class="nc" id="L95">            String contextPath= &quot;http://localhost:8084/livraria_v1/dashboard.html&quot;;</span>
+<span class="nc" id="L96">            response.sendRedirect(response.encodeRedirectURL(contextPath));</span>
+       
+        } 
+<span class="nc" id="L99">        catch (Exception ex) {</span>
+<span class="nc" id="L100">            Logger.getLogger(NovoPagamento.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L101">        }    </span>
+<span class="nc" id="L102">    }</span>
 
     // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;HttpServlet methods. Click on the + sign on the left to edit the code.&quot;&gt;
     /**
@@ -109,8 +113,8 @@ import javax.servlet.http.HttpServletResponse;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<span class="nc" id="L112">        processRequest(request, response);</span>
-<span class="nc" id="L113">    }</span>
+<span class="nc" id="L116">        processRequest(request, response);</span>
+<span class="nc" id="L117">    }</span>
 
     /**
      * Handles the HTTP &lt;code&gt;POST&lt;/code&gt; method.
@@ -123,8 +127,8 @@ import javax.servlet.http.HttpServletResponse;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<span class="nc" id="L126">        processRequest(request, response);</span>
-<span class="nc" id="L127">    }</span>
+<span class="nc" id="L130">        processRequest(request, response);</span>
+<span class="nc" id="L131">    }</span>
 
     /**
      * Returns a short description of the servlet.
@@ -133,7 +137,7 @@ import javax.servlet.http.HttpServletResponse;
      */
     @Override
     public String getServletInfo() {
-<span class="nc" id="L136">        return &quot;Short description&quot;;</span>
+<span class="nc" id="L140">        return &quot;Short description&quot;;</span>
     }// &lt;/editor-fold&gt;
 
 }

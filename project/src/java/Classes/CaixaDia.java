@@ -49,7 +49,7 @@ public class CaixaDia {
 
     public void setEntradaReal(float entradaReal) throws Exception {
         if(entradaReal < 0)
-            throw new Exception("Entrada invalido");
+            throw new Exception("Entrada invalida");
         
         this.entradaReal = entradaReal;
     }

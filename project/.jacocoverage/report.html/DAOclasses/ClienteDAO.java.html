@@ -52,7 +52,7 @@ public class ClienteDAO {
 <span class="nc" id="L52">        }</span>
 <span class="nc" id="L53">    }</span>
     
-    public List &lt;Cliente&gt; getLista(){
+    public List &lt;Cliente&gt; getLista() throws Exception{
         try {
 <span class="nc" id="L57">            List &lt;Cliente&gt; clientes = new ArrayList&lt;Cliente&gt;();</span>
 <span class="nc" id="L58">            PreparedStatement stmt = this.connection.</span>
@@ -69,13 +69,13 @@ public class ClienteDAO {
 
 <span class="nc" id="L70">            cliente.setIdCliente(rs.getInt(&quot;idCliente&quot;));</span>
 <span class="nc" id="L71">            cliente.setCodFidelidade(rs.getString(&quot;codFidelidade&quot;));</span>
-<span class="nc" id="L72">            cliente.setFidelidade(rs.getBoolean(&quot;fidelidade&quot;));</span>
+<span class="nc" id="L72">            cliente.setFidelidade(rs.getBoolean(&quot;Fidelidade&quot;));</span>
 <span class="nc" id="L73">            cliente.getPf().setCPF(rs.getString(&quot;CPF&quot;));</span>
 <span class="nc" id="L74">            cliente.getPf().setNome(rs.getString(&quot;nome&quot;));</span>
 <span class="nc" id="L75">            cliente.getPf().setSobrenome(rs.getString(&quot;sobrenome&quot;));</span>
 <span class="nc" id="L76">            cliente.getPf().setRG(rs.getString(&quot;RG&quot;));</span>
 <span class="nc" id="L77">            cliente.getPf().setSexo(rs.getString(&quot;sexo&quot;));</span>
-<span class="nc" id="L78">            cliente.getPf().setDataNascimento(rs.getString(&quot;dataNascimento&quot;));</span>
+<span class="nc" id="L78">            cliente.getPf().setDataNascimento(rs.getDate(&quot;dataNascimento&quot;));</span>
 <span class="nc" id="L79">            cliente.getPf().getPessoa().setTelefone(rs.getString(&quot;telefone&quot;));</span>
 <span class="nc" id="L80">            cliente.getPf().getPessoa().setEmail(rs.getString(&quot;email&quot;));</span>
 <span class="nc" id="L81">            cliente.getPf().getPessoa().setLogradouro(rs.getString(&quot;logradouro&quot;));</span>
@@ -124,49 +124,6 @@ public class ClienteDAO {
 <span class="nc" id="L124">            throw new RuntimeException(e);</span>
 <span class="nc" id="L125">            }</span>
 <span class="nc" id="L126">    }</span>
-         
-    public Cliente busca(int id){
-        try {
-<span class="nc" id="L130">            PreparedStatement stmt = this.connection.</span>
-<span class="nc" id="L131">            prepareStatement(&quot;select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF where C.idCliente=?&quot;);</span>
-<span class="nc" id="L132">            stmt.setInt(1, id);</span>
-<span class="nc" id="L133">            ResultSet rs = stmt.executeQuery();</span>
-
-<span class="nc" id="L135">            Cliente cliente = new Cliente();</span>
-<span class="nc" id="L136">            PessoaFisica pf = new PessoaFisica();</span>
-<span class="nc" id="L137">            Pessoa pessoa = new Pessoa();</span>
-<span class="nc" id="L138">            cliente.setPf(pf);</span>
-<span class="nc" id="L139">            cliente.getPf().setPessoa(pessoa);</span>
-            
-<span class="nc" id="L141">            rs.next();</span>
-<span class="nc" id="L142">            cliente.setIdCliente(rs.getInt(&quot;idCliente&quot;));</span>
-<span class="nc" id="L143">            cliente.setCodFidelidade(rs.getString(&quot;codFidelidade&quot;));</span>
-<span class="nc" id="L144">            cliente.setFidelidade(rs.getBoolean(&quot;fidelidade&quot;));</span>
-<span class="nc" id="L145">            cliente.getPf().setCPF(rs.getString(&quot;CPF&quot;));</span>
-<span class="nc" id="L146">            cliente.getPf().setNome(rs.getString(&quot;nome&quot;));</span>
-<span class="nc" id="L147">            cliente.getPf().setSobrenome(rs.getString(&quot;sobrenome&quot;));</span>
-<span class="nc" id="L148">            cliente.getPf().setRG(rs.getString(&quot;RG&quot;));</span>
-<span class="nc" id="L149">            cliente.getPf().setSexo(rs.getString(&quot;sexo&quot;));</span>
-<span class="nc" id="L150">            cliente.getPf().setDataNascimento(rs.getString(&quot;dataNascimento&quot;));</span>
-<span class="nc" id="L151">            cliente.getPf().getPessoa().setTelefone(rs.getString(&quot;telefone&quot;));</span>
-<span class="nc" id="L152">            cliente.getPf().getPessoa().setEmail(rs.getString(&quot;email&quot;));</span>
-<span class="nc" id="L153">            cliente.getPf().getPessoa().setLogradouro(rs.getString(&quot;logradouro&quot;));</span>
-<span class="nc" id="L154">            cliente.getPf().getPessoa().setNumero(rs.getInt(&quot;numero&quot;));</span>
-<span class="nc" id="L155">            cliente.getPf().getPessoa().setComplemento(rs.getString(&quot;complemento&quot;));</span>
-<span class="nc" id="L156">            cliente.getPf().getPessoa().setBairro(rs.getString(&quot;bairro&quot;));</span>
-<span class="nc" id="L157">            cliente.getPf().getPessoa().setCEP(rs.getString(&quot;CEP&quot;));</span>
-<span class="nc" id="L158">            cliente.getPf().getPessoa().setCidade(rs.getString(&quot;cidade&quot;));</span>
-<span class="nc" id="L159">            cliente.getPf().getPessoa().setEstado(rs.getString(&quot;estado&quot;));</span>
-<span class="nc" id="L160">            cliente.getPf().getPessoa().setPais(rs.getString(&quot;pais&quot;));</span>
-
-<span class="nc" id="L162">            rs.close();</span>
-<span class="nc" id="L163">            stmt.close();</span>
-<span class="nc" id="L164">            return cliente;</span>
-        }
-<span class="nc" id="L166">        catch (SQLException e) {</span>
-<span class="nc" id="L167">             throw new RuntimeException(e);</span>
-        }
-    }
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
