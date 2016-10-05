@@ -21,13 +21,13 @@ import java.util.List;
 public class PagamentoDAO {
     private final Connection connection;
     
-<span class="nc" id="L24">    public PagamentoDAO(){</span>
-<span class="nc" id="L25">            this.connection = new ConnectionFactory().getConnection(); </span>
+<span class="nc" id="L24">    public PagamentoDAO() throws Exception{</span>
+<span class="nc" id="L25">            this.connection = new ConnectionFactory().getConnection(&quot;root&quot;,&quot;root&quot;); </span>
 <span class="nc" id="L26">    }</span>
     
-    public void adiciona(Pagamento pagamento) {  
+    public void adiciona(Pagamento pagamento, int idCaixa) {  
 
-<span class="nc" id="L30">        String sql = &quot;insert into Pagamento (tipo, valorTotal, desconto, horario) values(?,?,?,?)&quot;;</span>
+<span class="nc" id="L30">        String sql = &quot;insert into Pagamento(tipo, valorTotal, desconto, horario, Caixa_idCaixa) values(?,?,?,?,?)&quot;;</span>
         
         try{
 <span class="nc" id="L33">           PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);</span>
@@ -36,80 +36,107 @@ public class PagamentoDAO {
 <span class="nc" id="L36">            stmt.setFloat(2, pagamento.getValorTotal());</span>
 <span class="nc" id="L37">            stmt.setFloat(3, pagamento.getDesconto());</span>
 <span class="nc" id="L38">            stmt.setTimestamp(4, pagamento.getHorario());</span>
-<span class="nc" id="L39">            stmt.execute();</span>
+<span class="nc" id="L39">            stmt.setInt(5, idCaixa);</span>
+<span class="nc" id="L40">            stmt.execute();</span>
         
              
-<span class="nc" id="L42">            ResultSet rs = stmt.getGeneratedKeys();</span>
-<span class="nc" id="L43">            rs.next();</span>
-<span class="nc" id="L44">            pagamento.setIdPagamento(rs.getInt(1));</span>
-<span class="nc" id="L45">            stmt.close();</span>
+<span class="nc" id="L43">            ResultSet rs = stmt.getGeneratedKeys();</span>
+<span class="nc" id="L44">            rs.next();</span>
+<span class="nc" id="L45">            pagamento.setIdPagamento(rs.getInt(1));</span>
+<span class="nc" id="L46">            stmt.close();</span>
         }
-<span class="nc" id="L47">        catch (SQLException e){</span>
-<span class="nc" id="L48">            throw new RuntimeException(e);</span>
-<span class="nc" id="L49">        }</span>
-<span class="nc" id="L50">    }</span>
+<span class="nc" id="L48">        catch (SQLException e){</span>
+<span class="nc" id="L49">            throw new RuntimeException(e);</span>
+<span class="nc" id="L50">        }</span>
+<span class="nc" id="L51">    }</span>
         
     public List&lt;Pagamento&gt; getPagamentos(){
         try {
-<span class="nc" id="L54">            List&lt;Pagamento&gt; pagamentos = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L55">            PreparedStatement stmt = this.connection.prepareStatement(&quot;select * from Pagamento;&quot;);</span>
-<span class="nc" id="L56">            ResultSet rs = stmt.executeQuery();</span>
+<span class="nc" id="L55">            List&lt;Pagamento&gt; pagamentos = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L56">            PreparedStatement stmt = this.connection.prepareStatement(&quot;select * from Pagamento;&quot;);</span>
+<span class="nc" id="L57">            ResultSet rs = stmt.executeQuery();</span>
  
-<span class="nc bnc" id="L58" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            while (rs.next()) {</span>
                 // criando o objeto Pagamento
-<span class="nc" id="L60">                Pagamento pagamento = new Pagamento();</span>
+<span class="nc" id="L61">                Pagamento pagamento = new Pagamento();</span>
 
-<span class="nc" id="L62">                pagamento.setIdPagamento(rs.getInt(&quot;idPagamento&quot;));</span>
-<span class="nc" id="L63">                pagamento.setTipo(rs.getString(&quot;tipo&quot;));</span>
-<span class="nc" id="L64">                pagamento.setValorTotal(rs.getFloat(&quot;valorTotal&quot;));</span>
-<span class="nc" id="L65">                pagamento.setDesconto(rs.getFloat(&quot;desconto&quot;));</span>
-<span class="nc" id="L66">                pagamento.setHorario(rs.getTimestamp(&quot;horario&quot;));</span>
+<span class="nc" id="L63">                pagamento.setIdPagamento(rs.getInt(&quot;idPagamento&quot;));</span>
+<span class="nc" id="L64">                pagamento.setTipo(rs.getString(&quot;tipo&quot;));</span>
+<span class="nc" id="L65">                pagamento.setValorTotal(rs.getFloat(&quot;valorTotal&quot;));</span>
+<span class="nc" id="L66">                pagamento.setDesconto(rs.getFloat(&quot;desconto&quot;));</span>
+<span class="nc" id="L67">                pagamento.setHorario(rs.getTimestamp(&quot;horario&quot;));</span>
              
                 // adicionando o objeto à lista
-<span class="nc" id="L69">                pagamentos.add(pagamento);</span>
-<span class="nc" id="L70">            }</span>
-<span class="nc" id="L71">            rs.close();</span>
-<span class="nc" id="L72">            stmt.close();</span>
-<span class="nc" id="L73">            return pagamentos;</span>
+<span class="nc" id="L70">                pagamentos.add(pagamento);</span>
+<span class="nc" id="L71">            }</span>
+<span class="nc" id="L72">            rs.close();</span>
+<span class="nc" id="L73">            stmt.close();</span>
+<span class="nc" id="L74">            return pagamentos;</span>
         }
-<span class="nc" id="L75">        catch (SQLException e) {</span>
-<span class="nc" id="L76">             throw new RuntimeException(e);</span>
+<span class="nc" id="L76">        catch (SQLException e) {</span>
+<span class="nc" id="L77">             throw new RuntimeException(e);</span>
         }
     }
     
     public void remove(int id){    
-<span class="nc" id="L81">        String sql = &quot;delete from Pagamento where Pagamento.id = ?&quot;;</span>
+<span class="nc" id="L82">        String sql = &quot;delete from Pagamento where Pagamento.id = ?&quot;;</span>
         
         try{
-<span class="nc" id="L84">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
-<span class="nc" id="L85">            stmt.setInt(1, id);</span>
-<span class="nc" id="L86">            stmt.execute();</span>
-<span class="nc" id="L87">            stmt.close();      </span>
+<span class="nc" id="L85">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L86">            stmt.setInt(1, id);</span>
+<span class="nc" id="L87">            stmt.execute();</span>
+<span class="nc" id="L88">            stmt.close();      </span>
         }
-<span class="nc" id="L89">        catch (SQLException e){         </span>
-<span class="nc" id="L90">            throw new RuntimeException(e);</span>
-<span class="nc" id="L91">        }</span>
-<span class="nc" id="L92">    }</span>
+<span class="nc" id="L90">        catch (SQLException e){         </span>
+<span class="nc" id="L91">            throw new RuntimeException(e);</span>
+<span class="nc" id="L92">        }</span>
+<span class="nc" id="L93">    }</span>
     
       public void altera(Pagamento pagamento) {
-<span class="nc" id="L95">          String sql = &quot;update Pagamento set tipo=?, valorTotal=?,&quot; +</span>
+<span class="nc" id="L96">          String sql = &quot;update Pagamento set tipo=?, valorTotal=?,&quot; +</span>
             &quot;desconto=?, Horario=? where idPagamento=?&quot;;
         
         try{
-<span class="nc" id="L99">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L100">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L101">            stmt.setString(1,pagamento.getTipo());</span>
-<span class="nc" id="L102">            stmt.setFloat(2, pagamento.getValorTotal());</span>
-<span class="nc" id="L103">            stmt.setFloat(3, pagamento.getDesconto());</span>
-<span class="nc" id="L104">            stmt.setTimestamp(4, pagamento.getHorario());</span>
-<span class="nc" id="L105">            stmt.setInt(5, pagamento.getIdPagamento());</span>
+<span class="nc" id="L102">            stmt.setString(1,pagamento.getTipo());</span>
+<span class="nc" id="L103">            stmt.setFloat(2, pagamento.getValorTotal());</span>
+<span class="nc" id="L104">            stmt.setFloat(3, pagamento.getDesconto());</span>
+<span class="nc" id="L105">            stmt.setTimestamp(4, pagamento.getHorario());</span>
+<span class="nc" id="L106">            stmt.setInt(5, pagamento.getIdPagamento());</span>
            
-<span class="nc" id="L107">            stmt.execute();</span>
-<span class="nc" id="L108">            stmt.close();</span>
+<span class="nc" id="L108">            stmt.execute();</span>
+<span class="nc" id="L109">            stmt.close();</span>
         }
-<span class="nc" id="L110">        catch (SQLException e){</span>
-<span class="nc" id="L111">            throw new RuntimeException(e);</span>
-<span class="nc" id="L112">        }        </span>
-<span class="nc" id="L113">    }</span>
+<span class="nc" id="L111">        catch (SQLException e){</span>
+<span class="nc" id="L112">            throw new RuntimeException(e);</span>
+<span class="nc" id="L113">        }        </span>
+<span class="nc" id="L114">    }</span>
+      
+    public void calculaSaldos(Pagamento pagamento){
+        float saldoInicial;
+        
+<span class="nc" id="L119">        String sql1 = &quot;Select count(*) from CaixaDia&quot;;</span>
+       
+        try {
+<span class="nc" id="L122">            PreparedStatement stmt = connection.prepareStatement(sql1);</span>
+<span class="nc" id="L123">            ResultSet rs = stmt.executeQuery();</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            if(!rs.next()) {</span>
+<span class="nc" id="L125">                 saldoInicial = 0.0f;</span>
+<span class="nc" id="L126">                 stmt.close();</span>
+            }
+            else {
+<span class="nc" id="L129">                stmt.close();</span>
+<span class="nc" id="L130">                String sql2 = &quot;Select saldoReal From CaixaDia Where data = SUBDATE(CURRENT_DATE(), INTERVAL 1 DAY);&quot;;</span>
+<span class="nc" id="L131">                stmt = connection.prepareStatement(sql2);</span>
+<span class="nc" id="L132">                rs = stmt.executeQuery();</span>
+<span class="nc" id="L133">                saldoInicial = rs.getFloat(&quot;saldoReal&quot;);</span>
+            }
+        }
+<span class="nc" id="L136">        catch (SQLException e) {</span>
+<span class="nc" id="L137">           throw new RuntimeException(e);</span>
+<span class="nc" id="L138">        }</span>
+        
+<span class="nc" id="L140">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -2,17 +2,16 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
-<span class="nc" id="L7">public class ConnectionFactory {</span>
-    public Connection getConnection() {
+<span class="nc" id="L6">public class ConnectionFactory {</span>
+    public Connection getConnection(String user, String password) throws Exception {
         try {
-<span class="nc" id="L10">            DriverManager.registerDriver(new com.mysql.jdbc.Driver());</span>
-<span class="nc" id="L11">            return DriverManager.getConnection(</span>
-                    &quot;jdbc:mysql://localhost/livrariaengsw&quot;, &quot;root&quot;, &quot;root&quot;
+<span class="nc" id="L9">            DriverManager.registerDriver(new com.mysql.jdbc.Driver());</span>
+<span class="nc" id="L10">            return DriverManager.getConnection(</span>
+                    &quot;jdbc:mysql://localhost/livrariaengsw&quot;, user, password
             );
-<span class="nc" id="L14">        } catch (SQLException e) {</span>
-<span class="nc" id="L15">            throw new RuntimeException(e);</span>
+<span class="nc" id="L13">        } catch (Exception e) {</span>
+<span class="nc" id="L14">            throw new Exception(&quot;Erro de conexão com banco&quot;);</span>
         }
     }
 }

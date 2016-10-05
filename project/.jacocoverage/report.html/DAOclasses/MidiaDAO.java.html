@@ -17,11 +17,11 @@ import java.sql.SQLException;
 public class MidiaDAO {
     private Connection connection;
     
-<span class="nc" id="L20">    public MidiaDAO(){</span>
-<span class="nc" id="L21">        this.connection = new ConnectionFactory().getConnection();</span>
+<span class="nc" id="L20">    public MidiaDAO() throws Exception{</span>
+<span class="nc" id="L21">        this.connection = new ConnectionFactory().getConnection(&quot;root&quot;,&quot;root&quot;);</span>
 <span class="nc" id="L22">    }</span>
     
-    public void adiciona(Midia midia){
+    public void adiciona(Midia midia) throws Exception{
 <span class="nc" id="L25">        ProdutoDAO pdtdao = new ProdutoDAO();</span>
 <span class="nc" id="L26">        pdtdao.adiciona(midia.getPdt());</span>
         
@@ -44,7 +44,7 @@ public class MidiaDAO {
 <span class="nc" id="L44">        }</span>
 <span class="nc" id="L45">    }</span>
     
-    public void altera(Midia midia){
+    public void altera(Midia midia) throws Exception{
 <span class="nc" id="L48">        ProdutoDAO pdtdao = new ProdutoDAO();</span>
 <span class="nc" id="L49">        pdtdao.altera(midia.getPdt());</span>
         

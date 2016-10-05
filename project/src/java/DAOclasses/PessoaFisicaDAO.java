@@ -22,8 +22,21 @@ public class PessoaFisicaDAO {
     public PessoaFisicaDAO() throws Exception {
         this.connection = new ConnectionFactory().getConnection("root","root");
     }
+    
+    // Método do DAO para conexão manual com o banco
+    public void setaConexaoPessoaFisicaDAO(String user, String password) throws Exception {
+        try {
+            this.connection = new ConnectionFactory().getConnection(user, password);
+        } catch(Exception e) {
+            throw new Exception("Erro ao conectar com o banco");
+        }
+    }
      
-    public void adiciona(PessoaFisica pf) throws Exception {
+    public boolean adiciona(PessoaFisica pf) throws Exception {
+        
+        if((pf.getCPF() == null)||(pf.getDataNascimento() == null)||(pf.getNome() == null)||(pf.getRG() == null)||(pf.getSexo() == null)||(pf.getSobrenome() == null))
+            throw new Exception("Campo nulo, erro ao enviar a pessoa fisica para o banco");
+        
         PessoaDAO pdao = new PessoaDAO();
         pdao.adiciona(pf.getPessoa());
         
@@ -44,13 +57,18 @@ public class PessoaFisicaDAO {
             
             stmt.execute();
             stmt.close();
+            
+            return true;
         }
         catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
     
-    public void altera (PessoaFisica pf) throws Exception{
+    public boolean altera (PessoaFisica pf) throws Exception{
+        
+        if((pf.getCPF() == null)||(pf.getDataNascimento() == null)||(pf.getNome() == null)||(pf.getRG() == null)||(pf.getSexo() == null)||(pf.getSobrenome() == null))
+            throw new Exception("Campo nulo, erro ao enviar a pessoa fisica para o banco");
         
         PessoaDAO pdao = new PessoaDAO();
         pdao.altera(pf.getPessoa());
@@ -73,6 +91,8 @@ public class PessoaFisicaDAO {
 
             stmt.execute();
             stmt.close();
+            
+            return true;
         }   
         catch (SQLException e){
             throw new RuntimeException(e);

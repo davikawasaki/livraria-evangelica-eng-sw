@@ -19,33 +19,48 @@ package Classes;
 <span class="fc" id="L19">        return nomeRepresentante;</span>
     }
 
-    public void setNomeRepresentante(String nomeRepresentante) {
-<span class="fc" id="L23">        this.nomeRepresentante = nomeRepresentante;</span>
-<span class="fc" id="L24">    }</span>
+    public void setNomeRepresentante(String nomeRepresentante) throws Exception {
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if(nomeRepresentante.isEmpty())</span>
+<span class="fc" id="L24">            throw new Exception(&quot;Nome Representante Invalido&quot;);</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        else if(nomeRepresentante.length() &lt; 45)</span>
+<span class="fc" id="L26">            this.nomeRepresentante = nomeRepresentante;</span>
+        else
+<span class="fc" id="L28">            throw new Exception(&quot;Nome Representante maior que 45 caracteres&quot;);  </span>
+<span class="fc" id="L29">    }</span>
 
     public String getTipoServico() {
-<span class="fc" id="L27">        return tipoServico;</span>
+<span class="fc" id="L32">        return tipoServico;</span>
     }
 
-    public void setTipoServico(String tipoServico) {
-<span class="fc" id="L31">        this.tipoServico = tipoServico;</span>
-<span class="fc" id="L32">    }</span>
+    public void setTipoServico(String tipoServico) throws Exception {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if(tipoServico.isEmpty())</span>
+<span class="fc" id="L37">            throw new Exception(&quot;Tipo de Serviço Invalido&quot;);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        else if(tipoServico.length() &lt; 45)</span>
+<span class="fc" id="L39">            this.tipoServico = tipoServico;</span>
+        else
+<span class="fc" id="L41">            throw new Exception(&quot;Tipo de Serviço maior que 45 caracteres&quot;); </span>
+<span class="fc" id="L42">    }</span>
 
     public String getTipoFornecimento() {
-<span class="fc" id="L35">        return tipoFornecimento;</span>
+<span class="fc" id="L45">        return tipoFornecimento;</span>
     }
 
-    public void setTipoFornecimento(String tipoFornecimento) {
-<span class="fc" id="L39">        this.tipoFornecimento = tipoFornecimento;</span>
-<span class="fc" id="L40">    }</span>
+    public void setTipoFornecimento(String tipoFornecimento) throws Exception {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if(tipoFornecimento.isEmpty())</span>
+<span class="fc" id="L50">            throw new Exception(&quot;Tipo de Fornecimento Invalido&quot;);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        else if(tipoFornecimento.length() &lt; 45)</span>
+<span class="fc" id="L52">            this.tipoFornecimento = tipoFornecimento;</span>
+        else
+<span class="fc" id="L54">            throw new Exception(&quot;Tipo de Fornecimento maior que 45 caracteres&quot;); </span>
+<span class="fc" id="L55">    }</span>
 
     public PessoaJuridica getPj() {
-<span class="fc" id="L43">        return pj;</span>
+<span class="fc" id="L58">        return pj;</span>
     }
 
     public void setPj(PessoaJuridica pj) {
-<span class="fc" id="L47">        this.pj = pj;</span>
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L62">        this.pj = pj;</span>
+<span class="fc" id="L63">    }</span>
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

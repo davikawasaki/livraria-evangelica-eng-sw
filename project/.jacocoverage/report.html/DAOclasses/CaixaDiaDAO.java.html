@@ -25,12 +25,12 @@ import java.util.logging.Logger;
 public class CaixaDiaDAO {
     private final Connection connection;
     
-<span class="nc" id="L28">    public CaixaDiaDAO(){</span>
-<span class="nc" id="L29">            this.connection = new ConnectionFactory().getConnection(); </span>
+<span class="nc" id="L28">    public CaixaDiaDAO() throws Exception{</span>
+<span class="nc" id="L29">            this.connection = new ConnectionFactory().getConnection(&quot;root&quot;,&quot;root&quot;); </span>
 <span class="nc" id="L30">    }</span>
     
     public void adiciona(CaixaDia caixa) {  
-
+        
 <span class="nc" id="L34">        String sql = &quot;insert into CaixaDia(saldoInicial, entradaBruto, entradaReal, saldoLiquido, saldoReal, saidaTotal, data) values(?,?,?,?,?,?,?)&quot;;</span>
         
         try{
@@ -63,7 +63,7 @@ public class CaixaDiaDAO {
     public List&lt;CaixaDia&gt; getCaixasDiarios() throws Exception{
         try {
 <span class="nc" id="L65">            List&lt;CaixaDia&gt; caixas = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L66">            PreparedStatement stmt = this.connection.prepareStatement(&quot;select * from Caixa;&quot;);</span>
+<span class="nc" id="L66">            PreparedStatement stmt = this.connection.prepareStatement(&quot;select * from CaixaDia;&quot;);</span>
 <span class="nc" id="L67">            ResultSet rs = stmt.executeQuery();</span>
  
 <span class="nc bnc" id="L69" title="All 2 branches missed.">            while (rs.next()) {</span>
@@ -77,83 +77,85 @@ public class CaixaDiaDAO {
 <span class="nc" id="L77">                caixa.setSaldoLiquido(rs.getFloat(&quot;saldoLiquido&quot;));</span>
 <span class="nc" id="L78">                caixa.setSaldoReal(rs.getFloat(&quot;saldoReal&quot;));</span>
 <span class="nc" id="L79">                caixa.setSaidaTotal(rs.getFloat(&quot;saidaTotal&quot;));</span>
+<span class="nc" id="L80">                caixa.setData(rs.getDate(&quot;data&quot;));</span>
 
                 // adicionando o objeto à lista
-<span class="nc" id="L82">                caixas.add(caixa);</span>
-<span class="nc" id="L83">            }</span>
-<span class="nc" id="L84">            rs.close();</span>
-<span class="nc" id="L85">            stmt.close();</span>
-<span class="nc" id="L86">            return caixas;</span>
+<span class="nc" id="L83">                caixas.add(caixa);</span>
+<span class="nc" id="L84">            }</span>
+<span class="nc" id="L85">            rs.close();</span>
+<span class="nc" id="L86">            stmt.close();</span>
+<span class="nc" id="L87">            return caixas;</span>
         }
-<span class="nc" id="L88">        catch (SQLException e) {</span>
-<span class="nc" id="L89">             throw new RuntimeException(e);</span>
+<span class="nc" id="L89">        catch (SQLException e) {</span>
+<span class="nc" id="L90">             throw new RuntimeException(e);</span>
         }
     }
     
     public CaixaDia buscaCaixa(Date data) throws Exception{
             
-<span class="nc" id="L95">        PreparedStatement stmt = this.connection.prepareStatement(&quot;select * from Caixa where horario=?;&quot;);</span>
-<span class="nc" id="L96">        ResultSet rs = stmt.executeQuery();</span>
+<span class="nc" id="L96">        PreparedStatement stmt = this.connection.prepareStatement(&quot;select * from CaixaDia where data=?;&quot;);</span>
+<span class="nc" id="L97">        stmt.setDate(1, data);</span>
+
+<span class="nc" id="L99">        ResultSet rs = stmt.executeQuery();</span>
         try{
             // criando o objeto Caixa
-<span class="nc" id="L99">            CaixaDia caixa = new CaixaDia();</span>
-            
-<span class="nc" id="L101">            stmt.setDate(1, data);</span>
-<span class="nc" id="L102">            stmt.executeUpdate();</span>
-            
-<span class="nc bnc" id="L104" title="All 2 branches missed.">            if(rs.next()){</span>
-<span class="nc" id="L105">                caixa.setIdCaixa(rs.getInt(&quot;idCaixa&quot;));</span>
-<span class="nc" id="L106">                caixa.setSaldoInicial(rs.getFloat(&quot;saldoInicial&quot;));</span>
-<span class="nc" id="L107">                caixa.setEntradaBruto(rs.getFloat(&quot;entradaBruto&quot;));</span>
-<span class="nc" id="L108">                caixa.setEntradaReal(rs.getFloat(&quot;entradaReal&quot;));</span>
-<span class="nc" id="L109">                caixa.setSaldoLiquido(rs.getFloat(&quot;saldoLiquido&quot;));</span>
-<span class="nc" id="L110">                caixa.setSaldoReal(rs.getFloat(&quot;saldoReal&quot;));</span>
-<span class="nc" id="L111">                caixa.setSaidaTotal(rs.getFloat(&quot;saidaTotal&quot;));</span>
+<span class="nc" id="L102">            CaixaDia caixa = null;</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if(rs.next()){</span>
+<span class="nc" id="L104">                caixa = new CaixaDia();</span>
+
+<span class="nc" id="L106">                caixa.setIdCaixa(rs.getInt(&quot;idCaixa&quot;));</span>
+<span class="nc" id="L107">                caixa.setSaldoInicial(rs.getFloat(&quot;saldoInicial&quot;));</span>
+<span class="nc" id="L108">                caixa.setEntradaBruto(rs.getFloat(&quot;entradaBruto&quot;));</span>
+<span class="nc" id="L109">                caixa.setEntradaReal(rs.getFloat(&quot;entradaReal&quot;));</span>
+<span class="nc" id="L110">                caixa.setSaldoLiquido(rs.getFloat(&quot;saldoLiquido&quot;));</span>
+<span class="nc" id="L111">                caixa.setSaldoReal(rs.getFloat(&quot;saldoReal&quot;));</span>
+<span class="nc" id="L112">                caixa.setSaidaTotal(rs.getFloat(&quot;saidaTotal&quot;));</span>
+<span class="nc" id="L113">                caixa.setData(rs.getDate(&quot;data&quot;));</span>
             }
             
-<span class="nc" id="L114">            rs.close();</span>
-<span class="nc" id="L115">            stmt.close();</span>
-<span class="nc" id="L116">            return caixa;</span>
+<span class="nc" id="L116">            rs.close();</span>
+<span class="nc" id="L117">            stmt.close();</span>
+<span class="nc" id="L118">            return caixa;</span>
         }
-<span class="nc" id="L118">        catch (SQLException e) {</span>
-<span class="nc" id="L119">             throw new RuntimeException(e);</span>
+<span class="nc" id="L120">        catch (SQLException e) {</span>
+<span class="nc" id="L121">             throw new RuntimeException(e);</span>
         }    
     }
     
     public void remove(int id){    
-<span class="nc" id="L124">        String sql = &quot;delete from CaixaDia where CaixaDia.id = ?&quot;;</span>
+<span class="nc" id="L126">        String sql = &quot;delete from CaixaDia where CaixaDia.id = ?&quot;;</span>
         
         try{
-<span class="nc" id="L127">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
-<span class="nc" id="L128">            stmt.setInt(1, id);</span>
-<span class="nc" id="L129">            stmt.execute();</span>
-<span class="nc" id="L130">            stmt.close();      </span>
+<span class="nc" id="L129">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L130">            stmt.setInt(1, id);</span>
+<span class="nc" id="L131">            stmt.execute();</span>
+<span class="nc" id="L132">            stmt.close();      </span>
         }
-<span class="nc" id="L132">        catch (SQLException e){         </span>
-<span class="nc" id="L133">            throw new RuntimeException(e);</span>
-<span class="nc" id="L134">        }</span>
-<span class="nc" id="L135">    }</span>
+<span class="nc" id="L134">        catch (SQLException e){         </span>
+<span class="nc" id="L135">            throw new RuntimeException(e);</span>
+<span class="nc" id="L136">        }</span>
+<span class="nc" id="L137">    }</span>
     
       public void altera(CaixaDia caixa) {
-<span class="nc" id="L138">          String sql = &quot;update CaixaDia set saldoInicial=?, entradaBruto=?,&quot; +</span>
+<span class="nc" id="L140">          String sql = &quot;update CaixaDia set saldoInicial=?, entradaBruto=?,&quot; +</span>
             &quot;entradaReal=?, SaldoLiquido=?, SaldoReal=?, SaidaTotal=? where idCaixa=?&quot;;
         
         try{
-<span class="nc" id="L142">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L144">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L144">            stmt.setFloat(1,caixa.getSaldoInicial());</span>
-<span class="nc" id="L145">            stmt.setFloat(2, caixa.getEntradaBruto());</span>
-<span class="nc" id="L146">            stmt.setFloat(3, caixa.getEntradaReal());</span>
-<span class="nc" id="L147">            stmt.setFloat(4, caixa.getSaldoLiquido());</span>
-<span class="nc" id="L148">            stmt.setFloat(5, caixa.getSaldoReal());</span>
-<span class="nc" id="L149">            stmt.setFloat(6, caixa.getSaidaTotal());</span>
-<span class="nc" id="L150">            stmt.setInt(7, caixa.getIdCaixa());          </span>
-<span class="nc" id="L151">            stmt.execute();</span>
-<span class="nc" id="L152">            stmt.close();</span>
+<span class="nc" id="L146">            stmt.setFloat(1,caixa.getSaldoInicial());</span>
+<span class="nc" id="L147">            stmt.setFloat(2, caixa.getEntradaBruto());</span>
+<span class="nc" id="L148">            stmt.setFloat(3, caixa.getEntradaReal());</span>
+<span class="nc" id="L149">            stmt.setFloat(4, caixa.getSaldoLiquido());</span>
+<span class="nc" id="L150">            stmt.setFloat(5, caixa.getSaldoReal());</span>
+<span class="nc" id="L151">            stmt.setFloat(6, caixa.getSaidaTotal());</span>
+<span class="nc" id="L152">            stmt.setInt(7, caixa.getIdCaixa());          </span>
+<span class="nc" id="L153">            stmt.execute();</span>
+<span class="nc" id="L154">            stmt.close();</span>
         }
-<span class="nc" id="L154">        catch (SQLException e){</span>
-<span class="nc" id="L155">            throw new RuntimeException(e);</span>
-<span class="nc" id="L156">        }        </span>
-<span class="nc" id="L157">    }</span>
+<span class="nc" id="L156">        catch (SQLException e){</span>
+<span class="nc" id="L157">            throw new RuntimeException(e);</span>
+<span class="nc" id="L158">        }        </span>
+<span class="nc" id="L159">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -16,118 +16,135 @@ import java.util.List;
 public class PessoaDAO {    
     private Connection connection;
     
-<span class="nc" id="L19">    public PessoaDAO() {</span>
-<span class="nc" id="L20">        this.connection = new ConnectionFactory().getConnection();</span>
+<span class="nc" id="L19">    public PessoaDAO() throws Exception {</span>
+<span class="nc" id="L20">        this.connection = new ConnectionFactory().getConnection(&quot;root&quot;,&quot;root&quot;);</span>
 <span class="nc" id="L21">    }</span>
     
-    public void adiciona(Pessoa pessoa) {
+    // Método do DAO para conexão manual com o banco
+    public void setaConexaoPessoaDAO(String user, String password) throws Exception {
+        try {
+<span class="nc" id="L26">            this.connection = new ConnectionFactory().getConnection(user, password);</span>
+<span class="nc" id="L27">        } catch(Exception e) {</span>
+<span class="nc" id="L28">            throw new Exception(&quot;Erro ao conectar com o banco&quot;);</span>
+<span class="nc" id="L29">        }</span>
+<span class="nc" id="L30">    }</span>
+    
+    public boolean adiciona(Pessoa pessoa) throws Exception {
                 
-<span class="nc" id="L25">        String sql = &quot;insert into Pessoa&quot; + </span>
+<span class="nc bnc" id="L34" title="All 20 branches missed.">        if((pessoa.getBairro()==null) || (pessoa.getCEP()==null) || (pessoa.getCidade()==null) || (pessoa.getComplemento()==null) || (pessoa.getEmail()==null) || (pessoa.getEstado()==null) || (pessoa.getLogradouro()==null) || (pessoa.getPais()==null) || (pessoa.getSenha()==null) || (pessoa.getTelefone()==null))</span>
+<span class="nc" id="L35">                throw new Exception(&quot;Campo nulo, erro ao enviar a pessoa fisica para o banco&quot;);</span>
+        
+<span class="nc" id="L37">        String sql = &quot;insert into Pessoa&quot; + </span>
                 &quot;(telefone, email, CEP, logradouro, complemento, numero, bairro, cidade, estado, pais)&quot; + 
                 &quot;values(?,?,?,?,?,?,?,?,?,?)&quot;;
     
         try{
-<span class="nc" id="L30">           PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="nc" id="L42">           PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);</span>
 
-<span class="nc" id="L32">           stmt.setString(1, pessoa.getTelefone());</span>
-<span class="nc" id="L33">           stmt.setString(2, pessoa.getEmail());</span>
-<span class="nc" id="L34">           stmt.setString(3, pessoa.getCEP());</span>
-<span class="nc" id="L35">           stmt.setString(4, pessoa.getLogradouro());</span>
-<span class="nc" id="L36">           stmt.setString(5, pessoa.getComplemento());</span>
-<span class="nc" id="L37">           stmt.setInt(6, pessoa.getNumero());</span>
-<span class="nc" id="L38">           stmt.setString(7, pessoa.getBairro());</span>
-<span class="nc" id="L39">           stmt.setString(8, pessoa.getCidade());</span>
-<span class="nc" id="L40">           stmt.setString(9, pessoa.getEstado());</span>
-<span class="nc" id="L41">           stmt.setString(10, pessoa.getPais());       </span>
-<span class="nc" id="L42">           stmt.executeUpdate();</span>
+<span class="nc" id="L44">           stmt.setString(1, pessoa.getTelefone());</span>
+<span class="nc" id="L45">           stmt.setString(2, pessoa.getEmail());</span>
+<span class="nc" id="L46">           stmt.setString(3, pessoa.getCEP());</span>
+<span class="nc" id="L47">           stmt.setString(4, pessoa.getLogradouro());</span>
+<span class="nc" id="L48">           stmt.setString(5, pessoa.getComplemento());</span>
+<span class="nc" id="L49">           stmt.setInt(6, pessoa.getNumero());</span>
+<span class="nc" id="L50">           stmt.setString(7, pessoa.getBairro());</span>
+<span class="nc" id="L51">           stmt.setString(8, pessoa.getCidade());</span>
+<span class="nc" id="L52">           stmt.setString(9, pessoa.getEstado());</span>
+<span class="nc" id="L53">           stmt.setString(10, pessoa.getPais());       </span>
+<span class="nc" id="L54">           stmt.executeUpdate();</span>
            
-<span class="nc" id="L44">           ResultSet rs = stmt.getGeneratedKeys();</span>
-<span class="nc" id="L45">           rs.next();</span>
-<span class="nc" id="L46">           pessoa.setId(rs.getInt(1));</span>
+<span class="nc" id="L56">           ResultSet rs = stmt.getGeneratedKeys();</span>
+<span class="nc" id="L57">           rs.next();</span>
+<span class="nc" id="L58">           pessoa.setId(rs.getInt(1));</span>
            
-<span class="nc" id="L48">           stmt.close();</span>
+<span class="nc" id="L60">           stmt.close();</span>
+<span class="nc" id="L61">           return true;</span>
         }
-<span class="nc" id="L50">        catch (SQLException e){</span>
-<span class="nc" id="L51">            throw new RuntimeException(e);</span>
-<span class="nc" id="L52">        }</span>
-<span class="nc" id="L53">    }</span>
-    
-    public List&lt;Pessoa&gt; getLista(){
-        try {
-<span class="nc" id="L57">            List&lt;Pessoa&gt; pessoas = new ArrayList&lt;Pessoa&gt;();</span>
-<span class="nc" id="L58">            PreparedStatement stmt = this.connection.prepareStatement(&quot;select * from Pessoa;&quot;);</span>
-<span class="nc" id="L59">            ResultSet rs = stmt.executeQuery();</span>
- 
-<span class="nc bnc" id="L61" title="All 2 branches missed.">        while (rs.next()) {</span>
-            // criando o objeto Pessoa
-<span class="nc" id="L63">            Pessoa pessoa = new Pessoa();</span>
-            
-<span class="nc" id="L65">            pessoa.setId(rs.getInt(&quot;idPessoa&quot;));</span>
-<span class="nc" id="L66">            pessoa.setTelefone(rs.getString(&quot;telefone&quot;));</span>
-<span class="nc" id="L67">            pessoa.setEmail(rs.getString(&quot;email&quot;));</span>
-<span class="nc" id="L68">            pessoa.setLogradouro(rs.getString(&quot;logradouro&quot;));</span>
-<span class="nc" id="L69">            pessoa.setNumero(rs.getInt(&quot;numero&quot;));</span>
-<span class="nc" id="L70">            pessoa.setComplemento(rs.getString(&quot;complemento&quot;));</span>
-<span class="nc" id="L71">            pessoa.setBairro(rs.getString(&quot;bairro&quot;));</span>
-<span class="nc" id="L72">            pessoa.setCEP(rs.getString(&quot;CEP&quot;));</span>
-<span class="nc" id="L73">            pessoa.setCidade(rs.getString(&quot;cidade&quot;));</span>
-<span class="nc" id="L74">            pessoa.setEstado(rs.getString(&quot;estado&quot;));</span>
-<span class="nc" id="L75">            pessoa.setPais(rs.getString(&quot;pais&quot;));</span>
-
-            // adicionando o objeto à lista
-<span class="nc" id="L78">            pessoas.add(pessoa);</span>
-<span class="nc" id="L79">        }</span>
-<span class="nc" id="L80">        rs.close();</span>
-<span class="nc" id="L81">        stmt.close();</span>
-<span class="nc" id="L82">        return pessoas;</span>
-        }
-<span class="nc" id="L84">        catch (SQLException e) {</span>
-<span class="nc" id="L85">             throw new RuntimeException(e);</span>
+<span class="nc" id="L63">        catch (SQLException e){</span>
+<span class="nc" id="L64">            throw new RuntimeException(e);</span>
         }
     }
     
-    public void remove(int id){    
-        //String sql = &quot;delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))&quot;;
-<span class="nc" id="L91">        String sql = &quot;delete from Pessoa where Pessoa.id = ?&quot;;</span>
+    public List&lt;Pessoa&gt; getLista(){
+        try {
+<span class="nc" id="L70">            List&lt;Pessoa&gt; pessoas = new ArrayList&lt;Pessoa&gt;();</span>
+<span class="nc" id="L71">            PreparedStatement stmt = this.connection.prepareStatement(&quot;select * from Pessoa;&quot;);</span>
+<span class="nc" id="L72">            ResultSet rs = stmt.executeQuery();</span>
+ 
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        while (rs.next()) {</span>
+            // criando o objeto Pessoa
+<span class="nc" id="L76">            Pessoa pessoa = new Pessoa();</span>
+            
+<span class="nc" id="L78">            pessoa.setId(rs.getInt(&quot;idPessoa&quot;));</span>
+<span class="nc" id="L79">            pessoa.setTelefone(rs.getString(&quot;telefone&quot;));</span>
+<span class="nc" id="L80">            pessoa.setEmail(rs.getString(&quot;email&quot;));</span>
+<span class="nc" id="L81">            pessoa.setLogradouro(rs.getString(&quot;logradouro&quot;));</span>
+<span class="nc" id="L82">            pessoa.setNumero(rs.getInt(&quot;numero&quot;));</span>
+<span class="nc" id="L83">            pessoa.setComplemento(rs.getString(&quot;complemento&quot;));</span>
+<span class="nc" id="L84">            pessoa.setBairro(rs.getString(&quot;bairro&quot;));</span>
+<span class="nc" id="L85">            pessoa.setCEP(rs.getString(&quot;CEP&quot;));</span>
+<span class="nc" id="L86">            pessoa.setCidade(rs.getString(&quot;cidade&quot;));</span>
+<span class="nc" id="L87">            pessoa.setEstado(rs.getString(&quot;estado&quot;));</span>
+<span class="nc" id="L88">            pessoa.setPais(rs.getString(&quot;pais&quot;));</span>
+
+            // adicionando o objeto à lista
+<span class="nc" id="L91">            pessoas.add(pessoa);</span>
+<span class="nc" id="L92">        }</span>
+<span class="nc" id="L93">        rs.close();</span>
+<span class="nc" id="L94">        stmt.close();</span>
+<span class="nc" id="L95">        return pessoas;</span>
+        }
+<span class="nc" id="L97">        catch (SQLException e) {</span>
+<span class="nc" id="L98">             throw new RuntimeException(e);</span>
+        }
+    }
+    
+    public boolean remove(String CNPJ){
+<span class="nc" id="L103">        String sql = &quot;delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))&quot;;</span>
         
         try{
-<span class="nc" id="L94">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
-<span class="nc" id="L95">            stmt.setInt(1, id);</span>
-<span class="nc" id="L96">            stmt.execute();</span>
-<span class="nc" id="L97">            stmt.close();      </span>
+<span class="nc" id="L106">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L107">            stmt.setString(1, CNPJ);</span>
+<span class="nc" id="L108">            stmt.execute();</span>
+<span class="nc" id="L109">            stmt.close();</span>
+<span class="nc" id="L110">            return true;</span>
         }
-<span class="nc" id="L99">        catch (SQLException e){         </span>
-<span class="nc" id="L100">            throw new RuntimeException(e);</span>
-<span class="nc" id="L101">        }</span>
-<span class="nc" id="L102">    } </span>
+<span class="nc" id="L112">        catch (SQLException e){         </span>
+<span class="nc" id="L113">            throw new RuntimeException(e);</span>
+        }
+    }
     
-      public void altera(Pessoa pessoa) {
-<span class="nc" id="L105">          String sql = &quot;update Pessoa set telefone=?, email=?,&quot; +</span>
+      public boolean altera(Pessoa pessoa) throws Exception {
+<span class="nc bnc" id="L118" title="All 20 branches missed.">          if((pessoa.getBairro()==null) || (pessoa.getCEP()==null) || (pessoa.getCidade()==null) || (pessoa.getComplemento()==null) || (pessoa.getEmail()==null) || (pessoa.getEstado()==null) || (pessoa.getLogradouro()==null) || (pessoa.getPais()==null) || (pessoa.getSenha()==null) || (pessoa.getTelefone()==null))</span>
+<span class="nc" id="L119">                throw new Exception(&quot;Campo nulo, erro ao enviar a pessoa para o banco&quot;);</span>
+          
+<span class="nc" id="L121">          String sql = &quot;update Pessoa set telefone=?, email=?,&quot; +</span>
             &quot;CEP=?, Logradouro=?, Complemento=?, Numero=?, Bairro=?,&quot; +
             &quot;Cidade=?, Estado=?, Pais=? where idPessoa=?&quot;;
         
         try{
-<span class="nc" id="L110">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L126">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L112">            stmt.setString(1,pessoa.getTelefone());</span>
-<span class="nc" id="L113">            stmt.setString(2, pessoa.getEmail());</span>
-<span class="nc" id="L114">            stmt.setString(3, pessoa.getCEP());</span>
-<span class="nc" id="L115">            stmt.setString(4, pessoa.getLogradouro());</span>
-<span class="nc" id="L116">            stmt.setString(5, pessoa.getComplemento());</span>
-<span class="nc" id="L117">            stmt.setInt(6, pessoa.getNumero());</span>
-<span class="nc" id="L118">            stmt.setString(7, pessoa.getBairro());</span>
-<span class="nc" id="L119">            stmt.setString(8, pessoa.getCidade());</span>
-<span class="nc" id="L120">            stmt.setString(9, pessoa.getEstado());</span>
-<span class="nc" id="L121">            stmt.setString(10, pessoa.getPais());</span>
-<span class="nc" id="L122">            stmt.setInt(11, pessoa.getId());</span>
+<span class="nc" id="L128">            stmt.setString(1,pessoa.getTelefone());</span>
+<span class="nc" id="L129">            stmt.setString(2, pessoa.getEmail());</span>
+<span class="nc" id="L130">            stmt.setString(3, pessoa.getCEP());</span>
+<span class="nc" id="L131">            stmt.setString(4, pessoa.getLogradouro());</span>
+<span class="nc" id="L132">            stmt.setString(5, pessoa.getComplemento());</span>
+<span class="nc" id="L133">            stmt.setInt(6, pessoa.getNumero());</span>
+<span class="nc" id="L134">            stmt.setString(7, pessoa.getBairro());</span>
+<span class="nc" id="L135">            stmt.setString(8, pessoa.getCidade());</span>
+<span class="nc" id="L136">            stmt.setString(9, pessoa.getEstado());</span>
+<span class="nc" id="L137">            stmt.setString(10, pessoa.getPais());</span>
+<span class="nc" id="L138">            stmt.setInt(11, pessoa.getId());</span>
            
-<span class="nc" id="L124">            stmt.execute();</span>
-<span class="nc" id="L125">            stmt.close();</span>
+<span class="nc" id="L140">            stmt.execute();</span>
+<span class="nc" id="L141">            stmt.close();</span>
+<span class="nc" id="L142">            return true;</span>
         }
-<span class="nc" id="L127">        catch (SQLException e){</span>
-<span class="nc" id="L128">            throw new RuntimeException(e);</span>
-<span class="nc" id="L129">        }        </span>
-<span class="nc" id="L130">    }</span>
+<span class="nc" id="L144">        catch (SQLException e){</span>
+<span class="nc" id="L145">            throw new RuntimeException(e);</span>
+        }        
+    }  
    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

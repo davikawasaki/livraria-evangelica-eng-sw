@@ -11,7 +11,6 @@ import Classes.PessoaFisica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,149 +21,119 @@ import java.util.List;
 public class ClienteDAO {
     private Connection connection;
     
-<span class="nc" id="L25">    public ClienteDAO() {</span>
-<span class="nc" id="L26">        this.connection = new ConnectionFactory().getConnection();</span>
-<span class="nc" id="L27">    }</span>
-        
-    public void adiciona(Cliente cliente) {  
+<span class="nc" id="L24">    public ClienteDAO() throws Exception {</span>
+<span class="nc" id="L25">        this.connection = new ConnectionFactory().getConnection(&quot;root&quot;,&quot;root&quot;);</span>
+<span class="nc" id="L26">    }</span>
     
-<span class="nc" id="L31">        PessoaFisicaDAO pfdao = new PessoaFisicaDAO();</span>
+    // Método do DAO para conexão manual com o banco
+    public void setaConexaoClienteDAO(String user, String password) throws Exception {
+        try {
+<span class="nc" id="L31">            this.connection = new ConnectionFactory().getConnection(user, password);</span>
+<span class="nc" id="L32">        } catch(Exception e) {</span>
+<span class="nc" id="L33">            throw new Exception(&quot;Erro ao conectar com o banco&quot;);</span>
+<span class="nc" id="L34">        }</span>
+<span class="nc" id="L35">    }</span>
         
-<span class="nc" id="L33">        pfdao.adiciona(cliente.getPf());</span>
+    public boolean adiciona(Cliente cliente) throws Exception {  
         
-<span class="nc" id="L35">        String sql = &quot;insert into Cliente&quot; + </span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">        if((cliente.getCodFidelidade() == null)||(cliente.getPf().getCPF() == null))</span>
+<span class="nc" id="L40">            throw new Exception(&quot;Campo nulo, erro ao enviar o cliente para o banco&quot;);</span>
+       
+<span class="nc" id="L42">        PessoaFisicaDAO pfdao = new PessoaFisicaDAO();</span>
+<span class="nc" id="L43">        pfdao.adiciona(cliente.getPf());</span>
+        
+<span class="nc" id="L45">        String sql = &quot;insert into Cliente&quot; + </span>
                 &quot;(idCliente, fidelidade, codFidelidade, PessoaFisica_CPF)&quot; + 
                 &quot;values(?,?,?,?)&quot;;
         
+        
         try{
-<span class="nc" id="L40">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L51">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L42">           stmt.setInt(1, cliente.getIdCliente());</span>
-<span class="nc" id="L43">           stmt.setBoolean(2, cliente.isFidelidade());</span>
-<span class="nc" id="L44">           stmt.setString(3, cliente.getCodFidelidade());</span>
-<span class="nc" id="L45">           stmt.setString(4, cliente.getPf().getCPF());</span>
+<span class="nc" id="L53">           stmt.setInt(1, cliente.getIdCliente());</span>
+<span class="nc" id="L54">           stmt.setInt(2, cliente.isFidelidade());</span>
+<span class="nc" id="L55">           stmt.setString(3, cliente.getCodFidelidade());</span>
+<span class="nc" id="L56">           stmt.setString(4, cliente.getPf().getCPF());</span>
            
-<span class="nc" id="L47">           stmt.execute();</span>
-<span class="nc" id="L48">           stmt.close();</span>
+<span class="nc" id="L58">           stmt.execute();</span>
+<span class="nc" id="L59">           stmt.close();</span>
+           
+<span class="nc" id="L61">           return true;</span>
         }
-<span class="nc" id="L50">        catch (SQLException e){</span>
-<span class="nc" id="L51">            throw new RuntimeException(e);</span>
-<span class="nc" id="L52">        }</span>
-<span class="nc" id="L53">    }</span>
-    
-    public List &lt;Cliente&gt; getLista(){
-        try {
-<span class="nc" id="L57">            List &lt;Cliente&gt; clientes = new ArrayList&lt;Cliente&gt;();</span>
-<span class="nc" id="L58">            PreparedStatement stmt = this.connection.</span>
-<span class="nc" id="L59">            prepareStatement(&quot;select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF;&quot;);</span>
-<span class="nc" id="L60">            ResultSet rs = stmt.executeQuery();</span>
- 
-<span class="nc bnc" id="L62" title="All 2 branches missed.">        while (rs.next()){</span>
-            // criando o objeto Cliente
-<span class="nc" id="L64">            Cliente cliente = new Cliente();</span>
-<span class="nc" id="L65">            PessoaFisica pj = new PessoaFisica();</span>
-<span class="nc" id="L66">            cliente.setPf(pj);</span>
-<span class="nc" id="L67">            Pessoa pessoa = new Pessoa();</span>
-<span class="nc" id="L68">            cliente.getPf().setPessoa(pessoa);</span>
-
-<span class="nc" id="L70">            cliente.setIdCliente(rs.getInt(&quot;idCliente&quot;));</span>
-<span class="nc" id="L71">            cliente.setCodFidelidade(rs.getString(&quot;codFidelidade&quot;));</span>
-<span class="nc" id="L72">            cliente.setFidelidade(rs.getBoolean(&quot;fidelidade&quot;));</span>
-<span class="nc" id="L73">            cliente.getPf().setCPF(rs.getString(&quot;CPF&quot;));</span>
-<span class="nc" id="L74">            cliente.getPf().setNome(rs.getString(&quot;nome&quot;));</span>
-<span class="nc" id="L75">            cliente.getPf().setSobrenome(rs.getString(&quot;sobrenome&quot;));</span>
-<span class="nc" id="L76">            cliente.getPf().setRG(rs.getString(&quot;RG&quot;));</span>
-<span class="nc" id="L77">            cliente.getPf().setSexo(rs.getString(&quot;sexo&quot;));</span>
-<span class="nc" id="L78">            cliente.getPf().setDataNascimento(rs.getString(&quot;dataNascimento&quot;));</span>
-<span class="nc" id="L79">            cliente.getPf().getPessoa().setTelefone(rs.getString(&quot;telefone&quot;));</span>
-<span class="nc" id="L80">            cliente.getPf().getPessoa().setEmail(rs.getString(&quot;email&quot;));</span>
-<span class="nc" id="L81">            cliente.getPf().getPessoa().setLogradouro(rs.getString(&quot;logradouro&quot;));</span>
-<span class="nc" id="L82">            cliente.getPf().getPessoa().setNumero(rs.getInt(&quot;numero&quot;));</span>
-<span class="nc" id="L83">            cliente.getPf().getPessoa().setComplemento(rs.getString(&quot;complemento&quot;));</span>
-<span class="nc" id="L84">            cliente.getPf().getPessoa().setBairro(rs.getString(&quot;bairro&quot;));</span>
-<span class="nc" id="L85">            cliente.getPf().getPessoa().setCEP(rs.getString(&quot;CEP&quot;));</span>
-<span class="nc" id="L86">            cliente.getPf().getPessoa().setCidade(rs.getString(&quot;cidade&quot;));</span>
-<span class="nc" id="L87">            cliente.getPf().getPessoa().setEstado(rs.getString(&quot;estado&quot;));</span>
-<span class="nc" id="L88">            cliente.getPf().getPessoa().setPais(rs.getString(&quot;pais&quot;));</span>
-
-            // adicionando o objeto à lista
-<span class="nc" id="L91">            clientes.add(cliente);</span>
-<span class="nc" id="L92">        }</span>
-<span class="nc" id="L93">        rs.close();</span>
-<span class="nc" id="L94">        stmt.close();</span>
-<span class="nc" id="L95">        return clientes;</span>
-        }
-<span class="nc" id="L97">        catch (SQLException e){</span>
-<span class="nc" id="L98">             throw new RuntimeException(e);</span>
+<span class="nc" id="L63">        catch (Exception e){</span>
+<span class="nc" id="L64">            throw new Exception(&quot;Erro ao enviar o cliente para o banco&quot;);</span>
         }
     }
     
-    public void altera(Cliente cliente){ 
+    public List &lt;Cliente&gt; getLista() throws Exception{
+
+<span class="nc" id="L70">        List &lt;Cliente&gt; clientes = new ArrayList&lt;Cliente&gt;();</span>
+<span class="nc" id="L71">        PreparedStatement stmt = this.connection.</span>
+<span class="nc" id="L72">        prepareStatement(&quot;select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF;&quot;);</span>
+<span class="nc" id="L73">        ResultSet rs = stmt.executeQuery();</span>
+ 
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        while (rs.next()){</span>
+            // criando o objeto Cliente
+<span class="nc" id="L77">            Cliente cliente = new Cliente();</span>
+<span class="nc" id="L78">            PessoaFisica pj = new PessoaFisica();</span>
+<span class="nc" id="L79">            cliente.setPf(pj);</span>
+<span class="nc" id="L80">            Pessoa pessoa = new Pessoa();</span>
+<span class="nc" id="L81">            cliente.getPf().setPessoa(pessoa);</span>
+
+<span class="nc" id="L83">            cliente.setIdCliente(rs.getInt(&quot;idCliente&quot;));</span>
+<span class="nc" id="L84">            cliente.setCodFidelidade(rs.getString(&quot;codFidelidade&quot;));</span>
+<span class="nc" id="L85">            cliente.setFidelidade(rs.getInt(&quot;Fidelidade&quot;));</span>
+<span class="nc" id="L86">            cliente.getPf().setCPF(rs.getString(&quot;CPF&quot;));</span>
+<span class="nc" id="L87">            cliente.getPf().setNome(rs.getString(&quot;nome&quot;));</span>
+<span class="nc" id="L88">            cliente.getPf().setSobrenome(rs.getString(&quot;sobrenome&quot;));</span>
+<span class="nc" id="L89">            cliente.getPf().setRG(rs.getString(&quot;RG&quot;));</span>
+<span class="nc" id="L90">            cliente.getPf().setSexo(rs.getString(&quot;sexo&quot;));</span>
+<span class="nc" id="L91">            cliente.getPf().setDataNascimento(rs.getDate(&quot;dataNascimento&quot;));</span>
+<span class="nc" id="L92">            cliente.getPf().getPessoa().setTelefone(rs.getString(&quot;telefone&quot;));</span>
+<span class="nc" id="L93">            cliente.getPf().getPessoa().setEmail(rs.getString(&quot;email&quot;));</span>
+<span class="nc" id="L94">            cliente.getPf().getPessoa().setLogradouro(rs.getString(&quot;logradouro&quot;));</span>
+<span class="nc" id="L95">            cliente.getPf().getPessoa().setNumero(rs.getInt(&quot;numero&quot;));</span>
+<span class="nc" id="L96">            cliente.getPf().getPessoa().setComplemento(rs.getString(&quot;complemento&quot;));</span>
+<span class="nc" id="L97">            cliente.getPf().getPessoa().setBairro(rs.getString(&quot;bairro&quot;));</span>
+<span class="nc" id="L98">            cliente.getPf().getPessoa().setCEP(rs.getString(&quot;CEP&quot;));</span>
+<span class="nc" id="L99">            cliente.getPf().getPessoa().setCidade(rs.getString(&quot;cidade&quot;));</span>
+<span class="nc" id="L100">            cliente.getPf().getPessoa().setEstado(rs.getString(&quot;estado&quot;));</span>
+<span class="nc" id="L101">            cliente.getPf().getPessoa().setPais(rs.getString(&quot;pais&quot;));</span>
+
+            // adicionando o objeto à lista
+<span class="nc" id="L104">            clientes.add(cliente);</span>
+<span class="nc" id="L105">        }</span>
+<span class="nc" id="L106">        rs.close();</span>
+<span class="nc" id="L107">        stmt.close();</span>
+<span class="nc" id="L108">        return clientes;</span>
+    }
+    
+    public boolean altera(Cliente cliente) throws Exception{ 
+<span class="nc bnc" id="L112" title="All 4 branches missed.">        if((cliente.getCodFidelidade() == null)||(cliente.getPf().getCPF() == null))</span>
+<span class="nc" id="L113">            throw new Exception(&quot;Campo nulo, erro ao enviar o cliente para o banco&quot;);</span>
         
-<span class="nc" id="L104">        PessoaFisicaDAO pfdao = new PessoaFisicaDAO();</span>
+<span class="nc" id="L115">        PessoaFisicaDAO pfdao = new PessoaFisicaDAO();</span>
         
-<span class="nc" id="L106">        pfdao.altera(cliente.getPf());</span>
+<span class="nc" id="L117">        pfdao.altera(cliente.getPf());</span>
         
-<span class="nc" id="L108">        String sql = &quot;update Cliente C join PessoaFisica P on C.PessoaFisica_CPF = P.CPF&quot;</span>
-                + &quot;set idCliente=?, fidelidade=?&quot; +
-                &quot;codFidelidade=?, PessoaFisica_CPF=?&quot;;
+<span class="nc" id="L119">        String sql = &quot;update Cliente C join PessoaFisica P on C.PessoaFisica_CPF = P.CPF&quot;</span>
+                + &quot;set idCliente=?, fidelidade=?,&quot; +
+                &quot;codFidelidade=? where P.CPF=?&quot;;
         
         try {
-<span class="nc" id="L113">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L124">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
             
-<span class="nc" id="L115">            stmt.setInt(1, cliente.getIdCliente());</span>
-<span class="nc" id="L116">            stmt.setBoolean(2, cliente.isFidelidade());</span>
-<span class="nc" id="L117">            stmt.setString(3, cliente.getCodFidelidade());</span>
-<span class="nc" id="L118">            stmt.setString(4, cliente.getPf().getCPF());</span>
+<span class="nc" id="L126">            stmt.setInt(1, cliente.getIdCliente());</span>
+<span class="nc" id="L127">            stmt.setInt(2, cliente.isFidelidade());</span>
+<span class="nc" id="L128">            stmt.setString(3, cliente.getCodFidelidade());</span>
+<span class="nc" id="L129">            stmt.setString(4, cliente.getPf().getCPF());</span>
 
-<span class="nc" id="L120">            stmt.execute();</span>
-<span class="nc" id="L121">            stmt.close();</span>
+<span class="nc" id="L131">            stmt.execute();</span>
+<span class="nc" id="L132">            stmt.close();</span>
+<span class="nc" id="L133">            return true;</span>
             
-<span class="nc" id="L123">        } catch (SQLException e){</span>
-<span class="nc" id="L124">            throw new RuntimeException(e);</span>
-<span class="nc" id="L125">            }</span>
-<span class="nc" id="L126">    }</span>
-         
-    public Cliente busca(int id){
-        try {
-<span class="nc" id="L130">            PreparedStatement stmt = this.connection.</span>
-<span class="nc" id="L131">            prepareStatement(&quot;select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF where C.idCliente=?&quot;);</span>
-<span class="nc" id="L132">            stmt.setInt(1, id);</span>
-<span class="nc" id="L133">            ResultSet rs = stmt.executeQuery();</span>
-
-<span class="nc" id="L135">            Cliente cliente = new Cliente();</span>
-<span class="nc" id="L136">            PessoaFisica pf = new PessoaFisica();</span>
-<span class="nc" id="L137">            Pessoa pessoa = new Pessoa();</span>
-<span class="nc" id="L138">            cliente.setPf(pf);</span>
-<span class="nc" id="L139">            cliente.getPf().setPessoa(pessoa);</span>
-            
-<span class="nc" id="L141">            rs.next();</span>
-<span class="nc" id="L142">            cliente.setIdCliente(rs.getInt(&quot;idCliente&quot;));</span>
-<span class="nc" id="L143">            cliente.setCodFidelidade(rs.getString(&quot;codFidelidade&quot;));</span>
-<span class="nc" id="L144">            cliente.setFidelidade(rs.getBoolean(&quot;fidelidade&quot;));</span>
-<span class="nc" id="L145">            cliente.getPf().setCPF(rs.getString(&quot;CPF&quot;));</span>
-<span class="nc" id="L146">            cliente.getPf().setNome(rs.getString(&quot;nome&quot;));</span>
-<span class="nc" id="L147">            cliente.getPf().setSobrenome(rs.getString(&quot;sobrenome&quot;));</span>
-<span class="nc" id="L148">            cliente.getPf().setRG(rs.getString(&quot;RG&quot;));</span>
-<span class="nc" id="L149">            cliente.getPf().setSexo(rs.getString(&quot;sexo&quot;));</span>
-<span class="nc" id="L150">            cliente.getPf().setDataNascimento(rs.getString(&quot;dataNascimento&quot;));</span>
-<span class="nc" id="L151">            cliente.getPf().getPessoa().setTelefone(rs.getString(&quot;telefone&quot;));</span>
-<span class="nc" id="L152">            cliente.getPf().getPessoa().setEmail(rs.getString(&quot;email&quot;));</span>
-<span class="nc" id="L153">            cliente.getPf().getPessoa().setLogradouro(rs.getString(&quot;logradouro&quot;));</span>
-<span class="nc" id="L154">            cliente.getPf().getPessoa().setNumero(rs.getInt(&quot;numero&quot;));</span>
-<span class="nc" id="L155">            cliente.getPf().getPessoa().setComplemento(rs.getString(&quot;complemento&quot;));</span>
-<span class="nc" id="L156">            cliente.getPf().getPessoa().setBairro(rs.getString(&quot;bairro&quot;));</span>
-<span class="nc" id="L157">            cliente.getPf().getPessoa().setCEP(rs.getString(&quot;CEP&quot;));</span>
-<span class="nc" id="L158">            cliente.getPf().getPessoa().setCidade(rs.getString(&quot;cidade&quot;));</span>
-<span class="nc" id="L159">            cliente.getPf().getPessoa().setEstado(rs.getString(&quot;estado&quot;));</span>
-<span class="nc" id="L160">            cliente.getPf().getPessoa().setPais(rs.getString(&quot;pais&quot;));</span>
-
-<span class="nc" id="L162">            rs.close();</span>
-<span class="nc" id="L163">            stmt.close();</span>
-<span class="nc" id="L164">            return cliente;</span>
-        }
-<span class="nc" id="L166">        catch (SQLException e) {</span>
-<span class="nc" id="L167">             throw new RuntimeException(e);</span>
+<span class="nc" id="L135">        } catch (Exception e){</span>
+<span class="nc" id="L136">            throw new Exception(&quot;Erro ao alterar o cliente&quot;);</span>
         }
     }
     

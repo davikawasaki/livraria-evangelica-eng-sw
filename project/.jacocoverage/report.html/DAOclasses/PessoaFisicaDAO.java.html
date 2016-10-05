@@ -7,6 +7,7 @@ package DAOclasses;
 
 import Classes.PessoaFisica;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -18,65 +19,85 @@ public class PessoaFisicaDAO {
     
     private Connection connection;
     
-<span class="nc" id="L21">    public PessoaFisicaDAO() {</span>
-<span class="nc" id="L22">        this.connection = new ConnectionFactory().getConnection();</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L22">    public PessoaFisicaDAO() throws Exception {</span>
+<span class="nc" id="L23">        this.connection = new ConnectionFactory().getConnection(&quot;root&quot;,&quot;root&quot;);</span>
+<span class="nc" id="L24">    }</span>
+    
+    // Método do DAO para conexão manual com o banco
+    public void setaConexaoPessoaFisicaDAO(String user, String password) throws Exception {
+        try {
+<span class="nc" id="L29">            this.connection = new ConnectionFactory().getConnection(user, password);</span>
+<span class="nc" id="L30">        } catch(Exception e) {</span>
+<span class="nc" id="L31">            throw new Exception(&quot;Erro ao conectar com o banco&quot;);</span>
+<span class="nc" id="L32">        }</span>
+<span class="nc" id="L33">    }</span>
      
-    public void adiciona(PessoaFisica pf) {
-<span class="nc" id="L26">        PessoaDAO pdao = new PessoaDAO();</span>
-<span class="nc" id="L27">        pdao.adiciona(pf.getPessoa());</span>
+    public boolean adiciona(PessoaFisica pf) throws Exception {
         
-<span class="nc" id="L29">        String sql = &quot;insert into PessoaFisica&quot; + </span>
+<span class="nc bnc" id="L37" title="All 12 branches missed.">        if((pf.getCPF() == null)||(pf.getDataNascimento() == null)||(pf.getNome() == null)||(pf.getRG() == null)||(pf.getSexo() == null)||(pf.getSobrenome() == null))</span>
+<span class="nc" id="L38">            throw new Exception(&quot;Campo nulo, erro ao enviar a pessoa fisica para o banco&quot;);</span>
+        
+<span class="nc" id="L40">        PessoaDAO pdao = new PessoaDAO();</span>
+<span class="nc" id="L41">        pdao.adiciona(pf.getPessoa());</span>
+        
+<span class="nc" id="L43">        String sql = &quot;insert into PessoaFisica&quot; + </span>
                 &quot;(CPF, Pessoa_idPessoa, nome, sobrenome, RG, sexo, dataNascimento)&quot; + 
                 &quot;values(?,?,?,?,?,?,?)&quot;;
       
         try{
-<span class="nc" id="L34">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L48">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L36">            stmt.setString(1, pf.getCPF());</span>
-<span class="nc" id="L37">            stmt.setInt(2, pf.getPessoa().getId());</span>
-<span class="nc" id="L38">            stmt.setString(3, pf.getNome());</span>
-<span class="nc" id="L39">            stmt.setString(4, pf.getSobrenome());</span>
-<span class="nc" id="L40">            stmt.setString(5, pf.getRG());</span>
-<span class="nc" id="L41">            stmt.setString(6, pf.getSexo());</span>
-<span class="nc" id="L42">            stmt.setString(7, pf.getDataNascimento());</span>
+<span class="nc" id="L50">            stmt.setString(1, pf.getCPF());</span>
+<span class="nc" id="L51">            stmt.setInt(2, pf.getPessoa().getId());</span>
+<span class="nc" id="L52">            stmt.setString(3, pf.getNome());</span>
+<span class="nc" id="L53">            stmt.setString(4, pf.getSobrenome());</span>
+<span class="nc" id="L54">            stmt.setString(5, pf.getRG());</span>
+<span class="nc" id="L55">            stmt.setString(6, pf.getSexo());</span>
+<span class="nc" id="L56">            stmt.setDate(7, new java.sql.Date(pf.getDataNascimento().getTime()));</span>
             
-<span class="nc" id="L44">            stmt.execute();</span>
-<span class="nc" id="L45">            stmt.close();</span>
+<span class="nc" id="L58">            stmt.execute();</span>
+<span class="nc" id="L59">            stmt.close();</span>
+            
+<span class="nc" id="L61">            return true;</span>
         }
-<span class="nc" id="L47">        catch (SQLException e){</span>
-<span class="nc" id="L48">            throw new RuntimeException(e);</span>
-<span class="nc" id="L49">        }</span>
-<span class="nc" id="L50">    }</span>
+<span class="nc" id="L63">        catch (SQLException e){</span>
+<span class="nc" id="L64">            throw new RuntimeException(e);</span>
+        }
+    }
     
-    public void altera (PessoaFisica pf){
+    public boolean altera (PessoaFisica pf) throws Exception{
         
-<span class="nc" id="L54">        PessoaDAO pdao = new PessoaDAO();</span>
-<span class="nc" id="L55">        pdao.altera(pf.getPessoa());</span>
+<span class="nc bnc" id="L70" title="All 12 branches missed.">        if((pf.getCPF() == null)||(pf.getDataNascimento() == null)||(pf.getNome() == null)||(pf.getRG() == null)||(pf.getSexo() == null)||(pf.getSobrenome() == null))</span>
+<span class="nc" id="L71">            throw new Exception(&quot;Campo nulo, erro ao enviar a pessoa fisica para o banco&quot;);</span>
+        
+<span class="nc" id="L73">        PessoaDAO pdao = new PessoaDAO();</span>
+<span class="nc" id="L74">        pdao.altera(pf.getPessoa());</span>
                 
         
-<span class="nc" id="L58">        String sql = &quot;update PessoaFisica PF join Pessoa P set CPF=?, nome=?, &quot;</span>
+<span class="nc" id="L77">        String sql = &quot;update PessoaFisica PF join Pessoa P set CPF=?, nome=?, &quot;</span>
             + &quot;sobrenome=?, RG=?, sexo=?, dataNascimento=? where P.idpessoa=?&quot;;
        
         try{
-<span class="nc" id="L62">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L81">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L64">            stmt.setString(1, pf.getCPF());</span>
-<span class="nc" id="L65">            stmt.setString(2, pf.getNome());</span>
-<span class="nc" id="L66">            stmt.setString(3, pf.getSobrenome());</span>
-<span class="nc" id="L67">            stmt.setString(4, pf.getRG());</span>
-<span class="nc" id="L68">            stmt.setString(5, pf.getSexo());</span>
-<span class="nc" id="L69">            stmt.setString(6, pf.getDataNascimento());</span>
-<span class="nc" id="L70">            stmt.setInt(7, pf.getPessoa().getId());</span>
+<span class="nc" id="L83">            stmt.setString(1, pf.getCPF());</span>
+<span class="nc" id="L84">            stmt.setString(2, pf.getNome());</span>
+<span class="nc" id="L85">            stmt.setString(3, pf.getSobrenome());</span>
+<span class="nc" id="L86">            stmt.setString(4, pf.getRG());</span>
+<span class="nc" id="L87">            stmt.setString(5, pf.getSexo());</span>
+<span class="nc" id="L88">            stmt.setDate(6, new java.sql.Date(pf.getDataNascimento().getTime()));</span>
+<span class="nc" id="L89">            stmt.setInt(7, pf.getPessoa().getId());</span>
 
 
-<span class="nc" id="L73">            stmt.execute();</span>
-<span class="nc" id="L74">            stmt.close();</span>
+<span class="nc" id="L92">            stmt.execute();</span>
+<span class="nc" id="L93">            stmt.close();</span>
+            
+<span class="nc" id="L95">            return true;</span>
         }   
-<span class="nc" id="L76">        catch (SQLException e){</span>
-<span class="nc" id="L77">            throw new RuntimeException(e);</span>
-<span class="nc" id="L78">        }     </span>
-<span class="nc" id="L79">    }</span>
+<span class="nc" id="L97">        catch (SQLException e){</span>
+<span class="nc" id="L98">            throw new RuntimeException(e);</span>
+        }     
+    }
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

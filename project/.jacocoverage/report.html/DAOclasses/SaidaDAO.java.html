@@ -21,8 +21,8 @@ import java.util.List;
 public class SaidaDAO {
     private final Connection connection;
     
-<span class="nc" id="L24">    public SaidaDAO(){</span>
-<span class="nc" id="L25">            this.connection = new ConnectionFactory().getConnection(); </span>
+<span class="nc" id="L24">    public SaidaDAO() throws Exception{</span>
+<span class="nc" id="L25">            this.connection = new ConnectionFactory().getConnection(&quot;root&quot;,&quot;root&quot;); </span>
 <span class="nc" id="L26">    }</span>
     
     public void adiciona(Saida saida) {  

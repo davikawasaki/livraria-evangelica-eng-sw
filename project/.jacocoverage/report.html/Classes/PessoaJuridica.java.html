@@ -18,24 +18,33 @@ package Classes;
 <span class="fc" id="L18">        return CNPJ;</span>
     }
 
-    public void setCNPJ(String CNPJ) {
-<span class="fc" id="L22">        this.CNPJ = CNPJ;</span>
-<span class="fc" id="L23">    }</span>
+    public void setCNPJ(String CNPJ) throws Exception {
+<span class="fc" id="L22">        CNPJ = CNPJ.replaceAll(&quot;\\D+&quot;,&quot;&quot;);</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if(CNPJ.length() == 14)</span>
+<span class="fc" id="L24">            this.CNPJ = CNPJ;</span>
+        else
+<span class="fc" id="L26">            throw new Exception(&quot;CNPJ Invalido&quot;);</span>
+<span class="fc" id="L27">    }</span>
 
     public String getNomeFantasia() {
-<span class="fc" id="L26">        return nomeFantasia;</span>
+<span class="fc" id="L30">        return nomeFantasia;</span>
     }
 
-    public void setNomeFantasia(String nomeFantasia) {
-<span class="fc" id="L30">        this.nomeFantasia = nomeFantasia;</span>
-<span class="fc" id="L31">    }    </span>
+    public void setNomeFantasia(String nomeFantasia) throws Exception {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if(nomeFantasia.isEmpty())</span>
+<span class="fc" id="L35">            throw new Exception(&quot;Nome Fantasia Invalido&quot;);</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        else if(nomeFantasia.length() &lt; 45)</span>
+<span class="fc" id="L37">            this.nomeFantasia = nomeFantasia;</span>
+        else
+<span class="fc" id="L39">            throw new Exception(&quot;Nome Fantasia maior que 45 caracteres&quot;);     </span>
+<span class="fc" id="L40">    }    </span>
 
     public Pessoa getPessoa() {
-<span class="fc" id="L34">        return pessoa;</span>
+<span class="fc" id="L43">        return pessoa;</span>
     }
 
     public void setPessoa(Pessoa pessoa) {
-<span class="fc" id="L38">        this.pessoa = pessoa;</span>
-<span class="fc" id="L39">    }</span>
+<span class="fc" id="L47">        this.pessoa = pessoa;</span>
+<span class="fc" id="L48">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

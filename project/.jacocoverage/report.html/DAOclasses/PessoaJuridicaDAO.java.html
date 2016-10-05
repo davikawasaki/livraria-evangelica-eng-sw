@@ -5,7 +5,6 @@
  */
 package DAOclasses;
 
-import Classes.Pessoa;
 import Classes.PessoaJuridica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,47 +17,47 @@ import java.sql.SQLException;
 public class PessoaJuridicaDAO {
     private Connection connection;
     
-<span class="nc" id="L21">    public PessoaJuridicaDAO() {</span>
-<span class="nc" id="L22">        this.connection = new ConnectionFactory().getConnection();</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L20">    public PessoaJuridicaDAO() throws Exception {</span>
+<span class="nc" id="L21">        this.connection = new ConnectionFactory().getConnection(&quot;root&quot;,&quot;root&quot;);</span>
+<span class="nc" id="L22">    }</span>
     
-    public void adiciona(PessoaJuridica pj) {    
-<span class="nc" id="L26">        PessoaDAO pdao = new PessoaDAO();</span>
-<span class="nc" id="L27">        pdao.adiciona(pj.getPessoa());</span>
+    public void adiciona(PessoaJuridica pj) throws Exception {    
+<span class="nc" id="L25">        PessoaDAO pdao = new PessoaDAO();</span>
+<span class="nc" id="L26">        pdao.adiciona(pj.getPessoa());</span>
 
-<span class="nc" id="L29">        String sql = &quot;insert into PessoaJuridica&quot; + </span>
+<span class="nc" id="L28">        String sql = &quot;insert into PessoaJuridica&quot; + </span>
                 &quot;(CNPJ, nomeFantasia, Pessoa_idPessoa)&quot; + &quot;values(?,?,?)&quot;;
       
         try{
-<span class="nc" id="L33">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L32">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L35">           stmt.setString(1, pj.getCNPJ());</span>
-<span class="nc" id="L36">           stmt.setString(2, pj.getNomeFantasia());</span>
-<span class="nc" id="L37">           stmt.setInt(3, pj.getPessoa().getId());</span>
+<span class="nc" id="L34">           stmt.setString(1, pj.getCNPJ());</span>
+<span class="nc" id="L35">           stmt.setString(2, pj.getNomeFantasia());</span>
+<span class="nc" id="L36">           stmt.setInt(3, pj.getPessoa().getId());</span>
           
-<span class="nc" id="L39">           stmt.execute();</span>
-<span class="nc" id="L40">           stmt.close();</span>
+<span class="nc" id="L38">           stmt.execute();</span>
+<span class="nc" id="L39">           stmt.close();</span>
         }
-<span class="nc" id="L42">        catch (SQLException e){</span>
-<span class="nc" id="L43">            throw new RuntimeException(e);</span>
-<span class="nc" id="L44">        }</span>
-<span class="nc" id="L45">    }</span>
+<span class="nc" id="L41">        catch (SQLException e){</span>
+<span class="nc" id="L42">            throw new RuntimeException(e);</span>
+<span class="nc" id="L43">        }</span>
+<span class="nc" id="L44">    }</span>
     
     public void altera(PessoaJuridica pj) {
-<span class="nc" id="L48">        String sql = &quot;update PessoaJuridica PJ inner join Pessoa P on PJ.Pessoa_idPessoa = P.idPessoa set CNPJ=?, NomeFantasia=? where P.idPessoa = ?&quot;;</span>
+<span class="nc" id="L47">        String sql = &quot;update PessoaJuridica PJ inner join Pessoa P on PJ.Pessoa_idPessoa = P.idPessoa set CNPJ=?, NomeFantasia=? where P.idPessoa = ?&quot;;</span>
         
         try{
-<span class="nc" id="L51">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
+<span class="nc" id="L50">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
 
-<span class="nc" id="L53">           stmt.setString(1, pj.getCNPJ());</span>
-<span class="nc" id="L54">           stmt.setString(2, pj.getNomeFantasia());</span>
-<span class="nc" id="L55">           stmt.setInt(3, pj.getPessoa().getId());</span>
-<span class="nc" id="L56">           stmt.execute();</span>
-<span class="nc" id="L57">           stmt.close();</span>
+<span class="nc" id="L52">           stmt.setString(1, pj.getCNPJ());</span>
+<span class="nc" id="L53">           stmt.setString(2, pj.getNomeFantasia());</span>
+<span class="nc" id="L54">           stmt.setInt(3, pj.getPessoa().getId());</span>
+<span class="nc" id="L55">           stmt.execute();</span>
+<span class="nc" id="L56">           stmt.close();</span>
         }
-<span class="nc" id="L59">        catch (SQLException e){</span>
-<span class="nc" id="L60">            throw new RuntimeException(e);</span>
-<span class="nc" id="L61">        }        </span>
-<span class="nc" id="L62">    }  </span>
+<span class="nc" id="L58">        catch (SQLException e){</span>
+<span class="nc" id="L59">            throw new RuntimeException(e);</span>
+<span class="nc" id="L60">        }        </span>
+<span class="nc" id="L61">    }  </span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletResponse;
      * @throws java.text.ParseException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException {
+            throws ServletException, IOException, ParseException, Exception {
 <span class="nc" id="L40">        response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span>
 
 <span class="nc" id="L42">        PrintWriter out = response.getWriter();</span>
@@ -73,14 +73,14 @@ import javax.servlet.http.HttpServletResponse;
     */
 <span class="nc" id="L74">        cliente.setIdCliente(Integer.parseInt(request.getParameter(&quot;id&quot;)));</span>
 <span class="nc" id="L75">        cliente.setFidelidade(Boolean.getBoolean(request.getParameter(&quot;fidelidade&quot;)));</span>
-<span class="nc" id="L76">        cliente.setCodFidelidade(request.getParameter(&quot;codFidelidade&quot;));</span>
+        cliente.setCodFidelidade(request.getParameter(&quot;codFidelidade&quot;));
 
-<span class="nc" id="L78">        ClienteDAO dao = new ClienteDAO();</span>
-<span class="nc" id="L79">        dao.adiciona(cliente);</span>
+        ClienteDAO dao = new ClienteDAO();
+        dao.adiciona(cliente);
   
-<span class="nc" id="L81">        out.println(&quot;Cliente cadastrada com sucesso!&quot;);</span>
-<span class="nc" id="L82">        out.close();</span>
-<span class="nc" id="L83">    }</span>
+        out.println(&quot;Cliente cadastrada com sucesso!&quot;);
+        out.close();
+    }
     
     // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;HttpServlet methods. Click on the + sign on the left to edit the code.&quot;&gt;
     /**
@@ -98,8 +98,10 @@ import javax.servlet.http.HttpServletResponse;
 <span class="nc" id="L98">            processRequest(request, response);</span>
 <span class="nc" id="L99">        } catch (ParseException ex) {</span>
 <span class="nc" id="L100">            Logger.getLogger(NovoServlet2.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L101">        }</span>
-<span class="nc" id="L102">    }</span>
+<span class="nc" id="L101">        } catch (Exception ex) {</span>
+<span class="nc" id="L102">            Logger.getLogger(NovoServlet2.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L103">        }</span>
+<span class="nc" id="L104">    }</span>
 
     /**
      * Handles the HTTP &lt;code&gt;POST&lt;/code&gt; method.
@@ -113,11 +115,13 @@ import javax.servlet.http.HttpServletResponse;
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-<span class="nc" id="L116">            processRequest(request, response);</span>
-<span class="nc" id="L117">        } catch (ParseException ex) {</span>
-<span class="nc" id="L118">            Logger.getLogger(NovoServlet2.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L119">        }</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L118">            processRequest(request, response);</span>
+<span class="nc" id="L119">        } catch (ParseException ex) {</span>
+<span class="nc" id="L120">            Logger.getLogger(NovoServlet2.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L121">        } catch (Exception ex) {</span>
+<span class="nc" id="L122">            Logger.getLogger(NovoServlet2.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L123">        }</span>
+<span class="nc" id="L124">    }</span>
 
     /**
      * Returns a short description of the servlet.
@@ -126,7 +130,7 @@ import javax.servlet.http.HttpServletResponse;
      */
     @Override
     public String getServletInfo() {
-<span class="nc" id="L129">        return &quot;Short description&quot;;</span>
+<span class="nc" id="L133">        return &quot;Short description&quot;;</span>
     }// &lt;/editor-fold&gt;
 
 }

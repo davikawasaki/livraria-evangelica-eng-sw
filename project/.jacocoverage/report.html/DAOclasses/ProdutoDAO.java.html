@@ -21,8 +21,8 @@ import java.util.List;
 public class ProdutoDAO {
     private Connection connection;
     
-<span class="nc" id="L24">    public ProdutoDAO(){</span>
-<span class="nc" id="L25">        this.connection = new ConnectionFactory().getConnection();</span>
+<span class="nc" id="L24">    public ProdutoDAO() throws Exception{</span>
+<span class="nc" id="L25">        this.connection = new ConnectionFactory().getConnection(&quot;root&quot;,&quot;root&quot;);</span>
 <span class="nc" id="L26">    }</span>
     
     public void adiciona(Produto produto){
@@ -45,12 +45,12 @@ public class ProdutoDAO {
 <span class="nc" id="L45">            rs.next();</span>
 <span class="nc" id="L46">            produto.setIdProduto(rs.getInt(1));</span>
             
-<span class="nc" id="L48">            stmt.close();</span>
+            stmt.close();
             
 <span class="nc" id="L50">        }catch(SQLException e){</span>
 <span class="nc" id="L51">            throw new RuntimeException(e);</span>
-<span class="nc" id="L52">        }</span>
-<span class="nc" id="L53">    }</span>
+        }
+    }
     
     public List&lt;Produto&gt; getLista(){
         try{
@@ -62,15 +62,15 @@ public class ProdutoDAO {
 <span class="nc" id="L62">                Produto produto = new Produto();</span>
                 
 <span class="nc" id="L64">                produto.setIdProduto(rs.getInt(&quot;idProduto&quot;));</span>
-<span class="nc" id="L65">                produto.setTitulo(rs.getString(&quot;titulo&quot;));</span>
-<span class="nc" id="L66">                produto.setTipo(rs.getInt(&quot;tipo&quot;));</span>
-<span class="nc" id="L67">                produto.setPreco(rs.getFloat(&quot;preco&quot;));</span>
-<span class="nc" id="L68">                produto.setIdioma(rs.getString(&quot;idioma&quot;));</span>
-<span class="nc" id="L69">                produto.setAnoLancamento(rs.getInt(&quot;anoLancamento&quot;));</span>
-<span class="nc" id="L70">                produto.setQuantidade(rs.getInt(&quot;quantidade&quot;));</span>
+                produto.setTitulo(rs.getString(&quot;titulo&quot;));
+                produto.setTipo(rs.getInt(&quot;tipo&quot;));
+                produto.setPreco(rs.getFloat(&quot;preco&quot;));
+                produto.setIdioma(rs.getString(&quot;idioma&quot;));
+                produto.setAnoLancamento(rs.getInt(&quot;anoLancamento&quot;));
+                produto.setQuantidade(rs.getInt(&quot;quantidade&quot;));
                 
-<span class="nc" id="L72">                produtos.add(produto);</span>
-<span class="nc" id="L73">            }</span>
+                produtos.add(produto);
+            }
 <span class="nc" id="L74">            rs.close();</span>
 <span class="nc" id="L75">            stmt.close();</span>
 <span class="nc" id="L76">            return produtos;</span>
