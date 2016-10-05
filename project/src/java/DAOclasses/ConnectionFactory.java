@@ -14,4 +14,8 @@ public class ConnectionFactory {
             throw new Exception("Erro de conexão com banco");
         }
     }
+
+    public Connection getConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
