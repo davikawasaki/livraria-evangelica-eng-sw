@@ -12,14 +12,14 @@ package Classes;
 public class Cliente{
     private PessoaFisica pf;
     private int idCliente;
-    private boolean fidelidade;
+    private int fidelidade;
     private String codFidelidade;
 
     public int getIdCliente() {
         return idCliente;
     }
 
-    public boolean isFidelidade() {
+    public int isFidelidade() {
         return fidelidade;
     }
 
@@ -34,7 +34,7 @@ public class Cliente{
             throw new Exception("ID Invalido");
     }
 
-    public void setFidelidade(boolean fidelidade) {
+    public void setFidelidade(int fidelidade) {
         this.fidelidade = fidelidade;
     }
 

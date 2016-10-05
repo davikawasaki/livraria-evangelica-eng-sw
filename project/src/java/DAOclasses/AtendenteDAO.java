@@ -18,11 +18,11 @@ import java.sql.Time;
 public class AtendenteDAO {
     private Connection connection;
     
-    public AtendenteDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+    public AtendenteDAO() throws Exception {
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
         
-    public void adiciona(Atendente atendente) {  
+    public void adiciona(Atendente atendente) throws Exception {  
     
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         

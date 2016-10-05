@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,8 +21,8 @@ import java.util.logging.Logger;
 public class PagamentoDAO {
     private final Connection connection;
     
-    public PagamentoDAO(){
-            this.connection = new ConnectionFactory().getConnection(); 
+    public PagamentoDAO() throws Exception{
+            this.connection = new ConnectionFactory().getConnection("root","root"); 
     }
     
     public void adiciona(Pagamento pagamento, int idCaixa) {  

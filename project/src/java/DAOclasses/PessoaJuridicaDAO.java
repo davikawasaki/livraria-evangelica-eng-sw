@@ -5,7 +5,6 @@
  */
 package DAOclasses;
 
-import Classes.Pessoa;
 import Classes.PessoaJuridica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,11 +17,11 @@ import java.sql.SQLException;
 public class PessoaJuridicaDAO {
     private Connection connection;
     
-    public PessoaJuridicaDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+    public PessoaJuridicaDAO() throws Exception {
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
     
-    public void adiciona(PessoaJuridica pj) {    
+    public void adiciona(PessoaJuridica pj) throws Exception {    
         PessoaDAO pdao = new PessoaDAO();
         pdao.adiciona(pj.getPessoa());
 
@@ -49,7 +48,6 @@ public class PessoaJuridicaDAO {
         
         try{
            PreparedStatement stmt = connection.prepareStatement(sql);
-
            stmt.setString(1, pj.getCNPJ());
            stmt.setString(2, pj.getNomeFantasia());
            stmt.setInt(3, pj.getPessoa().getId());

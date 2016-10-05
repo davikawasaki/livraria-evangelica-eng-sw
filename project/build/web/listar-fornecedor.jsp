@@ -413,12 +413,12 @@
 																		<li>
                                                                                                                                                     <form action="DeletaFornecedor" id="submitDelete" method="POST">
                                                                                                                                                         <a href="#" id="delete" onclick="document.getElementById('submitDelete').submit();" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                                                                                            <input name="delete" value="${fornecedor.getPj().pessoa}">
+                                                                                                                                                            <input name="delete" value="${fornecedor.getPj().pessoa.id}">
                                                     
                                                                                                                                                             <span class="red">                          
 																			               
                                                                                                                                                                     ${fornecedor.getPj().pessoa}
-                                                                                                                                                                    ${fornecedor.getPj().pessoa.id}
+                                                                                                                                                                    ${fornecedor.getPj().getPessoa().getId()}
                                                                                                                                                                    
                                                                                                                                                                    
                                                                                                                                                                 <i class="ace-icon fa fa-trash-o bigger-120"></i>

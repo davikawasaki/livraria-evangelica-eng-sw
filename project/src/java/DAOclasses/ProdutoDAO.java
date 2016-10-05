@@ -21,11 +21,11 @@ import java.util.List;
 public class ProdutoDAO {
     private Connection connection;
     
-    public ProdutoDAO(){
-        this.connection = new ConnectionFactory().getConnection();
+    public ProdutoDAO() throws Exception{
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
     
-    public void adiciona(Produto produto){
+    public void adiciona(Produto produto) throws Exception{
         String sql = "insert into Produto"
                 + "(titulo, tipo, preco, idioma, anoLancamento, quantidade)"
                 + "values(?,?,?,?,?,?)";
@@ -52,7 +52,7 @@ public class ProdutoDAO {
         }
     }
     
-    public List<Produto> getLista(){
+    public List<Produto> getLista() throws Exception{
         try{
             List<Produto> produtos = new ArrayList<Produto>();
             PreparedStatement stmt = this.connection.prepareStatement("select * from Produto");
