@@ -32,12 +32,11 @@ public class DeletaFornecedor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String delete = request.getParameter("delete");
+        int delete = Integer.parseInt(request.getParameter("delete"));
+        out.println(delete);
+
         PessoaDAO pdao = new PessoaDAO();
-        pdao.remove(delete);
-        
-        out.print("<div>"+delete+"</div>");
-   
+        pdao.remove(delete);  
     
     }
 

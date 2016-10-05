@@ -48,10 +48,11 @@ public class NovoProduto extends HttpServlet {
             out.println(produto.getTitulo());
             
             int tipo = Integer.parseInt(request.getParameter("tipoProduto"));
-            out.println("TIPO: "+tipo);
 
             produto.setTipo(tipo);
+
             produto.setPreco(Float.parseFloat(request.getParameter("desconto")));
+           
             produto.setIdioma(request.getParameter("idioma"));
             produto.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
             produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));

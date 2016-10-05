@@ -86,6 +86,7 @@ public class ClienteDAO {
             cliente.getPf().getPessoa().setCidade(rs.getString("cidade"));
             cliente.getPf().getPessoa().setEstado(rs.getString("estado"));
             cliente.getPf().getPessoa().setPais(rs.getString("pais"));
+            cliente.getPf().getPessoa().setId(rs.getInt("idPessoa"));
 
             // adicionando o objeto à lista
             clientes.add(cliente);

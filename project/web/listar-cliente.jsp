@@ -325,6 +325,7 @@
                                                         <th>Fidelidade</th>
                                                         <th>Telefone</th>
                                                         <th>Email</th>
+                                                        <th>ID</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
@@ -357,6 +358,8 @@
                                                         <td class="hidden-480">
                                                             ${cliente.getPf().getPessoa().email}
                                                         </td>
+
+                                                        <td>${cliente.getPf().getPessoa().id}</td>
 
                                                         <td>
                                                             <div class="hidden-sm hidden-xs action-buttons">
