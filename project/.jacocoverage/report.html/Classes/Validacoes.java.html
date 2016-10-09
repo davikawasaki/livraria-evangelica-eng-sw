@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Validacoes.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;projetoengsw&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Classes</a> &gt; <span class="el_source">Validacoes.java</span></div><h1>Validacoes.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Classes;
+
+import java.util.regex.Pattern;
+
+/**
+ *
+ * @author davikawasaki
+ */
+<span class="fc" id="L14">public class Validacoes {</span>
+<span class="fc" id="L15">    private String EMAIL_PATTERN = &quot;^[A-Za-z0-9+_.-]{1,}+@[A-Za-z0-9+_.-]{1,}$&quot;;    </span>
+<span class="fc" id="L16">    private String SENHA_PATTERN = &quot;^(?=.*\\d)(?=.*[a-zA-Z]).{6,15}&quot;;</span>
+    
+    public boolean validaSenha(String senha) {
+<span class="fc" id="L19">        return senha.matches(SENHA_PATTERN);</span>
+    }
+    
+    public boolean validaEmail(String email) {
+<span class="fc" id="L23">        return email.matches(EMAIL_PATTERN);</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

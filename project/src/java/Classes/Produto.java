@@ -95,7 +95,7 @@ public class Produto {
     }
 
     public void setQuantidade(int quantidade) throws Exception {
-        if(quantidade<0){
+        if(quantidade<=0){
             throw new Exception("Quantidade invalida");
         }
         this.quantidade = quantidade;

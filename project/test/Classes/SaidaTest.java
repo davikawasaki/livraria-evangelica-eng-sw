@@ -58,4 +58,13 @@ public class SaidaTest {
             assertEquals(e.getMessage(), "Valor invalido");
         }
     }
+    
+    //Teste Tipo
+    @Test
+    public void testTipoValido1() throws Exception{
+        Saida s = new Saida();
+        s.setTipo("Contas");
+        String valorRecebido = s.getTipo();
+        assertEquals(valorRecebido, "Contas");
+    }
 }

@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import java.util.Objects;
+
 /**
  *
  * @author Nicholas
@@ -54,11 +56,7 @@ public class Cliente{
     }
 
     public void setPf(PessoaFisica pf) {
-        this.pf = pf;
-    }
-
-    public void setFidelidade(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.pf = Objects.requireNonNull(pf);
     }
     
 }

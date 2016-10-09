@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Pagamento.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;projetoengsw&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Classes</a> &gt; <span class="el_source">Pagamento.java</span></div><h1>Pagamento.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Classes;
+
+import java.sql.Timestamp;
+
+/**
+ *
+ * @author lucasfranco
+ */
+<span class="fc" id="L14">public class Pagamento {</span>
+    private int idPagamento;
+    private String tipo;
+    private float valorTotal; 
+    private float desconto; 
+    private Timestamp horario;
+
+    public int getIdPagamento() {
+<span class="fc" id="L22">        return idPagamento;</span>
+    }
+
+    public void setIdPagamento(int idPagamento) {
+<span class="fc" id="L26">        this.idPagamento = idPagamento;</span>
+<span class="fc" id="L27">    }</span>
+
+    public String getTipo() {
+<span class="fc" id="L30">        return tipo;</span>
+    }
+
+    public void setTipo(String tipo) {
+<span class="fc" id="L34">        this.tipo = tipo;</span>
+<span class="fc" id="L35">    }</span>
+
+    public float getValorTotal() {
+<span class="fc" id="L38">        return valorTotal;</span>
+    }
+
+    public void setValorTotal(float valorTotal) {
+<span class="fc" id="L42">        this.valorTotal = valorTotal;</span>
+<span class="fc" id="L43">    }</span>
+
+    public float getDesconto() {
+<span class="fc" id="L46">        return desconto;</span>
+    }
+
+    public void setDesconto(float desconto) {
+<span class="fc" id="L50">        this.desconto = desconto;</span>
+<span class="fc" id="L51">    }</span>
+
+    public Timestamp getHorario() {
+<span class="nc" id="L54">        return horario;</span>
+    }
+
+    public void setHorario(Timestamp horario) {
+<span class="nc" id="L58">        this.horario = horario;</span>
+<span class="nc" id="L59">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

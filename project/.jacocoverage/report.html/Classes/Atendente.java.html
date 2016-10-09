@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Atendente.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;projetoengsw&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Classes</a> &gt; <span class="el_source">Atendente.java</span></div><h1>Atendente.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Classes;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+/**
+ *
+ * @author Nicholas
+ */
+<span class="fc" id="L16">public class Atendente{</span>
+    private PessoaFisica pf;
+    private Date comecoExpediente;
+    private Date fimExpediente;
+    private String senha;
+    private String login;
+    
+    // Instância para validações de senha e e-mail
+<span class="fc" id="L24">    Validacoes valida = new Validacoes();</span>
+
+    public Date getComecoExpediente() {
+<span class="fc" id="L27">        return comecoExpediente;</span>
+    }
+
+    public Date getFimExpediente() {
+<span class="fc" id="L31">        return fimExpediente;</span>
+    }
+
+    public String getSenha() {
+<span class="fc" id="L35">        return senha;</span>
+    }
+
+    public String getLogin() {
+<span class="fc" id="L39">        return login;</span>
+    }
+
+    public void setComecoExpediente(Date comecoExpediente) throws Exception {
+<span class="fc" id="L43">        Date dt = new Date();</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if(comecoExpediente.before(dt))</span>
+<span class="fc" id="L45">            throw new Exception(&quot;Horario Invalido&quot;);</span>
+        else
+<span class="fc" id="L47">            this.comecoExpediente = comecoExpediente;</span>
+<span class="fc" id="L48">    }</span>
+
+    public void setFimExpediente(Date fimExpediente) throws Exception {
+<span class="fc" id="L51">        Date dt = new Date();</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if(fimExpediente.after(dt))</span>
+<span class="fc" id="L53">            throw new Exception(&quot;Horario Invalido&quot;);</span>
+        else
+<span class="fc" id="L55">            this.fimExpediente = fimExpediente;</span>
+<span class="fc" id="L56">    }</span>
+
+    public void setSenha(String senha) throws Exception{
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if(valida.validaSenha(senha))</span>
+<span class="fc" id="L60">            this.senha = senha;</span>
+        else
+<span class="fc" id="L62">            throw new Exception(&quot;Senha Invalida&quot;);</span>
+<span class="fc" id="L63">    }</span>
+
+    public void setLogin(String login) throws Exception {
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if(login.isEmpty())</span>
+<span class="fc" id="L67">            throw new Exception(&quot;Login Invalido&quot;);</span>
+<span class="fc bfc" id="L68" title="All 4 branches covered.">        else if((login.length() &gt;= 5) &amp;&amp; (login.length() &lt; 45))</span>
+<span class="fc" id="L69">            this.login = login;</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        else if(login.length() &lt; 5)</span>
+<span class="fc" id="L71">            throw new Exception(&quot;Login menor que 5 caracteres&quot;);</span>
+        else
+<span class="fc" id="L73">            throw new Exception(&quot;Login maior que 45 caracteres&quot;);</span>
+<span class="fc" id="L74">    }</span>
+
+    public PessoaFisica getPf() {
+<span class="fc" id="L77">        return pf;</span>
+    }
+
+    public void setPf(PessoaFisica pf) {
+<span class="fc" id="L81">        this.pf = pf;</span>
+<span class="fc" id="L82">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
