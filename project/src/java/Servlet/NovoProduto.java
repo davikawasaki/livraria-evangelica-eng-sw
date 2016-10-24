@@ -10,7 +10,6 @@ import Classes.Midia;
 import Classes.Produto;
 import DAOclasses.LivroDAO;
 import DAOclasses.MidiaDAO;
-import DAOclasses.ProdutoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -48,16 +47,15 @@ public class NovoProduto extends HttpServlet {
             out.println(produto.getTitulo());
             
             int tipo = Integer.parseInt(request.getParameter("tipoProduto"));
-            out.println("TIPO: "+tipo);
 
             produto.setTipo(tipo);
-            produto.setPreco(Float.parseFloat(request.getParameter("desconto")));
+
+            produto.setPreco(Float.parseFloat(request.getParameter("preco")));
+           
             produto.setIdioma(request.getParameter("idioma"));
             produto.setAnoLancamento(Integer.parseInt(request.getParameter("anoLancamento")));
             produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
-            ProdutoDAO pdao = new ProdutoDAO();
-            pdao.adiciona(produto);
-
+            
             if(tipo == 1){
                 Livro livro = new Livro();
                 livro.setPdt(produto);

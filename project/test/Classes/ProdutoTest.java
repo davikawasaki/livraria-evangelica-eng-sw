@@ -50,6 +50,7 @@ public class ProdutoTest {
         
         try{
             p.setTitulo("Marcos Lopes Joaquim Deodoro da Fonseca Filho Júnior");
+            fail("");
         }catch(Exception e){
             assertEquals(e.getMessage(), "Titulo invalido");
         }
@@ -61,6 +62,7 @@ public class ProdutoTest {
         
         try{
             p.setTitulo("");
+            fail("");
         }catch(Exception e){
             assertEquals(e.getMessage(), "Titulo invalido");
         }
@@ -89,6 +91,7 @@ public class ProdutoTest {
         Produto p = new Produto();
         try{
             p.setTipo(-1);
+            fail("");
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Tipo invalido");
@@ -100,6 +103,7 @@ public class ProdutoTest {
         Produto p = new Produto();
         try{
             p.setTipo(4);
+            fail("");
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Tipo invalido");
@@ -183,7 +187,8 @@ public class ProdutoTest {
     public void testQuantidadeInvalida() throws Exception{
         Produto p = new Produto();
         try{
-            p.setQuantidade(-1);
+            p.setQuantidade(0);
+            fail();
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Quantidade invalida");
@@ -191,7 +196,15 @@ public class ProdutoTest {
     }
     
     @Test
-    public void testQuantidadeValida() throws Exception{
+    public void testQuantidadeValida1() throws Exception{
+        Produto p = new Produto();
+        p.setQuantidade(0);
+        int valorRecebido = p.getQuantidade();
+        assertEquals(valorRecebido, 0);
+    }
+    
+    @Test
+    public void testQuantidadeValida2() throws Exception{
         Produto p = new Produto();
         p.setQuantidade(5);
         int valorRecebido = p.getQuantidade();

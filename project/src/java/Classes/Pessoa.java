@@ -21,7 +21,6 @@ public class Pessoa{
     private String cidade;
     private String estado;
     private String pais;
-    private String senha;
     
     // Instância para validações de senha e e-mail
     Validacoes valida = new Validacoes();
@@ -54,8 +53,9 @@ public class Pessoa{
     }
 
     public void setEmail(String email) throws Exception {
-        if(valida.validaEmail(email))
+        if(valida.validaEmail(email)){
             this.email = email;
+        }
         else
             throw new Exception("E-mail Invalido");
     }
@@ -90,9 +90,7 @@ public class Pessoa{
     }
 
     public void setComplemento(String complemento) throws Exception {
-        if(complemento.isEmpty())
-            throw new Exception("Complemento Invalido");
-        else if(complemento.length() < 45)
+        if(complemento.isEmpty() || complemento.length() < 45)
             this.complemento = complemento;
         else
             throw new Exception("Complemento maior que 45 caracteres");
@@ -161,14 +159,4 @@ public class Pessoa{
             throw new Exception("País maior que 45 caracteres");
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) throws Exception {
-        if(valida.validaSenha(senha))
-            this.senha = senha;
-        else
-            throw new Exception("Senha Invalida");
-    }
 }

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>PessoaFisicaDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;projetoengsw&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">DAOclasses</a> &gt; <span class="el_source">PessoaFisicaDAO.java</span></div><h1>PessoaFisicaDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DAOclasses;
+
+import Classes.PessoaFisica;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+/**
+ * @author lucasfranco
+ */
+
+public class PessoaFisicaDAO {
+    
+    private Connection connection;
+    
+<span class="fc" id="L20">    public PessoaFisicaDAO() throws Exception {</span>
+<span class="fc" id="L21">        this.connection = new ConnectionFactory().getConnection(&quot;root&quot;,&quot;root&quot;);</span>
+<span class="fc" id="L22">    }</span>
+    
+    // Método do DAO para conexão manual com o banco
+    public void setaConexaoPessoaFisicaDAO(String user, String password) throws Exception {
+        try {
+<span class="nc" id="L27">            this.connection = new ConnectionFactory().getConnection(user, password);</span>
+<span class="fc" id="L28">        } catch(Exception e) {</span>
+<span class="fc" id="L29">            throw new Exception(&quot;Erro ao conectar com o banco&quot;);</span>
+<span class="nc" id="L30">        }</span>
+<span class="nc" id="L31">    }</span>
+     
+    public boolean adiciona(PessoaFisica pf) throws Exception {
+        
+<span class="pc bpc" id="L35" title="5 of 12 branches missed.">        if((pf.getCPF() == null)||(pf.getDataNascimento() == null)||(pf.getNome() == null)||(pf.getRG() == null)||(pf.getSexo() == null)||(pf.getSobrenome() == null))</span>
+<span class="fc" id="L36">            throw new Exception(&quot;Campo nulo, erro ao enviar a pessoa fisica para o banco&quot;);</span>
+        
+<span class="fc" id="L38">        PessoaDAO pdao = new PessoaDAO();</span>
+<span class="fc" id="L39">        pdao.adiciona(pf.getPessoa());</span>
+        
+<span class="fc" id="L41">        String sql = &quot;insert into PessoaFisica&quot; + </span>
+                &quot;(CPF, Pessoa_idPessoa, nome, sobrenome, RG, sexo, dataNascimento)&quot; + 
+                &quot;values(?,?,?,?,?,?,?)&quot;;
+      
+        try{
+<span class="fc" id="L46">           PreparedStatement stmt = connection.prepareStatement(sql);</span>
+
+<span class="fc" id="L48">            stmt.setString(1, pf.getCPF());</span>
+<span class="fc" id="L49">            stmt.setInt(2, pf.getPessoa().getId());</span>
+<span class="fc" id="L50">            stmt.setString(3, pf.getNome());</span>
+<span class="fc" id="L51">            stmt.setString(4, pf.getSobrenome());</span>
+<span class="fc" id="L52">            stmt.setString(5, pf.getRG());</span>
+<span class="fc" id="L53">            stmt.setString(6, pf.getSexo());</span>
+<span class="fc" id="L54">            stmt.setDate(7, new java.sql.Date(pf.getDataNascimento().getTime()));</span>
+            
+<span class="nc" id="L56">            stmt.execute();</span>
+<span class="nc" id="L57">            stmt.close();</span>
+            
+<span class="nc" id="L59">            return true;</span>
+        }
+<span class="fc" id="L61">        catch (Exception e){</span>
+<span class="fc" id="L62">            throw new Exception(&quot;Erro ao enviar a pessoa fisica para o banco&quot;);</span>
+        }
+    }
+    
+    public boolean altera (PessoaFisica pf) throws Exception{
+        
+<span class="pc bpc" id="L68" title="5 of 12 branches missed.">        if((pf.getCPF() == null)||(pf.getDataNascimento() == null)||(pf.getNome() == null)||(pf.getRG() == null)||(pf.getSexo() == null)||(pf.getSobrenome() == null))</span>
+<span class="fc" id="L69">            throw new Exception(&quot;Campo nulo, erro ao enviar a pessoa fisica para o banco&quot;);</span>
+        
+<span class="fc" id="L71">        PessoaDAO pdao = new PessoaDAO();</span>
+<span class="fc" id="L72">        pdao.altera(pf.getPessoa());</span>
+                
+        
+<span class="fc" id="L75">        String sql = &quot;update PessoaFisica PF join Pessoa P set CPF=?, nome=?, &quot;</span>
+            + &quot;sobrenome=?, RG=?, sexo=?, dataNascimento=? where P.idpessoa=?&quot;;
+       
+        try{
+<span class="fc" id="L79">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
+
+<span class="fc" id="L81">            stmt.setString(1, pf.getCPF());</span>
+<span class="fc" id="L82">            stmt.setString(2, pf.getNome());</span>
+<span class="fc" id="L83">            stmt.setString(3, pf.getSobrenome());</span>
+<span class="fc" id="L84">            stmt.setString(4, pf.getRG());</span>
+<span class="fc" id="L85">            stmt.setString(5, pf.getSexo());</span>
+<span class="fc" id="L86">            stmt.setDate(6, new java.sql.Date(pf.getDataNascimento().getTime()));</span>
+<span class="fc" id="L87">            stmt.setInt(7, pf.getPessoa().getId());</span>
+
+
+<span class="fc" id="L90">            stmt.execute();</span>
+<span class="fc" id="L91">            stmt.close();</span>
+            
+<span class="fc" id="L93">            return true;</span>
+        }   
+<span class="nc" id="L95">        catch (Exception e){</span>
+<span class="nc" id="L96">            throw new Exception(&quot;Erro ao alterar a pessoa fisica&quot;);</span>
+        }     
+    }    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

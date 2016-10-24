@@ -55,7 +55,6 @@ public class PessoaFisicaDAOTest {
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -66,7 +65,7 @@ public class PessoaFisicaDAOTest {
         pessoa.setEstado("Abc");
         pessoa.setPais("Abc");
 
-        pf.setCPF("45884718223");
+        pf.setCPF("35824711223");
 
         String data = "21/02/2010";
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -103,7 +102,6 @@ public class PessoaFisicaDAOTest {
         Pessoa pessoa = new Pessoa();
         
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -115,7 +113,7 @@ public class PessoaFisicaDAOTest {
         pessoa.setPais("Abc");
         
         PessoaFisica pf = new PessoaFisica();
-        pf.setCPF("45884718823");
+        pf.setCPF("45884218823");
         String data = "21/02/2010";
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         pf.setDataNascimento(new Date(format.parse(data).getTime()));

@@ -63,7 +63,7 @@ public class CaixaDiaDAO {
     public List<CaixaDia> getCaixasDiarios() throws Exception{
         try {
             List<CaixaDia> caixas = new ArrayList<>();
-            PreparedStatement stmt = this.connection.prepareStatement("select * from CaixaDia;");
+            PreparedStatement stmt = this.connection.prepareStatement("select * from CaixaDia order by data;");
             ResultSet rs = stmt.executeQuery();
  
             while (rs.next()) {
@@ -157,4 +157,145 @@ public class CaixaDiaDAO {
             throw new RuntimeException(e);
         }        
     }
+          
+    public float calculaSaldoInicial(){
+        float saldoInicial = 0.0f;
+        
+        String sql = "Select saldoReal From CaixaDia Where data = SUBDATE(CURRENT_DATE(), INTERVAL 1 DAY);";
+                
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                saldoInicial = rs.getFloat("saldoReal");
+            }
+            stmt.close();
+                   
+            return saldoInicial;
+        }
+        catch (SQLException e) {
+           throw new RuntimeException(e);
+        }
+    }
+    public float calculaEntradaBruto(CaixaDia caixa){
+        float entradaBruto = 0.0f;
+        
+        //String sql = "select sum(valorTotal) from Pagamento where horario = '2016-10-04'";
+        String sql = "select sum(valorTotal) from Pagamento P join CaixaDia C on C.idCaixa=P.Caixa_idCaixa where C.data = ?";
+
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            java.sql.Date data = (java.sql.Date) caixa.getData();
+            stmt.setDate(1,data);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next())
+                entradaBruto = rs.getFloat("sum(valorTotal)");
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return entradaBruto;
+    }
+    
+    //Calcula a soma dos pagamentos em dinheiros menos os pagamentos por cartão
+    public float calculaEntradaReal(CaixaDia caixa){
+        float entradaReal = 0.0f;
+        
+        //String sql = "select ((select sum(valorTotal) from Pagamento P where tipo=\"dinheiro\") - (select sum(valorTotal) from Pagamento where tipo=\"cartao\"));";
+        String sql = "select sum(valorTotal) from Pagamento P join CaixaDia C on C.idCaixa = P.Caixa_idCaixa where C.data=? and (tipo='dinheiro' or tipo='cheque')";
+        
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setDate(1,new Date(caixa.getData().getTime()));
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next())
+                entradaReal = rs.getFloat("sum(valorTotal)");
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        
+        return entradaReal;
+    }
+    
+    public float calculaSaldoLiquido(CaixaDia caixa){
+        float saldoLiquido = 0.0f;
+        
+        String sql = "select ((select sum(valorTotal) from Pagamento P join CaixaDia C on C.idCaixa=P.Caixa_idCaixa where C.data=? and (tipo=\"dinheiro\" or tipo=\"cheque\")) - (select sum(valor) from Saida S join CaixaDia C on C.idCaixa=S.Caixa_idCaixa where C.data=?)) as SaldoLiquido";
+
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setDate(1,new Date(caixa.getData().getTime()));
+            stmt.setDate(2,new Date(caixa.getData().getTime()));
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next())
+                saldoLiquido = rs.getFloat("SaldoLiquido");
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        
+        return saldoLiquido;
+    }
+    
+    public float calculaSaldoReal(CaixaDia caixa){
+        float saldoReal = 0.0f;
+        
+        String sql = "select ((select sum(valorTotal) from Pagamento P join CaixaDia C on C.idCaixa=P.Caixa_idCaixa where C.data=? and (tipo=\"dinheiro\" or tipo=\"cheque\")) - (select sum(valor) from Saida S join CaixaDia C on C.idCaixa=S.Caixa_idCaixa where C.data=?)) as SaldoReal";
+
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setDate(1,new Date(caixa.getData().getTime()));
+            stmt.setDate(2,new Date(caixa.getData().getTime()));
+           
+            ResultSet rs = stmt.executeQuery();
+           
+            if(rs.next())
+                saldoReal = rs.getFloat("SaldoReal");
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        
+        return saldoReal;
+    }
+
+    public float calculaSaidaTotal(CaixaDia caixa){
+        float saidaTotal = 0.0f;
+        
+        String sql = "select sum(valor) as SaidaTotal from Saida S join CaixaDia C on C.idCaixa=S.Caixa_idCaixa where C.data=?";
+
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setDate(1,new Date(caixa.getData().getTime()));    
+           
+            ResultSet rs = stmt.executeQuery();
+           
+            if(rs.next())
+                saidaTotal = rs.getFloat("SaidaTotal");
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        
+        return saidaTotal;
+    }
+    
+    public void calculaCaixa(CaixaDia caixa) throws Exception{
+    
+        caixa.setIdCaixa(caixa.getIdCaixa());
+        caixa.setSaldoInicial(calculaSaldoInicial());
+        caixa.setEntradaBruto(calculaEntradaBruto(caixa));
+        caixa.setEntradaReal(calculaEntradaReal(caixa));
+        caixa.setSaldoLiquido(calculaSaldoLiquido(caixa));
+        caixa.setSaldoReal(calculaSaldoReal(caixa));
+        caixa.setSaidaTotal(calculaSaidaTotal(caixa));
+        altera(caixa);       
+    }
+      
 }

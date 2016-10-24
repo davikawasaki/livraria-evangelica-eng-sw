@@ -63,7 +63,7 @@ public class CartaoDAO {
             stmt.close();
             return cartoes;
         }
-        catch (SQLException e) {
+        catch (Exception e) {
              throw new RuntimeException(e);
         }
     }

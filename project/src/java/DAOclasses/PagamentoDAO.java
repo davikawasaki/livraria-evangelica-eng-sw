@@ -5,6 +5,7 @@
  */
 package DAOclasses;
 
+import Classes.CaixaDia;
 import Classes.Pagamento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,24 +26,27 @@ public class PagamentoDAO {
             this.connection = new ConnectionFactory().getConnection("root","danilo"); 
     }
     
-    public void adiciona(Pagamento pagamento, int idCaixa) {  
+    public void adiciona(Pagamento pagamento, CaixaDia caixa) throws Exception {  
 
         String sql = "insert into Pagamento(tipo, valorTotal, desconto, horario, Caixa_idCaixa) values(?,?,?,?,?)";
         
         try{
-           PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             stmt.setString(1, pagamento.getTipo());
             stmt.setFloat(2, pagamento.getValorTotal());
             stmt.setFloat(3, pagamento.getDesconto());
             stmt.setTimestamp(4, pagamento.getHorario());
-            stmt.setInt(5, idCaixa);
+            stmt.setInt(5, caixa.getIdCaixa());
             stmt.execute();
         
              
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             pagamento.setIdPagamento(rs.getInt(1));
+            
+            CaixaDiaDAO cdao = new CaixaDiaDAO();
+            cdao.calculaCaixa(caixa);
             stmt.close();
         }
         catch (SQLException e){
@@ -111,31 +115,5 @@ public class PagamentoDAO {
         catch (SQLException e){
             throw new RuntimeException(e);
         }        
-    }
-      
-    public void calculaSaldos(Pagamento pagamento){
-        float saldoInicial;
-        
-        String sql1 = "Select count(*) from CaixaDia";
-       
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql1);
-            ResultSet rs = stmt.executeQuery();
-            if(!rs.next()) {
-                 saldoInicial = 0.0f;
-                 stmt.close();
-            }
-            else {
-                stmt.close();
-                String sql2 = "Select saldoReal From CaixaDia Where data = SUBDATE(CURRENT_DATE(), INTERVAL 1 DAY);";
-                stmt = connection.prepareStatement(sql2);
-                rs = stmt.executeQuery();
-                saldoInicial = rs.getFloat("saldoReal");
-            }
-        }
-        catch (SQLException e) {
-           throw new RuntimeException(e);
-        }
-        
     }
 }

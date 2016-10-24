@@ -13,7 +13,7 @@ import DAOclasses.PessoaDAO;
  * @author lucasfranco
  */
 public class Testa_Insere {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Pessoa pessoa = new Pessoa();
         pessoa.setId(1);
         pessoa.setTelefone("123456789");
@@ -26,7 +26,6 @@ public class Testa_Insere {
         pessoa.setCidade("Registro");
         pessoa.setEstado("Acre");
         pessoa.setPais("Brasil");
-        pessoa.setSenha("123");
         
         PessoaDAO dao = new PessoaDAO();
         

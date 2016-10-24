@@ -305,7 +305,7 @@
                                     <div class="space-4"></div>
                                                                         
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Tipo pagamento </label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Tipo de Produto </label>
                                         <label class="col-sm-3 control-label no-padding-right">
                                           <select name="tipoProduto" id="tipoProduto" class="form-control ">
                                             <option selected value="1">Livro</option>
@@ -319,13 +319,13 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Editora </label>
                                             <div class="col-sm-9">
-                                                <input required type="text" name="editora" id="form-field-1" placeholder="Ex: Arqueiro" class="col-xs-10 col-sm-5" />
+                                                <input type="text" name="editora" id="form-field-1" placeholder="Ex: Arqueiro" class="col-xs-10 col-sm-5" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Autor </label>
                                             <div class="col-sm-9">
-                                                <input required type="text" name="autor" id="form-field-1" placeholder="Ex: Dan Brown" class="col-xs-10 col-sm-5" />
+                                                <input type="text" name="autor" id="form-field-1" placeholder="Ex: Dan Brown" class="col-xs-10 col-sm-5" />
                                             </div>
                                         </div>
                                     </div>    
@@ -334,13 +334,13 @@
                                       <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Artista </label>
                                             <div class="col-sm-9">
-                                                <input required type="text" name="artista" id="form-field-1" placeholder="Ex: Cantor" class="col-xs-10 col-sm-5" />
+                                                <input type="text" name="artista" id="form-field-1" placeholder="Ex: Cantor" class="col-xs-10 col-sm-5" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Tipo de mídia </label>
                                             <div class="col-sm-9">
-                                                <input required type="text" name="tipoMidia" id="form-field-1" placeholder="Ex: Dvd" class="col-xs-10 col-sm-5" />
+                                                <input type="text" name="tipoMidia" id="form-field-1" placeholder="Ex: Dvd" class="col-xs-10 col-sm-5" />
                                             </div>
                                         </div>
                                     </div> 
@@ -357,7 +357,7 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-price"><span style="color:red;">*</span> Preço </label>
 
                                         <div class="col-sm-9">
-                                            <input required type="text" name="preco" id="form-field-price" placeholder="Ex: 100.00" class="col-xs-10 col-sm-5" />
+                                            <input required type="text" name="preco" id="form-field-price" placeholder="Ex: 29.99" class="col-xs-10 col-sm-5" />
                                         </div>
                                     </div>
                                     
@@ -373,7 +373,7 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-date"><span style="color:red;">*</span> Ano de lançamento </label>
 
                                         <div class="col-sm-9">
-                                           <input required type="date" id="form-field-date" name="lancamento" class="col-xs-10 col-sm-5" />
+                                           <input required type="number" id="form-field-date" name="anoLancamento" placeholder="Ex: 1995" class="col-xs-10 col-sm-5" />
                                         </div>
                                     </div>
                                     
@@ -381,7 +381,7 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-price"><span style="color:red;">*</span> Quantidade </label>
 
                                         <div class="col-sm-9">
-                                            <input required type="number" min="1" name="preco" id="form-field-price" placeholder="Ex: 200" class="col-xs-10 col-sm-5" />
+                                            <input required type="number" min="1" name="quantidade" id="form-field-1" placeholder="Ex: 20" class="col-xs-10 col-sm-5" />
                                         </div>
                                     </div>
 

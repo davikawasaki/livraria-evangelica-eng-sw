@@ -412,17 +412,8 @@
 
 																		<li>
                                                                                                                                                     <form action="DeletaFornecedor" id="submitDelete" method="POST">
-                                                                                                                                                        <a href="#" id="delete" onclick="document.getElementById('submitDelete').submit();" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                                                                                            <input name="delete" value="${fornecedor.getPj().pessoa.id}">
-                                                    
-                                                                                                                                                            <span class="red">                          
-																			               
-                                                                                                                                                                    ${fornecedor.getPj().pessoa}
-                                                                                                                                                                    ${fornecedor.getPj().getPessoa().getId()}
-                                                                                                                                                                   
-                                                                                                                                                                   
-                                                                                                                                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
-																				</span>
+                                                                                                                                                        <a href="#" id="delete" onclick="document.getElementById('submitDelete').submit();" class="tooltip-error red ace-icon fa fa-trash-o bigger-130" data-rel="tooltip" title="Delete">
+                                                                                                                                                            <input name="delete" type="submit" value="${fornecedor.getPj().pessoa.id}">
                                                                                                                                                         </a>
                                                                                                                                                     </form>
                                                                                                                                                     

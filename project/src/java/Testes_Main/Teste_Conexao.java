@@ -15,8 +15,8 @@ import java.sql.SQLException;
  */
 public class Teste_Conexao {
     
-    public static void main(String[] args) throws SQLException {
-        Connection connection = new ConnectionFactory().getConnection();
+    public static void main(String[] args) throws SQLException, Exception {
+        Connection connection = new ConnectionFactory().getConnection("root","root");
         System.out.println("Conexão Aberta!!!");
         connection.close();
     }

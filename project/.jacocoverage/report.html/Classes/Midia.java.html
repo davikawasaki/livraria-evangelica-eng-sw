@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Midia.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;projetoengsw&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">Classes</a> &gt; <span class="el_source">Midia.java</span></div><h1>Midia.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Classes;
+
+import java.util.Objects;
+
+/**
+ *
+ * @author danilo
+ */
+<span class="fc" id="L14">public class Midia {</span>
+    private Produto pdt;
+    private String artista;
+    private String tipoMidia;
+
+    public Produto getPdt() {
+<span class="fc" id="L20">        return pdt;</span>
+    }
+
+    public void setPdt(Produto pdt) throws Exception {
+<span class="fc" id="L24">            this.pdt = Objects.requireNonNull(pdt);</span>
+<span class="fc" id="L25">    }</span>
+
+    public String getArtista() {
+<span class="fc" id="L28">        return artista;</span>
+    }
+
+    public void setArtista(String artista) throws Exception {
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if(artista.isEmpty()){</span>
+<span class="fc" id="L33">            throw new Exception(&quot;Artista invalido&quot;);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        }else if(artista.length() &lt; 45){</span>
+<span class="fc" id="L35">            this.artista = artista;</span>
+        }else{
+<span class="fc" id="L37">            throw new Exception(&quot;Artista invalido&quot;);</span>
+        }
+<span class="fc" id="L39">    }</span>
+
+    public String getTipoMidia() {
+<span class="fc" id="L42">        return tipoMidia;</span>
+    }
+
+    public void setTipoMidia(String tipoMidia) throws Exception {
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if(tipoMidia.isEmpty()){</span>
+<span class="fc" id="L47">            throw new Exception(&quot;Midia invalida&quot;);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        }else if(tipoMidia.length()&lt;45){</span>
+<span class="fc" id="L49">            this.tipoMidia = tipoMidia;</span>
+        }else{
+<span class="fc" id="L51">            throw new Exception(&quot;Midia invalida&quot;);</span>
+        }
+<span class="fc" id="L53">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

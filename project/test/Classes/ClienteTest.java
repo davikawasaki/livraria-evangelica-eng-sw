@@ -95,4 +95,18 @@ public class ClienteTest {
         PessoaFisica result = cliente.getPf();
         assertEquals(pf, result);
     }  
+    @Test
+    public void testePessoaFisicaClienteInvalido() {
+        Cliente cliente = new Cliente();
+        PessoaFisica pf = null;
+        
+        try{
+            cliente.setPf(pf);
+            fail("Excecao esperada");
+        }  
+        catch(Exception e){
+            assertEquals(e.getMessage(), null);
+        }
+    }
+
 }

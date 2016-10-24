@@ -1,3 +1,8 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="dao" class="DAOclasses.ProdutoDAO"/>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -83,7 +88,7 @@
 								<li>
 									<a href="#">
 										<i class="ace-icon fa fa-cog"></i>
-										Configurações
+										ConfiguraÃ§Ãµes
 									</a>
 								</li>
 
@@ -217,7 +222,7 @@
 							<li class="">
 								<a href="caixa-movimentacoes.jsp">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Movimentações
+									MovimentaÃ§Ãµes
 								</a>
 
 								<b class="arrow"></b>
@@ -314,9 +319,9 @@
                                                                 <span class="lbl"></span>
                                                             </label>
                                                         </th>
-                                                        <th>Título</th>
-                                                        <th>Autor</th>
-                                                        <th>Preço</th>
+                                                        <th>TÃ­tulo</th>
+                                                        <th>Ano de LanÃ§amento</th>
+                                                        <th>PreÃ§o</th>
                                                         <th>Quantidade</th>
                                                         <th></th>
                                                     </tr>
@@ -325,7 +330,7 @@
                                                 
                                                 
                                             <tbody>
-                                                <c:forEach var="cliente" items="${dao.lista}">
+                                                <c:forEach var="produto" items="${dao.lista}">
                                                                            
                                                   <!--init the list-->
                                                 
@@ -337,15 +342,13 @@
                                                             </label>
                                                         </td>
 
-                                                        <td>
-                                                            ${cliente.getPf().CPF}                                                                                                                                                                                                                    ${cliente.idCliente}</a>
-                                                        </td>
+                                                        <td>${produto.getTitulo()}</td>
 
-                                                        <td>${cliente.getPf().nome}</td>
+                                                        <td>${produto.getAnoLancamento()}</td>
 
-                                                        <td class="hidden-480">${cliente.fidelidade}</td>
+                                                        <td class="hidden-480">${produto.getPreco()}</td>
 
-                                                        <td>${cliente.getPf().getPessoa().telefone}</td>
+                                                        <td>${produto.getQuantidade()}</td>
 
                                                         <td>
                                                             <div class="hidden-sm hidden-xs action-buttons">

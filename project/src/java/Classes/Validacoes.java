@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * @author davikawasaki
  */
 public class Validacoes {
-    private String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]{1,}+@[A-Za-z0-9-]{1,}+(\\.[A-Za-z0-9-]{2,6}+){1,2}$";    
+    private String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]{1,}+@[A-Za-z0-9+_.-]{1,}$";    
     private String SENHA_PATTERN = "^(?=.*\\d)(?=.*[a-zA-Z]).{6,15}";
     
     public boolean validaSenha(String senha) {

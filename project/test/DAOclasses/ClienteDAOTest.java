@@ -56,7 +56,6 @@ public class ClienteDAOTest {
         ClienteDAO cdao = new ClienteDAO();
         
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -117,7 +116,6 @@ public class ClienteDAOTest {
         
         pessoa.setId(48);
         pessoa.setEmail("abc@abc.com");
-        pessoa.setSenha("123");
         pessoa.setTelefone("(43)99999-9999");
         pessoa.setCEP("99999-999");
         pessoa.setLogradouro("Rua Abc");
@@ -139,7 +137,7 @@ public class ClienteDAOTest {
         pf.setPessoa(pessoa);
         
         cliente.setIdCliente(9);
-        cliente.setFidelidade(1);
+        cliente.setFidelidade(true);
         cliente.setCodFidelidade("11252");
         cliente.setPf(pf);
 

@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import java.util.Objects;
+
 /**
  *
  * @author Nicholas
@@ -12,14 +14,14 @@ package Classes;
 public class Cliente{
     private PessoaFisica pf;
     private int idCliente;
-    private int fidelidade;
+    private boolean fidelidade;
     private String codFidelidade;
 
     public int getIdCliente() {
         return idCliente;
     }
 
-    public int isFidelidade() {
+    public boolean isFidelidade() {
         return fidelidade;
     }
 
@@ -34,7 +36,7 @@ public class Cliente{
             throw new Exception("ID Invalido");
     }
 
-    public void setFidelidade(int fidelidade) {
+    public void setFidelidade(boolean fidelidade) {
         this.fidelidade = fidelidade;
     }
 
@@ -54,7 +56,7 @@ public class Cliente{
     }
 
     public void setPf(PessoaFisica pf) {
-        this.pf = pf;
+        this.pf = Objects.requireNonNull(pf);
     }
     
 }

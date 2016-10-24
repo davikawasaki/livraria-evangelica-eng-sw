@@ -42,7 +42,7 @@ public class NovoPagamento extends HttpServlet {
             throws ServletException, IOException{
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+
         PrintWriter out = response.getWriter();
         
         Pagamento pag = new Pagamento();
@@ -69,19 +69,18 @@ public class NovoPagamento extends HttpServlet {
             CaixaDia caixa = caixadao.buscaCaixa(data);
             if(caixa == null){
                 caixa = new CaixaDia();
-                caixa.setSaldoInicial(50);
-                caixa.setEntradaBruto(100);
-                caixa.setEntradaReal(100);
-                caixa.setSaldoLiquido(100);
-                caixa.setSaldoReal(100);
-                caixa.setSaidaTotal(100);
+                caixa.setSaldoInicial(0);
+                caixa.setEntradaBruto(0);
+                caixa.setEntradaReal(0);
+                caixa.setSaldoLiquido(0);
+                caixa.setSaldoReal(0);
+                caixa.setSaidaTotal(0);
                 caixa.setData(data);
                 caixadao.adiciona(caixa);
             }
-            
             PagamentoDAO pdao = new PagamentoDAO();              
-            pdao.adiciona(pag, caixa.getIdCaixa());
-            
+            pdao.adiciona(pag, caixa);
+
             if(tipo.equals("cartao")){
                 Cartao card = new Cartao();
                 card.setTipo(request.getParameter("tipoPagCartao"));

@@ -346,7 +346,7 @@
                                           <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Número de parcelas </label>
 
                                           <div class="col-sm-9">
-                                              <input type="number" min="1" max="5" id="form-field-1" name="parcelas" placeholder="Ex: 3" class="col-xs-10 col-sm-5" />
+                                              <input required value="1" type="number" min="1" max="5" id="form-field-1" name="parcelas" placeholder="Ex: 3" class="col-xs-10 col-sm-5" />
                                           </div>
                                       </div>
                                     </div>

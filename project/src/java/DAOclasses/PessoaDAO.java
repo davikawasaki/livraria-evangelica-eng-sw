@@ -31,7 +31,7 @@ public class PessoaDAO {
     
     public boolean adiciona(Pessoa pessoa) throws Exception {
                 
-        if((pessoa.getBairro()==null) || (pessoa.getCEP()==null) || (pessoa.getCidade()==null) || (pessoa.getComplemento()==null) || (pessoa.getEmail()==null) || (pessoa.getEstado()==null) || (pessoa.getLogradouro()==null) || (pessoa.getPais()==null) || (pessoa.getSenha()==null) || (pessoa.getTelefone()==null))
+        if((pessoa.getBairro()==null) || (pessoa.getCEP()==null) || (pessoa.getCidade()==null) || (pessoa.getEmail()==null) || (pessoa.getEstado()==null) || (pessoa.getLogradouro()==null) || (pessoa.getPais()==null) || (pessoa.getTelefone()==null))
                 throw new Exception("Campo nulo, erro ao enviar a pessoa fisica para o banco");
         
         String sql = "insert into Pessoa" + 
@@ -99,12 +99,12 @@ public class PessoaDAO {
         }
     }
     
-    public boolean remove(String CNPJ){
-        String sql = "delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))";
-        
+    public boolean remove(int idPessoa){
+        //String sql = "delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))";
+        String sql = "delete from Pessoa where id=?";
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, CNPJ);
+            stmt.setInt(1, idPessoa);
             stmt.execute();
             stmt.close();
             return true;
@@ -115,7 +115,7 @@ public class PessoaDAO {
     }
     
       public boolean altera(Pessoa pessoa) throws Exception {
-          if((pessoa.getBairro()==null) || (pessoa.getCEP()==null) || (pessoa.getCidade()==null) || (pessoa.getComplemento()==null) || (pessoa.getEmail()==null) || (pessoa.getEstado()==null) || (pessoa.getLogradouro()==null) || (pessoa.getPais()==null) || (pessoa.getSenha()==null) || (pessoa.getTelefone()==null))
+          if((pessoa.getBairro()==null) || (pessoa.getCEP()==null) || (pessoa.getCidade()==null) || (pessoa.getEmail()==null) || (pessoa.getEstado()==null) || (pessoa.getLogradouro()==null) || (pessoa.getPais()==null) || (pessoa.getTelefone()==null))
                 throw new Exception("Campo nulo, erro ao enviar a pessoa para o banco");
           
           String sql = "update Pessoa set telefone=?, email=?," +

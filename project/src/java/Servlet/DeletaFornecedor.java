@@ -8,6 +8,8 @@ package Servlet;
 import DAOclasses.PessoaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,15 +31,14 @@ public class DeletaFornecedor extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String delete = request.getParameter("delete");
+        int delete = Integer.parseInt(request.getParameter("delete"));
+        out.println(delete);
+
         PessoaDAO pdao = new PessoaDAO();
-        pdao.remove(delete);
-        
-        out.print("<div>"+delete+"</div>");
-   
+        pdao.remove(delete);  
     
     }
 
@@ -53,7 +54,11 @@ public class DeletaFornecedor extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(DeletaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -67,7 +72,11 @@ public class DeletaFornecedor extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(DeletaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

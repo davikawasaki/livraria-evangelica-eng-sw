@@ -51,7 +51,7 @@ public class ClienteDAO {
            PreparedStatement stmt = connection.prepareStatement(sql);
 
            stmt.setInt(1, cliente.getIdCliente());
-           stmt.setInt(2, cliente.isFidelidade());
+           stmt.setBoolean(2, cliente.isFidelidade());
            stmt.setString(3, cliente.getCodFidelidade());
            stmt.setString(4, cliente.getPf().getCPF());
            
@@ -82,7 +82,7 @@ public class ClienteDAO {
 
             cliente.setIdCliente(rs.getInt("idCliente"));
             cliente.setCodFidelidade(rs.getString("codFidelidade"));
-            cliente.setFidelidade(rs.getInt("Fidelidade"));
+            cliente.setFidelidade(rs.getBoolean("Fidelidade"));
             cliente.getPf().setCPF(rs.getString("CPF"));
             cliente.getPf().setNome(rs.getString("nome"));
             cliente.getPf().setSobrenome(rs.getString("sobrenome"));
@@ -99,6 +99,7 @@ public class ClienteDAO {
             cliente.getPf().getPessoa().setCidade(rs.getString("cidade"));
             cliente.getPf().getPessoa().setEstado(rs.getString("estado"));
             cliente.getPf().getPessoa().setPais(rs.getString("pais"));
+            cliente.getPf().getPessoa().setId(rs.getInt("idPessoa"));
 
             // adicionando o objeto à lista
             clientes.add(cliente);
@@ -115,7 +116,6 @@ public class ClienteDAO {
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
         pfdao.altera(cliente.getPf());
-        
         String sql = "update Cliente C join PessoaFisica P on C.PessoaFisica_CPF = P.CPF"
                 + "set idCliente=?, fidelidade=?," +
                 "codFidelidade=? where P.CPF=?";
@@ -124,10 +124,9 @@ public class ClienteDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
             
             stmt.setInt(1, cliente.getIdCliente());
-            stmt.setInt(2, cliente.isFidelidade());
+            stmt.setBoolean(2, cliente.isFidelidade());
             stmt.setString(3, cliente.getCodFidelidade());
             stmt.setString(4, cliente.getPf().getCPF());
-
             stmt.execute();
             stmt.close();
             return true;
