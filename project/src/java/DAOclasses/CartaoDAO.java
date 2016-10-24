@@ -21,7 +21,7 @@ public class CartaoDAO {
     private final Connection connection;
     
     public CartaoDAO() throws Exception{
-            this.connection = new ConnectionFactory().getConnection("root","root"); 
+            this.connection = new ConnectionFactory().getConnection("root","danilo"); 
     }
     
     public void adiciona(Cartao cartao) {  

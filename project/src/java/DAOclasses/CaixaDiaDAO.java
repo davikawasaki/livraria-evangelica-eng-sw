@@ -26,7 +26,7 @@ public class CaixaDiaDAO {
     private final Connection connection;
     
     public CaixaDiaDAO() throws Exception{
-            this.connection = new ConnectionFactory().getConnection("root","root"); 
+            this.connection = new ConnectionFactory().getConnection("root","danilo"); 
     }
     
     public void adiciona(CaixaDia caixa) {  

@@ -19,7 +19,7 @@ public class AtendenteDAO {
     private Connection connection;
     
     public AtendenteDAO() throws Exception {
-        this.connection = new ConnectionFactory().getConnection("root","root");
+        this.connection = new ConnectionFactory().getConnection("root","danilo");
     }
         
     public void adiciona(Atendente atendente) throws Exception {  

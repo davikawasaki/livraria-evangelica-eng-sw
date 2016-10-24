@@ -18,7 +18,7 @@ public class PessoaJuridicaDAO {
     private Connection connection;
     
     public PessoaJuridicaDAO() throws Exception {
-        this.connection = new ConnectionFactory().getConnection("root","root");
+        this.connection = new ConnectionFactory().getConnection("root","danilo");
     }
     
     public void adiciona(PessoaJuridica pj) throws Exception {    

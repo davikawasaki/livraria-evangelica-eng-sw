@@ -24,7 +24,7 @@ public class FornecedorDAO {
     // Construtor do DAO para conexão instantânea com o banco
     public FornecedorDAO() throws Exception {
         try {
-            this.connection = new ConnectionFactory().getConnection("root", "root");
+            this.connection = new ConnectionFactory().getConnection("root", "danilo");
         } catch(Exception e) {
             throw new Exception("Erro ao conectar com o banco");
         }

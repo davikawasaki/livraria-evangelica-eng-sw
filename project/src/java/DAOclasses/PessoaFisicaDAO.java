@@ -20,7 +20,7 @@ public class PessoaFisicaDAO {
     private Connection connection;
     
     public PessoaFisicaDAO() throws Exception {
-        this.connection = new ConnectionFactory().getConnection("root","root");
+        this.connection = new ConnectionFactory().getConnection("root","danilo");
     }
     
     // Método do DAO para conexão manual com o banco
