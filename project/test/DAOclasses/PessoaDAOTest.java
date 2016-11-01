@@ -19,7 +19,7 @@ public class PessoaDAOTest {
         String expResult = "Erro ao conectar com o banco";
         try {
             PessoaDAO pdao = new PessoaDAO();
-            pdao.setaConexaoPessoaDAO("root", "root123");
+            pdao.setaConexaoPessoaDAO("root", "danilo");
             fail("Deveria ter lançado uma exceção!");
         } catch(Exception e) {
             assertEquals(expResult, e.getMessage());

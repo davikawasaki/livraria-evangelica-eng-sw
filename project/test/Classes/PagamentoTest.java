@@ -20,6 +20,7 @@ public class PagamentoTest {
         Pagamento p = new Pagamento();
         try{
             p.setIdPagamento(-1);
+            fail("Id Invalido");
         }
         catch(Exception e){
             assertEquals(e.getMessage(), "Id invalido");

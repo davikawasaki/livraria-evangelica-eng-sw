@@ -13,6 +13,10 @@
         <servlet-class>Servlet.CadastroCliente</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>EditaFornecedor</servlet-name>
+        <servlet-class>Servlet.EditaFornecedor</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DeletaFornecedor</servlet-name>
         <servlet-class>Servlet.DeletaFornecedor</servlet-class>
     </servlet>
@@ -59,6 +63,7 @@
         <welcome-file>cadastro-cliente.html</welcome-file>
         <welcome-file>listar-fornecedor.jsp</welcome-file>
         <welcome-file>listar-cliente.jsp</welcome-file>
+        <welcome-file>editar-fornecedor.jsp</welcome-file>
         <welcome-file>dashboard.html</welcome-file>
     </welcome-file-list>
 </web-app>

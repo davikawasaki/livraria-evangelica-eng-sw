@@ -18,7 +18,10 @@ public class Cartao {
         return idPagamento;
     }
 
-    public void setIdPagamento(int idPagamento) {
+    public void setIdPagamento(int idPagamento) throws Exception {
+        if(idPagamento < 0)
+            throw new Exception("Id invalido");
+
         this.idPagamento = idPagamento;
     }
 

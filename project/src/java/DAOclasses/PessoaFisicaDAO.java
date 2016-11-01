@@ -60,6 +60,7 @@ public class PessoaFisicaDAO {
         }
         catch (Exception e){
             throw new Exception("Erro ao enviar a pessoa fisica para o banco");
+            
         }
     }
     

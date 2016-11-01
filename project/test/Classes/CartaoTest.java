@@ -16,6 +16,28 @@ import static org.junit.Assert.*;
  */
 public class CartaoTest {
     
+    
+    //Teste Id
+    @Test
+    public void testIdValido() throws Exception{
+        Cartao c = new Cartao();
+        c.setIdPagamento(10);
+        int valorRecebido = c.getIdPagamento();
+        assertEquals(valorRecebido, 10);
+    }
+    
+    @Test
+    public void testIdInvalido() throws Exception{
+        Cartao c = new Cartao();
+        try{
+            c.setIdPagamento(-10);
+            fail("");
+        }
+        catch(Exception e){
+            assertEquals(e.getMessage(), "Id invalido");
+        }
+    }
+    
     //Teste Tipo
     @Test
     public void testTipoValido() throws Exception{

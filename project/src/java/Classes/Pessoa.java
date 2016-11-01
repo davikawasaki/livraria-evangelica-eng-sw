@@ -53,8 +53,9 @@ public class Pessoa{
     }
 
     public void setEmail(String email) throws Exception {
-        if(valida.validaEmail(email))
+        if(valida.validaEmail(email)){
             this.email = email;
+        }
         else
             throw new Exception("E-mail Invalido");
     }

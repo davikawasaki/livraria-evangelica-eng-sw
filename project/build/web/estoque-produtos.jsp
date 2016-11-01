@@ -357,7 +357,7 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-price"><span style="color:red;">*</span> Preço </label>
 
                                         <div class="col-sm-9">
-                                            <input required type="text" name="preco" id="form-field-price" placeholder="Ex: 100.00" class="col-xs-10 col-sm-5" />
+                                            <input required type="text" name="preco" id="form-field-price" placeholder="Ex: 29.99" class="col-xs-10 col-sm-5" />
                                         </div>
                                     </div>
                                     
@@ -373,7 +373,7 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-date"><span style="color:red;">*</span> Ano de lançamento </label>
 
                                         <div class="col-sm-9">
-                                           <input required type="date" id="form-field-date" name="lancamento" class="col-xs-10 col-sm-5" />
+                                           <input required type="number" id="form-field-date" name="anoLancamento" placeholder="Ex: 1995" class="col-xs-10 col-sm-5" />
                                         </div>
                                     </div>
                                     
@@ -381,7 +381,7 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-price"><span style="color:red;">*</span> Quantidade </label>
 
                                         <div class="col-sm-9">
-                                            <input required type="number" min="1" name="preco" id="form-field-price" placeholder="Ex: 200" class="col-xs-10 col-sm-5" />
+                                            <input required type="number" min="1" name="quantidade" id="form-field-1" placeholder="Ex: 20" class="col-xs-10 col-sm-5" />
                                         </div>
                                     </div>
 

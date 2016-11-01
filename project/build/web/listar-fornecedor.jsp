@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : listar-fornecedor
     Created on : 08/09/2016, 14:24:30
     Author     : eryc
@@ -258,7 +258,7 @@
 								<b class="arrow"></b>
                                                         </li>
 						</ul>
-                                                
+
                                                 <b class="arrow"></b>
 
 						<ul class="submenu">
@@ -349,12 +349,12 @@
 
 														<td>
                                                                                                                     <table>
-                                                                                                                                
+
                                                                                                                         <tr>
                                                                                                                             <td>${fornecedor.getPj().CNPJ}</td>
 
                                                                                                                         </tr>
-                                                                                                                                
+
                                                                                                                     </table>
 														</td>
 
@@ -367,7 +367,7 @@
 														<td class="hidden-480">
                                                                                                                     ${fornecedor.getPj().getPessoa().email}
 														</td>
-                                                                                                                
+
                                                                                                                 <td class="hidden-480">
                                                                                                                     ${fornecedor.pj.pessoa.id}
                                                                                                                 </td>
@@ -378,7 +378,7 @@
 																	<i class="ace-icon fa fa-search-plus bigger-130"></i>
 																</a>
 
-																<a class="green" href="#">
+																<a class="green" href="editar-fornecedor.jsp?cnpj=${fornecedor.getPj().CNPJ}">
 																	<i class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
 
@@ -416,7 +416,7 @@
                                                                                                                                                             <input name="delete" type="submit" value="${fornecedor.getPj().pessoa.id}">
                                                                                                                                                         </a>
                                                                                                                                                     </form>
-                                                                                                                                                    
+
 																		</li>
 																	</ul>
 																</div>
@@ -486,7 +486,7 @@
 		<script type="text/javascript">
 			jQuery(function($) {
 				//initiate dataTables plugin
-				var myTable = 
+				var myTable =
 				$('#dynamic-table')
 				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
 				.DataTable( {
@@ -496,23 +496,23 @@
 					  null, null,null, null, null,
 					  { "bSortable": false }
 					],
-					"aaSorting": [],			
-			
+					"aaSorting": [],
+
 					select: {
 						style: 'multi'
 					}
 			    } );
-				
+
 
 				myTable.buttons().container().appendTo( $('.tableTools-container') );
-				
-				
+
+
 				var defaultColvisAction = myTable.button(0).action();
 				myTable.button(0).action(function (e, dt, button, config) {
-					
+
 					defaultColvisAction(e, dt, button, config);
-					
-					
+
+
 					if($('.dt-button-collection > .dropdown-menu').length == 0) {
 						$('.dt-button-collection')
 						.wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
@@ -520,9 +520,9 @@
 					}
 					$('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
 				});
-			
+
 				////
-			
+
 				setTimeout(function() {
 					$($('.tableTools-container')).find('a.dt-button').each(function() {
 						var div = $(this).find(' > div').first();
@@ -530,11 +530,11 @@
 						else $(this).tooltip({container: 'body', title: $(this).text()});
 					});
 				}, 500);
-				
-				
-				
-				
-				
+
+
+
+
+
 				myTable.on( 'select', function ( e, dt, type, index ) {
 					if ( type === 'row' ) {
 						$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
@@ -545,61 +545,61 @@
 						$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
 					}
 				} );
-				
+
 				/////////////////////////////////
 				//table checkboxes
 				$('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
-				
+
 				//select/deselect all rows according to table header checkbox
 				$('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
 					var th_checked = this.checked;//checkbox inside "TH" table header
-					
+
 					$('#dynamic-table').find('tbody > tr').each(function(){
 						var row = this;
 						if(th_checked) myTable.row(row).select();
 						else  myTable.row(row).deselect();
 					});
 				});
-				
+
 				//select/deselect a row when the checkbox is checked/unchecked
 				$('#dynamic-table').on('click', 'td input[type=checkbox]' , function(){
 					var row = $(this).closest('tr').get(0);
 					if(this.checked) myTable.row(row).deselect();
 					else myTable.row(row).select();
 				});
-			
-			
-			
+
+
+
 				$(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
 					e.stopImmediatePropagation();
 					e.stopPropagation();
 					e.preventDefault();
-				});			
-				
-			
+				});
+
+
 				/********************************/
 				//add tooltip for small view action buttons in dropdown menu
 				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-				
+
 				//tooltip placement on right or left
 				function tooltip_placement(context, source) {
 					var $source = $(source);
 					var $parent = $source.closest('table')
 					var off1 = $parent.offset();
 					var w1 = $parent.width();
-			
+
 					var off2 = $source.offset();
 					//var w2 = $source.width();
-			
+
 					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
 					return 'left';
 				}
-				
-         
-                                
+
+
+
 			})
-                       
-                        
+
+
 		</script>
 	</body>
 </html>
