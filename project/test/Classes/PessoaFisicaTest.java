@@ -265,7 +265,6 @@ public class PessoaFisicaTest {
     public void ContatoInserePessoa(){
         PessoaFisica pf = new PessoaFisica();
         Pessoa pessoa = new Pessoa();
-        
         pf.setPessoa(pessoa);
         Pessoa result = pf.getPessoa();
         assertEquals(pessoa, result);
