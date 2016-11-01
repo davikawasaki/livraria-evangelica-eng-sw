@@ -23,7 +23,7 @@ public class PagamentoDAO {
     private final Connection connection;
     
     public PagamentoDAO() throws Exception{
-            this.connection = new ConnectionFactory().getConnection("root","danilo"); 
+            this.connection = new ConnectionFactory().getConnection("root","root"); 
     }
     
     public void adiciona(Pagamento pagamento, CaixaDia caixa) throws Exception {  
