@@ -1,0 +1,1 @@
+drop table Midia; drop table Livro; drop table Cartao; drop table Pagamento; drop table Reserva; drop table Venda; drop table Saida; drop table CaixaDia; drop table Pedido; drop table Pedido; drop table Cliente; drop table Fornecedor; drop table Atendente; drop table PessoaJuridica; drop table PessoaFisica; drop table Pessoa;
