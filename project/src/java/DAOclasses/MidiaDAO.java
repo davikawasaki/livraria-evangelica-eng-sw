@@ -18,7 +18,7 @@ public class MidiaDAO {
     private Connection connection;
     
     public MidiaDAO() throws Exception{
-        this.connection = new ConnectionFactory().getConnection("root","danilo");
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
     
     public void adiciona(Midia midia) throws Exception{

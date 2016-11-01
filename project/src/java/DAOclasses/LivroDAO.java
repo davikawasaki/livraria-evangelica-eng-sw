@@ -18,7 +18,7 @@ public class LivroDAO {
     private Connection connection;
     
     public LivroDAO() throws Exception{
-        this.connection = new ConnectionFactory().getConnection("root","danilo");
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
     
     public void adiciona(Livro livro) throws Exception{

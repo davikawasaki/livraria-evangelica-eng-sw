@@ -82,7 +82,7 @@ public class CadastroCliente extends HttpServlet {
         ClienteDAO dao = new ClienteDAO();
         dao.adiciona(cliente);
 
-        String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
+        String contextPath= "http://localhost:8080/livraria_v1/dashboard.html";
         out.println("Cadastrado!");
         response.sendRedirect(response.encodeRedirectURL(contextPath));
         

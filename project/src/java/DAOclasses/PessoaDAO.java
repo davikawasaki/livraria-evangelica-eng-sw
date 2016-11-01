@@ -17,7 +17,7 @@ public class PessoaDAO {
     private Connection connection;
     
     public PessoaDAO() throws Exception {
-        this.connection = new ConnectionFactory().getConnection("root","danilo");
+        this.connection = new ConnectionFactory().getConnection("root","root");
     }
     
     // Método do DAO para conexão manual com o banco
