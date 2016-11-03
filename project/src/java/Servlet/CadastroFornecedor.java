@@ -84,7 +84,7 @@ public class CadastroFornecedor extends HttpServlet {
             FornecedorDAO fdao = new FornecedorDAO();
             fdao.adiciona(fornecedor);
             
-            String contextPath= "http://localhost:8080/livraria_v1";
+            String contextPath= "http://localhost:8084/livraria_v1";
             response.sendRedirect(response.encodeRedirectURL(contextPath + "/dashboard.html"));
         } catch (Exception ex) {
             Logger.getLogger(CadastroFornecedor.class.getName()).log(Level.SEVERE, null, ex);

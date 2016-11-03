@@ -52,9 +52,10 @@ public class PessoaFisicaDAO {
             stmt.setString(5, pf.getRG());
             stmt.setString(6, pf.getSexo());
             stmt.setDate(7, new java.sql.Date(pf.getDataNascimento().getTime()));
-            
             stmt.execute();
+            System.out.println("AAAAA");
             stmt.close();
+            System.out.println("BBBB");
             
             return true;
         }

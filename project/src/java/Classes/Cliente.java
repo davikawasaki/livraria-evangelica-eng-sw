@@ -41,9 +41,7 @@ public class Cliente{
     }
 
     public void setCodFidelidade(String codFidelidade) throws Exception {
-        if(codFidelidade.isEmpty())
-            throw new Exception("Codigo de Fidelidade Invalido");
-        else if((codFidelidade.length() >= 3) && (codFidelidade.length() < 45))
+        if((codFidelidade.isEmpty()) || ((codFidelidade.length() >= 3) && (codFidelidade.length() < 45)))
             this.codFidelidade = codFidelidade;
         else if(codFidelidade.length() < 3)
             throw new Exception("Codigo de Fidelidade menor que 3 caracteres");

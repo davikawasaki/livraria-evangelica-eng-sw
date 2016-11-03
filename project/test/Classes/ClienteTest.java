@@ -73,19 +73,6 @@ public class ClienteTest {
             assertEquals(expResult, e.getMessage());
         }
     }
-    // Codigo de Fidelidade inválido vazio
-    @Test
-    public void testeCodFidelidadeClienteInvalido3() throws Exception {
-        Cliente cliente = new Cliente();
-        String expResult = "Codigo de Fidelidade Invalido";
-        try {
-            cliente.setCodFidelidade("");
-            String valorRecebido = cliente.getCodFidelidade();
-            fail("Deveria ter lançado uma exceção!");
-        } catch(Exception e) {
-            assertEquals(expResult, e.getMessage());
-        }
-    }
     @Test
     public void testePessoaFisicaClienteValido() {
         Cliente cliente = new Cliente();

@@ -181,7 +181,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `livrariaengsw`.`CaixaDia` (
   `idCaixa` INT NOT NULL AUTO_INCREMENT,
-  `saldoInicial` VARCHAR(45) NOT NULL,
+  `saldoInicial` FLOAT NOT NULL,
   `entradaBruto` FLOAT NOT NULL,
   `entradaReal` FLOAT NOT NULL,
   `saldoLiquido` FLOAT NOT NULL,
@@ -207,13 +207,13 @@ CREATE TABLE IF NOT EXISTS `livrariaengsw`.`Pedido` (
   CONSTRAINT `fk_Pedido_Produto1`
     FOREIGN KEY (`Produto_idProduto`)
     REFERENCES `livrariaengsw`.`Produto` (`idProduto`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Pedido_Cliente1`
     FOREIGN KEY (`Cliente_idCliente`)
     REFERENCES `livrariaengsw`.`Cliente` (`idCliente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -222,16 +222,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `livrariaengsw`.`Venda` (
   `idVenda` INT NOT NULL AUTO_INCREMENT,
-  `dataVenda` VARCHAR(45) NOT NULL,
+  `dataVenda` DATETIME NOT NULL,
   `valorTotal` FLOAT NOT NULL,
   `Pedido_idPedido` INT NOT NULL,
-  PRIMARY KEY (`idVenda`, `Pedido_idPedido`),
+  PRIMARY KEY (`idVenda`),
   INDEX `fk_Venda_Pedido1_idx` (`Pedido_idPedido` ASC),
   CONSTRAINT `fk_Venda_Pedido1`
     FOREIGN KEY (`Pedido_idPedido`)
     REFERENCES `livrariaengsw`.`Pedido` (`idPedido`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -246,20 +246,19 @@ CREATE TABLE IF NOT EXISTS `livrariaengsw`.`Pagamento` (
   `horario` DATETIME NOT NULL,
   `Caixa_idCaixa` INT NOT NULL,
   `Venda_idVenda` INT NOT NULL,
-  `Venda_Pedido_idPedido` INT NOT NULL,
-  PRIMARY KEY (`idPagamento`, `Venda_idVenda`, `Venda_Pedido_idPedido`),
+  PRIMARY KEY (`idPagamento`),
   INDEX `fk_Pagamento_Caixa1_idx` (`Caixa_idCaixa` ASC),
-  INDEX `fk_Pagamento_Venda1_idx` (`Venda_idVenda` ASC, `Venda_Pedido_idPedido` ASC),
+  INDEX `fk_Pagamento_Venda1_idx` (`Venda_idVenda` ASC),
   CONSTRAINT `fk_Pagamento_Caixa1`
     FOREIGN KEY (`Caixa_idCaixa`)
     REFERENCES `livrariaengsw`.`CaixaDia` (`idCaixa`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Pagamento_Venda1`
-    FOREIGN KEY (`Venda_idVenda` , `Venda_Pedido_idPedido`)
-    REFERENCES `livrariaengsw`.`Venda` (`idVenda` , `Pedido_idPedido`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    FOREIGN KEY (`Venda_idVenda`)
+    REFERENCES `livrariaengsw`.`Venda` (`idVenda`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -292,8 +291,8 @@ CREATE TABLE IF NOT EXISTS `livrariaengsw`.`Saida` (
   CONSTRAINT `fk_Saida_Caixa1`
     FOREIGN KEY (`Caixa_idCaixa`)
     REFERENCES `livrariaengsw`.`CaixaDia` (`idCaixa`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -312,13 +311,13 @@ CREATE TABLE IF NOT EXISTS `livrariaengsw`.`Pedido` (
   CONSTRAINT `fk_Pedido_Produto1`
     FOREIGN KEY (`Produto_idProduto`)
     REFERENCES `livrariaengsw`.`Produto` (`idProduto`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Pedido_Cliente1`
     FOREIGN KEY (`Cliente_idCliente`)
     REFERENCES `livrariaengsw`.`Cliente` (`idCliente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -334,8 +333,8 @@ CREATE TABLE IF NOT EXISTS `livrariaengsw`.`Reserva` (
   CONSTRAINT `fk_Reserva_Pedido1`
     FOREIGN KEY (`Pedido_idPedido`)
     REFERENCES `livrariaengsw`.`Pedido` (`idPedido`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
