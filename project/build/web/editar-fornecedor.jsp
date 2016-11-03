@@ -3,12 +3,47 @@
     Created on : 01/11/2016, 00:17:14
     Author     : davi
 --%>
+<%@page import="Classes.Fornecedor"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="dao" class="DAOclasses.FornecedorDAO"/>
 <%@ page import= "DAOclasses.PessoaDAO" %>
 
+<%
+  String CNPJ = request.getParameter("cnpj");
+  Fornecedor f = dao.getFornecedor(CNPJ);
+  String nomeFantasiaFornecedor = f.getPj().getNomeFantasia();
+  request.setAttribute("nomeFantasiaFornecedor", nomeFantasiaFornecedor);
+  String CNPJFornecedor = CNPJ;
+  request.setAttribute("CNPJFornecedor", CNPJFornecedor);
+  String nomeRepresentanteFornecedor = f.getNomeRepresentante();
+  request.setAttribute("nomeRepresentanteFornecedor", nomeRepresentanteFornecedor);
+  String tipoFornecimentoFornecedor = f.getTipoFornecimento();
+  request.setAttribute("tipoFornecimentoFornecedor", tipoFornecimentoFornecedor);
+  String tipoServicoFornecedor = f.getTipoServico();
+  request.setAttribute("tipoServicoFornecedor", tipoServicoFornecedor);
+  String telefoneFornecedor = f.getPj().getPessoa().getTelefone();
+  request.setAttribute("telefoneFornecedor", telefoneFornecedor);
+  String emailFornecedor = f.getPj().getPessoa().getEmail();
+  request.setAttribute("emailFornecedor", emailFornecedor);
+  String logradouroFornecedor = f.getPj().getPessoa().getLogradouro();
+  request.setAttribute("logradouroFornecedor", logradouroFornecedor);
+  int numeroLogradouroFornecedor = f.getPj().getPessoa().getNumero();
+  request.setAttribute("numeroLogradouroFornecedor", numeroLogradouroFornecedor);
+  String complementoLogradouroFornecedor = f.getPj().getPessoa().getComplemento();
+  request.setAttribute("complementoLogradouroFornecedor", complementoLogradouroFornecedor);
+  String bairroFornecedor = f.getPj().getPessoa().getBairro();
+  request.setAttribute("bairroFornecedor", bairroFornecedor);
+  String CEPFornecedor = f.getPj().getPessoa().getCEP();
+  request.setAttribute("CEPFornecedor", CEPFornecedor);
+  String cidadeFornecedor = f.getPj().getPessoa().getCidade();
+  request.setAttribute("cidadeFornecedor", cidadeFornecedor);
+  String estadoFornecedor = f.getPj().getPessoa().getEstado();
+  request.setAttribute("estadoFornecedor", estadoFornecedor);
+  String paisFornecedor = f.getPj().getPessoa().getPais();
+  request.setAttribute("paisFornecedor", paisFornecedor);
+%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -317,7 +352,7 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								<form class="form-horizontal" role="form" action="CadastroFornecedor" method="POST">
+								<form class="form-horizontal" role="form" action="EditaFornecedor" method="POST">
 
 									<div class="space-4"></div>
 
@@ -325,7 +360,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Nome Fantasia </label>
 
 										<div class="col-sm-9">
-											<input required type="text" name="nomeFantasia" id="form-field-1" placeholder="Ex: Livraria Cultura M.E." class="col-xs-10 col-sm-5" value="${fornecedor.getPj().nomeFantasia}" />
+											<input required type="text" name="nomeFantasia" id="form-field-1" placeholder="Ex: Livraria Cultura M.E." class="col-xs-10 col-sm-5" value="${nomeFantasiaFornecedor}" />
 										</div>
 									</div>
 
@@ -333,7 +368,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"><span style="color:red;">*</span> CNPJ </label>
 
 										<div class="col-sm-9">
-											<input required type="text" id="form-field-mask-2" name="cnpj" placeholder="Ex: 11.444.777/0001-10" class="col-xs-10 col-sm-5 mask-CNPJ" value="${fornecedor.getPj().CNPJ}" />
+											<input required type="text" readonly id="form-field-mask-2" name="cnpj" placeholder="Ex: 11.444.777/0001-10" class="col-xs-10 col-sm-5 mask-CNPJ" value="${CNPJFornecedor}" />
 										</div>
 									</div>
 
@@ -341,7 +376,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Nome Representante </label>
 
 										<div class="col-sm-9">
-											<input required type="text" id="form-field-1" name="nomeRepresentante" placeholder="Ex: João André" class="col-xs-10 col-sm-5" value="${fornecedor.getNomeRepresentante()}" />
+											<input required type="text" id="form-field-1" name="nomeRepresentante" placeholder="Ex: João André" class="col-xs-10 col-sm-5" value="${nomeRepresentanteFornecedor}" />
 										</div>
 									</div>
 
@@ -349,7 +384,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Tipo de Servi&ccedil;o </label>
 
 										<div class="col-sm-9">
-											<input required type="text" id="form-field-1" name="tipoServico" placeholder="Ex: Serviços" class="col-xs-10 col-sm-5" value="${fornecedor.getTipoServico()}" />
+											<input required type="text" id="form-field-1" name="tipoServico" placeholder="Ex: Serviços" class="col-xs-10 col-sm-5" value="${tipoServicoFornecedor}" />
 										</div>
 									</div>
 
@@ -357,7 +392,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Tipo de Fornecimento </label>
 
 										<div class="col-sm-9">
-											<input required type="text" id="form-field-1" name="tipoFornecimento" placeholder="Ex: Livros" class="col-xs-10 col-sm-5" value="${fornecedor.getTipoFornecimento()}" />
+											<input required type="text" id="form-field-1" name="tipoFornecimento" placeholder="Ex: Livros" class="col-xs-10 col-sm-5" value="${tipoFornecimentoFornecedor}" />
 										</div>
 									</div>
 
@@ -365,7 +400,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Telefone </label>
 
 										<div class="col-sm-9">
-											<input required type="tel" id="form-field-1" name="telefone" placeholder="Ex: (43) 9632-1236" class="col-xs-10 col-sm-5 mask-phone" value="${fornecedor.getPj().getPessoa().telefone}" />
+											<input required type="tel" id="form-field-1" name="telefone" placeholder="Ex: (43) 9632-1236" class="col-xs-10 col-sm-5 mask-phone" value="${telefoneFornecedor}" />
 										</div>
 									</div>
 
@@ -374,7 +409,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Email </label>
 
 										<div class="col-sm-9">
-											<input required type="email" id="form-field-1" name="email" placeholder="Ex: livraria@gmail.com" class="col-xs-10 col-sm-5" value="${fornecedor.getPj().getPessoa().email}" />
+											<input required type="email" id="form-field-1" name="email" placeholder="Ex: livraria@gmail.com" class="col-xs-10 col-sm-5" value="${emailFornecedor}" />
 										</div>
 									</div>
 
@@ -382,13 +417,13 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Logradouro </label>
 
 										<div class="col-sm-4">
-											<input required type="text" id="form-field-1" name="logradouro" placeholder="Ex: Rua Coronel Alendor" class="col-xs-10 col-sm-11" value="${fornecedor.getPj().getPessoa().logradouro}" />
+											<input required type="text" id="form-field-1" name="logradouro" placeholder="Ex: Rua Coronel Alendor" class="col-xs-10 col-sm-11" value="${logradouroFornecedor}" />
 										</div>
 
 										<label class="col-sm-1 control-label no-padding-right " for="form-field-1"><span style="color:red;">*</span> N&uacute;mero </label>
 
 										<div class="col-sm-2">
-											<input required type="number" id="form-field-1" name="numero" placeholder="Ex: 145" class="col-xs-10 col-sm-8" value="${fornecedor.getPj().getPessoa().numero}" />
+											<input required type="number" id="form-field-1" name="numero" placeholder="Ex: 145" class="col-xs-10 col-sm-8" value="${numeroLogradouroFornecedor}" />
 										</div>
 									</div>
 
@@ -396,7 +431,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Complemento </label>
 
 										<div class="col-sm-9">
-											<input type="text" id="form-field-1" name="complemento" placeholder="Ex: Bloco A" class="col-xs-10 col-sm-5" value="${fornecedor.getPj().getPessoa().complemento}" />
+											<input type="text" id="form-field-1" name="complemento" placeholder="Ex: Bloco A" class="col-xs-10 col-sm-5" value="${complementoLogradouroFornecedor}" />
 										</div>
 									</div>
 
@@ -404,7 +439,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Bairro </label>
 
 										<div class="col-sm-9">
-											<input required type="text" name="bairro" id="form-field-1" placeholder="Ex: Centro" class="col-xs-10 col-sm-5" value="${fornecedor.getPj().getPessoa().bairro}" />
+											<input required type="text" name="bairro" id="form-field-1" placeholder="Ex: Centro" class="col-xs-10 col-sm-5" value="${bairroFornecedor}" />
 										</div>
 									</div>
 
@@ -412,7 +447,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"><span style="color:red;">*</span> CEP </label>
 
 										<div class="col-sm-9">
-											<input required type="text" name="cep" id="form-field-mask-2" placeholder="Ex: 86300-000" class="col-xs-10 col-sm-5 mask-CEP" value="${fornecedor.getPj().getPessoa().CEP}" />
+											<input required type="text" name="cep" id="form-field-mask-2" placeholder="Ex: 86300-000" class="col-xs-10 col-sm-5 mask-CEP" value="${CEPFornecedor}" />
 										</div>
 									</div>
 
@@ -420,13 +455,13 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Cidade </label>
 
 										<div class="col-sm-3">
-											<input required type="text" name="cidade" id="form-field-1" placeholder="Ex: Cornélio Procópio" class="col-xs-10 col-sm-12" value="${fornecedor.getPj().getPessoa().cidade}" />
+											<input required type="text" name="cidade" id="form-field-1" placeholder="Ex: Cornélio Procópio" class="col-xs-10 col-sm-12" value="${cidadeFornecedor}" />
 										</div>
 
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Estado </label>
 
 										<div class="col-sm-3">
-											<input required type="text" name="estado" id="form-field-1" placeholder="Ex: Paraná" class="col-xs-10 col-sm-8" value="${fornecedor.getPj().getPessoa().estado}" />
+											<input required type="text" name="estado" id="form-field-1" placeholder="Ex: Paraná" class="col-xs-10 col-sm-8" value="${estadoFornecedor}" />
 										</div>
 									</div>
 
@@ -434,7 +469,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Pa&iacute;s </label>
 
 										<div class="col-sm-4">
-											<input required type="text" name="pais" id="form-field-1" placeholder="Ex: Brasil" class="col-xs-10 col-sm-5" value="${fornecedor.getPj().getPessoa().pais}" />
+											<input required type="text" name="pais" id="form-field-1" placeholder="Ex: Brasil" class="col-xs-10 col-sm-5" value="${paisFornecedor}" />
 										</div>
 									</div>
 

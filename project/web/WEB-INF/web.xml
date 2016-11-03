@@ -41,6 +41,10 @@
         <url-pattern>/CadastroCliente</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>EditaFornecedor</servlet-name>
+        <url-pattern>/EditaFornecedor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DeletaFornecedor</servlet-name>
         <url-pattern>/DeletaFornecedor</url-pattern>
     </servlet-mapping>
