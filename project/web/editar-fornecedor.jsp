@@ -481,10 +481,10 @@
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
-											<button class="btn" type="reset">
+<!--											<button class="btn" type="reset">
 												<i class="ace-icon fa fa-undo bigger-110"></i>
 												Limpar
-											</button>
+											</button>-->
 										</div>
 									</div>
 								</form>

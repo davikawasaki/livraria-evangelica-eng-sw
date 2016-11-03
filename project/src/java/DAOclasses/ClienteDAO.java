@@ -9,6 +9,7 @@ import Classes.Cliente;
 import Classes.Pessoa;
 import Classes.PessoaFisica;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -109,16 +110,56 @@ public class ClienteDAO {
         return clientes;
     }
     
+    public Cliente getCliente(String id) throws Exception{
+        Cliente cliente = new Cliente();
+        String sql = "select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF WHERE C.idCliente = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, id);
+        ResultSet rs = stmt.executeQuery();
+        try {
+           while (rs.next()) {
+                PessoaFisica pf = new PessoaFisica();
+                cliente.setPf(pf);
+                Pessoa pessoa = new Pessoa();
+                cliente.setIdCliente(Integer.parseInt(id));
+                cliente.setCodFidelidade(rs.getString("codFidelidade"));
+                cliente.setFidelidade(rs.getBoolean("fidelidade"));
+                cliente.getPf().setPessoa(pessoa);
+                cliente.getPf().setNome(rs.getString("nome"));
+                cliente.getPf().setSobrenome(rs.getString("sobrenome"));
+                cliente.getPf().setCPF(rs.getString("CPF"));
+                cliente.getPf().setRG(rs.getString("RG"));
+                cliente.getPf().setDataNascimento(rs.getDate("dataNascimento"));
+                cliente.getPf().setSexo(rs.getString("sexo"));
+                cliente.getPf().getPessoa().setTelefone(rs.getString("telefone"));
+                cliente.getPf().getPessoa().setEmail(rs.getString("email"));
+                cliente.getPf().getPessoa().setLogradouro(rs.getString("logradouro"));
+                cliente.getPf().getPessoa().setNumero(rs.getInt("numero"));
+                cliente.getPf().getPessoa().setComplemento(rs.getString("complemento"));
+                cliente.getPf().getPessoa().setBairro(rs.getString("bairro"));
+                cliente.getPf().getPessoa().setCEP(rs.getString("CEP"));
+                cliente.getPf().getPessoa().setCidade(rs.getString("cidade"));
+                cliente.getPf().getPessoa().setEstado(rs.getString("estado"));
+                cliente.getPf().getPessoa().setPais(rs.getString("pais"));
+                cliente.getPf().getPessoa().setId(rs.getInt("idPessoa"));
+           }
+           stmt.execute();
+           stmt.close();
+           return cliente;
+        }
+        catch (Exception e){
+            throw new Exception("Erro ao requisitar o cliente do banco");
+        }
+    }
+    
     public boolean altera(Cliente cliente) throws Exception{ 
-        if((cliente.getCodFidelidade() == null)||(cliente.getPf().getCPF() == null))
+        if(cliente.getPf().getCPF() == null)
             throw new Exception("Campo nulo, erro ao enviar o cliente para o banco");
         
         PessoaFisicaDAO pfdao = new PessoaFisicaDAO();
         
         pfdao.altera(cliente.getPf());
-        String sql = "update Cliente C join PessoaFisica P on C.PessoaFisica_CPF = P.CPF"
-                + "set idCliente=?, fidelidade=?," +
-                "codFidelidade=? where P.CPF=?";
+        String sql = "update Cliente C inner join PessoaFisica PF on C.PessoaFisica_CPF = PF.CPF inner join Pessoa P on PF.Pessoa_idPessoa = P.idPessoa set idCliente=?, fidelidade=?, codFidelidade=?, nome=?, sobrenome=?, CPF=?, RG=?, dataNascimento=?, sexo=?, telefone=?, email=?, logradouro=?, numero=?, complemento=?, bairro=?, CEP=?, cidade=?, estado=?, pais=? where PF.CPF=?";
         
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -126,7 +167,23 @@ public class ClienteDAO {
             stmt.setInt(1, cliente.getIdCliente());
             stmt.setBoolean(2, cliente.isFidelidade());
             stmt.setString(3, cliente.getCodFidelidade());
-            stmt.setString(4, cliente.getPf().getCPF());
+            stmt.setString(4, cliente.getPf().getNome());
+            stmt.setString(5, cliente.getPf().getSobrenome());
+            stmt.setString(6, cliente.getPf().getCPF());
+            stmt.setString(7, cliente.getPf().getRG());
+            stmt.setDate(8, new java.sql.Date(cliente.getPf().getDataNascimento().getTime()));
+            stmt.setString(9, cliente.getPf().getSexo());
+            stmt.setString(10, cliente.getPf().getPessoa().getTelefone());
+            stmt.setString(11, cliente.getPf().getPessoa().getEmail());
+            stmt.setString(12, cliente.getPf().getPessoa().getLogradouro());
+            stmt.setInt(13, cliente.getPf().getPessoa().getNumero());
+            stmt.setString(14, cliente.getPf().getPessoa().getComplemento());
+            stmt.setString(15, cliente.getPf().getPessoa().getBairro());
+            stmt.setString(16, cliente.getPf().getPessoa().getCEP());
+            stmt.setString(17, cliente.getPf().getPessoa().getCidade());
+            stmt.setString(18, cliente.getPf().getPessoa().getEstado());
+            stmt.setString(19, cliente.getPf().getPessoa().getPais());
+            stmt.setString(20, cliente.getPf().getCPF());
             stmt.execute();
             stmt.close();
             return true;
