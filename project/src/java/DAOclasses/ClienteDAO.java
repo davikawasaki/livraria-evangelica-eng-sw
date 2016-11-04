@@ -193,7 +193,7 @@ public class ClienteDAO {
         }
     }
     
-    public Cliente getCliente(String CPF) throws Exception{
+    public Cliente getClienteCPF(String CPF) throws Exception{
 
         Cliente cliente = new Cliente();
         PreparedStatement stmt = this.connection.

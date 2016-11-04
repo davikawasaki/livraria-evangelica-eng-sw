@@ -22,7 +22,11 @@
     </servlet>
     <servlet>
         <servlet-name>DeletaFornecedor</servlet-name>
-        <servlet-class>Servlet.DeletaFornecedor</servlet-class>
+        <servlet-class>Servlet.DeletaCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletaCliente</servlet-name>
+        <servlet-class>Servlet.DeletaCliente</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NovoPagamento</servlet-name>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>DeletaFornecedor</servlet-name>
         <url-pattern>/DeletaFornecedor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletaCliente</servlet-name>
+        <url-pattern>/DeletaCliente</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>NovoPagamento</servlet-name>

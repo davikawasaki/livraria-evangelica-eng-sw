@@ -86,7 +86,7 @@ public class CadastroCliente extends HttpServlet {
             cliente.setCodFidelidade(codFidelidade);
         
         ClienteDAO dao = new ClienteDAO();
-        if(dao.getCliente(cliente.getPf().getCPF()) == null){
+        if(dao.getClienteCPF(cliente.getPf().getCPF()) == null){
             dao.adiciona(cliente);
         }
         
