@@ -194,8 +194,7 @@ public class ClienteDAO {
     }
     
     public Cliente getClienteCPF(String CPF) throws Exception{
-
-        Cliente cliente = new Cliente();
+        Cliente cliente = null;
         PreparedStatement stmt = this.connection.
         prepareStatement("select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF where CPF=?;");
         stmt.setString(1, CPF);
@@ -203,6 +202,7 @@ public class ClienteDAO {
  
         while (rs.next()){
             // criando o objeto Cliente
+            cliente = new Cliente();
             PessoaFisica pj = new PessoaFisica();
             cliente.setPf(pj);
             Pessoa pessoa = new Pessoa();

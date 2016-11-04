@@ -75,19 +75,26 @@ import javax.servlet.http.HttpServletResponse;
 <span class="nc" id="L75">        Date date = new java.sql.Date(formatoData.parse(dataNasc).getTime());</span>
        
 <span class="nc" id="L77">        cliente.getPf().setDataNascimento(date);</span>
-       
-<span class="nc" id="L79">        cliente.setFidelidade(Boolean.getBoolean(request.getParameter(&quot;fidelidade&quot;)));</span>
-<span class="nc" id="L80">        cliente.setCodFidelidade(request.getParameter(&quot;codFidelidade&quot;));</span>
         
-<span class="nc" id="L82">        ClienteDAO dao = new ClienteDAO();</span>
-<span class="nc" id="L83">        dao.adiciona(cliente);</span>
-
-<span class="nc" id="L85">        String contextPath= &quot;http://localhost:8084/livraria_v1/dashboard.html&quot;;</span>
-<span class="nc" id="L86">        out.println(&quot;Cadastrado!&quot;);</span>
-<span class="nc" id="L87">        response.sendRedirect(response.encodeRedirectURL(contextPath));</span>
+<span class="nc" id="L79">        boolean fidelidade = Boolean.getBoolean(request.getParameter(&quot;fidelidade&quot;));</span>
+<span class="nc" id="L80">        cliente.setFidelidade(fidelidade);</span>
+        
+<span class="nc" id="L82">        String codFidelidade = request.getParameter(&quot;codFidelidade&quot;);</span>
+<span class="nc" id="L83">        System.out.println(&quot;FIDELIDADE: &quot;+fidelidade);</span>
+<span class="nc" id="L84">        cliente.setCodFidelidade(&quot;&quot;);</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if(codFidelidade != null)</span>
+<span class="nc" id="L86">            cliente.setCodFidelidade(codFidelidade);</span>
+        
+<span class="nc" id="L88">        ClienteDAO dao = new ClienteDAO();</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if(dao.getClienteCPF(cliente.getPf().getCPF()) == null){</span>
+<span class="nc" id="L90">            dao.adiciona(cliente);</span>
+        }
+        
+<span class="nc" id="L93">        String contextPath= &quot;http://localhost:8084/livraria_v1/dashboard.html&quot;;</span>
+<span class="nc" id="L94">        response.sendRedirect(response.encodeRedirectURL(contextPath));</span>
         
         
-<span class="nc" id="L90">    }</span>
+<span class="nc" id="L97">    }</span>
 
     // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;HttpServlet methods. Click on the + sign on the left to edit the code.&quot;&gt;
     /**
@@ -102,13 +109,13 @@ import javax.servlet.http.HttpServletResponse;
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-<span class="nc" id="L105">            processRequest(request, response);</span>
-<span class="nc" id="L106">        } catch (ParseException ex) {</span>
-<span class="nc" id="L107">            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L108">        } catch (Exception ex) {</span>
-<span class="nc" id="L109">            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L110">        }</span>
-<span class="nc" id="L111">    }</span>
+<span class="nc" id="L112">            processRequest(request, response);</span>
+<span class="nc" id="L113">        } catch (ParseException ex) {</span>
+<span class="nc" id="L114">            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L115">        } catch (Exception ex) {</span>
+<span class="nc" id="L116">            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L117">        }</span>
+<span class="nc" id="L118">    }</span>
 
     /**
      * Handles the HTTP &lt;code&gt;POST&lt;/code&gt; method.
@@ -122,13 +129,13 @@ import javax.servlet.http.HttpServletResponse;
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-<span class="nc" id="L125">            processRequest(request, response);</span>
-<span class="nc" id="L126">        } catch (ParseException ex) {</span>
-<span class="nc" id="L127">            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L128">        } catch (Exception ex) {</span>
-<span class="nc" id="L129">            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L130">        }</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L132">            processRequest(request, response);</span>
+<span class="nc" id="L133">        } catch (ParseException ex) {</span>
+<span class="nc" id="L134">            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L135">        } catch (Exception ex) {</span>
+<span class="nc" id="L136">            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L137">        }</span>
+<span class="nc" id="L138">    }</span>
 
     /**
      * Returns a short description of the servlet.
@@ -137,7 +144,7 @@ import javax.servlet.http.HttpServletResponse;
      */
     @Override
     public String getServletInfo() {
-<span class="nc" id="L140">        return &quot;Short description&quot;;</span>
+<span class="nc" id="L147">        return &quot;Short description&quot;;</span>
     }// &lt;/editor-fold&gt;
 
 }

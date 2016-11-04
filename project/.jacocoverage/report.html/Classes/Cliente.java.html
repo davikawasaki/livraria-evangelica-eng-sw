@@ -41,23 +41,21 @@ import java.util.Objects;
 <span class="fc" id="L41">    }</span>
 
     public void setCodFidelidade(String codFidelidade) throws Exception {
-<span class="fc bfc" id="L44" title="All 2 branches covered.">        if(codFidelidade.isEmpty())</span>
-<span class="fc" id="L45">            throw new Exception(&quot;Codigo de Fidelidade Invalido&quot;);</span>
-<span class="fc bfc" id="L46" title="All 4 branches covered.">        else if((codFidelidade.length() &gt;= 3) &amp;&amp; (codFidelidade.length() &lt; 45))</span>
-<span class="fc" id="L47">            this.codFidelidade = codFidelidade;</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        else if(codFidelidade.length() &lt; 3)</span>
-<span class="fc" id="L49">            throw new Exception(&quot;Codigo de Fidelidade menor que 3 caracteres&quot;);</span>
+<span class="pc bpc" id="L44" title="1 of 6 branches missed.">        if((codFidelidade.isEmpty()) || ((codFidelidade.length() &gt;= 3) &amp;&amp; (codFidelidade.length() &lt; 45)))</span>
+<span class="fc" id="L45">            this.codFidelidade = codFidelidade;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        else if(codFidelidade.length() &lt; 3)</span>
+<span class="fc" id="L47">            throw new Exception(&quot;Codigo de Fidelidade menor que 3 caracteres&quot;);</span>
         else
-<span class="fc" id="L51">            throw new Exception(&quot;Codigo de Fidelidade maior que 45 caracteres&quot;);</span>
-<span class="fc" id="L52">    }</span>
+<span class="fc" id="L49">            throw new Exception(&quot;Codigo de Fidelidade maior que 45 caracteres&quot;);</span>
+<span class="fc" id="L50">    }</span>
 
     public PessoaFisica getPf() {
-<span class="fc" id="L55">        return pf;</span>
+<span class="fc" id="L53">        return pf;</span>
     }
 
     public void setPf(PessoaFisica pf) {
-<span class="fc" id="L59">        this.pf = Objects.requireNonNull(pf);</span>
-<span class="fc" id="L60">    }</span>
+<span class="fc" id="L57">        this.pf = Objects.requireNonNull(pf);</span>
+<span class="fc" id="L58">    }</span>
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -101,7 +101,7 @@ public class PessoaDAO {
     
     public boolean remove(int idPessoa){
         //String sql = &quot;delete from Pessoa as P where P.idPessoa IN (select idPessoa from (select idPessoa from Pessoa as S, PessoaJuridica as PJ where S.idPessoa = PJ.Pessoa_idPessoa and PJ.CNPJ = ?))&quot;;
-<span class="nc" id="L104">        String sql = &quot;delete from Pessoa where id=?&quot;;</span>
+<span class="nc" id="L104">        String sql = &quot;delete from Pessoa where idPessoa=?&quot;;</span>
         try{
 <span class="nc" id="L106">            PreparedStatement stmt = connection.prepareStatement(sql);</span>
 <span class="nc" id="L107">            stmt.setInt(1, idPessoa);</span>

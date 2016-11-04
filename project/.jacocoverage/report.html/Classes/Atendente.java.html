@@ -5,15 +5,13 @@
  */
 package Classes;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  *
  * @author Nicholas
  */
-<span class="fc" id="L16">public class Atendente{</span>
+<span class="fc" id="L14">public class Atendente{</span>
     private PessoaFisica pf;
     private Date comecoExpediente;
     private Date fimExpediente;
@@ -21,65 +19,65 @@ import java.util.GregorianCalendar;
     private String login;
     
     // Instância para validações de senha e e-mail
-<span class="fc" id="L24">    Validacoes valida = new Validacoes();</span>
+<span class="fc" id="L22">    Validacoes valida = new Validacoes();</span>
 
     public Date getComecoExpediente() {
-<span class="fc" id="L27">        return comecoExpediente;</span>
+<span class="fc" id="L25">        return comecoExpediente;</span>
     }
 
     public Date getFimExpediente() {
-<span class="fc" id="L31">        return fimExpediente;</span>
+<span class="fc" id="L29">        return fimExpediente;</span>
     }
 
     public String getSenha() {
-<span class="fc" id="L35">        return senha;</span>
+<span class="fc" id="L33">        return senha;</span>
     }
 
     public String getLogin() {
-<span class="fc" id="L39">        return login;</span>
+<span class="fc" id="L37">        return login;</span>
     }
 
     public void setComecoExpediente(Date comecoExpediente) throws Exception {
-<span class="fc" id="L43">        Date dt = new Date();</span>
-<span class="fc bfc" id="L44" title="All 2 branches covered.">        if(comecoExpediente.before(dt))</span>
-<span class="fc" id="L45">            throw new Exception(&quot;Horario Invalido&quot;);</span>
+<span class="fc" id="L41">        Date dt = new Date();</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if(comecoExpediente.before(dt))</span>
+<span class="fc" id="L43">            throw new Exception(&quot;Horario Invalido&quot;);</span>
         else
-<span class="fc" id="L47">            this.comecoExpediente = comecoExpediente;</span>
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L45">            this.comecoExpediente = comecoExpediente;</span>
+<span class="fc" id="L46">    }</span>
 
     public void setFimExpediente(Date fimExpediente) throws Exception {
-<span class="fc" id="L51">        Date dt = new Date();</span>
-<span class="fc bfc" id="L52" title="All 2 branches covered.">        if(fimExpediente.after(dt))</span>
-<span class="fc" id="L53">            throw new Exception(&quot;Horario Invalido&quot;);</span>
+<span class="fc" id="L49">        Date dt = new Date();</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if(fimExpediente.after(dt))</span>
+<span class="fc" id="L51">            throw new Exception(&quot;Horario Invalido&quot;);</span>
         else
-<span class="fc" id="L55">            this.fimExpediente = fimExpediente;</span>
-<span class="fc" id="L56">    }</span>
+<span class="fc" id="L53">            this.fimExpediente = fimExpediente;</span>
+<span class="fc" id="L54">    }</span>
 
     public void setSenha(String senha) throws Exception{
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        if(valida.validaSenha(senha))</span>
-<span class="fc" id="L60">            this.senha = senha;</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if(valida.validaSenha(senha))</span>
+<span class="fc" id="L58">            this.senha = senha;</span>
         else
-<span class="fc" id="L62">            throw new Exception(&quot;Senha Invalida&quot;);</span>
-<span class="fc" id="L63">    }</span>
+<span class="fc" id="L60">            throw new Exception(&quot;Senha Invalida&quot;);</span>
+<span class="fc" id="L61">    }</span>
 
     public void setLogin(String login) throws Exception {
-<span class="fc bfc" id="L66" title="All 2 branches covered.">        if(login.isEmpty())</span>
-<span class="fc" id="L67">            throw new Exception(&quot;Login Invalido&quot;);</span>
-<span class="fc bfc" id="L68" title="All 4 branches covered.">        else if((login.length() &gt;= 5) &amp;&amp; (login.length() &lt; 45))</span>
-<span class="fc" id="L69">            this.login = login;</span>
-<span class="fc bfc" id="L70" title="All 2 branches covered.">        else if(login.length() &lt; 5)</span>
-<span class="fc" id="L71">            throw new Exception(&quot;Login menor que 5 caracteres&quot;);</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if(login.isEmpty())</span>
+<span class="fc" id="L65">            throw new Exception(&quot;Login Invalido&quot;);</span>
+<span class="fc bfc" id="L66" title="All 4 branches covered.">        else if((login.length() &gt;= 5) &amp;&amp; (login.length() &lt; 45))</span>
+<span class="fc" id="L67">            this.login = login;</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        else if(login.length() &lt; 5)</span>
+<span class="fc" id="L69">            throw new Exception(&quot;Login menor que 5 caracteres&quot;);</span>
         else
-<span class="fc" id="L73">            throw new Exception(&quot;Login maior que 45 caracteres&quot;);</span>
-<span class="fc" id="L74">    }</span>
+<span class="fc" id="L71">            throw new Exception(&quot;Login maior que 45 caracteres&quot;);</span>
+<span class="fc" id="L72">    }</span>
 
     public PessoaFisica getPf() {
-<span class="fc" id="L77">        return pf;</span>
+<span class="fc" id="L75">        return pf;</span>
     }
 
     public void setPf(PessoaFisica pf) {
-<span class="fc" id="L81">        this.pf = pf;</span>
-<span class="fc" id="L82">    }</span>
+<span class="fc" id="L79">        this.pf = pf;</span>
+<span class="fc" id="L80">    }</span>
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

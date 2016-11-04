@@ -10,7 +10,6 @@ import Classes.Midia;
 import Classes.Produto;
 import DAOclasses.LivroDAO;
 import DAOclasses.MidiaDAO;
-import DAOclasses.ProdutoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -24,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author eryc
  */
-<span class="nc" id="L27">public class NovoProduto extends HttpServlet {</span>
+<span class="nc" id="L26">public class NovoProduto extends HttpServlet {</span>
 
     /**
      * Processes requests for both HTTP &lt;code&gt;GET&lt;/code&gt; and &lt;code&gt;POST&lt;/code&gt;
@@ -38,53 +37,51 @@ import javax.servlet.http.HttpServletResponse;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {        
-<span class="nc" id="L41">            response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span>
-<span class="nc" id="L42">            request.setCharacterEncoding(&quot;UTF-8&quot;);</span>
+<span class="nc" id="L40">            response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span>
+<span class="nc" id="L41">            request.setCharacterEncoding(&quot;UTF-8&quot;);</span>
 
-<span class="nc" id="L44">            PrintWriter out = response.getWriter();</span>
+<span class="nc" id="L43">            PrintWriter out = response.getWriter();</span>
 
-<span class="nc" id="L46">            Produto produto = new Produto();</span>
-<span class="nc" id="L47">            produto.setTitulo(request.getParameter(&quot;titulo&quot;));</span>
-<span class="nc" id="L48">            out.println(produto.getTitulo());</span>
+<span class="nc" id="L45">            Produto produto = new Produto();</span>
+<span class="nc" id="L46">            produto.setTitulo(request.getParameter(&quot;titulo&quot;));</span>
+<span class="nc" id="L47">            out.println(produto.getTitulo());</span>
             
-<span class="nc" id="L50">            int tipo = Integer.parseInt(request.getParameter(&quot;tipoProduto&quot;));</span>
+<span class="nc" id="L49">            int tipo = Integer.parseInt(request.getParameter(&quot;tipoProduto&quot;));</span>
 
-<span class="nc" id="L52">            produto.setTipo(tipo);</span>
+<span class="nc" id="L51">            produto.setTipo(tipo);</span>
 
-<span class="nc" id="L54">            produto.setPreco(Float.parseFloat(request.getParameter(&quot;desconto&quot;)));</span>
+<span class="nc" id="L53">            produto.setPreco(Float.parseFloat(request.getParameter(&quot;preco&quot;)));</span>
            
-<span class="nc" id="L56">            produto.setIdioma(request.getParameter(&quot;idioma&quot;));</span>
-<span class="nc" id="L57">            produto.setAnoLancamento(Integer.parseInt(request.getParameter(&quot;anoLancamento&quot;)));</span>
-<span class="nc" id="L58">            produto.setQuantidade(Integer.parseInt(request.getParameter(&quot;quantidade&quot;)));</span>
-<span class="nc" id="L59">            ProdutoDAO pdao = new ProdutoDAO();</span>
-<span class="nc" id="L60">            pdao.adiciona(produto);</span>
+<span class="nc" id="L55">            produto.setIdioma(request.getParameter(&quot;idioma&quot;));</span>
+<span class="nc" id="L56">            produto.setAnoLancamento(Integer.parseInt(request.getParameter(&quot;anoLancamento&quot;)));</span>
+<span class="nc" id="L57">            produto.setQuantidade(Integer.parseInt(request.getParameter(&quot;quantidade&quot;)));</span>
+            
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if(tipo == 1){</span>
+<span class="nc" id="L60">                Livro livro = new Livro();</span>
+<span class="nc" id="L61">                livro.setPdt(produto);</span>
+<span class="nc" id="L62">                livro.setEditora(request.getParameter(&quot;editora&quot;));</span>
+<span class="nc" id="L63">                livro.setAutor(request.getParameter(&quot;autor&quot;));</span>
 
-<span class="nc bnc" id="L62" title="All 2 branches missed.">            if(tipo == 1){</span>
-<span class="nc" id="L63">                Livro livro = new Livro();</span>
-<span class="nc" id="L64">                livro.setPdt(produto);</span>
-<span class="nc" id="L65">                livro.setEditora(request.getParameter(&quot;editora&quot;));</span>
-<span class="nc" id="L66">                livro.setAutor(request.getParameter(&quot;autor&quot;));</span>
+<span class="nc" id="L65">                LivroDAO ldao = new LivroDAO();</span>
 
-<span class="nc" id="L68">                LivroDAO ldao = new LivroDAO();</span>
+<span class="nc" id="L67">                ldao.adiciona(livro);</span>
+<span class="nc" id="L68">            }</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            else if(tipo == 2){</span>
+<span class="nc" id="L70">                Midia midia = new Midia();</span>
+<span class="nc" id="L71">                midia.setPdt(produto);</span>
+<span class="nc" id="L72">                midia.setArtista(request.getParameter(&quot;artista&quot;));</span>
+<span class="nc" id="L73">                midia.setTipoMidia(request.getParameter(&quot;tipoMidia&quot;));</span>
 
-<span class="nc" id="L70">                ldao.adiciona(livro);</span>
-<span class="nc" id="L71">            }</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">            else if(tipo == 2){</span>
-<span class="nc" id="L73">                Midia midia = new Midia();</span>
-<span class="nc" id="L74">                midia.setPdt(produto);</span>
-<span class="nc" id="L75">                midia.setArtista(request.getParameter(&quot;artista&quot;));</span>
-<span class="nc" id="L76">                midia.setTipoMidia(request.getParameter(&quot;tipoMidia&quot;));</span>
-
-<span class="nc" id="L78">                MidiaDAO mdao = new MidiaDAO();</span>
-<span class="nc" id="L79">                mdao.adiciona(midia);</span>
+<span class="nc" id="L75">                MidiaDAO mdao = new MidiaDAO();</span>
+<span class="nc" id="L76">                mdao.adiciona(midia);</span>
             }
-<span class="nc" id="L81">                String contextPath= &quot;http://localhost:8084/livraria_v1/dashboard.html&quot;;</span>
-<span class="nc" id="L82">                response.sendRedirect(response.encodeRedirectURL(contextPath));</span>
+<span class="nc" id="L78">                String contextPath= &quot;http://localhost:8084/livraria_v1/dashboard.html&quot;;</span>
+<span class="nc" id="L79">                response.sendRedirect(response.encodeRedirectURL(contextPath));</span>
         } 
-<span class="nc" id="L84">        catch (Exception ex) {</span>
-<span class="nc" id="L85">            Logger.getLogger(NovoPagamento.class.getName()).log(Level.SEVERE, null, ex);</span>
-<span class="nc" id="L86">        }    </span>
-<span class="nc" id="L87">    }</span>
+<span class="nc" id="L81">        catch (Exception ex) {</span>
+<span class="nc" id="L82">            Logger.getLogger(NovoPagamento.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L83">        }    </span>
+<span class="nc" id="L84">    }</span>
 
 
     // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;HttpServlet methods. Click on the + sign on the left to edit the code.&quot;&gt;
@@ -99,8 +96,8 @@ import javax.servlet.http.HttpServletResponse;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<span class="nc" id="L102">        processRequest(request, response);</span>
-<span class="nc" id="L103">    }</span>
+<span class="nc" id="L99">        processRequest(request, response);</span>
+<span class="nc" id="L100">    }</span>
 
     /**
      * Handles the HTTP &lt;code&gt;POST&lt;/code&gt; method.
@@ -113,8 +110,8 @@ import javax.servlet.http.HttpServletResponse;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-<span class="nc" id="L116">        processRequest(request, response);</span>
-<span class="nc" id="L117">    }</span>
+<span class="nc" id="L113">        processRequest(request, response);</span>
+<span class="nc" id="L114">    }</span>
 
     /**
      * Returns a short description of the servlet.
@@ -123,7 +120,7 @@ import javax.servlet.http.HttpServletResponse;
      */
     @Override
     public String getServletInfo() {
-<span class="nc" id="L126">        return &quot;Short description&quot;;</span>
+<span class="nc" id="L123">        return &quot;Short description&quot;;</span>
     }// &lt;/editor-fold&gt;
 
 }

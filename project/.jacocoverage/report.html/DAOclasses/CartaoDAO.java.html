@@ -63,7 +63,7 @@ public class CartaoDAO {
 <span class="nc" id="L63">            stmt.close();</span>
 <span class="nc" id="L64">            return cartoes;</span>
         }
-<span class="nc" id="L66">        catch (SQLException e) {</span>
+<span class="nc" id="L66">        catch (Exception e) {</span>
 <span class="nc" id="L67">             throw new RuntimeException(e);</span>
         }
     }
