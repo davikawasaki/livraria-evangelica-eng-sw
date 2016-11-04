@@ -1,9 +1,68 @@
+<%--
+    Document   : editar-cliente
+    Created on : 03/11/2016, 15:20:14
+    Author     : davi
+--%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="Classes.Cliente"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="dao" class="DAOclasses.ClienteDAO"/>
+<%@ page import= "DAOclasses.PessoaDAO" %>
+
+<%
+  String id = request.getParameter("id");
+  request.setAttribute("idCliente", id);
+  Cliente c = dao.getCliente(id);
+  String nomeCliente = c.getPf().getNome();
+  request.setAttribute("nomeCliente", nomeCliente);
+  String sobrenomeCliente = c.getPf().getSobrenome();
+  request.setAttribute("sobrenomeCliente", sobrenomeCliente);
+  String CPFCliente = c.getPf().getCPF();
+  request.setAttribute("CPFCliente", CPFCliente);
+  String RGCliente = c.getPf().getRG();
+  request.setAttribute("RGCliente", RGCliente);
+  Date dataBanco = c.getPf().getDataNascimento();
+  DateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+  String dataCliente = formatoData.format(dataBanco);
+  request.setAttribute("dataCliente", dataCliente);
+  String generoCliente = c.getPf().getSexo();
+  request.setAttribute("generoCliente", generoCliente);
+  String codFidelidadeCliente = c.getCodFidelidade();
+  request.setAttribute("codFidelidadeCliente", codFidelidadeCliente);
+  boolean fidelidadeCliente = c.isFidelidade();
+  request.setAttribute("fidelidadeCliente", fidelidadeCliente);
+  String telefoneCliente = c.getPf().getPessoa().getTelefone();
+  request.setAttribute("telefoneCliente", telefoneCliente);
+  String emailCliente = c.getPf().getPessoa().getEmail();
+  request.setAttribute("emailCliente", emailCliente);
+  String logradouroCliente = c.getPf().getPessoa().getLogradouro();
+  request.setAttribute("logradouroCliente", logradouroCliente);
+  int numeroLogradouroCliente = c.getPf().getPessoa().getNumero();
+  request.setAttribute("numeroLogradouroCliente", numeroLogradouroCliente);
+  String complementoLogradouroCliente = c.getPf().getPessoa().getComplemento();
+  request.setAttribute("complementoLogradouroCliente", complementoLogradouroCliente);
+  String bairroCliente = c.getPf().getPessoa().getBairro();
+  request.setAttribute("bairroCliente", bairroCliente);
+  String CEPCliente = c.getPf().getPessoa().getCEP();
+  request.setAttribute("CEPCliente", CEPCliente);
+  String cidadeCliente = c.getPf().getPessoa().getCidade();
+  request.setAttribute("cidadeCliente", cidadeCliente);
+  String estadoCliente = c.getPf().getPessoa().getEstado();
+  request.setAttribute("estadoCliente", estadoCliente);
+  String paisCliente = c.getPf().getPessoa().getPais();
+  request.setAttribute("paisCliente", paisCliente);
+%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>CADASTRO CLIENTE KOINONIA</title>
+		<title>EDITAR CLIENTE KOINONIA</title>
 
 		<meta name="description" content=" " />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -90,7 +149,7 @@
 <!--								<li>
 									<a href="#">
 										<i class="ace-icon fa fa-cog"></i>
-										Configurações
+										ConfiguraÃ§Ãµes
 									</a>
 								</li>
 
@@ -99,9 +158,9 @@
 										<i class="ace-icon fa fa-user"></i>
 										Perfil
 									</a>
-								</li>-->
+								</li>
 
-<!--								<li class="divider"></li>-->
+								<li class="divider"></li>-->
 
 								<li>
 									<a href="#">
@@ -253,7 +312,7 @@
 								<b class="arrow"></b>
                                                         </li>
 						</ul>
-                                                
+
                                                 <b class="arrow"></b>
 
 						<ul class="submenu">
@@ -286,7 +345,7 @@
 							</li>
 
 							<li>Cadastro</li>
-							
+
 							<li class="active">Cliente</li>
 						</ul><!-- /.breadcrumb -->
 
@@ -296,7 +355,7 @@
 
 						<div class="page-header">
 							<h1>
-								Cadastro
+								Editar
 								<small>
 									<i class="ace-icon fa fa-chevron-right"></i>
 									Cliente
@@ -308,15 +367,23 @@
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
                                                                 <!--Testar id="validation-form" em forms -->
-								<form class="form-horizontal" role="form" action="CadastroCliente"  method="POST">
+								<form class="form-horizontal" role="form" action="EditaCliente" method="POST">
 
 									<div class="space-4"></div>
 
-									<div class="form-group">
-                                                                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Nome </label>
+                                                                        <div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> ID </label>
 
 										<div class="col-sm-9">
-											<input required type="text" name="nome" id="form-field-1" placeholder="Ex: João Pedro" class="col-xs-10 col-sm-5" />
+											<input type="text" readonly name="idCliente" id="form-field-1" placeholder="ID Cliente" class="col-xs-10 col-sm-5" value="${idCliente}"/>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Nome </label>
+
+										<div class="col-sm-9">
+											<input required type="text" name="nome" id="form-field-1" placeholder="Ex: João Pedro" class="col-xs-10 col-sm-5" value="${nomeCliente}"/>
 										</div>
 									</div>
 
@@ -324,7 +391,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Sobrenome </label>
 
 										<div class="col-sm-9">
-											<input required type="text" name="sobrenome" id="form-field-1" placeholder="Ex: Silva" class="col-xs-10 col-sm-2" />
+											<input required type="text" name="sobrenome" id="form-field-1" placeholder="Ex: Silva" class="col-xs-10 col-sm-2" value="${sobrenomeCliente}"/>
 										</div>
 									</div>
 
@@ -332,7 +399,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"><span style="color:red;">*</span> CPF </label>
 
 										<div class="col-sm-9">
-											<input required type="text" name="CPF" id="form-field-mask-2" placeholder="Ex: 425.632.845-65" class="col-xs-5 col-sm-3 mask-CPF" />
+											<input readonly required type="text" name="CPF" id="form-field-mask-2" placeholder="Ex: 425.632.845-65" class="col-xs-5 col-sm-3 mask-CPF" value="${CPFCliente}"/>
 										</div>
 									</div>
 
@@ -340,7 +407,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"><span style="color:red;">*</span> RG </label>
 
 										<div class="col-sm-9">
-											<input required type="text" name="RG" id="form-field-mask-2" placeholder="Ex: 25.658.578-3" class="col-xs-5 col-sm-3 mask-RG" />
+											<input readonly required type="text" name="RG" id="form-field-mask-2" placeholder="Ex: 25.658.578-3" class="col-xs-5 col-sm-3 mask-RG" value="${RGCliente}"/>
 										</div>
 									</div>
 
@@ -348,7 +415,7 @@
 										<div>
 											<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"><span style="color:red;">*</span> Data de nascimento</label>
 											<div class="col-sm-9">
-												<input required class="col-xs-5 col-sm-2 mask-DATA" type="text" name="dataNascimento" id="form-field-mask-2" placeholder="10-12-2016"/>
+												<input required class="col-xs-5 col-sm-2 mask-DATA" type="text" name="dataNascimento" id="form-field-mask-2" placeholder="10-12-2016" value="${dataCliente}"/>
 											</div>
 										</div>
 									</div>
@@ -357,15 +424,28 @@
 										<label class="col-sm-3 control-label no-padding-right"><span style="color:red;">*</span> Gênero</label>
 
 										<div class="col-sm-9">
-											<label class="inline">
-												<input checked name="sexo" type="radio" value="M" class="ace" />
-												<span class="lbl middle"> Masculino</span>
-											</label>
-
-											<label class="inline">
+                                                                                    <c:choose>
+                                                                                        <c:when test="${generoCliente == 'M'}">
+                                                                                            <label class="inline">
+                                                                                                    <input checked name="sexo" type="radio" value="M" class="ace" />
+                                                                                                    <span class="lbl middle"> Masculino</span>
+                                                                                            </label>
+                                                                                            <label class="inline">
 												<input name="sexo" type="radio" value="F" class="ace" />
 												<span class="lbl middle"> Feminino</span>
-											</label>
+                                                                                            </label>
+                                                                                        </c:when>
+                                                                                        <c:otherwise>
+                                                                                            <label class="inline">
+                                                                                                <input name="sexo" type="radio" value="M" class="ace" />
+                                                                                                <span class="lbl middle"> Masculino</span>
+                                                                                            </label>
+                                                                                            <label class="inline">
+												<input checked name="sexo" type="radio" value="F" class="ace" />
+												<span class="lbl middle"> Feminino</span>
+                                                                                            </label>
+                                                                                        </c:otherwise>
+                                                                                    </c:choose>
 										</div>
 									</div>
 
@@ -373,10 +453,10 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Fidelidade </label>
 
 										<div class="col-sm-9">
-											<input type="text" class="col-xs-10 col-sm-3" minlength="3" name="codFidelidade" id="codFidelidade" placeholder="Codigo de fidelidade"/>
+                                                                                        <input type="text" class="col-xs-10 col-sm-3" name="codFidelidade" id="codFidelidade" placeholder="Codigo de fidelidade" value="${codFidelidadeCliente}"/>
 											<label class="middle col-xs-12 col-sm-7">
-												<input class="ace" type="checkbox" id="fidelidade" name="fidelidade" onclick="enableDisable(this.checked, 'codFidelidade')"/>
-												<span class="lbl"> Não possui</span>
+                                                                                            <input class="ace" type="checkbox" id="fidelidade" name="fidelidade" onclick="enableDisable(this.checked, 'codFidelidadeCliente')"/>
+                                                                                            <span class="lbl"> Não possui</span>
 											</label>
 										</div>
 									</div>
@@ -385,7 +465,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Telefone </label>
 
 										<div class="col-sm-9">
-											<input type="tel" name="telefone" id="form-field-1" placeholder="Ex: (43) 9632-1236" class="col-xs-10 col-sm-3 mask-phone" />
+											<input type="tel" name="telefone" id="form-field-1" placeholder="Ex: (43) 9632-1236" class="col-xs-10 col-sm-3 mask-phone" value="${telefoneCliente}"/>
 										</div>
 									</div>
 
@@ -395,7 +475,7 @@
 
 										<div class="col-sm-9">
 											<div class="clearfix">
-												<input required type="email" name="email" id="email" placeholder="Ex: livraria@gmail.com" class="col-xs-12 col-sm-4"/>
+												<input required type="email" name="email" id="email" placeholder="Ex: livraria@gmail.com" class="col-xs-12 col-sm-4" value="${emailCliente}"/>
 											</div>
 										</div>
 									</div>
@@ -404,13 +484,13 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Logradouro </label>
 
 										<div class="col-sm-4">
-											<input required type="text" name="logradouro" id="form-field-1" placeholder="Ex: Rua Coronel Alendor" class="col-xs-10 col-sm-11" />
+											<input required type="text" name="logradouro" id="form-field-1" placeholder="Ex: Rua Coronel Alendor" class="col-xs-10 col-sm-11" value="${logradouroCliente}"/>
 										</div>
 
 										<label class="col-sm-1 control-label no-padding-right " for="form-field-1"><span style="color:red;">*</span> N&uacute;mero </label>
 
 										<div class="col-sm-2">
-											<input required type="tel" name="numero" id="form-field-1" placeholder="Ex: 145" class="col-xs-10 col-sm-8"/>
+											<input required type="tel" name="numero" id="form-field-1" placeholder="Ex: 145" class="col-xs-10 col-sm-8" value="${numeroLogradouroCliente}"/>
 										</div>
 									</div>
 
@@ -418,7 +498,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Complemento </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="complemento" id="form-field-1" placeholder="Ex: Bloco A" class="col-xs-10 col-sm-4" />
+											<input type="text" name="complemento" id="form-field-1" placeholder="Ex: Bloco A" class="col-xs-10 col-sm-4" value="${complementoLogradouroCliente}"/>
 										</div>
 									</div>
 
@@ -426,7 +506,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Bairro </label>
 
 										<div class="col-sm-9">
-											<input required type="text" name="bairro" id="form-field-1" placeholder="Ex: Centro" class="col-xs-10 col-sm-4" />
+											<input required type="text" name="bairro" id="form-field-1" placeholder="Ex: Centro" class="col-xs-10 col-sm-4" value="${bairroCliente}"/>
 										</div>
 									</div>
 
@@ -434,7 +514,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-mask-2"><span style="color:red;">*</span> CEP </label>
 
 										<div class="col-sm-9">
-											<input required type="text" name="cep" id="form-field-mask-2" placeholder="Ex: 86300-000" class="col-xs-10 col-sm-3 mask-CEP" />
+											<input required type="text" name="cep" id="form-field-mask-2" placeholder="Ex: 86300-000" class="col-xs-10 col-sm-3 mask-CEP" value="${CEPCliente}"/>
 										</div>
 									</div>
 
@@ -442,13 +522,13 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Cidade </label>
 
 										<div class="col-sm-3">
-											<input required type="text" name="cidade" id="form-field-1" placeholder="Ex: Cornélio Procópio" class="col-xs-10 col-sm-12" />
+											<input required type="text" name="cidade" id="form-field-1" placeholder="Ex: Cornélio Procópio" class="col-xs-10 col-sm-12" value="${cidadeCliente}"/>
 										</div>
 
 										<label class="col-sm-1 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Estado </label>
 
 										<div class="col-sm-3">
-											<input required type="text" name="estado" id="form-field-1" placeholder="Ex: Paraná" class="col-xs-10 col-sm-8" />
+											<input required type="text" name="estado" id="form-field-1" placeholder="Ex: Paraná" class="col-xs-10 col-sm-8" value="${estadoCliente}"/>
 										</div>
 									</div>
 
@@ -456,7 +536,7 @@
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span style="color:red;">*</span> Pa&iacute;s </label>
 
 										<div class="col-sm-4">
-											<input required type="text" name="pais" id="form-field-1" placeholder="Ex: Brasil" class="col-xs-10 col-sm-5" />
+											<input required type="text" name="pais" id="form-field-1" placeholder="Ex: Brasil" class="col-xs-10 col-sm-5" value="${paisCliente}"/>
 										</div>
 									</div>
 
@@ -469,10 +549,10 @@
 											</button>
 
 											&nbsp; &nbsp; &nbsp;
-											<button class="btn" type="reset">
+<!--											<button class="btn" type="reset">
 												<i class="ace-icon fa fa-undo bigger-110"></i>
 												Limpar
-											</button>
+											</button>-->
 										</div>
 									</div>
 								</form>
@@ -532,11 +612,11 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {
-				
+
 				if(!ace.vars['touch']) {
-					$('.chosen-select').chosen({allow_single_deselect:true}); 
+					$('.chosen-select').chosen({allow_single_deselect:true});
 					//resize the chosen on window resize
-			
+
 					$(window)
 					.off('resize.chosen')
 					.on('resize.chosen', function() {
@@ -553,7 +633,7 @@
 							 $this.next().css({'width': $this.parent().width()});
 						})
 					});
-			
+
 					/*
 					$('#chosen-multiple-style .btn').on('click', function(e){
 						var target = $(this).find('input[type=radio]');
@@ -562,22 +642,22 @@
 						 else $('#form-field-select-4').removeClass('tag-input-style');
 					});*/
 				}
-			
-			
+
+
 				$('[data-rel=tooltip]').tooltip({container:'body'});
 				$('[data-rel=popover]').popover({container:'body'});
-			
+
 				$(".mask-phone").mask("(99) 9999-9999?9");
 				$(".mask-CPF").mask("999.999.999-99");
 				$(".mask-RG").mask("99.999.999-*");
 				$(".mask-CEP").mask("99999-999");
 				$(".mask-DATA").mask("99/99/9999");
 				$(".mask-email").mask("[A-Za-z0-9+_.-]{1,}+@[A-Za-z0-9-]{1,}+(\\.[A-Za-z0-9-]{2,6}+){1,2}");
-				
+
 				$("#fidelidade").click(function () {
-				    $('#codFidelidade').attr("disabled", $(this).is(":checked"));
+				    $('#codfidelidade').attr("disabled", $(this).is(":checked"));
 				});
-				
+
 				$('#validation-form').validate({
 					errorElement: 'div',
 					errorClass: 'help-block',
@@ -589,24 +669,24 @@
 							email:true
 						},
 					},
-			
+
 					messages: {
 						email: {
 							required: "Por favor, insira um email valido.",
 							email: "Por favor, insira um email valido."
 						},
 					},
-			
-			
+
+
 					highlight: function (e) {
 						$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
 					},
-			
+
 					success: function (e) {
 						$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
 						$(e).remove();
 					},
-			
+
 					errorPlacement: function (error, element) {
 						if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
 							var controls = element.closest('div[class*="col-"]');
@@ -621,13 +701,13 @@
 						}
 						else error.insertAfter(element.parent());
 					},
-			
+
 					submitHandler: function (form) {
 					},
 					invalidHandler: function (form) {
 					}
 				});
-			
+
 			});
 		</script>
 	</body>
