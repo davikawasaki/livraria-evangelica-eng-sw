@@ -136,4 +136,45 @@ public class ClienteDAO {
         }
     }
     
+    public Cliente getCliente(String CPF) throws Exception{
+
+        Cliente cliente = new Cliente();
+        PreparedStatement stmt = this.connection.
+        prepareStatement("select * from Pessoa P join PessoaFisica PF on P.idPessoa = PF.Pessoa_IdPessoa join Cliente C on PF.CPF = C.PessoaFisica_CPF where CPF=?;");
+        stmt.setString(1, CPF);
+        ResultSet rs = stmt.executeQuery();
+ 
+        while (rs.next()){
+            // criando o objeto Cliente
+            PessoaFisica pj = new PessoaFisica();
+            cliente.setPf(pj);
+            Pessoa pessoa = new Pessoa();
+            cliente.getPf().setPessoa(pessoa);
+
+            cliente.setIdCliente(rs.getInt("idCliente"));
+            cliente.setCodFidelidade(rs.getString("codFidelidade"));
+            cliente.setFidelidade(rs.getBoolean("Fidelidade"));
+            cliente.getPf().setCPF(rs.getString("CPF"));
+            cliente.getPf().setNome(rs.getString("nome"));
+            cliente.getPf().setSobrenome(rs.getString("sobrenome"));
+            cliente.getPf().setRG(rs.getString("RG"));
+            cliente.getPf().setSexo(rs.getString("sexo"));
+            cliente.getPf().setDataNascimento(rs.getDate("dataNascimento"));
+            cliente.getPf().getPessoa().setTelefone(rs.getString("telefone"));
+            cliente.getPf().getPessoa().setEmail(rs.getString("email"));
+            cliente.getPf().getPessoa().setLogradouro(rs.getString("logradouro"));
+            cliente.getPf().getPessoa().setNumero(rs.getInt("numero"));
+            cliente.getPf().getPessoa().setComplemento(rs.getString("complemento"));
+            cliente.getPf().getPessoa().setBairro(rs.getString("bairro"));
+            cliente.getPf().getPessoa().setCEP(rs.getString("CEP"));
+            cliente.getPf().getPessoa().setCidade(rs.getString("cidade"));
+            cliente.getPf().getPessoa().setEstado(rs.getString("estado"));
+            cliente.getPf().getPessoa().setPais(rs.getString("pais"));
+            cliente.getPf().getPessoa().setId(rs.getInt("idPessoa"));
+        }
+        rs.close();
+        stmt.close();
+        return cliente;
+    }
+    
 }

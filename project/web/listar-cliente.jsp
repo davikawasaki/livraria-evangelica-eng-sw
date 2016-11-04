@@ -322,7 +322,6 @@
                                                         </th>
                                                         <th>CPF</th>
                                                         <th>Nome</th>
-                                                        <th>Fidelidade</th>
                                                         <th>Telefone</th>
                                                         <th>Email</th>
                                                         <th>ID</th>
@@ -350,8 +349,6 @@
                                                         </td>
 
                                                         <td>${cliente.getPf().nome}</td>
-
-                                                        <td class="hidden-480">${cliente.fidelidade}</td>
 
                                                         <td>${cliente.getPf().getPessoa().telefone}</td>
 

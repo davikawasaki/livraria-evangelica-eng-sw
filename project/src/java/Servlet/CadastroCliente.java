@@ -75,15 +75,22 @@ public class CadastroCliente extends HttpServlet {
         Date date = new java.sql.Date(formatoData.parse(dataNasc).getTime());
        
         cliente.getPf().setDataNascimento(date);
-       
-        cliente.setFidelidade(Boolean.getBoolean(request.getParameter("fidelidade")));
-        cliente.setCodFidelidade(request.getParameter("codFidelidade"));
+        
+        boolean fidelidade = Boolean.getBoolean(request.getParameter("fidelidade"));
+        cliente.setFidelidade(fidelidade);
+        
+        String codFidelidade = request.getParameter("codFidelidade");
+        System.out.println("FIDELIDADE: "+fidelidade);
+        cliente.setCodFidelidade("");
+        if(codFidelidade != null)
+            cliente.setCodFidelidade(codFidelidade);
         
         ClienteDAO dao = new ClienteDAO();
-        dao.adiciona(cliente);
-
+        if(dao.getCliente(cliente.getPf().getCPF()) == null){
+            dao.adiciona(cliente);
+        }
+        
         String contextPath= "http://localhost:8084/livraria_v1/dashboard.html";
-        out.println("Cadastrado!");
         response.sendRedirect(response.encodeRedirectURL(contextPath));
         
         

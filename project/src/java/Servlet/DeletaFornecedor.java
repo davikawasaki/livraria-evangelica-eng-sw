@@ -34,12 +34,16 @@ public class DeletaFornecedor extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        int delete = Integer.parseInt(request.getParameter("delete"));
-        out.println(delete);
-
+        int delete = 10;
+        delete = Integer.parseInt(request.getParameter("delete"));
+        
         PessoaDAO pdao = new PessoaDAO();
         pdao.remove(delete);  
     
+        String contextPath= "http://localhost:8084/livraria_v1/listar-fornecedor.jsp";
+        response.sendRedirect(response.encodeRedirectURL(contextPath));
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
