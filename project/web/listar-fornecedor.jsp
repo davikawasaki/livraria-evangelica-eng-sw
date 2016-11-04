@@ -15,7 +15,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Site - Fornecedores</title>
+		<title>LISTA FORNECEDORES KOINONIA</title>
 
 		<meta name="description" content=" " />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -72,7 +72,7 @@
 					<a href="dashboard.html" class="navbar-brand">
 						<small>
 							<i class="fa fa-book"></i>
-							Livraria
+							Koinonia Livraria Cristã
 						</small>
 					</a>
 				</div>
@@ -85,14 +85,14 @@
 								<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Bem vindo,</small>
-									Nicholas
+									Admin
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
 							</a>
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<li>
+<!--								<li>
 									<a href="#">
 										<i class="ace-icon fa fa-cog"></i>
 										Configurações
@@ -106,7 +106,7 @@
 									</a>
 								</li>
 
-								<li class="divider"></li>
+								<li class="divider"></li>-->
 
 								<li>
 									<a href="#">
@@ -442,7 +442,7 @@
 				<div class="footer-inner">
 					<div class="footer-content">
 						<span class="bigger-120">
-							Livraria Evang&eacute;lica App &copy; 2016
+							Koinonia Livraria Cristã &copy; 2016
 						</span>
 					</div>
 				</div>
